@@ -3,6 +3,7 @@ import { B0505S_1WR3 } from "../../imports/B0505S_1WR3"
 import { TLP2361_TPL_E } from "../../imports/TLP2361_TPL_E"
 import { CL10A106KP8NNNC } from "../common/CL10A106KP8NNNC"
 import { C, R } from "../passives"
+import { decapSch } from "../schLayout"
 
 const sec = "isolation"
 
@@ -58,8 +59,9 @@ export const Isolation = () => (
           pcbY={BARRIER_Y + 5}
           pcbRotation={-90}
           schSectionName={sec}
-          schX={13.6}
+          schX={13.4}
           schY={5.4 - i * 2.2}
+          schRotation={-90}
           connections={{ pin1: "net.V3V3", pin2: `net.OC_${ch.sig}_AN` }}
         />,
         <C
@@ -70,10 +72,8 @@ export const Isolation = () => (
           pcbX={ch.x + 3.6}
           pcbY={BARRIER_Y - 3.4}
           pcbRotation={90}
-          schSectionName={sec}
           schOrientation="vertical"
-          schX={18.6}
-          schY={5 - i * 2.2}
+          {...decapSch("V3V3_ISO", i)}
           connections={{ pin1: "net.V3V3_ISO", pin2: "net.GND_ISO" }}
         />,
     ])}
@@ -84,8 +84,8 @@ export const Isolation = () => (
       pcbX={-9}
       pcbY={BARRIER_Y + 8.4}
       schSectionName={sec}
-      schX={11.6}
-      schY={3}
+      schX={11.4}
+      schY={2.4}
       connections={{
         pin1: "net.ISO_SCK_TX",
         pin2: "net.ISO_MOSI_TX",
@@ -117,27 +117,25 @@ export const Isolation = () => (
     />
     <R
       name="R14"
+      schRotation={-90}
       resistance="390"
       footprint="0603"
-      pcbX={8.4}
-      pcbY={BARRIER_Y - 3.4}
-      pcbRotation={90}
+      pcbX={12}
+      pcbY={BARRIER_Y - 5.8}
       schSectionName={sec}
-      schX={13.6}
+      schX={13.4}
       schY={-3.4}
       connections={{ pin1: "net.V3V3_ISO", pin2: "net.OC_MISO_AN" }}
     />
     <C
       name="C34"
+      {...decapSch("V3V3", 11)}
       capacitance="100nF"
       footprint="0603"
       pcbX={8.4}
       pcbY={BARRIER_Y + 4.4}
       pcbRotation={90}
-      schSectionName={sec}
       schOrientation="vertical"
-      schX={18.6}
-      schY={-3.8}
       connections={{ pin1: "net.V3V3", pin2: "net.GND" }}
     />
 
@@ -149,7 +147,7 @@ export const Isolation = () => (
       pcbRotation={-90}
       schSectionName={sec}
       schX={16}
-      schY={-7.2}
+      schY={-7.4}
       connections={{
         GND: "net.GND",
         Vin_POS: "net.V5_DCDC",
@@ -159,25 +157,21 @@ export const Isolation = () => (
     />
     <CL10A106KP8NNNC
       name="C35"
+      {...decapSch("V5_ISO", 0)}
       pcbX={-36.4}
       pcbY={4.4}
       pcbRotation={90}
-      schSectionName={sec}
-      schX={19}
-      schY={-7.2}
       schOrientation="vertical"
       connections={{ pin1: "net.V5_ISO", pin2: "net.GND_ISO" }}
     />
     <R
       name="R15"
+      {...decapSch("V5_ISO", 2)}
       resistance="470"
       footprint="0805"
       pcbX={-36.4}
       pcbY={0.4}
       pcbRotation={90}
-      schSectionName={sec}
-      schX={20.2}
-      schY={-7.2}
       schRotation={-90}
       connections={{ pin1: "net.V5_ISO", pin2: "net.GND_ISO" }}
     />

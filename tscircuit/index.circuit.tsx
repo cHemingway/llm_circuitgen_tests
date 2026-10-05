@@ -2,6 +2,7 @@ import { DvmInterface } from "./lib/sections/DvmInterface"
 import { BARRIER_Y, Isolation } from "./lib/sections/Isolation"
 import { Mcu } from "./lib/sections/Mcu"
 import { UsbPower } from "./lib/sections/UsbPower"
+import { DECOUPLING_SECTION } from "./lib/schLayout"
 
 /**
  * Solartron 7075 USB interface.
@@ -41,7 +42,12 @@ export default () => (
     layers={2}
     borderRadius="2mm"
     title="Solartron 7075 USB interface"
+    minViaHoleDiameter="0.2mm"
+    minViaPadDiameter="0.45mm"
+    schMaxTraceDistance={4}
+    schTraceAutoLabelEnabled
   >
+    <schematicsection name={DECOUPLING_SECTION} displayName="Supply decoupling" />
     <UsbPower />
     <Mcu />
     <Isolation />
@@ -51,6 +57,17 @@ export default () => (
     <copperpour connectsTo="net.GND" layer="bottom" outline={usbSideOutline} clearance="0.25mm" />
     <copperpour connectsTo="net.GND_ISO" layer="top" outline={isoSideOutline} clearance="0.25mm" />
     <copperpour connectsTo="net.GND_ISO" layer="bottom" outline={isoSideOutline} clearance="0.25mm" />
+
+    {/* Copper keepout along the barrier: no trace or via may cross it */}
+    <keepout
+      shape="rect"
+      pcbX={0}
+      pcbY={BARRIER_Y}
+      width={`${BOARD_W}mm`}
+      height="1.8mm"
+      layers={["top", "bottom"]}
+      allowPlacements
+    />
 
     {/* Isolation barrier marking */}
     <silkscreenline

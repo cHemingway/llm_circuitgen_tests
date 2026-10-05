@@ -1,4 +1,5 @@
 import type { ConnectorProps } from "@tscircuit/props"
+import { Fragment } from "react"
 import { SKB_PINS } from "./solartronSkb"
 
 /**
@@ -59,15 +60,16 @@ export const DSub50MaleVertical = (
         {SKB_PINS.map((p) => {
           const { x, y } = pinPosition(p.pin)
           return (
-            <platedhole
-              key={p.pin}
-              portHints={[`pin${p.pin}`]}
-              pcbX={x}
-              pcbY={y}
-              shape="circle"
-              holeDiameter="1mm"
-              outerDiameter="1.6mm"
-            />
+            <Fragment key={p.pin}>
+              <platedhole
+                portHints={[`pin${p.pin}`]}
+                pcbX={x}
+                pcbY={y}
+                shape="circle"
+                holeDiameter="1mm"
+                outerDiameter="1.6mm"
+              />
+            </Fragment>
           )
         })}
         <platedhole

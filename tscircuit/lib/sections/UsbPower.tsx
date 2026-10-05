@@ -4,6 +4,7 @@ import { AP2112K_3_3TRG1 } from "../common/AP2112K_3_3TRG1"
 import { BLM18PG121SN1D } from "../common/BLM18PG121SN1D"
 import { CL10A106KP8NNNC } from "../common/CL10A106KP8NNNC"
 import { C, R } from "../passives"
+import { decapSch } from "../schLayout"
 
 const sec = "usb_power"
 
@@ -20,7 +21,7 @@ export const UsbPower = () => (
       pcbX={-31}
       pcbY={26}
       schSectionName={sec}
-      schX={-16}
+      schX={-18}
       schY={4}
       connections={{
         VCC: "net.VBUS",
@@ -38,7 +39,7 @@ export const UsbPower = () => (
       pcbX={-19}
       pcbY={28.5}
       schSectionName={sec}
-      schX={-12}
+      schX={-14}
       schY={5}
       connections={{
         pin1: "net.USB_DM_CONN",
@@ -56,7 +57,7 @@ export const UsbPower = () => (
       pcbX={-14.5}
       pcbY={29.6}
       schSectionName={sec}
-      schX={-9}
+      schX={-11}
       schY={5.6}
       connections={{ pin1: "net.USB_DM_CONN", pin2: "net.USB_DM" }}
     />
@@ -67,7 +68,7 @@ export const UsbPower = () => (
       pcbX={-14.5}
       pcbY={28.2}
       schSectionName={sec}
-      schX={-9}
+      schX={-11}
       schY={4.4}
       connections={{ pin1: "net.USB_DP_CONN", pin2: "net.USB_DP" }}
     />
@@ -77,8 +78,8 @@ export const UsbPower = () => (
       pcbX={-21}
       pcbY={23.4}
       schSectionName={sec}
-      schX={-13.5}
-      schY={1.5}
+      schX={-15.6}
+      schY={1.2}
       schOrientation="vertical"
       connections={{ pin1: "net.VBUS", pin2: "net.GND" }}
     />
@@ -89,8 +90,8 @@ export const UsbPower = () => (
       pcbX={-17.5}
       pcbY={20}
       schSectionName={sec}
-      schX={-10.5}
-      schY={1.5}
+      schX={-12.6}
+      schY={1.4}
       connections={{
         VIN: "net.VBUS",
         EN: "net.VBUS",
@@ -100,12 +101,10 @@ export const UsbPower = () => (
     />
     <CL10A106KP8NNNC
       name="C2"
+      {...decapSch("V3V3", 0)}
       pcbX={-13.6}
       pcbY={20}
       pcbRotation={90}
-      schSectionName={sec}
-      schX={-7.5}
-      schY={1.5}
       schOrientation="vertical"
       connections={{ pin1: "net.V3V3", pin2: "net.GND" }}
     />
@@ -113,12 +112,13 @@ export const UsbPower = () => (
     {/* Filtered 5 V feed to the isolated DC-DC converter */}
     <BLM18PG121SN1D
       name="FB1"
+      schRotation={-90}
       pcbX={-26}
       pcbY={17.2}
       pcbRotation={-90}
       schSectionName={sec}
-      schX={-13.5}
-      schY={-1.5}
+      schX={-15.6}
+      schY={-1.6}
       connections={{ pin1: "net.VBUS", pin2: "net.V5_DCDC" }}
     />
     <C
@@ -129,8 +129,8 @@ export const UsbPower = () => (
       pcbY={13.6}
       pcbRotation={90}
       schSectionName={sec}
-      schX={-11}
-      schY={-2.5}
+      schX={-14.2}
+      schY={-2.4}
       schOrientation="vertical"
       connections={{ pin1: "net.V5_DCDC", pin2: "net.GND" }}
     />

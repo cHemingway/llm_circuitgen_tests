@@ -6,6 +6,7 @@ import { SN74LVC07ADR } from "../../imports/SN74LVC07ADR"
 import { CL10A106KP8NNNC } from "../common/CL10A106KP8NNNC"
 import { DSub50MaleVertical } from "../DSub50MaleVertical"
 import { C, R } from "../passives"
+import { decapSch } from "../schLayout"
 import { COMMAND_BITS, DVM_OUTPUT_PINS, dvmNet } from "../solartronSkb"
 
 const secPower = "dvm_power"
@@ -126,12 +127,10 @@ export const DvmInterface = () => (
     {/* ---------------- isolated 3.3 V ---------------- */}
     <CL10A106KP8NNNC
       name="C36"
+      {...decapSch("V5_ISO", 1)}
       pcbX={-36.6}
       pcbY={-4.6}
       pcbRotation={90}
-      schSectionName={secPower}
-      schX={24}
-      schY={-7.2}
       schOrientation="vertical"
       connections={{ pin1: "net.V5_ISO", pin2: "net.GND_ISO" }}
     />
@@ -140,18 +139,16 @@ export const DvmInterface = () => (
       pcbX={-31.6}
       pcbY={-4.6}
       schSectionName={secPower}
-      schX={26}
-      schY={-7.2}
+      schX={21}
+      schY={-7.4}
       connections={{ Vin: "net.V5_ISO", Vout: "net.V3V3_ISO", GND: "net.GND_ISO" }}
     />
     <CL10A106KP8NNNC
       name="C37"
+      {...decapSch("V3V3_ISO", 4)}
       pcbX={-27.6}
       pcbY={-9.2}
       pcbRotation={90}
-      schSectionName={secPower}
-      schX={28}
-      schY={-7.2}
       schOrientation="vertical"
       connections={{ pin1: "net.V3V3_ISO", pin2: "net.GND_ISO" }}
     />
@@ -165,7 +162,7 @@ export const DvmInterface = () => (
         pcbY={SR_IN_ROW_Y}
         pcbRotation={-90}
         schSectionName={secIn}
-        schX={2 + idx * 5}
+        schX={2 + idx * 6}
         schY={-14}
         connections={srInConnections(idx)}
       />,
@@ -176,10 +173,8 @@ export const DvmInterface = () => (
         footprint="0603"
         pcbX={u.x + 4.2}
         pcbY={SR_IN_ROW_Y + 6.4}
-        schSectionName={secIn}
         schOrientation="vertical"
-        schX={4 + idx * 5}
-        schY={-11}
+        {...decapSch("V3V3_ISO", 5 + idx)}
         connections={{ pin1: "net.V3V3_ISO", pin2: "net.GND_ISO" }}
       />,
     ])}
@@ -204,10 +199,8 @@ export const DvmInterface = () => (
         footprint="0603"
         pcbX={u.x + 4.2}
         pcbY={SR_OUT_ROW_Y + 6.3}
-        schSectionName={secOut}
         schOrientation="vertical"
-        schX={4 + idx * 5}
-        schY={-21}
+        {...decapSch("V3V3_ISO", 10 + idx)}
         connections={{ pin1: "net.V3V3_ISO", pin2: "net.GND_ISO" }}
       />,
     ])}
@@ -244,10 +237,8 @@ export const DvmInterface = () => (
         footprint="0603"
         pcbX={u.x + 4.2}
         pcbY={SR_OUT_ROW_Y + 6.3}
-        schSectionName={secOut}
         schOrientation="vertical"
-        schX={15 + idx * 5}
-        schY={-21}
+        {...decapSch("V3V3_ISO", 12 + idx)}
         connections={{ pin1: "net.V3V3_ISO", pin2: "net.GND_ISO" }}
       />,
     ])}
@@ -258,7 +249,7 @@ export const DvmInterface = () => (
         pcbX={rn.x}
         pcbY={-32.6}
         schSectionName={secOut}
-        schX={11 + idx * 2.5}
+        schX={12.1 + idx * 2.6}
         schY={-28}
         connections={{
           pin1: cmdNet(rn.bits[0]),
@@ -282,7 +273,7 @@ export const DvmInterface = () => (
       pcbY={-19.7}
       pcbRotation={180}
       schSectionName={secOut}
-      schX={9}
+      schX={7.9}
       schY={-28}
       connections={{ pin1: cmdNet(12), pin2: dvmNet(40) }}
     />
@@ -294,7 +285,7 @@ export const DvmInterface = () => (
       pcbX={DSUB_X}
       pcbY={DSUB_Y}
       schSectionName={secConn}
-      schX={34}
+      schX={36}
       schY={-18}
       connections={Object.fromEntries([
         ...DVM_OUTPUT_PINS.map((p) => [`pin${p}`, dvmNet(p)]),

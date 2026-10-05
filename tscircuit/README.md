@@ -30,6 +30,8 @@ USB-B ─ ESD ─┬─ AP2112K 3.3 V ─ RP2354A ── SPI0 ──┐
 | `lib/solartronSkb.ts` | SKB pin table transcribed from manual p. 9.9 and bit maps for firmware |
 | `lib/DSub50MaleVertical.tsx` | DD-50 vertical plug footprint (no LCSC/EasyEDA footprint available) |
 | `lib/passives.tsx` | Resistor/capacitor values pinned to LCSC part numbers |
+| `lib/schLayout.ts` | Schematic grouping helpers (decoupling caps per rail) |
+| `outputs/` | Exported schematic, PCB views, netlist and Gerbers of the routed board |
 | `lib/common/` | Parts reused from [tscircuit/common](https://github.com/tscircuit/common) (MIT) |
 | `imports/` | Parts imported from LCSC/JLCPCB with `tsci import` |
 
@@ -38,9 +40,34 @@ USB-B ─ ESD ─┬─ AP2112K 3.3 V ─ RP2354A ── SPI0 ──┐
 ```sh
 cd tscircuit
 npm install
-npx tsci build index.circuit.tsx --pcb-png --schematic-png   # -> dist/index/
-npx tsci check placement index.circuit.tsx
+npm run build      # tsci build: place, autoroute (~5 min), dist/index/{circuit.json,pcb.png,schematic.png}
+npm run check      # netlist + placement DRC, copper shorts, isolation barrier check
+npm run export     # outputs/: schematic SVG/PDF, PCB SVGs, netlist, Gerbers (from dist, no re-route)
 ```
+
+The routed result is committed in `outputs/`:
+
+- `gerbers.zip`: Gerbers, drill file, `bom.csv` and `pick_and_place.csv`, with
+  JLCPCB part numbers.
+- `schematic.svg` and `schematic.pdf`.
+- `pcb-top.svg` and `pcb-bottom.svg`.
+- `netlist.txt`.
+
+The board is 2 layers, with 0.15 mm tracks and 0.2 mm/0.45 mm vias, which
+JLCPCB builds at standard pricing.
+
+Verification of the committed board:
+
+- Every connection is routed and `tsci check shorts` passes.
+- `scripts/check-isolation.mjs` finds no trace or via crossing the barrier.
+- The only DRC item is a via on net `DVM_D4_2` overlapping the toe of its own
+  pad, U6 pin 11. It is the same net, so it is harmless electrically; move it
+  off the pad during final review if the board is assembled by reflow.
+- The tscircuit autorouter (capacity-autorouter 0.0.958) is very sensitive to
+  small placement changes. Re-run `npm run check` after any edit, because a new
+  route can differ.
+- Check JLCPCB pick-and-place rotations in their preview. The exporter cannot
+  verify pin-1 rotation for the SOICs and some imported parts.
 
 ## Mechanical
 
@@ -58,8 +85,10 @@ npx tsci check placement index.circuit.tsx
 - The barrier is the row of optocouplers across the board (silkscreen line,
   `BARRIER_Y` in `Isolation.tsx`). `GND`/`V3V3` (USB) are above it and
   `GND_ISO`/`V3V3_ISO` (DVM) are below. Both copper pours stop 1.6 mm either
-  side of the line, which gives ≥ 4 mm pad-to-pad creepage through each
-  TLP2361. The aim is to break ground loops and keep USB noise out of the DVM.
+  side of the line, and a 1.8 mm copper `<keepout>` on both layers stops the
+  autorouter from taking any trace or via across it. This gives ≥ 4 mm
+  pad-to-pad creepage through each TLP2361. `scripts/check-isolation.mjs`
+  checks the routed board. The aim is to break ground loops and keep USB noise out of the DVM.
   It is not a safety isolation design.
 - SKB has no supply pin. The isolated side is therefore powered by a
   B0505S-1WR3 1 W module followed by an HT7533 LDO. R15 (470 Ω) provides the

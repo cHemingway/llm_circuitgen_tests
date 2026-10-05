@@ -4,6 +4,7 @@ import { RP2354A } from "../../imports/RP2354A"
 import { SKRPACE010 } from "../common/SKRPACE010"
 import { XL_1608SURC_06 } from "../common/XL_1608SURC_06"
 import { C, R } from "../passives"
+import { decapSch } from "../schLayout"
 
 const sec = "mcu"
 
@@ -22,7 +23,7 @@ const decouplers: {
   { name: "C10", net: "V3V3", x: -5.6, y: 29.2, rot: 90 }, // IOVDD pin 1
   { name: "C11", net: "V1V1", x: -5.6, y: 25.8, rot: 90 }, // DVDD pin 6
   { name: "C12", net: "V3V3", x: -5.6, y: 22.4, rot: 90 }, // IOVDD pin 11
-  { name: "C13", net: "V3V3", x: -2.6, y: 20.0, rot: 180 }, // IOVDD pin 20
+  { name: "C13", net: "V3V3", x: -2.6, y: 20.14, rot: 180 }, // IOVDD pin 20
   { name: "C14", net: "V1V1", x: 2.6, y: 20.0 }, // DVDD pin 23
   { name: "C15", net: "V3V3", x: 5.6, y: 21.6, rot: 90 }, // IOVDD pin 30
   { name: "C16", net: "V3V3", x: 5.6, y: 24.6, rot: 90 }, // IOVDD pin 38
@@ -48,8 +49,8 @@ export const Mcu = () => (
       pcbY={U1Y}
       schSectionName={sec}
       schX={2}
-      schY={2}
-      schWidth={3}
+      schY={1.6}
+      schWidth={2.8}
       connections={{
         IOVDD1: "net.V3V3",
         IOVDD2: "net.V3V3",
@@ -96,10 +97,12 @@ export const Mcu = () => (
         pcbX={d.x}
         pcbY={d.y}
         pcbRotation={d.rot ?? 0}
-        schSectionName={sec}
         schOrientation="vertical"
-        schX={-3 + (decouplers.indexOf(d) % 6) * 1.2}
-        schY={decouplers.indexOf(d) < 6 ? -3 : -5}
+        {...decapSch(
+          d.net === "V1V1" ? "V1V1" : "V3V3",
+          decouplers.filter((o) => o.net === d.net).indexOf(d) +
+            (d.net === "V1V1" ? 0 : 1),
+        )}
         connections={{ pin1: `net.${d.net}`, pin2: "net.GND" }}
       />
     ))}
@@ -107,15 +110,13 @@ export const Mcu = () => (
     {/* Core regulator: Cin on VREG_VIN, L + Cout on DVDD, RC filter on VREG_AVDD */}
     <C
       name="C22"
+      {...decapSch("V3V3", 10)}
       capacitance="4.7uF"
       footprint="0402"
       pcbX={1.4}
       pcbY={30.8}
       pcbRotation={90}
-      schSectionName={sec}
       schOrientation="vertical"
-      schX={6.2}
-      schY={-3}
       connections={{ pin1: "net.V3V3", pin2: "net.GND" }}
     />
     <AOTA_B201610S3R3_101_T
@@ -123,32 +124,31 @@ export const Mcu = () => (
       pcbX={4.4}
       pcbY={31.4}
       schSectionName={sec}
-      schX={7.6}
-      schY={4.4}
+      schX={6.6}
+      schY={5.4}
       connections={{ pin1: "net.VREG_LX", pin2: "net.V1V1" }}
     />
     <C
       name="C23"
+      {...decapSch("V1V1", 3)}
       capacitance="4.7uF"
       footprint="0402"
       pcbX={7.4}
       pcbY={31.4}
       pcbRotation={90}
-      schSectionName={sec}
       schOrientation="vertical"
-      schX={7.4}
-      schY={-3}
       connections={{ pin1: "net.V1V1", pin2: "net.GND" }}
     />
     <R
       name="R3"
+      schRotation={-90}
       resistance="33"
       footprint="0402"
       pcbX={4.6}
       pcbY={33.3}
       schSectionName={sec}
-      schX={7.6}
-      schY={3.2}
+      schX={5.6}
+      schY={3.4}
       connections={{ pin1: "net.V3V3", pin2: "net.VREG_AVDD" }}
     />
     <C
@@ -160,8 +160,8 @@ export const Mcu = () => (
       pcbRotation={180}
       schSectionName={sec}
       schOrientation="vertical"
-      schX={8.6}
-      schY={-3}
+      schX={6.8}
+      schY={2.4}
       connections={{ pin1: "net.VREG_AVDD", pin2: "net.GND" }}
     />
 
@@ -170,9 +170,10 @@ export const Mcu = () => (
       name="Y1"
       pcbX={-1.8}
       pcbY={17.6}
+      pcbRotation={-90}
       schSectionName={sec}
       schX={-2}
-      schY={-8}
+      schY={-5}
       connections={{
         pin1: "net.XIN",
         pin3: "net.XOUT_R",
@@ -182,14 +183,15 @@ export const Mcu = () => (
     />
     <R
       name="R4"
+      schRotation={180}
       resistance="1k"
       footprint="0402"
-      pcbX={1}
-      pcbY={18.4}
-      pcbRotation={90}
+      pcbX={0.6}
+      pcbY={18}
+      pcbRotation={-90}
       schSectionName={sec}
-      schX={0.2}
-      schY={-7.2}
+      schX={0.4}
+      schY={-4.4}
       connections={{ pin1: "net.XOUT", pin2: "net.XOUT_R" }}
     />
     <C
@@ -197,25 +199,25 @@ export const Mcu = () => (
       capacitance="15pF"
       footprint="0402"
       pcbX={-4.6}
-      pcbY={17.6}
+      pcbY={18.4}
       pcbRotation={90}
       schSectionName={sec}
       schOrientation="vertical"
       schX={-3.4}
-      schY={-9.6}
+      schY={-6.6}
       connections={{ pin1: "net.XIN", pin2: "net.GND" }}
     />
     <C
       name="C26"
       capacitance="15pF"
       footprint="0402"
-      pcbX={1}
-      pcbY={16.2}
+      pcbX={0.6}
+      pcbY={15.8}
       pcbRotation={90}
       schSectionName={sec}
       schOrientation="vertical"
       schX={-0.6}
-      schY={-9.6}
+      schY={-6.6}
       connections={{ pin1: "net.XOUT_R", pin2: "net.GND" }}
     />
 
@@ -225,8 +227,8 @@ export const Mcu = () => (
       pcbX={-10}
       pcbY={32.4}
       schSectionName={sec}
-      schX={-3}
-      schY={5}
+      schX={-3.45}
+      schY={5.4}
       connections={{ pin1: "net.BOOT_SW", pin3: "net.GND" }}
     />
     <R
@@ -237,8 +239,8 @@ export const Mcu = () => (
       pcbY={32.6}
       pcbRotation={180}
       schSectionName={sec}
-      schX={-1.4}
-      schY={5}
+      schX={-0.95}
+      schY={5.4}
       connections={{ pin1: "net.QSPI_SS", pin2: "net.BOOT_SW" }}
     />
 
@@ -252,7 +254,7 @@ export const Mcu = () => (
       pcbRotation={90}
       schSectionName={sec}
       schX={7.4}
-      schY={-7.2}
+      schY={-4.4}
       schRotation={90}
       connections={{ pin1: "net.RUN", pin2: "net.V3V3" }}
     />
@@ -262,7 +264,7 @@ export const Mcu = () => (
       pcbY={32.4}
       schSectionName={sec}
       schX={9}
-      schY={-8}
+      schY={-5.4}
       connections={{ pin1: "net.RUN", pin3: "net.GND" }}
     />
 
@@ -283,7 +285,7 @@ export const Mcu = () => (
         pcbY={19.4}
         schSectionName={sec}
         schX={2.4 + i * 1.2}
-        schY={-9.6}
+        schY={-6.6}
         connections={{ pin1: `net.${tp.net}` }}
       />
     ))}
@@ -291,44 +293,48 @@ export const Mcu = () => (
     {/* Status LED on GPIO25, power LED on 3.3 V */}
     <R
       name="R7"
+      schRotation={-90}
       resistance="1k"
       footprint="0603"
       pcbX={20}
       pcbY={32.4}
       schSectionName={sec}
-      schX={9.2}
-      schY={1.2}
+      schX={8.4}
+      schY={1.6}
       connections={{ pin1: "net.LED_STATUS", pin2: "net.LED_STATUS_A" }}
     />
     <XL_1608SURC_06
       name="D1"
+      schRotation={-90}
       color="red"
       pcbX={23}
       pcbY={32.4}
       schSectionName={sec}
-      schX={10.6}
-      schY={1.2}
+      schX={8.4}
+      schY={-0.2}
       connections={{ anode: "net.LED_STATUS_A", cathode: "net.GND" }}
     />
     <R
       name="R8"
+      schRotation={-90}
       resistance="1k"
       footprint="0603"
       pcbX={27}
       pcbY={32.4}
       schSectionName={sec}
-      schX={9.2}
-      schY={-0.4}
+      schX={9.9}
+      schY={1.6}
       connections={{ pin1: "net.V3V3", pin2: "net.LED_PWR_A" }}
     />
     <XL_1608SURC_06
       name="D2"
+      schRotation={-90}
       color="red"
       pcbX={30}
       pcbY={32.4}
       schSectionName={sec}
-      schX={10.6}
-      schY={-0.4}
+      schX={9.9}
+      schY={-0.2}
       connections={{ anode: "net.LED_PWR_A", cathode: "net.GND" }}
     />
 

@@ -38,10 +38,21 @@ substituted where needed:
 
 ## Tools
 
-| Tool | Folder | Notes |
-| --- | --- | --- |
-| [tscircuit](https://tscircuit.com) | `tscircuit/` | Parts from tscircuit/common, then LCSC |
-| [atopile](https://atopile.io) | `atopile/` | CLI version (`ato`, 0.15.x). This is the last open CLI line and is effectively end-of-life: [PyPI](https://pypi.org/project/atopile/) lists 0.15.9 (12 Sep 2026) as the latest release, and atopile has moved on to [0.16](https://atopile.io/enterprise). Parts from atopile's library, then LCSC |
+| Tool | Folder | Active time | Total tokens | API calls | API-price estimate | Notes |
+| --- | --- | --- | --- | --- | --- | --- |
+| [tscircuit](https://tscircuit.com) | `tscircuit/` | 3 h 11 min | 156.3 M | 376 | $59.32 | Parts from tscircuit/common, then LCSC. Session log and statistics: [`tscircuit/CONVERSATION.md`](tscircuit/CONVERSATION.md) |
+| [atopile](https://atopile.io) | `atopile/` | – | – | – | – | CLI version (`ato`, 0.15.x). This is the last open CLI line and is effectively end-of-life: [PyPI](https://pypi.org/project/atopile/) lists 0.15.9 (12 Sep 2026) as the latest release, and atopile has moved on to [0.16](https://atopile.io/enterprise). Parts from atopile's library, then LCSC |
+
+Statistics cover the Claude Code session from the first prompt to the merge into
+`main`.
+
+- **Active time:** Claude working, including tool runs such as autorouting. It
+  excludes time spent waiting for the user.
+- **Total tokens:** these include prompt-cache reads, which dominate the total
+  because every API call re-sends the conversation.
+- **API-price estimate:** Claude Code's estimate at API list prices, not a bill.
+
+A dash means the figure was not recorded.
 
 ## Layout
 

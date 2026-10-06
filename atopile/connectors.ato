@@ -1,0 +1,216 @@
+#pragma experiment("BRIDGE_CONNECT")
+#pragma experiment("FOR_LOOP")
+
+import ElectricPower
+import ElectricLogic
+import USB2_0
+import Capacitor
+
+from "parts/SHOU_HAN_BF_180/SHOU_HAN_BF_180.ato" import SHOU_HAN_BF_180_package
+from "parts/STMicroelectronics_USBLC6_2SC6/STMicroelectronics_USBLC6_2SC6.ato" import STMicroelectronics_USBLC6_2SC6_package
+from "parts/LUTE_1206L050_36NR/LUTE_1206L050_36NR.ato" import LUTE_1206L050_36NR_package
+from "parts/Amphenol_ICC_DD50P364TXLF/Amphenol_ICC_DD50P364TXLF.ato" import Amphenol_ICC_DD50P364TXLF_package
+
+
+module UsbBInput:
+    """
+    Vertical (180 deg) through-hole USB-B receptacle with USBLC6-2SC6 ESD
+    protection on D+/D-/VBUS and a 500 mA resettable fuse on VBUS.
+    `usb.usb_if.buspower` is the fused 5 V rail.
+    """
+    connector = new SHOU_HAN_BF_180_package
+    esd = new STMicroelectronics_USBLC6_2SC6_package
+    fuse = new LUTE_1206L050_36NR_package
+
+    usb = new USB2_0
+    vbus_raw = new ElectricPower
+
+    vbus_raw.hv ~ connector.VCC
+    vbus_raw.lv ~ connector.GND
+    usb.usb_if.d.p.line ~ connector.Dpos
+    usb.usb_if.d.n.line ~ connector.Dneg
+
+    # USBLC6-2SC6: 1/6 = I/O1, 3/4 = I/O2, 2 = GND, 5 = VBUS
+    usb.usb_if.d.p.line ~ esd.1
+    usb.usb_if.d.p.line ~ esd.6
+    usb.usb_if.d.n.line ~ esd.3
+    usb.usb_if.d.n.line ~ esd.4
+    vbus_raw.lv ~ esd.2
+    vbus_raw.hv ~ esd.5
+
+    vbus_raw.hv ~ fuse.1
+    fuse.2 ~ usb.usb_if.buspower.hv
+    vbus_raw.lv ~ usb.usb_if.buspower.lv
+
+    vbus_raw.voltage = 5V +/- 5%
+
+    bulk = new Capacitor
+    bulk.capacitance = 10uF +/- 20%
+    bulk.package = "0805"
+    bulk.lcsc_id = "C15850"
+    assert bulk.max_voltage >= 10V
+    usb.usb_if.buspower.hv ~> bulk ~> usb.usb_if.buspower.lv
+
+
+module SolartronSKB:
+    """
+    Vertical PCB-mount DD-50 plug (Amphenol DD50P364TXLF) that mates with
+    SKB, the 50-way Cannon socket of the Solartron 7075 Parallel BCD
+    Interface Unit 70754 (service manual section 9, "Systems Interface
+    50-way Cannon Socket Connections").
+
+    Logic levels (manual p. 9.1):
+      inputs to the 7075:   '1' = +2.4..+5 V at 100 uA, '0' = -0.5..+0.5 V at 5 mA sink
+      outputs from the 7075: '1' = +2.4..+6 V from 6 k source, '0' = <0.5 V at 10 mA sink
+
+    `dvm_out[n]` is SKB pin n+1 for n = 0..35:
+       pins  1..25  staticised BCD data: 1x10^6, then 8,4,2,1 x10^5 ... x10^0
+       pin  26/27   +ve / -ve polarity output code
+       pin  28/29   function output code
+       pin  30/31/32 range output (4)/(2)/(1)
+       pin  33      PRINT command - pulse
+       pin  34      PRINT command - level
+       pin  35      DATA CAN CHANGE
+       pin  36      OVERLOAD
+    Pin 37 is EARTH / logic '0' (= `power.lv`), the shell is tied to it.
+    """
+    connector = new Amphenol_ICC_DD50P364TXLF_package
+
+    power = new ElectricPower
+    """Logic reference for the interface; lv is SKB pin 37"""
+
+    dvm_out = new ElectricLogic[36]
+
+    # Command inputs to the 7075
+    front_panel_lockout = new ElectricLogic
+    """pin 38: 0 = front panel locked out (remote)"""
+    sample_contact = new ElectricLogic
+    """pin 39: contact-closure SAMPLE to pin 37"""
+    sample_pulse = new ElectricLogic
+    """pin 40: positive pulse SAMPLE (+3..+8 V, >100 us)"""
+    ratio = new ElectricLogic
+    """pin 41: 0 = ratio commanded"""
+    function_cmd = new ElectricLogic[2]
+    """[0] = pin 42, [1] = pin 43. (pin43, pin42): 11 DC, 01 AC, 10 ohms, 00 CHECK"""
+    integration_time = new ElectricLogic[3]
+    """[0] = pin 44 (4), [1] = pin 45 (2), [2] = pin 46 (1)"""
+    autorange = new ElectricLogic
+    """pin 47: 1 = autorange inhibited / commanded range used"""
+    range_cmd = new ElectricLogic[3]
+    """[0] = pin 48 (1), [1] = pin 49 (2), [2] = pin 50 (4)"""
+
+    for s in dvm_out:
+        s.reference ~ power
+    for s in function_cmd:
+        s.reference ~ power
+    for s in integration_time:
+        s.reference ~ power
+    for s in range_cmd:
+        s.reference ~ power
+    for s in [front_panel_lockout, sample_contact, sample_pulse, ratio, autorange]:
+        s.reference ~ power
+
+    power.lv ~ connector.37
+    power.lv ~ connector.SHIELD
+
+    dvm_out[0].line ~ connector.1
+    dvm_out[1].line ~ connector.2
+    dvm_out[2].line ~ connector.3
+    dvm_out[3].line ~ connector.4
+    dvm_out[4].line ~ connector.5
+    dvm_out[5].line ~ connector.6
+    dvm_out[6].line ~ connector.7
+    dvm_out[7].line ~ connector.8
+    dvm_out[8].line ~ connector.9
+    dvm_out[9].line ~ connector.10
+    dvm_out[10].line ~ connector.11
+    dvm_out[11].line ~ connector.12
+    dvm_out[12].line ~ connector.13
+    dvm_out[13].line ~ connector.14
+    dvm_out[14].line ~ connector.15
+    dvm_out[15].line ~ connector.16
+    dvm_out[16].line ~ connector.17
+    dvm_out[17].line ~ connector.18
+    dvm_out[18].line ~ connector.19
+    dvm_out[19].line ~ connector.20
+    dvm_out[20].line ~ connector.21
+    dvm_out[21].line ~ connector.22
+    dvm_out[22].line ~ connector.23
+    dvm_out[23].line ~ connector.24
+    dvm_out[24].line ~ connector.25
+    dvm_out[25].line ~ connector.26
+    dvm_out[26].line ~ connector.27
+    dvm_out[27].line ~ connector.28
+    dvm_out[28].line ~ connector.29
+    dvm_out[29].line ~ connector.30
+    dvm_out[30].line ~ connector.31
+    dvm_out[31].line ~ connector.32
+    dvm_out[32].line ~ connector.33
+    dvm_out[33].line ~ connector.34
+    dvm_out[34].line ~ connector.35
+    dvm_out[35].line ~ connector.36
+
+    front_panel_lockout.line ~ connector.38
+    sample_contact.line ~ connector.39
+    sample_pulse.line ~ connector.40
+    ratio.line ~ connector.41
+    function_cmd[0].line ~ connector.42
+    function_cmd[1].line ~ connector.43
+    integration_time[0].line ~ connector.44
+    integration_time[1].line ~ connector.45
+    integration_time[2].line ~ connector.46
+    autorange.line ~ connector.47
+    range_cmd[0].line ~ connector.48
+    range_cmd[1].line ~ connector.49
+    range_cmd[2].line ~ connector.50
+
+    # --- Net names ---
+    dvm_out[0].line.suggest_net_name = "SKB01_D6_1"
+    dvm_out[1].line.suggest_net_name = "SKB02_D5_8"
+    dvm_out[2].line.suggest_net_name = "SKB03_D5_4"
+    dvm_out[3].line.suggest_net_name = "SKB04_D5_2"
+    dvm_out[4].line.suggest_net_name = "SKB05_D5_1"
+    dvm_out[5].line.suggest_net_name = "SKB06_D4_8"
+    dvm_out[6].line.suggest_net_name = "SKB07_D4_4"
+    dvm_out[7].line.suggest_net_name = "SKB08_D4_2"
+    dvm_out[8].line.suggest_net_name = "SKB09_D4_1"
+    dvm_out[9].line.suggest_net_name = "SKB10_D3_8"
+    dvm_out[10].line.suggest_net_name = "SKB11_D3_4"
+    dvm_out[11].line.suggest_net_name = "SKB12_D3_2"
+    dvm_out[12].line.suggest_net_name = "SKB13_D3_1"
+    dvm_out[13].line.suggest_net_name = "SKB14_D2_8"
+    dvm_out[14].line.suggest_net_name = "SKB15_D2_4"
+    dvm_out[15].line.suggest_net_name = "SKB16_D2_2"
+    dvm_out[16].line.suggest_net_name = "SKB17_D2_1"
+    dvm_out[17].line.suggest_net_name = "SKB18_D1_8"
+    dvm_out[18].line.suggest_net_name = "SKB19_D1_4"
+    dvm_out[19].line.suggest_net_name = "SKB20_D1_2"
+    dvm_out[20].line.suggest_net_name = "SKB21_D1_1"
+    dvm_out[21].line.suggest_net_name = "SKB22_D0_8"
+    dvm_out[22].line.suggest_net_name = "SKB23_D0_4"
+    dvm_out[23].line.suggest_net_name = "SKB24_D0_2"
+    dvm_out[24].line.suggest_net_name = "SKB25_D0_1"
+    dvm_out[25].line.suggest_net_name = "SKB26_POL_POS"
+    dvm_out[26].line.suggest_net_name = "SKB27_POL_NEG"
+    dvm_out[27].line.suggest_net_name = "SKB28_FUNC_OUT_A"
+    dvm_out[28].line.suggest_net_name = "SKB29_FUNC_OUT_B"
+    dvm_out[29].line.suggest_net_name = "SKB30_RANGE_OUT_4"
+    dvm_out[30].line.suggest_net_name = "SKB31_RANGE_OUT_2"
+    dvm_out[31].line.suggest_net_name = "SKB32_RANGE_OUT_1"
+    dvm_out[32].line.suggest_net_name = "SKB33_PRINT_PULSE"
+    dvm_out[33].line.suggest_net_name = "SKB34_PRINT_LEVEL"
+    dvm_out[34].line.suggest_net_name = "SKB35_DATA_CAN_CHANGE"
+    dvm_out[35].line.suggest_net_name = "SKB36_OVERLOAD"
+    front_panel_lockout.line.suggest_net_name = "SKB38_LOCKOUT"
+    sample_contact.line.suggest_net_name = "SKB39_SAMPLE_CONTACT"
+    sample_pulse.line.suggest_net_name = "SKB40_SAMPLE_PULSE"
+    ratio.line.suggest_net_name = "SKB41_RATIO"
+    function_cmd[0].line.suggest_net_name = "SKB42_FUNC_CMD_A"
+    function_cmd[1].line.suggest_net_name = "SKB43_FUNC_CMD_B"
+    integration_time[0].line.suggest_net_name = "SKB44_INT_TIME_4"
+    integration_time[1].line.suggest_net_name = "SKB45_INT_TIME_2"
+    integration_time[2].line.suggest_net_name = "SKB46_INT_TIME_1"
+    autorange.line.suggest_net_name = "SKB47_AUTORANGE"
+    range_cmd[0].line.suggest_net_name = "SKB48_RANGE_CMD_1"
+    range_cmd[1].line.suggest_net_name = "SKB49_RANGE_CMD_2"
+    range_cmd[2].line.suggest_net_name = "SKB50_RANGE_CMD_4"

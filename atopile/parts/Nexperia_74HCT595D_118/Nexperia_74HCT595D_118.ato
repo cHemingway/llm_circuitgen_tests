@@ -1,0 +1,31 @@
+import has_designator_prefix
+import has_part_picked
+import is_atomic_part
+import is_auto_generated
+
+component Nexperia_74HCT595D_118_package:
+    # This trait marks this file as auto-generated
+    # If you want to manually change it, remove the trait
+    trait is_auto_generated<system="ato_part", source="easyeda:C282339", date="2026-10-06T10:57:20.501348+00:00", checksum="6f4665427675c630ab54a2cd428f97ee5026a2470ec3738d250c397bfdd37475">
+
+    trait is_atomic_part<manufacturer="Nexperia", partnumber="74HCT595D,118", footprint="SOIC-16_L9.9-W3.9-P1.27-LS6.0-BL.kicad_mod", symbol="74HCT595D,118.kicad_sym", model="SOIC-16_L9.9-W3.9-H1.8-LS6.0-P1.27.step">
+    trait has_part_picked::by_supplier<supplier_id="lcsc", supplier_partno="C282339", manufacturer="Nexperia", partno="74HCT595D,118">
+    trait has_designator_prefix<prefix="U">
+
+    # pins
+    signal DS ~ pin 14
+    signal GND ~ pin 8
+    signal Q0 ~ pin 15
+    signal Q1 ~ pin 1
+    signal Q2 ~ pin 2
+    signal Q3 ~ pin 3
+    signal Q4 ~ pin 4
+    signal Q5 ~ pin 5
+    signal Q6 ~ pin 6
+    signal Q7 ~ pin 7
+    signal Q7S ~ pin 9
+    signal SHCP ~ pin 11
+    signal STCP ~ pin 12
+    signal VCC ~ pin 16
+    signal nMR ~ pin 10
+    signal nOE ~ pin 13

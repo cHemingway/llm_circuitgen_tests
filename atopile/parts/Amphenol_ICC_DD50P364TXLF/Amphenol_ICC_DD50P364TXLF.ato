@@ -1,0 +1,67 @@
+import has_designator_prefix
+import has_part_picked
+import is_atomic_part
+import is_auto_generated
+
+component Amphenol_ICC_DD50P364TXLF_package:
+    # This trait marks this file as auto-generated
+    # If you want to manually change it, remove the trait
+    trait is_auto_generated<system="ato_part", source="easyeda:C5402574", date="2026-10-06T10:57:30.566046+00:00", checksum="27bfff890d7cea42116bd322dd792856c643d0170f3873388fcc7420a35bec8e">
+
+    trait is_atomic_part<manufacturer="Amphenol ICC", partnumber="DD50P364TXLF", footprint="CONN-TH_50P-P2.76_DD50P364TXLF.kicad_mod", symbol="DD50P364TXLF.kicad_sym", model="CONN-TH_50P-P2.76_DD50P364TXLF.STEP">
+    trait has_part_picked::by_supplier<supplier_id="lcsc", supplier_partno="C5402574", manufacturer="Amphenol ICC", partno="DD50P364TXLF">
+    trait has_designator_prefix<prefix="CN">
+
+    # pins
+    pin 1
+    pin 2
+    pin 3
+    pin 4
+    pin 5
+    pin 6
+    pin 7
+    pin 8
+    pin 9
+    pin 10
+    pin 11
+    pin 12
+    pin 13
+    pin 14
+    pin 15
+    pin 16
+    pin 17
+    pin 18
+    pin 19
+    pin 20
+    pin 21
+    pin 22
+    pin 23
+    pin 24
+    pin 25
+    pin 26
+    pin 27
+    pin 28
+    pin 29
+    pin 30
+    pin 31
+    pin 32
+    pin 33
+    pin 34
+    pin 35
+    pin 36
+    pin 37
+    pin 38
+    pin 39
+    pin 40
+    pin 41
+    pin 42
+    pin 43
+    pin 44
+    pin 45
+    pin 46
+    pin 47
+    pin 48
+    pin 49
+    pin 50
+    signal SHIELD ~ pin S1
+    SHIELD ~ pin S2

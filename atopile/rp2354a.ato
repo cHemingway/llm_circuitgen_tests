@@ -103,6 +103,9 @@ module RP2354A:
     vreg_avdd_c.package = "0402"
     vreg_avdd_c.lcsc_id = "C23733"
     power.hv ~> vreg_avdd_r ~> package.VREG_AVDD
+    signal vreg_avdd_net
+    vreg_avdd_net ~ package.VREG_AVDD
+    vreg_avdd_net.suggest_net_name = "VREG_AVDD"
     package.VREG_AVDD ~> vreg_avdd_c ~> power.lv
 
     bulk = new Capacitor
@@ -125,6 +128,12 @@ module RP2354A:
 
     package.XIN ~ crystal.1
     package.XOUT ~> crystal_series_r ~> crystal.3
+    signal xin_net
+    xin_net ~ package.XIN
+    xin_net.suggest_net_name = "XIN"
+    signal xtal_out_net
+    xtal_out_net ~ crystal.3
+    xtal_out_net.suggest_net_name = "XTAL_OUT"
     crystal.GND ~ power.lv
     crystal.1 ~> crystal_load[0] ~> power.lv
     crystal.3 ~> crystal_load[1] ~> power.lv
@@ -146,6 +155,9 @@ module RP2354A:
     bootsel_r.package = "0402"
     bootsel_r.lcsc_id = "C11702"
     package.QSPI_SS ~> bootsel_r ~> bootsel_button ~> power.lv
+    signal bootsel_net
+    bootsel_net ~ bootsel_button.input
+    bootsel_net.suggest_net_name = "BOOTSEL_SW"
 
     # --- RUN / reset ---
     reset_button = new VerticalButton

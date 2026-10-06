@@ -153,6 +153,28 @@ ato auth login     # the 0.15 part picker needs an atopile account
 ato build
 ```
 
+## Schematic
+
+[`schematic/solartron_7075_usb.pdf`](schematic/solartron_7075_usb.pdf) has
+five pages: an overview, then one page each for USB/power, the RP2354A, the
+isolation barrier and the SKB interface.
+
+atopile has no schematic output, because the `.ato` code is the schematic.
+`scripts/export_schematic.py` builds one from the build outputs:
+* netlist and references from the generated PCB
+* values from the BOM
+* each part's own `.kicad_sym` symbol
+
+Every pin gets a net label, and each atopile module instance is boxed with
+its address. The script then plots the PDF with `kicad-cli`. It also exports
+the netlist back out of the schematic and fails unless it matches atopile's
+netlist net for net.
+
+```
+ato build
+python3 scripts/export_schematic.py   # needs kicad-cli (KiCad 9/10; made with 10.0.6)
+```
+
 ## Notes on the tool (benchmark observations)
 
 * atopile 0.15.9 is the last CLI release. Its package registry host
@@ -173,6 +195,10 @@ ato build
   `signal`.
 * After swapping parts, an incremental build left some pads unconnected.
   Regenerating the PCB fixed it.
+* Symbols created by atopile's EasyEDA converter that contain a circle
+  (e.g. the pin-1 dot) are written as `(circle (center ..) (end ..))`, which
+  KiCad 10 refuses to load. The schematic exporter converts them to
+  `(radius ..)`.
 
 ## Open items before fabrication
 

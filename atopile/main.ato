@@ -84,6 +84,9 @@ module App:
     ldo.feedback_divider.chain.resistors[1].lcsc_id = "C25765"
     ldo.input_decoupling_capacitor.lcsc_id = "C52923"
     ldo.output_decoupling_capacitor.lcsc_id = "C52923"
+    signal net_ldo_fb
+    net_ldo_fb ~ ldo.feedback_divider.ref_out.hv
+    net_ldo_fb.override_net_name = "LDO_FB"
 
     iso_supply = new IsolatedSupply5V
     iso_supply.power_in ~ power_5v
@@ -112,6 +115,9 @@ module App:
     power_led_resistor.package = "0402"
     power_led_resistor.lcsc_id = "C25867"
     power_3v3.hv ~> power_led_resistor ~> power_led ~> power_3v3.lv
+    signal net_led_pwr
+    net_led_pwr ~ power_led.diode.anode
+    net_led_pwr.override_net_name = "LED_PWR_A"
 
     status_led = new Hubei_KENTO_Elec_KT_0603Y_driver
     """Yellow status LED on GPIO25 (high = on)"""
@@ -120,6 +126,10 @@ module App:
     status_led_resistor.package = "0402"
     status_led_resistor.lcsc_id = "C25867"
     mcu.gpio[25].line ~> status_led_resistor ~> status_led ~> power_3v3.lv
+    mcu.gpio[25].line.suggest_net_name = "STATUS_LED"
+    signal net_led_status
+    net_led_status ~ status_led.diode.anode
+    net_led_status.override_net_name = "LED_STATUS_A"
 
     iso_power_led = new Hubei_KENTO_Elec_KT_0603G_driver
     iso_power_led_resistor = new Resistor
@@ -127,6 +137,9 @@ module App:
     iso_power_led_resistor.package = "0402"
     iso_power_led_resistor.lcsc_id = "C25890"
     power_iso.hv ~> iso_power_led_resistor ~> iso_power_led ~> power_iso.lv
+    signal net_led_iso
+    net_led_iso ~ iso_power_led.diode.anode
+    net_led_iso.override_net_name = "LED_ISO_A"
 
     # ------------------------------------------------------------------
     # Isolation barrier: 4 channels MCU -> DVM side, 2 channels back
@@ -188,6 +201,10 @@ module App:
     shift_in[2].serial_in ~ shift_in[3].q7
     shift_in[3].serial_in ~ shift_in[4].q7
     shift_in[4].serial_in.line ~ power_iso.lv
+    shift_in[0].serial_in.line.suggest_net_name = "SI_CHAIN_1"
+    shift_in[1].serial_in.line.suggest_net_name = "SI_CHAIN_2"
+    shift_in[2].serial_in.line.suggest_net_name = "SI_CHAIN_3"
+    shift_in[3].serial_in.line.suggest_net_name = "SI_CHAIN_4"
 
     shift_in[0].d[7] ~ dvm.dvm_out[0]
     shift_in[0].d[6] ~ dvm.dvm_out[1]
@@ -253,6 +270,7 @@ module App:
 
     shift_out[0].serial_in ~ opto_mosi.output
     shift_out[1].serial_in ~ shift_out[0].serial_out
+    shift_out[1].serial_in.line.suggest_net_name = "SO_CHAIN_1"
 
     # Outputs stay Hi-Z (7075 inputs idle at their own pull-ups) until the
     # MCU has loaded a valid command word and drives OE_N low.
@@ -286,4 +304,5 @@ module App:
     sample_fet.D ~ dvm.sample_contact.line
     sample_fet.S ~ power_iso.lv
     sample_fet.G ~ shift_out[0].q[1].line
+    shift_out[0].q[1].line.suggest_net_name = "SAMPLE_CONTACT_GATE"
     sample_fet.G ~> sample_fet_pulldown ~> power_iso.lv

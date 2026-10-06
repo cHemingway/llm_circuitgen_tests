@@ -8,7 +8,8 @@ CJ="$(pwd)/dist/index/circuit.json"
 OUT="$(pwd)/outputs"
 mkdir -p "$OUT"
 npx tsci export "$CJ" -f schematic-svg -o "$OUT/schematic.svg"
-npx tsci export "$CJ" -f schematic-pdf -o "$OUT/schematic.pdf"
+# tsci's schematic-pdf is a 144 dpi bitmap; build a vector PDF from the SVG
+node scripts/svg-to-pdf.mjs "$OUT/schematic.svg" "$OUT/schematic.pdf"
 npx tsci export "$CJ" -f pcb-svg -o "$OUT/pcb-top.svg" --layer top
 npx tsci export "$CJ" -f pcb-svg -o "$OUT/pcb-bottom.svg" --layer bottom
 npx tsci export "$CJ" -f readable-netlist -o "$OUT/netlist.txt"

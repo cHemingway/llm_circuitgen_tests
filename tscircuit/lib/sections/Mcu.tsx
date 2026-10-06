@@ -284,7 +284,7 @@ export const Mcu = () => (
         pcbX={tp.x}
         pcbY={19.4}
         schSectionName={sec}
-        schX={2.4 + i * 1.2}
+        schX={2.2 + i * 1.9}
         schY={-6.6}
         connections={{ pin1: `net.${tp.net}` }}
       />

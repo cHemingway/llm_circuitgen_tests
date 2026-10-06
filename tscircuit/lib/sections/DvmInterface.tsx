@@ -139,7 +139,7 @@ export const DvmInterface = () => (
       pcbX={-31.6}
       pcbY={-4.6}
       schSectionName={secPower}
-      schX={21}
+      schX={26}
       schY={-7.4}
       connections={{ Vin: "net.V5_ISO", Vout: "net.V3V3_ISO", GND: "net.GND_ISO" }}
     />

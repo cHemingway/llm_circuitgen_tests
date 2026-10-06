@@ -49,7 +49,9 @@ The routed result is committed in `outputs/`:
 
 - `gerbers.zip`: Gerbers, drill file, `bom.csv` and `pick_and_place.csv`, with
   JLCPCB part numbers.
-- `schematic.svg` and `schematic.pdf`.
+- `schematic.svg` and `schematic.pdf`. The PDF is a vector page at A1 width,
+  made by `scripts/svg-to-pdf.mjs`, because `tsci`'s own PDF export is a
+  144 dpi bitmap.
 - `pcb-top.svg` and `pcb-bottom.svg`.
 - `netlist.txt`.
 

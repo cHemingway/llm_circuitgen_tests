@@ -40,7 +40,7 @@ export const Isolation = () => (
           pcbY={BARRIER_Y}
           pcbRotation={90}
           schSectionName={sec}
-          schX={16}
+          schX={20}
           schY={5 - i * 2.2}
           connections={{
             AN: `net.OC_${ch.sig}_AN`,
@@ -59,7 +59,7 @@ export const Isolation = () => (
           pcbY={BARRIER_Y + 5}
           pcbRotation={-90}
           schSectionName={sec}
-          schX={13.4}
+          schX={17.4}
           schY={5.4 - i * 2.2}
           schRotation={-90}
           connections={{ pin1: "net.V3V3", pin2: `net.OC_${ch.sig}_AN` }}
@@ -84,7 +84,7 @@ export const Isolation = () => (
       pcbX={-9}
       pcbY={BARRIER_Y + 8.4}
       schSectionName={sec}
-      schX={11.4}
+      schX={15.4}
       schY={2.4}
       connections={{
         pin1: "net.ISO_SCK_TX",
@@ -105,7 +105,7 @@ export const Isolation = () => (
       pcbY={BARRIER_Y}
       pcbRotation={-90}
       schSectionName={sec}
-      schX={16}
+      schX={20}
       schY={-3.8}
       connections={{
         AN: "net.OC_MISO_AN",
@@ -123,7 +123,7 @@ export const Isolation = () => (
       pcbX={12}
       pcbY={BARRIER_Y - 5.8}
       schSectionName={sec}
-      schX={13.4}
+      schX={17.4}
       schY={-3.4}
       connections={{ pin1: "net.V3V3_ISO", pin2: "net.OC_MISO_AN" }}
     />
@@ -146,7 +146,7 @@ export const Isolation = () => (
       pcbY={BARRIER_Y}
       pcbRotation={-90}
       schSectionName={sec}
-      schX={16}
+      schX={20}
       schY={-7.4}
       connections={{
         GND: "net.GND",

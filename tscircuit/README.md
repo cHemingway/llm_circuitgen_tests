@@ -31,7 +31,8 @@ USB-B ─ ESD ─┬─ AP2112K 3.3 V ─ RP2354A ── SPI0 ──┐
 | `lib/DSub50MaleVertical.tsx` | DD-50 vertical plug footprint (no LCSC/EasyEDA footprint available) |
 | `lib/passives.tsx` | Resistor/capacitor values pinned to LCSC part numbers |
 | `lib/schLayout.ts` | Schematic grouping helpers (decoupling caps per rail) |
-| `outputs/` | Exported schematic, PCB views, netlist and Gerbers of the routed board |
+| `outputs/` | Exported schematic, PCB prints and renders, netlist and Gerbers of the routed board |
+| `scripts/` | Export, fabrication fix-up, print and verification scripts (see below) |
 | `lib/common/` | Parts reused from [tscircuit/common](https://github.com/tscircuit/common) (MIT) |
 | `imports/` | Parts imported from LCSC/JLCPCB with `tsci import` |
 
@@ -42,17 +43,51 @@ cd tscircuit
 npm install
 npm run build      # tsci build: place, autoroute (~5 min), dist/index/{circuit.json,pcb.png,schematic.png}
 npm run check      # netlist + placement DRC, copper shorts, isolation barrier check
-npm run export     # outputs/: schematic SVG/PDF, PCB SVGs, netlist, Gerbers (from dist, no re-route)
+npm run export     # outputs/: schematic, Gerbers, PCB prints/renders, netlist (from dist, no re-route)
 ```
+
+`npm run export` makes the Gerbers in three steps:
+
+1. `scripts/prepare-fab.mjs` writes `dist/fab/circuit.json`, a copy of the
+   routed board with two `tsci` export problems fixed. Copper, mask, silk and
+   drill geometry are unchanged:
+   - **Solder paste.** tscircuit 0.0.2745 gives pill and polygon pads no paste,
+     which is every SOIC, TLP2361 and the SOT-89 tab. It also puts paste on
+     every through-hole and uses 70 % apertures, which are too small for the
+     RP2354A's 0.2 mm pins. The stencil is rebuilt with 1:1 apertures, a 2 x 2
+     windowpane on the RP2354A exposed pad, and no paste on through-holes.
+   - **`%LR` rotation.** U2's and U3's pads are written as a rotated aperture,
+     using the Gerber `%LR` command. Older viewers and CAM tools ignore `%LR`,
+     and U3's pads then merge into shorts. These pads are rewritten as plain
+     rectangles of the same outline.
+2. `tsci export -f gerbers` turns that copy into `outputs/gerbers.zip`.
+3. `scripts/pcb-prints.mjs` renders `gerbers.zip` with tracespace into
+   `pcb-prints.pdf` and `pcb-render-{top,bottom}.png`. The prints therefore show
+   exactly what the fab receives.
 
 The routed result is committed in `outputs/`:
 
-- `gerbers.zip`: Gerbers, drill file, `bom.csv` and `pick_and_place.csv`, with
-  JLCPCB part numbers.
+![Top side, rendered from the Gerbers](outputs/pcb-render-top.png)
+
+- `gerbers.zip`: Gerbers (X2, mm) and an Excellon drill file, with `bom.csv` and
+  `pick_and_place.csv` carrying JLCPCB part numbers. Upload it to JLCPCB as it is.
+- `pcb-prints.pdf`: seven A4 landscape sheets. Print them at 100 %; a scale bar
+  on every sheet checks the size.
+  1. Top and bottom views at 1:1, to check fit against the 70754.
+  2. Top copper, 2:1.
+  3. Bottom copper, 2:1.
+  4. Top assembly, 2:1, with reference designators.
+  5. Bottom assembly, 2:1, mirrored.
+  6. Top stencil, 2:1.
+  7. Drill drawing and drill table, 2:1.
+
+  Every sheet is vector except the two renders on sheet 1.
+- `pcb-render-top.png` and `pcb-render-bottom.png`: photo-style renders made
+  from the Gerbers.
 - `schematic.svg` and `schematic.pdf`. The PDF is a vector page at A1 width,
   made by `scripts/svg-to-pdf.mjs`, because `tsci`'s own PDF export is a
   144 dpi bitmap.
-- `pcb-top.svg` and `pcb-bottom.svg`.
+- `pcb-top.svg` and `pcb-bottom.svg`: tscircuit's own PCB views.
 - `netlist.txt`.
 
 The board is 2 layers, with 0.15 mm tracks and 0.2 mm/0.45 mm vias, which
@@ -62,6 +97,11 @@ Verification of the committed board:
 
 - Every connection is routed and `tsci check shorts` passes.
 - `scripts/check-isolation.mjs` finds no trace or via crossing the barrier.
+- The Gerbers were checked in an independent viewer (tracespace), and the
+  prints are drawn from it. Against the plain `tsci` export, copper, mask, silk,
+  outline and drill are identical once aperture numbering is normalised, apart
+  from the 11 U2/U3 pads rewritten without `%LR`. Only the paste layers differ
+  in substance.
 - The only DRC item is a via on net `DVM_D4_2` overlapping the toe of its own
   pad, U6 pin 11. It is the same net, so it is harmless electrically; move it
   off the pad during final review if the board is assembled by reflow.

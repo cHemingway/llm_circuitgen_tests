@@ -17,6 +17,10 @@
     "typecheck": "tsc --noEmit"
   },
   "devDependencies": {
+    "@resvg/resvg-js": "^2.6.2",
+    "fflate": "^0.8.3",
+    "gerber-to-svg": "^4.2.8",
+    "pcb-stackup": "^4.2.8",
     "tscircuit": "0.0.2745",
     "typescript": "^5.0.0"
   }

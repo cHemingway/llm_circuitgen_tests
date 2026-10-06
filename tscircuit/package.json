@@ -1,0 +1,27 @@
+{
+  "name": "solartron-7075-usb-interface",
+  "version": "1.0.0",
+  "description": "RP2354A USB interface for the Solartron 7075 DVM (70754 parallel BCD port)",
+  "main": "index.circuit.tsx",
+  "keywords": [
+    "tscircuit",
+    "circuit",
+    "pcb",
+    "electronics"
+  ],
+  "scripts": {
+    "build": "tsci build index.circuit.tsx --pcb-png --schematic-png",
+    "check": "tsci check netlist index.circuit.tsx && tsci check placement index.circuit.tsx && tsci check shorts dist/index/circuit.json && node scripts/check-isolation.mjs",
+    "export": "sh scripts/export-outputs.sh",
+    "dev": "tsci dev",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@resvg/resvg-js": "^2.6.2",
+    "fflate": "^0.8.3",
+    "gerber-to-svg": "^4.2.8",
+    "pcb-stackup": "^4.2.8",
+    "tscircuit": "0.0.2745",
+    "typescript": "^5.0.0"
+  }
+}

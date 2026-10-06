@@ -1,0 +1,19 @@
+import has_designator_prefix
+import has_part_picked
+import is_atomic_part
+import is_auto_generated
+
+component UNI_ROYAL_0402WGF3301TCE_package:
+    """3.3KΩ (3301) ±1%"""
+
+    # This trait marks this file as auto-generated
+    # If you want to manually change it, remove the trait
+    trait is_auto_generated<system="ato_part", source="easyeda:C25890", date="2026-10-06T11:37:03.972050+00:00", checksum="1abcdebacc5e2ba160cfc1a3b14fc025c1da126d20b4eed2cfc300593fd0c1db">
+
+    trait is_atomic_part<manufacturer="UNI-ROYAL", partnumber="0402WGF3301TCE", footprint="R0402.kicad_mod", symbol="0402WGF3301TCE.kicad_sym", model="R0402_L1.0-W0.5-H0.4.step">
+    trait has_part_picked::by_supplier<supplier_id="lcsc", supplier_partno="C25890", manufacturer="UNI-ROYAL", partno="0402WGF3301TCE">
+    trait has_designator_prefix<prefix="R">
+
+    # pins
+    pin 2
+    pin 1

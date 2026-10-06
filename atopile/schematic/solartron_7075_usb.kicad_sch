@@ -1,0 +1,244 @@
+(kicad_sch
+	(version 20250114)
+	(generator "export_schematic.py")
+	(generator_version "9.0")
+	(uuid "9805a864-4b6c-5e80-a441-394986566885")
+	(paper "A3")
+	(title_block
+		(title "Solartron 7075 USB interface - overview")
+		(date "2026-10-06")
+		(rev "A")
+		(company "atopile design (../*.ato)")
+		(comment 1 "Auto-generated from the atopile netlist by scripts/export_schematic.py")
+		(comment 2 "The .ato files are the source of truth - do not edit this schematic")
+	)
+	(lib_symbols)
+	(sheet
+		(at 30 40)
+		(size 90 22)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "93dc37c7-7926-5216-959c-f2023eefa680")
+		(property "Sheetname" "2. USB input and power"
+			(at 30 39.3 0)
+			(effects
+				(font
+					(size 1.8 1.8)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "power_usb.kicad_sch"
+			(at 30 62.6 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "solartron_7075_usb"
+				(path "/9805a864-4b6c-5e80-a441-394986566885"
+					(page "2")
+				)
+			)
+		)
+	)
+	(text "USB-B -> 500 mA PTC + USBLC6 ESD -> +5V.\n+5V -> TLV75901 (100k/20k feedback) -> +3V3.\n+5V -> IB0505LS-1WR3 isolated DC-DC -> +5V_ISO / GND_ISO (DVM side)."
+		(exclude_from_sim no)
+		(at 130 42 0)
+		(effects
+			(font
+				(size 1.6 1.6)
+			)
+			(justify left top)
+		)
+		(uuid "4611bfac-e1bc-5ab6-aa75-605710113320")
+	)
+	(sheet
+		(at 30 85)
+		(size 90 22)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "8d1217c1-119c-54c7-b613-d70dd8e03886")
+		(property "Sheetname" "3. RP2354A"
+			(at 30 84.3 0)
+			(effects
+				(font
+					(size 1.8 1.8)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "mcu.kicad_sch"
+			(at 30 107.6 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "solartron_7075_usb"
+				(path "/9805a864-4b6c-5e80-a441-394986566885"
+					(page "3")
+				)
+			)
+		)
+	)
+	(text "RP2354A (2 MB in-package flash). Core regulator per RP2350 datasheet:\n3.3 uH polarity-marked inductor, 4.7 uF CIN/COUT, 33R + 4.7 uF on VREG_AVDD.\nGPIO16 MISO, GPIO17 LATCH, GPIO18 SCK, GPIO19 MOSI, GPIO20 OE_N, GPIO21 DRDY, GPIO25 status LED."
+		(exclude_from_sim no)
+		(at 130 87 0)
+		(effects
+			(font
+				(size 1.6 1.6)
+			)
+			(justify left top)
+		)
+		(uuid "0071e2b0-e306-5340-a962-1f581f39fbee")
+	)
+	(sheet
+		(at 30 130)
+		(size 90 22)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "9e7f5efe-b32b-54d3-9876-1f178b10e917")
+		(property "Sheetname" "4. Isolation barrier"
+			(at 30 129.3 0)
+			(effects
+				(font
+					(size 1.8 1.8)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "isolation.kicad_sch"
+			(at 30 152.6 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "solartron_7075_usb"
+				(path "/9805a864-4b6c-5e80-a441-394986566885"
+					(page "4")
+				)
+			)
+		)
+	)
+	(text "Six non-inverting TLP2361 channels. The LED cathode is driven by the source,\nthe anode is fed through 330R (3.3 V side) or 680R (5 V side), ~4.5 mA.\nUndriven inputs leave the outputs HIGH (OE_N_ISO high = 595 outputs Hi-Z)."
+		(exclude_from_sim no)
+		(at 130 132 0)
+		(effects
+			(font
+				(size 1.6 1.6)
+			)
+			(justify left top)
+		)
+		(uuid "88055ba7-a3dc-504a-b9ad-36b9041a5cb9")
+	)
+	(sheet
+		(at 30 175)
+		(size 90 22)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "6baa3413-ee58-51e0-8432-a47929483002")
+		(property "Sheetname" "5. Solartron SKB interface"
+			(at 30 174.3 0)
+			(effects
+				(font
+					(size 1.8 1.8)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "dvm.kicad_sch"
+			(at 30 197.6 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "solartron_7075_usb"
+				(path "/9805a864-4b6c-5e80-a441-394986566885"
+					(page "5")
+				)
+			)
+		)
+	)
+	(text "SKB pins 1-36 -> 5x 74HCT165 (frame bit k = SKB pin k+1, then 1010 signature).\n2x 74HCT595 -> SKB 38, 40-50; 2N7002 contact-closure SAMPLE on SKB 39.\nSKB 37 = DVM earth / logic 0 = GND_ISO. See README.md for the bit map."
+		(exclude_from_sim no)
+		(at 130 177 0)
+		(effects
+			(font
+				(size 1.6 1.6)
+			)
+			(justify left top)
+		)
+		(uuid "5a8b4eae-1644-5677-8c38-72029e9dbe19")
+	)
+	(text "Solartron 7075 USB interface\nRP2354A USB interface for the Solartron 7075 DVM + 70754 Parallel BCD Interface (SKB, 50-way Cannon).\nEverything to/from the meter is opto-isolated: only SCK, MOSI, LATCH, OE_N, MISO and DRDY cross the barrier.\nNets are joined by name (global labels). GND (USB side) and GND_ISO (DVM side) are never joined."
+		(exclude_from_sim no)
+		(at 30 15 0)
+		(effects
+			(font
+				(size 2 2)
+			)
+			(justify left top)
+		)
+		(uuid "efa7d1c2-eb20-5a8d-bd04-4e91b1501fa3")
+	)
+	(sheet_instances
+		(path "/"
+			(page "1")
+		)
+	)
+)

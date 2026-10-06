@@ -1,0 +1,130 @@
+(footprint "YLPTEC_IB0505LS_1WR3:PWRM-TH_BXXXXLS-1WR3"
+	(version 20241229)
+	(generator "faebryk_convert")
+	(generator_version "v5")
+	(layer "F.Cu")
+	(tedit "5DC5F6A4")
+	(uuid "f328bfee-e522-4b38-9165-4fd425446381")
+	(property "Reference" "REF**"
+		(at 0 -4)
+		(layer "F.SilkS")
+		(uuid "0909e50f-103c-4836-9519-58e28a1e5c35")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Value" "PWRM-TH_BXXXXLS-1WR3"
+		(at 0 4)
+		(layer "F.Fab")
+		(uuid "3e061d44-7604-465d-b1c8-135e489c7976")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(attr through_hole)
+	(fp_circle
+		(center -9 5.2)
+		(end -8.97 5.2)
+		(stroke
+			(width 0.06)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(locked no)
+		(uuid "77801fc2-f4db-4a99-8d5a-cf0be2aa731f")
+	)
+	(fp_line
+		(start -8.89 -1.02)
+		(end 11.43 -1.02)
+		(stroke
+			(width 0.25)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(layers "F.SilkS")
+		(locked no)
+		(uuid "b1fde1db-ccd6-416b-bac8-853d22b79cd0")
+	)
+	(fp_line
+		(start 11.43 -1.02)
+		(end 11.43 5.08)
+		(stroke
+			(width 0.25)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(layers "F.SilkS")
+		(locked no)
+		(uuid "5af3d1bb-c50f-44bd-873c-b7185f7270bb")
+	)
+	(fp_line
+		(start 11.43 5.08)
+		(end -8.89 5.08)
+		(stroke
+			(width 0.25)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(layers "F.SilkS")
+		(locked no)
+		(uuid "0b68e956-11e4-4246-9f0c-b4b036501849")
+	)
+	(fp_line
+		(start -8.89 5.08)
+		(end -8.89 -1.02)
+		(stroke
+			(width 0.25)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(layers "F.SilkS")
+		(locked no)
+		(uuid "93a00eb2-132c-431c-a802-1f027edf83d3")
+	)
+	(pad "1" thru_hole rect
+		(at -6.35 0 0)
+		(size 1.52 1.52)
+		(drill 0.999998)
+		(layers "*.Cu" "*.Mask")
+		(uuid "e0c577ee-d35a-47c9-bbc4-2746585c3f83")
+	)
+	(pad "2" thru_hole circle
+		(at -3.81 0 0)
+		(size 1.52 1.52)
+		(drill 0.999998)
+		(layers "*.Cu" "*.Mask")
+		(uuid "93a6be41-22ce-4e78-a303-be74418964d8")
+	)
+	(pad "4" thru_hole circle
+		(at 1.27 0 0)
+		(size 1.52 1.52)
+		(drill 0.999998)
+		(layers "*.Cu" "*.Mask")
+		(uuid "66755063-afe8-4ceb-93e1-84d082274994")
+	)
+	(pad "6" thru_hole circle
+		(at 6.35 0 0)
+		(size 1.52 1.52)
+		(drill 0.999998)
+		(layers "*.Cu" "*.Mask")
+		(uuid "3063d1c3-bd40-4924-afc5-a7bef30d5ea7")
+	)
+	(model "${KIPRJMOD}/../../parts/YLPTEC_IB0505LS_1WR3/PWRM-TH_BXXXXLS-1WR3.step"
+		(offset
+			(xyz 1.25 0 0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz 0 0 0)
+		)
+	)
+	(embedded_fonts no)
+)

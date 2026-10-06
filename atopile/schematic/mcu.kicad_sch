@@ -77,7 +77,7 @@
 						(type background)
 					)
 				)
-				(pin unspecified line
+				(pin input line
 					(at -21.59 31.75 0)
 					(length 2.54)
 					(name "RUN"
@@ -95,7 +95,7 @@
 						)
 					)
 				)
-				(pin unspecified line
+				(pin input line
 					(at -21.59 24.13 0)
 					(length 2.54)
 					(name "SWCLK"
@@ -113,7 +113,7 @@
 						)
 					)
 				)
-				(pin unspecified line
+				(pin bidirectional line
 					(at -21.59 21.59 0)
 					(length 2.54)
 					(name "SWDIO"
@@ -131,7 +131,7 @@
 						)
 					)
 				)
-				(pin unspecified line
+				(pin bidirectional line
 					(at -21.59 13.97 0)
 					(length 2.54)
 					(name "USB_DM"
@@ -149,7 +149,7 @@
 						)
 					)
 				)
-				(pin unspecified line
+				(pin bidirectional line
 					(at -21.59 11.43 0)
 					(length 2.54)
 					(name "USB_DP"
@@ -167,7 +167,7 @@
 						)
 					)
 				)
-				(pin unspecified line
+				(pin input line
 					(at -21.59 3.81 0)
 					(length 2.54)
 					(name "XIN"
@@ -185,7 +185,7 @@
 						)
 					)
 				)
-				(pin unspecified line
+				(pin output line
 					(at -21.59 1.27 0)
 					(length 2.54)
 					(name "XOUT"
@@ -203,7 +203,7 @@
 						)
 					)
 				)
-				(pin unspecified line
+				(pin input line
 					(at -21.59 -6.35 0)
 					(length 2.54)
 					(name "VREG_FB"
@@ -221,7 +221,7 @@
 						)
 					)
 				)
-				(pin unspecified line
+				(pin power_out line
 					(at -21.59 -8.89 0)
 					(length 2.54)
 					(name "VREG_LX"
@@ -239,7 +239,7 @@
 						)
 					)
 				)
-				(pin unspecified line
+				(pin power_in line
 					(at -21.59 -11.43 0)
 					(length 2.54)
 					(name "VREG_VIN"
@@ -257,7 +257,7 @@
 						)
 					)
 				)
-				(pin unspecified line
+				(pin bidirectional line
 					(at -21.59 -19.05 0)
 					(length 2.54)
 					(name "QSPI_SCLK"
@@ -275,7 +275,7 @@
 						)
 					)
 				)
-				(pin unspecified line
+				(pin bidirectional line
 					(at -21.59 -21.59 0)
 					(length 2.54)
 					(name "QSPI_SD0"
@@ -293,7 +293,7 @@
 						)
 					)
 				)
-				(pin unspecified line
+				(pin bidirectional line
 					(at -21.59 -24.13 0)
 					(length 2.54)
 					(name "QSPI_SD1"
@@ -311,7 +311,7 @@
 						)
 					)
 				)
-				(pin unspecified line
+				(pin bidirectional line
 					(at -21.59 -26.67 0)
 					(length 2.54)
 					(name "QSPI_SD2"
@@ -329,7 +329,7 @@
 						)
 					)
 				)
-				(pin unspecified line
+				(pin bidirectional line
 					(at -21.59 -29.21 0)
 					(length 2.54)
 					(name "QSPI_SD3"
@@ -347,7 +347,7 @@
 						)
 					)
 				)
-				(pin unspecified line
+				(pin bidirectional line
 					(at -21.59 -31.75 0)
 					(length 2.54)
 					(name "QSPI_SS"
@@ -365,7 +365,7 @@
 						)
 					)
 				)
-				(pin unspecified line
+				(pin bidirectional line
 					(at 21.59 -36.83 180)
 					(length 2.54)
 					(name "GPIO29_ADC3"
@@ -383,7 +383,7 @@
 						)
 					)
 				)
-				(pin unspecified line
+				(pin bidirectional line
 					(at 21.59 -34.29 180)
 					(length 2.54)
 					(name "GPIO28_ADC2"
@@ -401,7 +401,7 @@
 						)
 					)
 				)
-				(pin unspecified line
+				(pin bidirectional line
 					(at 21.59 -31.75 180)
 					(length 2.54)
 					(name "GPIO27_ADC1"
@@ -419,7 +419,7 @@
 						)
 					)
 				)
-				(pin unspecified line
+				(pin bidirectional line
 					(at 21.59 -29.21 180)
 					(length 2.54)
 					(name "GPIO26_ADC0"
@@ -437,7 +437,7 @@
 						)
 					)
 				)
-				(pin unspecified line
+				(pin bidirectional line
 					(at 21.59 -26.67 180)
 					(length 2.54)
 					(name "GPIO25"
@@ -455,7 +455,7 @@
 						)
 					)
 				)
-				(pin unspecified line
+				(pin bidirectional line
 					(at 21.59 -24.13 180)
 					(length 2.54)
 					(name "GPIO24"
@@ -473,7 +473,7 @@
 						)
 					)
 				)
-				(pin unspecified line
+				(pin bidirectional line
 					(at 21.59 -21.59 180)
 					(length 2.54)
 					(name "GPIO23"
@@ -491,7 +491,7 @@
 						)
 					)
 				)
-				(pin unspecified line
+				(pin bidirectional line
 					(at 21.59 -19.05 180)
 					(length 2.54)
 					(name "GPIO22"
@@ -509,7 +509,7 @@
 						)
 					)
 				)
-				(pin unspecified line
+				(pin bidirectional line
 					(at 21.59 -16.51 180)
 					(length 2.54)
 					(name "GPIO21"
@@ -527,7 +527,7 @@
 						)
 					)
 				)
-				(pin unspecified line
+				(pin bidirectional line
 					(at 21.59 -13.97 180)
 					(length 2.54)
 					(name "GPIO20"
@@ -545,7 +545,7 @@
 						)
 					)
 				)
-				(pin unspecified line
+				(pin bidirectional line
 					(at 21.59 -11.43 180)
 					(length 2.54)
 					(name "GPIO19"
@@ -563,7 +563,7 @@
 						)
 					)
 				)
-				(pin unspecified line
+				(pin bidirectional line
 					(at 21.59 -8.89 180)
 					(length 2.54)
 					(name "GPIO18"
@@ -581,7 +581,7 @@
 						)
 					)
 				)
-				(pin unspecified line
+				(pin bidirectional line
 					(at 21.59 -6.35 180)
 					(length 2.54)
 					(name "GPIO17"
@@ -599,7 +599,7 @@
 						)
 					)
 				)
-				(pin unspecified line
+				(pin bidirectional line
 					(at 21.59 -3.81 180)
 					(length 2.54)
 					(name "GPIO16"
@@ -617,7 +617,7 @@
 						)
 					)
 				)
-				(pin unspecified line
+				(pin bidirectional line
 					(at 21.59 -1.27 180)
 					(length 2.54)
 					(name "GPIO15"
@@ -635,7 +635,7 @@
 						)
 					)
 				)
-				(pin unspecified line
+				(pin bidirectional line
 					(at 21.59 1.27 180)
 					(length 2.54)
 					(name "GPIO14"
@@ -653,7 +653,7 @@
 						)
 					)
 				)
-				(pin unspecified line
+				(pin bidirectional line
 					(at 21.59 3.81 180)
 					(length 2.54)
 					(name "GPIO13"
@@ -671,7 +671,7 @@
 						)
 					)
 				)
-				(pin unspecified line
+				(pin bidirectional line
 					(at 21.59 6.35 180)
 					(length 2.54)
 					(name "GPIO12"
@@ -689,7 +689,7 @@
 						)
 					)
 				)
-				(pin unspecified line
+				(pin bidirectional line
 					(at 21.59 8.89 180)
 					(length 2.54)
 					(name "GPIO11"
@@ -707,7 +707,7 @@
 						)
 					)
 				)
-				(pin unspecified line
+				(pin bidirectional line
 					(at 21.59 11.43 180)
 					(length 2.54)
 					(name "GPIO10"
@@ -725,7 +725,7 @@
 						)
 					)
 				)
-				(pin unspecified line
+				(pin bidirectional line
 					(at 21.59 13.97 180)
 					(length 2.54)
 					(name "GPIO9"
@@ -743,7 +743,7 @@
 						)
 					)
 				)
-				(pin unspecified line
+				(pin bidirectional line
 					(at 21.59 16.51 180)
 					(length 2.54)
 					(name "GPIO8"
@@ -761,7 +761,7 @@
 						)
 					)
 				)
-				(pin unspecified line
+				(pin bidirectional line
 					(at 21.59 19.05 180)
 					(length 2.54)
 					(name "GPIO7"
@@ -779,7 +779,7 @@
 						)
 					)
 				)
-				(pin unspecified line
+				(pin bidirectional line
 					(at 21.59 21.59 180)
 					(length 2.54)
 					(name "GPIO6"
@@ -797,7 +797,7 @@
 						)
 					)
 				)
-				(pin unspecified line
+				(pin bidirectional line
 					(at 21.59 24.13 180)
 					(length 2.54)
 					(name "GPIO5"
@@ -815,7 +815,7 @@
 						)
 					)
 				)
-				(pin unspecified line
+				(pin bidirectional line
 					(at 21.59 26.67 180)
 					(length 2.54)
 					(name "GPIO4"
@@ -833,7 +833,7 @@
 						)
 					)
 				)
-				(pin unspecified line
+				(pin bidirectional line
 					(at 21.59 29.21 180)
 					(length 2.54)
 					(name "GPIO3"
@@ -851,7 +851,7 @@
 						)
 					)
 				)
-				(pin unspecified line
+				(pin bidirectional line
 					(at 21.59 31.75 180)
 					(length 2.54)
 					(name "GPIO2"
@@ -869,7 +869,7 @@
 						)
 					)
 				)
-				(pin unspecified line
+				(pin bidirectional line
 					(at 21.59 34.29 180)
 					(length 2.54)
 					(name "GPIO1"
@@ -887,7 +887,7 @@
 						)
 					)
 				)
-				(pin unspecified line
+				(pin bidirectional line
 					(at 21.59 36.83 180)
 					(length 2.54)
 					(name "GPIO0"
@@ -905,7 +905,7 @@
 						)
 					)
 				)
-				(pin unspecified line
+				(pin power_in line
 					(at -3.81 -59.69 90)
 					(length 2.54)
 					(name "VREG_PGND"
@@ -923,7 +923,7 @@
 						)
 					)
 				)
-				(pin unspecified line
+				(pin power_in line
 					(at 3.81 -59.69 90)
 					(length 2.54)
 					(name "EP"
@@ -941,7 +941,7 @@
 						)
 					)
 				)
-				(pin unspecified line
+				(pin power_in line
 					(at 15.24 59.69 270)
 					(length 2.54)
 					(name "VREG_AVDD"
@@ -959,7 +959,7 @@
 						)
 					)
 				)
-				(pin unspecified line
+				(pin power_in line
 					(at 12.7 59.69 270)
 					(length 2.54)
 					(name "USB_OTP_VDD"
@@ -977,7 +977,7 @@
 						)
 					)
 				)
-				(pin unspecified line
+				(pin power_in line
 					(at 10.16 59.69 270)
 					(length 2.54)
 					(name "QSPI_IOVDD"
@@ -995,7 +995,7 @@
 						)
 					)
 				)
-				(pin unspecified line
+				(pin power_in line
 					(at 7.62 59.69 270)
 					(length 2.54)
 					(name "IOVDD"
@@ -1013,7 +1013,7 @@
 						)
 					)
 				)
-				(pin unspecified line
+				(pin power_in line
 					(at 5.08 59.69 270)
 					(length 2.54)
 					(name "IOVDD"
@@ -1031,7 +1031,7 @@
 						)
 					)
 				)
-				(pin unspecified line
+				(pin power_in line
 					(at 2.54 59.69 270)
 					(length 2.54)
 					(name "IOVDD"
@@ -1049,7 +1049,7 @@
 						)
 					)
 				)
-				(pin unspecified line
+				(pin power_in line
 					(at 0 59.69 270)
 					(length 2.54)
 					(name "IOVDD"
@@ -1067,7 +1067,7 @@
 						)
 					)
 				)
-				(pin unspecified line
+				(pin power_in line
 					(at -2.54 59.69 270)
 					(length 2.54)
 					(name "IOVDD"
@@ -1085,7 +1085,7 @@
 						)
 					)
 				)
-				(pin unspecified line
+				(pin power_in line
 					(at -5.08 59.69 270)
 					(length 2.54)
 					(name "IOVDD"
@@ -1103,7 +1103,7 @@
 						)
 					)
 				)
-				(pin unspecified line
+				(pin power_in line
 					(at -7.62 59.69 270)
 					(length 2.54)
 					(name "DVDD"
@@ -1121,7 +1121,7 @@
 						)
 					)
 				)
-				(pin unspecified line
+				(pin power_in line
 					(at -10.16 59.69 270)
 					(length 2.54)
 					(name "DVDD"
@@ -1139,7 +1139,7 @@
 						)
 					)
 				)
-				(pin unspecified line
+				(pin power_in line
 					(at -12.7 59.69 270)
 					(length 2.54)
 					(name "DVDD"
@@ -1157,7 +1157,7 @@
 						)
 					)
 				)
-				(pin unspecified line
+				(pin power_in line
 					(at -15.24 59.69 270)
 					(length 2.54)
 					(name "ADC_AVDD"
@@ -1282,7 +1282,7 @@
 						(xy -2.54 -0)
 					)
 				)
-				(pin unspecified line
+				(pin passive line
 					(at -5.08 -0 0)
 					(length 2.54)
 					(name "1"
@@ -1300,7 +1300,7 @@
 						)
 					)
 				)
-				(pin unspecified line
+				(pin passive line
 					(at 5.08 -0 180)
 					(length 2.54)
 					(name "2"
@@ -1425,7 +1425,7 @@
 						(xy -0.51 2.03)
 					)
 				)
-				(pin unspecified line
+				(pin passive line
 					(at 5.08 -0 180)
 					(length 2.54)
 					(name "2"
@@ -1443,7 +1443,7 @@
 						)
 					)
 				)
-				(pin unspecified line
+				(pin passive line
 					(at -5.08 -0 0)
 					(length 2.54)
 					(name "1"
@@ -1626,7 +1626,7 @@
 						(xy -0.76 -1.27)
 					)
 				)
-				(pin unspecified line
+				(pin passive line
 					(at -7.62 1.27 0)
 					(length 5.08)
 					(name "1"
@@ -1646,7 +1646,7 @@
 						)
 					)
 				)
-				(pin unspecified line
+				(pin passive line
 					(at 7.62 1.27 180)
 					(length 5.08)
 					(name "2"
@@ -1666,7 +1666,7 @@
 						)
 					)
 				)
-				(pin unspecified line
+				(pin passive line
 					(at -7.62 -3.81 0)
 					(length 5.08)
 					(name "3"
@@ -1686,7 +1686,7 @@
 						)
 					)
 				)
-				(pin unspecified line
+				(pin passive line
 					(at 7.62 -3.81 180)
 					(length 5.08)
 					(name "4"
@@ -1769,7 +1769,7 @@
 						(type background)
 					)
 				)
-				(pin input line
+				(pin passive line
 					(at 5.08 -0 180)
 					(length 2.54)
 					(name "2"
@@ -1787,7 +1787,7 @@
 						)
 					)
 				)
-				(pin input line
+				(pin passive line
 					(at -5.08 -0 0)
 					(length 2.54)
 					(name "1"
@@ -1868,7 +1868,7 @@
 						(type background)
 					)
 				)
-				(pin input line
+				(pin passive line
 					(at 5.08 -0 180)
 					(length 2.54)
 					(name "2"
@@ -1886,7 +1886,7 @@
 						)
 					)
 				)
-				(pin input line
+				(pin passive line
 					(at -5.08 -0 0)
 					(length 2.54)
 					(name "1"
@@ -2011,7 +2011,7 @@
 						(xy -0.51 2.03)
 					)
 				)
-				(pin unspecified line
+				(pin passive line
 					(at 5.08 -0 180)
 					(length 2.54)
 					(name "2"
@@ -2029,7 +2029,7 @@
 						)
 					)
 				)
-				(pin unspecified line
+				(pin passive line
 					(at -5.08 -0 0)
 					(length 2.54)
 					(name "1"
@@ -2110,7 +2110,7 @@
 						(type background)
 					)
 				)
-				(pin input line
+				(pin passive line
 					(at 5.08 -0 180)
 					(length 2.54)
 					(name "2"
@@ -2128,7 +2128,7 @@
 						)
 					)
 				)
-				(pin input line
+				(pin passive line
 					(at -5.08 -0 0)
 					(length 2.54)
 					(name "1"
@@ -2252,7 +2252,7 @@
 						(type none)
 					)
 				)
-				(pin unspecified line
+				(pin passive line
 					(at 5.08 -0 180)
 					(length 1.016)
 					(name "2"
@@ -2270,7 +2270,7 @@
 						)
 					)
 				)
-				(pin unspecified line
+				(pin passive line
 					(at -5.08 -0 0)
 					(length 1.016)
 					(name "1"
@@ -2426,7 +2426,7 @@
 						(type background)
 					)
 				)
-				(pin input line
+				(pin passive line
 					(at -7.62 -2.54 0)
 					(length 2.54)
 					(name "1"
@@ -2444,7 +2444,7 @@
 						)
 					)
 				)
-				(pin input line
+				(pin passive line
 					(at 7.62 2.54 180)
 					(length 2.54)
 					(name "3"
@@ -2462,7 +2462,7 @@
 						)
 					)
 				)
-				(pin input line
+				(pin passive line
 					(at -7.62 2.54 0)
 					(length 2.54)
 					(name "GND"
@@ -2480,7 +2480,7 @@
 						)
 					)
 				)
-				(pin input line
+				(pin passive line
 					(at 7.62 -2.54 180)
 					(length 2.54)
 					(name "GND"
@@ -2605,7 +2605,7 @@
 						(xy 1.27 -0)
 					)
 				)
-				(pin input line
+				(pin passive line
 					(at -3.81 -0 0)
 					(length 2.54)
 					(name "1"
@@ -2623,7 +2623,7 @@
 						)
 					)
 				)
-				(pin input line
+				(pin passive line
 					(at 3.81 -0 180)
 					(length 2.54)
 					(name "2"
@@ -2796,7 +2796,7 @@
 						(xy 1.27 -3.3)
 					)
 				)
-				(pin unspecified line
+				(pin passive line
 					(at 5.08 -1.27 180)
 					(length 3.81)
 					(name "K"
@@ -2816,7 +2816,7 @@
 						)
 					)
 				)
-				(pin unspecified line
+				(pin passive line
 					(at -5.08 -1.27 0)
 					(length 3.81)
 					(name "A"
@@ -2899,7 +2899,7 @@
 						(type background)
 					)
 				)
-				(pin input line
+				(pin passive line
 					(at 5.08 -0 180)
 					(length 2.54)
 					(name "2"
@@ -2917,7 +2917,7 @@
 						)
 					)
 				)
-				(pin input line
+				(pin passive line
 					(at -5.08 -0 0)
 					(length 2.54)
 					(name "1"
@@ -2998,7 +2998,7 @@
 						(type background)
 					)
 				)
-				(pin input line
+				(pin passive line
 					(at 5.08 -0 180)
 					(length 2.54)
 					(name "2"
@@ -3016,7 +3016,7 @@
 						)
 					)
 				)
-				(pin input line
+				(pin passive line
 					(at -5.08 -0 0)
 					(length 2.54)
 					(name "1"
@@ -3032,6 +3032,102 @@
 								(size 1.27 1.27)
 							)
 						)
+					)
+				)
+			)
+		)
+		(symbol "power:PWR_FLAG"
+			(power)
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(offset 0)
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "#FLG"
+				(at 0 1.905 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Value" "PWR_FLAG"
+				(at 0 3.81 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" "~"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "Special symbol for telling ERC where power comes from"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "PWR_FLAG_0_0"
+				(pin power_out line
+					(at 0 0 90)
+					(length 0)
+					(name "pwr"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(symbol "PWR_FLAG_0_1"
+				(polyline
+					(pts
+						(xy 0 0)
+						(xy 0 1.27)
+						(xy -1.016 1.905)
+						(xy 0 2.54)
+						(xy 1.016 1.905)
+						(xy 0 1.27)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
 					)
 				)
 			)
@@ -6877,7 +6973,96 @@
 	)
 	(rectangle
 		(start 283.38 146.8)
-		(end 356.58 183.54)
+		(end 319.58 186.83)
+		(stroke
+			(width 0)
+			(type dash)
+		)
+		(fill
+			(type none)
+		)
+		(uuid "80d61fc8-b856-55f4-a3e8-d3c3213a34cb")
+	)
+	(text "erc_power_flags"
+		(exclude_from_sim no)
+		(at 284.88 148.3 0)
+		(effects
+			(font
+				(size 1.8 1.8)
+			)
+			(justify left top)
+		)
+		(uuid "c72703fe-49fe-5f80-94ee-0948501428ef")
+	)
+	(wire
+		(pts
+			(xy 287.02 160.02)
+			(xy 287.02 162.56)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "54db7ce7-e26c-5814-b9e0-53a0049d0883")
+	)
+	(global_label "+1V1"
+		(shape passive)
+		(at 287.02 162.56 270)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "f4c98e9f-db32-5648-aa8d-07ce41a1109a")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 287.02 162.56 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(wire
+		(pts
+			(xy 304.8 160.02)
+			(xy 304.8 162.56)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f373fefd-b2ad-5258-924a-360cbe55c68a")
+	)
+	(global_label "VREG_AVDD"
+		(shape passive)
+		(at 304.8 162.56 270)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "fe527011-7c3a-533d-931b-5900aed99ac7")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 304.8 162.56 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(rectangle
+		(start 325.58 146.8)
+		(end 398.78 183.54)
 		(stroke
 			(width 0)
 			(type dash)
@@ -6889,7 +7074,7 @@
 	)
 	(text "swd_header"
 		(exclude_from_sim no)
-		(at 284.88 148.3 0)
+		(at 327.08 148.3 0)
 		(effects
 			(font
 				(size 1.8 1.8)
@@ -6900,18 +7085,18 @@
 	)
 	(wire
 		(pts
-			(xy 299.72 162.56)
-			(xy 297.18 162.56)
+			(xy 341.63 162.56)
+			(xy 339.09 162.56)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "cabe56a2-26a9-5818-a23a-f14e0ca0fa5e")
+		(uuid "56425f82-93ed-5ba9-9e5d-852e9156c205")
 	)
 	(global_label "+3V3"
 		(shape passive)
-		(at 297.18 162.56 180)
+		(at 339.09 162.56 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -6919,9 +7104,9 @@
 			)
 			(justify right)
 		)
-		(uuid "7d341bff-eb1e-5f66-9e4d-ad1f0ab81647")
+		(uuid "58787aec-d675-53da-ab10-b5ac34a01e4e")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 297.18 162.56 0)
+			(at 339.09 162.56 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6933,18 +7118,18 @@
 	)
 	(wire
 		(pts
-			(xy 299.72 165.1)
-			(xy 297.18 165.1)
+			(xy 341.63 165.1)
+			(xy 339.09 165.1)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "362d3eba-3c64-5e89-90c9-99f80e7737f2")
+		(uuid "a459856e-d3bb-5f6b-b709-6911f65a194a")
 	)
 	(global_label "N_RESET"
 		(shape passive)
-		(at 297.18 165.1 180)
+		(at 339.09 165.1 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -6952,9 +7137,9 @@
 			)
 			(justify right)
 		)
-		(uuid "3ffc6edf-8e24-5356-8e5c-f22ffc9fe516")
+		(uuid "33802271-01e9-5b95-bb2b-5530ebc25357")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 297.18 165.1 0)
+			(at 339.09 165.1 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6966,18 +7151,18 @@
 	)
 	(wire
 		(pts
-			(xy 299.72 167.64)
-			(xy 297.18 167.64)
+			(xy 341.63 167.64)
+			(xy 339.09 167.64)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "0311aee7-8446-50d0-967a-a9b09186bb55")
+		(uuid "0bdd61b0-9775-504f-bb50-380454c7251a")
 	)
 	(global_label "GND"
 		(shape passive)
-		(at 297.18 167.64 180)
+		(at 339.09 167.64 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -6985,9 +7170,9 @@
 			)
 			(justify right)
 		)
-		(uuid "82bace34-8e6f-5006-acf9-0a59523fffe4")
+		(uuid "f693408c-3063-5f20-9f4c-21b7f87dad4d")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 297.18 167.64 0)
+			(at 339.09 167.64 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6999,18 +7184,18 @@
 	)
 	(wire
 		(pts
-			(xy 312.42 162.56)
-			(xy 314.96 162.56)
+			(xy 354.33 162.56)
+			(xy 356.87 162.56)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "29a437ca-3be5-5bd3-89ac-5048abc4ff45")
+		(uuid "566b1696-ae41-5df7-9d76-e566454a7020")
 	)
 	(global_label "DIO"
 		(shape passive)
-		(at 314.96 162.56 0)
+		(at 356.87 162.56 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -7018,9 +7203,9 @@
 			)
 			(justify left)
 		)
-		(uuid "9fdb3004-06b4-536a-a882-30147e756db8")
+		(uuid "9d4acb77-dd17-541a-945d-7454b981af29")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 314.96 162.56 0)
+			(at 356.87 162.56 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7032,18 +7217,18 @@
 	)
 	(wire
 		(pts
-			(xy 312.42 165.1)
-			(xy 314.96 165.1)
+			(xy 354.33 165.1)
+			(xy 356.87 165.1)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "9b35bf00-dc47-5e0b-956e-db1524e759e4")
+		(uuid "93ee6272-045d-5369-b7c3-f9aacf60f2fd")
 	)
 	(global_label "CLK"
 		(shape passive)
-		(at 314.96 165.1 0)
+		(at 356.87 165.1 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -7051,9 +7236,9 @@
 			)
 			(justify left)
 		)
-		(uuid "4c445f0f-d0b4-50f5-bd54-120d935d8a92")
+		(uuid "ba63f28e-5993-5b9c-ae4e-23aace93e829")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 314.96 165.1 0)
+			(at 356.87 165.1 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7064,8 +7249,8 @@
 		)
 	)
 	(no_connect
-		(at 312.42 167.64)
-		(uuid "abd525a5-2e22-5ded-931c-83f78f340cb4")
+		(at 354.33 167.64)
+		(uuid "2d75ac9b-9687-539f-9952-6d6318f54b70")
 	)
 	(symbol
 		(lib_id "Raspberry_Pi_RP2354A:RP2354A")
@@ -10084,16 +10269,16 @@
 		)
 	)
 	(symbol
-		(lib_id "Tag-Connect_TC2030-IDC-NL_2x03_P1.27mm_Vertical:TC2030")
-		(at 304.8 165.1 0)
+		(lib_id "power:PWR_FLAG")
+		(at 287.02 160.02 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom no)
 		(on_board yes)
 		(dnp no)
-		(uuid "e7825c13-5a28-5b43-896d-fd8ab6f8e2de")
-		(property "Reference" "J1"
-			(at 299.72 155.98 0)
+		(uuid "afcc48b1-50c6-5659-a9aa-67599f0c62b8")
+		(property "Reference" "#FLG03"
+			(at 286.004 155.98 0)
 			(effects
 				(font
 					(size 1.4 1.4)
@@ -10101,8 +10286,8 @@
 				(justify left)
 			)
 		)
-		(property "Value" "Tag-Connect_TC2030-IDC-NL_2x03_P1.27mm_Vertical (footprint only)"
-			(at 299.72 175.22 0)
+		(property "Value" "PWR_FLAG"
+			(at 286.004 162.52 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10110,8 +10295,8 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Tag-Connect_TC2030-IDC-NL_2x03_P1.27mm_Vertical:Tag-Connect_TC2030-IDC-NL_2x03_P1.27mm_Vertical"
-			(at 304.8 165.1 0)
+		(property "Footprint" ""
+			(at 287.02 160.02 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10120,8 +10305,8 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://www.tag-connect.com/wp-content/uploads/bsk-pdf-manager/2019/12/TC2030-IDC-NL-Datasheet-Rev-B.pdf"
-			(at 304.8 165.1 0)
+		(property "Datasheet" "~"
+			(at 287.02 160.02 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10131,7 +10316,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 304.8 165.1 0)
+			(at 287.02 160.02 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10141,7 +10326,183 @@
 			)
 		)
 		(property "LCSC" ""
-			(at 304.8 165.1 0)
+			(at 287.02 160.02 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "ato_address" "erc_power_flags"
+			(at 286.004 165.02 0)
+			(effects
+				(font
+					(size 1 1)
+				)
+				(justify left)
+			)
+		)
+		(pin "1"
+			(uuid "b4c8ef34-7388-5d10-9313-02e3219cd824")
+		)
+		(instances
+			(project "solartron_7075_usb"
+				(path "/9805a864-4b6c-5e80-a441-394986566885/8d1217c1-119c-54c7-b613-d70dd8e03886"
+					(reference "#FLG03")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:PWR_FLAG")
+		(at 304.8 160.02 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(dnp no)
+		(uuid "e3fbea62-81ba-595d-ad33-31576086e35f")
+		(property "Reference" "#FLG04"
+			(at 303.784 155.98 0)
+			(effects
+				(font
+					(size 1.4 1.4)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "PWR_FLAG"
+			(at 303.784 162.52 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 304.8 160.02 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 304.8 160.02 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 304.8 160.02 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "LCSC" ""
+			(at 304.8 160.02 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "ato_address" "erc_power_flags"
+			(at 303.784 165.02 0)
+			(effects
+				(font
+					(size 1 1)
+				)
+				(justify left)
+			)
+		)
+		(pin "1"
+			(uuid "d864d104-4e05-5c64-954d-fa904feee106")
+		)
+		(instances
+			(project "solartron_7075_usb"
+				(path "/9805a864-4b6c-5e80-a441-394986566885/8d1217c1-119c-54c7-b613-d70dd8e03886"
+					(reference "#FLG04")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Tag-Connect_TC2030-IDC-NL_2x03_P1.27mm_Vertical:TC2030")
+		(at 346.71 165.1 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(dnp no)
+		(uuid "e7825c13-5a28-5b43-896d-fd8ab6f8e2de")
+		(property "Reference" "J1"
+			(at 341.63 155.98 0)
+			(effects
+				(font
+					(size 1.4 1.4)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "Tag-Connect_TC2030-IDC-NL_2x03_P1.27mm_Vertical (footprint only)"
+			(at 341.63 175.22 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Tag-Connect_TC2030-IDC-NL_2x03_P1.27mm_Vertical:Tag-Connect_TC2030-IDC-NL_2x03_P1.27mm_Vertical"
+			(at 346.71 165.1 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://www.tag-connect.com/wp-content/uploads/bsk-pdf-manager/2019/12/TC2030-IDC-NL-Datasheet-Rev-B.pdf"
+			(at 346.71 165.1 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 346.71 165.1 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "LCSC" ""
+			(at 346.71 165.1 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10151,7 +10512,7 @@
 			)
 		)
 		(property "ato_address" "swd_header.connector"
-			(at 299.72 177.72 0)
+			(at 341.63 177.72 0)
 			(effects
 				(font
 					(size 1 1)

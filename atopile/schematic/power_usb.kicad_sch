@@ -77,7 +77,7 @@
 						(type background)
 					)
 				)
-				(pin unspecified line
+				(pin power_out line
 					(at -8.89 1.27 0)
 					(length 2.54)
 					(name "OUT"
@@ -95,7 +95,7 @@
 						)
 					)
 				)
-				(pin unspecified line
+				(pin input line
 					(at -8.89 -1.27 0)
 					(length 2.54)
 					(name "FB"
@@ -113,7 +113,7 @@
 						)
 					)
 				)
-				(pin unspecified line
+				(pin power_in line
 					(at -8.89 -3.81 0)
 					(length 2.54)
 					(name "GND"
@@ -131,7 +131,7 @@
 						)
 					)
 				)
-				(pin unspecified line
+				(pin input line
 					(at 8.89 -3.81 180)
 					(length 2.54)
 					(name "EN"
@@ -149,7 +149,7 @@
 						)
 					)
 				)
-				(pin unspecified line
+				(pin no_connect line
 					(at 8.89 -1.27 180)
 					(length 2.54)
 					(name "DNC"
@@ -167,7 +167,7 @@
 						)
 					)
 				)
-				(pin unspecified line
+				(pin power_in line
 					(at 8.89 1.27 180)
 					(length 2.54)
 					(name "IN"
@@ -185,7 +185,7 @@
 						)
 					)
 				)
-				(pin unspecified line
+				(pin power_in line
 					(at 8.89 3.81 180)
 					(length 2.54)
 					(name "EP"
@@ -266,7 +266,7 @@
 						(type background)
 					)
 				)
-				(pin input line
+				(pin passive line
 					(at 5.08 -0 180)
 					(length 2.54)
 					(name "2"
@@ -284,7 +284,7 @@
 						)
 					)
 				)
-				(pin input line
+				(pin passive line
 					(at -5.08 -0 0)
 					(length 2.54)
 					(name "1"
@@ -365,7 +365,7 @@
 						(type background)
 					)
 				)
-				(pin input line
+				(pin passive line
 					(at 5.08 -0 180)
 					(length 2.54)
 					(name "2"
@@ -383,7 +383,7 @@
 						)
 					)
 				)
-				(pin input line
+				(pin passive line
 					(at -5.08 -0 0)
 					(length 2.54)
 					(name "1"
@@ -508,7 +508,7 @@
 						(xy -2.54 -0)
 					)
 				)
-				(pin unspecified line
+				(pin passive line
 					(at -5.08 -0 0)
 					(length 2.54)
 					(name "1"
@@ -526,7 +526,7 @@
 						)
 					)
 				)
-				(pin unspecified line
+				(pin passive line
 					(at 5.08 -0 180)
 					(length 2.54)
 					(name "2"
@@ -610,7 +610,7 @@
 						(type background)
 					)
 				)
-				(pin unspecified line
+				(pin passive line
 					(at -10.16 3.81 0)
 					(length 2.54)
 					(name "VCC"
@@ -628,7 +628,7 @@
 						)
 					)
 				)
-				(pin unspecified line
+				(pin passive line
 					(at -10.16 1.27 0)
 					(length 2.54)
 					(name "D-"
@@ -646,7 +646,7 @@
 						)
 					)
 				)
-				(pin unspecified line
+				(pin passive line
 					(at -10.16 -1.27 0)
 					(length 2.54)
 					(name "D+"
@@ -664,7 +664,7 @@
 						)
 					)
 				)
-				(pin unspecified line
+				(pin passive line
 					(at -10.16 -3.81 0)
 					(length 2.54)
 					(name "GND"
@@ -682,7 +682,7 @@
 						)
 					)
 				)
-				(pin unspecified line
+				(pin passive line
 					(at 8.89 -3.81 180)
 					(length 2.54)
 					(name "GND"
@@ -700,7 +700,7 @@
 						)
 					)
 				)
-				(pin unspecified line
+				(pin passive line
 					(at 8.89 3.81 180)
 					(length 2.54)
 					(name "GND"
@@ -1101,7 +1101,7 @@
 						(type background)
 					)
 				)
-				(pin input line
+				(pin passive line
 					(at -16.51 7.62 0)
 					(length 5.08)
 					(name "1"
@@ -1119,7 +1119,7 @@
 						)
 					)
 				)
-				(pin input line
+				(pin passive line
 					(at -16.51 -0 0)
 					(length 5.08)
 					(name "2"
@@ -1137,7 +1137,7 @@
 						)
 					)
 				)
-				(pin input line
+				(pin passive line
 					(at -16.51 -7.62 0)
 					(length 5.08)
 					(name "3"
@@ -1155,7 +1155,7 @@
 						)
 					)
 				)
-				(pin input line
+				(pin passive line
 					(at 16.51 -7.62 180)
 					(length 5.08)
 					(name "4"
@@ -1173,7 +1173,7 @@
 						)
 					)
 				)
-				(pin input line
+				(pin passive line
 					(at 16.51 -0 180)
 					(length 5.08)
 					(name "5"
@@ -1191,7 +1191,7 @@
 						)
 					)
 				)
-				(pin input line
+				(pin passive line
 					(at 16.51 7.62 180)
 					(length 5.08)
 					(name "6"
@@ -1316,7 +1316,7 @@
 						(xy -0.51 2.03)
 					)
 				)
-				(pin unspecified line
+				(pin passive line
 					(at 5.08 -0 180)
 					(length 2.54)
 					(name "2"
@@ -1334,7 +1334,7 @@
 						)
 					)
 				)
-				(pin unspecified line
+				(pin passive line
 					(at -5.08 -0 0)
 					(length 2.54)
 					(name "1"
@@ -1420,7 +1420,7 @@
 						(type background)
 					)
 				)
-				(pin unspecified line
+				(pin passive line
 					(at -5.08 -0 0)
 					(length 2.54)
 					(name "1"
@@ -1438,7 +1438,7 @@
 						)
 					)
 				)
-				(pin unspecified line
+				(pin passive line
 					(at 5.08 -0 180)
 					(length 2.54)
 					(name "2"
@@ -1522,7 +1522,7 @@
 						(type background)
 					)
 				)
-				(pin unspecified line
+				(pin power_in line
 					(at -5.08 5.08 0)
 					(length 2.54)
 					(name "VIN"
@@ -1540,7 +1540,7 @@
 						)
 					)
 				)
-				(pin unspecified line
+				(pin power_in line
 					(at -5.08 2.54 0)
 					(length 2.54)
 					(name "GND"
@@ -1558,7 +1558,7 @@
 						)
 					)
 				)
-				(pin unspecified line
+				(pin power_out line
 					(at -5.08 -0 0)
 					(length 2.54)
 					(name "0V"
@@ -1576,7 +1576,7 @@
 						)
 					)
 				)
-				(pin unspecified line
+				(pin power_out line
 					(at -5.08 -2.54 0)
 					(length 2.54)
 					(name "+Vo"
@@ -1701,7 +1701,7 @@
 						(xy 1.27 -0)
 					)
 				)
-				(pin input line
+				(pin passive line
 					(at -3.81 -0 0)
 					(length 2.54)
 					(name "1"
@@ -1719,7 +1719,7 @@
 						)
 					)
 				)
-				(pin input line
+				(pin passive line
 					(at 3.81 -0 180)
 					(length 2.54)
 					(name "2"
@@ -1892,7 +1892,7 @@
 						(xy -3.81 3.3)
 					)
 				)
-				(pin unspecified line
+				(pin passive line
 					(at 5.08 0 180)
 					(length 3.81)
 					(name "A"
@@ -1912,7 +1912,7 @@
 						)
 					)
 				)
-				(pin unspecified line
+				(pin passive line
 					(at -5.08 0 0)
 					(length 3.81)
 					(name "K"
@@ -1995,7 +1995,7 @@
 						(type background)
 					)
 				)
-				(pin input line
+				(pin passive line
 					(at 5.08 -0 180)
 					(length 2.54)
 					(name "2"
@@ -2013,7 +2013,7 @@
 						)
 					)
 				)
-				(pin input line
+				(pin passive line
 					(at -5.08 -0 0)
 					(length 2.54)
 					(name "1"
@@ -2094,7 +2094,7 @@
 						(type background)
 					)
 				)
-				(pin input line
+				(pin passive line
 					(at 5.08 -0 180)
 					(length 2.54)
 					(name "2"
@@ -2112,7 +2112,7 @@
 						)
 					)
 				)
-				(pin input line
+				(pin passive line
 					(at -5.08 -0 0)
 					(length 2.54)
 					(name "1"
@@ -2128,6 +2128,102 @@
 								(size 1.27 1.27)
 							)
 						)
+					)
+				)
+			)
+		)
+		(symbol "power:PWR_FLAG"
+			(power)
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(offset 0)
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "#FLG"
+				(at 0 1.905 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Value" "PWR_FLAG"
+				(at 0 3.81 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" "~"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "Special symbol for telling ERC where power comes from"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "PWR_FLAG_0_0"
+				(pin power_out line
+					(at 0 0 90)
+					(length 0)
+					(name "pwr"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(symbol "PWR_FLAG_0_1"
+				(polyline
+					(pts
+						(xy 0 0)
+						(xy 0 1.27)
+						(xy -1.016 1.905)
+						(xy 0 2.54)
+						(xy 1.016 1.905)
+						(xy 0 1.27)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
 					)
 				)
 			)
@@ -3781,6 +3877,95 @@
 			)
 		)
 	)
+	(rectangle
+		(start 201 106.46)
+		(end 237.2 140.19)
+		(stroke
+			(width 0)
+			(type dash)
+		)
+		(fill
+			(type none)
+		)
+		(uuid "56f1abdd-b6db-582d-bf9a-0056dd5c32aa")
+	)
+	(text "erc_power_flags"
+		(exclude_from_sim no)
+		(at 202.5 107.96 0)
+		(effects
+			(font
+				(size 1.8 1.8)
+			)
+			(justify left top)
+		)
+		(uuid "7d7ce036-79d1-5c2b-994e-480d7654855e")
+	)
+	(wire
+		(pts
+			(xy 204.47 119.38)
+			(xy 204.47 121.92)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "03c2adf7-b4f4-531e-814a-8b9e5c16ba08")
+	)
+	(global_label "GND"
+		(shape passive)
+		(at 204.47 121.92 270)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "6d712dbe-0df9-5a0b-aeac-0afe4b8fa08f")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 204.47 121.92 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(wire
+		(pts
+			(xy 222.25 119.38)
+			(xy 222.25 121.92)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9515237a-3458-559e-94c0-5d3cfd46edc5")
+	)
+	(global_label "+5V"
+		(shape passive)
+		(at 222.25 121.92 270)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "d19eaa81-92da-58de-817d-d38576e492f7")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 222.25 121.92 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
 	(symbol
 		(lib_id "Texas_Instruments_TLV75901PDRVR:TLV75901PDRVR")
 		(at 39.37 50.8 0)
@@ -5277,6 +5462,182 @@
 			(project "solartron_7075_usb"
 				(path "/9805a864-4b6c-5e80-a441-394986566885/93dc37c7-7926-5216-959c-f2023eefa680"
 					(reference "R17")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:PWR_FLAG")
+		(at 204.47 119.38 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(dnp no)
+		(uuid "6f97ef1b-4ffe-5824-ae87-3f89ff680e11")
+		(property "Reference" "#FLG01"
+			(at 203.454 115.34 0)
+			(effects
+				(font
+					(size 1.4 1.4)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "PWR_FLAG"
+			(at 203.454 121.88 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 204.47 119.38 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 204.47 119.38 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 204.47 119.38 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "LCSC" ""
+			(at 204.47 119.38 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "ato_address" "erc_power_flags"
+			(at 203.454 124.38 0)
+			(effects
+				(font
+					(size 1 1)
+				)
+				(justify left)
+			)
+		)
+		(pin "1"
+			(uuid "3085a3fd-0229-57ee-a13c-65bf7b390143")
+		)
+		(instances
+			(project "solartron_7075_usb"
+				(path "/9805a864-4b6c-5e80-a441-394986566885/93dc37c7-7926-5216-959c-f2023eefa680"
+					(reference "#FLG01")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:PWR_FLAG")
+		(at 222.25 119.38 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(dnp no)
+		(uuid "4497cd9e-1226-5b08-86b0-015c61ad2367")
+		(property "Reference" "#FLG02"
+			(at 221.234 115.34 0)
+			(effects
+				(font
+					(size 1.4 1.4)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "PWR_FLAG"
+			(at 221.234 121.88 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 222.25 119.38 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 222.25 119.38 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 222.25 119.38 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "LCSC" ""
+			(at 222.25 119.38 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "ato_address" "erc_power_flags"
+			(at 221.234 124.38 0)
+			(effects
+				(font
+					(size 1 1)
+				)
+				(justify left)
+			)
+		)
+		(pin "1"
+			(uuid "5218be56-c46c-5d68-8559-9ddaada0a0d9")
+		)
+		(instances
+			(project "solartron_7075_usb"
+				(path "/9805a864-4b6c-5e80-a441-394986566885/93dc37c7-7926-5216-959c-f2023eefa680"
+					(reference "#FLG02")
 					(unit 1)
 				)
 			)

@@ -44,7 +44,14 @@ package library where it had them, and from LCSC otherwise.
   GPIOs are Hi-Z, so the opto LEDs are off and every isolated line idles
   high. That keeps `OE_N_ISO` high, so the 595 outputs stay Hi-Z and the
   meter's command inputs sit at its own pull-ups, exactly as if nothing were
-  connected.
+  connected. Manual §9, diagram 9.2 (70754 board 2) confirms the pull-ups:
+  * every command input has 4.7 kΩ to +5 V into 74-series TTL, so Hi-Z reads
+    '1' = inactive (no lockout, no ratio, DC, 10 s, autorange; the manual's
+    "REMOTE with nothing connected" state)
+  * CONTACT SAMPLE has 2.2 kΩ to +5 V, so with the MOSFET off there is no
+    sample
+  * PULSE SAMPLE is AC-coupled (47 kΩ + 22 nF), so only a rising edge
+    triggers it
 * Four spare 74HCT165 inputs are tied to a fixed `1010` pattern so firmware
   can detect a broken link or a missing isolated supply.
 
@@ -65,6 +72,9 @@ One transaction:
 3. To apply the new command now, pulse LATCH again. Otherwise it is applied
    at the next transaction.
 4. After the first valid command has been latched, drive OE_N (GPIO20) low.
+   That command must have bit 2 (PULSE SAMPLE) = 0. PULSE SAMPLE is
+   AC-coupled in the meter, so enabling the outputs with bit 2 = 1 would be
+   a rising edge and would trigger a sample.
 
 DRDY (GPIO21) follows SKB pin 34, PRINT level. It goes high when a reading is
 complete and the outputs have been updated.
@@ -170,6 +180,17 @@ its address. The script then plots the PDF with `kicad-cli`. It also exports
 the netlist back out of the schematic and fails unless it matches atopile's
 netlist net for net.
 
+The script also runs KiCad's ERC and writes `schematic/erc_report.rpt`.
+Current result: **0 errors, 0 warnings**. To make the ERC meaningful the
+script:
+* gives every pin a real electrical type: passive for discrete parts, and
+  types from the datasheets for the ICs (`PIN_TYPES` in the script)
+* adds PWR_FLAGs only on the four rails that are fed through a passive part:
+  GND, +5V (through the PTC), +1V1 (through L1) and VREG_AVDD (RC filter)
+* writes symbol and footprint library tables
+Removing the +5V flag makes the ERC report the undriven DC-DC input, which
+confirms the check really runs.
+
 ```
 ato build
 python3 scripts/export_schematic.py   # needs kicad-cli (KiCad 9/10; made with 10.0.6)
@@ -195,6 +216,9 @@ python3 scripts/export_schematic.py   # needs kicad-cli (KiCad 9/10; made with 1
   `signal`.
 * After swapping parts, an incremental build left some pads unconnected.
   Regenerating the PCB fixed it.
+* atopile's EasyEDA-derived symbols give every resistor/capacitor pin the
+  type `input` and almost every IC pin `unspecified`. A raw ERC therefore
+  reports 460 meaningless violations, so the exporter assigns real pin types.
 * Symbols created by atopile's EasyEDA converter that contain a circle
   (e.g. the pin-1 dot) are written as `(circle (center ..) (end ..))`, which
   KiCad 10 refuses to load. The schematic exporter converts them to
@@ -202,9 +226,15 @@ python3 scripts/export_schematic.py   # needs kicad-cli (KiCad 9/10; made with 1
 
 ## Open items before fabrication
 
+Two earlier concerns are closed by manual §9, diagram 9.2:
+* **Hi-Z = inactive:** confirmed, see "Safe at reset".
+* **595 high of up to 5.25 V vs the "+5 V" input spec:** the inputs are
+  standard TTL (5.5 V absolute max) with 4.7 kΩ pull-ups to the meter's
+  +5 V. Only about 50 µA flows back.
+
 Layout:
-* Route the board in KiCad, fill the zones and run DRC. ERC/DRC have not been
-  run yet.
+* Route the board in KiCad, fill the zones and run DRC. The schematic ERC
+  is clean (see "Schematic").
 * Orient the RP2354A regulator inductor's polarity dot as in RP2350
   datasheet figures 26 and 28 (VREG_LX → DVDD).
 * Check how the DD-50 mates now it is flipped onto the bottom face. Print the
@@ -233,11 +263,6 @@ Parts:
     product page.
 
 Electrical margins:
-* The isolated rail is 5 V ±5%, so a 74HCT595 output high can reach 5.25 V.
-  The 7075 input spec is "+2.4 V < '1' < +5 V". This is likely harmless for
-  TTL, but check it against the 70754 input circuit.
-* I assumed the 7075 command inputs have pull-ups, so Hi-Z outputs read as
-  inactive. Check against the 70754 board diagrams (manual §9).
 * The IB0505LS-1WR3 input is specified at 4.75–5.25 V. VBUS after the PTC can
   sag below that on a weak port or long cable. Check that +5V_ISO holds up,
   or use a wider-input isolated converter.

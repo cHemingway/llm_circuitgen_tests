@@ -83,6 +83,55 @@ SHEETS = [
 ]
 
 PAPERS = [("A4", 297.0, 210.0), ("A3", 420.0, 297.0), ("A2", 594.0, 420.0), ("A1", 841.0, 594.0)]
+# Electrical pin types for ERC. atopile's EasyEDA-derived symbols type every
+# pin "input" (passives) or "unspecified" (ICs), which makes KiCad's ERC
+# meaningless; these follow the datasheets. Unlisted parts are all-passive.
+PIN_TYPES = {
+    "Raspberry_Pi_RP2354A": [
+        (r"IOVDD|DVDD|ADC_AVDD|QSPI_IOVDD|USB_OTP_VDD|VREG_VIN|VREG_AVDD|VREG_PGND|EP", "power_in"),
+        (r"VREG_LX", "power_out"),
+        (r"VREG_FB|RUN|SWCLK|XIN", "input"),
+        (r"XOUT", "output"),
+        (r".*", "bidirectional"),  # GPIO, QSPI, USB_DP/DM, SWDIO
+    ],
+    "Texas_Instruments_TLV75901PDRVR": [
+        (r"IN|GND|EP", "power_in"), (r"OUT", "power_out"), (r"EN|FB", "input"), (r"DNC", "no_connect"),
+    ],
+    # isolated DC-DC: both output terminals source the isolated domain
+    "YLPTEC_IB0505LS_1WR3": [(r"VIN|GND", "power_in"), (r"\+Vo|0V", "power_out")],
+    "TOSHIBA_TLP2361_TPL_E": [(r"VCC|GND", "power_in"), (r"VO", "output"), (r".*", "passive")],
+    "Texas_Instruments_CD74HCT165M96": [(r"VCC|GND", "power_in"), (r"#?Q7", "output"), (r".*", "input")],
+    "Nexperia_74HCT595D_118": [
+        (r"VCC|GND", "power_in"), (r"Q7S", "output"), (r"Q\d", "tri_state"), (r".*", "input"),
+    ],
+    "Texas_Instruments_SN74AHCT1G125DBVR": [(r"VCC|GND", "power_in"), (r"Y", "tri_state"), (r".*", "input")],
+}
+
+# Nets that are powered through a passive part (connector, fuse, inductor,
+# RC filter) get a PWR_FLAG so ERC knows they are driven. Any other power
+# net without a power_out pin is reported as a real ERC error.
+PWR_FLAGS = [
+    ("GND", "power_usb"),        # USB connector ground
+    ("+5V", "power_usb"),        # USB VBUS through the PTC fuse
+    ("+1V1", "mcu"),             # RP2354A core regulator through L1
+    ("VREG_AVDD", "mcu"),        # 33R / 4.7 uF filter from +3V3
+]
+
+PWR_FLAG_SYMBOL = """(symbol "power:PWR_FLAG" (power) (pin_numbers (hide yes)) (pin_names (offset 0) (hide yes))
+  (exclude_from_sim no) (in_bom yes) (on_board yes)
+  (property "Reference" "#FLG" (at 0 1.905 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (property "Value" "PWR_FLAG" (at 0 3.81 0) (effects (font (size 1.27 1.27))))
+  (property "Footprint" "" (at 0 0 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (property "Datasheet" "~" (at 0 0 0) (effects (font (size 1.27 1.27)) (hide yes)))
+  (property "Description" "Special symbol for telling ERC where power comes from" (at 0 0 0)
+    (effects (font (size 1.27 1.27)) (hide yes)))
+  (symbol "PWR_FLAG_0_0"
+    (pin power_out line (at 0 0 90) (length 0)
+      (name "pwr" (effects (font (size 1.27 1.27)))) (number "1" (effects (font (size 1.27 1.27))))))
+  (symbol "PWR_FLAG_0_1"
+    (polyline (pts (xy 0 0) (xy 0 1.27) (xy -1.016 1.905) (xy 0 2.54) (xy 1.016 1.905) (xy 0 1.27))
+      (stroke (width 0) (type default)) (fill (type none)))))"""
+
 GRID = 1.27
 STUB = 2.54
 FONT = 1.27
@@ -202,20 +251,33 @@ def load_bom_values():
     return values
 
 
-def find_symbol_file(lib: str) -> Path:
+def part_dir(lib: str) -> Path:
+    """Where atopile keeps a part's symbol/footprint (project or library)."""
     for base in [ROOT / "parts", *sorted((ROOT / ".ato/modules").glob("*/*/parts"))]:
-        hits = sorted((base / lib).glob("*.kicad_sym"))
-        if hits:
-            return hits[0]
+        if sorted((base / lib).glob("*.kicad_sym")):
+            return base / lib
     raise FileNotFoundError(f"no symbol for {lib} (run `ato build` / `ato sync` first)")
+
+
+def find_symbol_file(lib: str) -> Path:
+    return sorted(part_dir(lib).glob("*.kicad_sym"))[0]
+
+
+def pin_type(lib: str, pin_name: str) -> str:
+    for pattern, ptype in PIN_TYPES.get(lib, [(r".*", "passive")]):
+        if re.fullmatch(pattern, pin_name):
+            return ptype
+    raise ValueError(f"no pin type for {lib} pin {pin_name}")
 
 
 class Symbol:
     """A library symbol, its pins and its graphical extent (schematic coords)."""
 
-    def __init__(self, lib: str):
-        lib_tree = parse(find_symbol_file(lib).read_text(encoding="utf-8"))
-        sym = find(lib_tree, "symbol")[0]
+    def __init__(self, lib: str, tree=None):
+        if tree is None:
+            sym = find(parse(find_symbol_file(lib).read_text(encoding="utf-8")), "symbol")[0]
+        else:
+            sym = tree
         # atopile's EasyEDA converter writes circles as (center ..)(end ..),
         # which KiCad rejects; KiCad wants (center ..)(radius ..).
         for node in walk(sym):
@@ -223,7 +285,12 @@ class Symbol:
                 c, e = first(node, "center"), first(node, "end")
                 r = math.hypot(float(e[1]) - float(c[1]), float(e[2]) - float(c[2]))
                 node[node.index(e)] = ["radius", fmt(r)]
-        self.name = str(sym[1])
+        if tree is None:
+            for node in walk(sym):
+                if node[0] == "pin" and first(node, "name"):
+                    node[1] = pin_type(lib, str(first(node, "name")[1]))
+        self.lib = lib
+        self.name = str(sym[1]).split(":")[-1]
         self.lib_id = f"{lib}:{self.name}"
         sym[1] = Str(self.lib_id)
         self.tree = sym
@@ -513,6 +580,56 @@ def build_root(root_uuid, sheet_uuids):
     ]
 
 
+def write_library_tables(symbols) -> None:
+    """Per-part symbol libraries (with the fixes applied) plus sym/fp tables,
+    so ERC can check the schematic against its libraries."""
+    sym_dir = OUT_DIR / "symbols"
+    sym_dir.mkdir(exist_ok=True)
+    for old in sym_dir.glob("*.kicad_sym"):
+        old.unlink()
+    sym_rows, fp_rows = [], []
+    for lib, sym in sorted(symbols.items()):
+        bare = [sym.tree[0], Str(sym.name), *sym.tree[2:]]
+        lib_file = ["kicad_symbol_lib", ["version", "20241209"], ["generator", Str("export_schematic.py")], bare]
+        (sym_dir / f"{lib}.kicad_sym").write_text(dump(lib_file) + "\n", encoding="utf-8")
+        sym_rows.append((lib, f"${{KIPRJMOD}}/symbols/{lib}.kicad_sym"))
+        if lib != "power":
+            rel = Path("..") / part_dir(lib).relative_to(ROOT)
+            fp_rows.append((lib, f"${{KIPRJMOD}}/{rel.as_posix()}"))
+
+    def table(kind, rows):
+        libs = [["lib", ["name", Str(n)], ["type", Str("KiCad")], ["uri", Str(u)], ["options", Str("")],
+                 ["descr", Str("")]] for n, u in rows]
+        return dump([kind, ["version", "7"], *libs]) + "\n"
+
+    (OUT_DIR / "sym-lib-table").write_text(table("sym_lib_table", sym_rows), encoding="utf-8")
+    (OUT_DIR / "fp-lib-table").write_text(table("fp_lib_table", fp_rows), encoding="utf-8")
+    pro = OUT_DIR / f"{PROJECT}.kicad_pro"
+    if not pro.exists():
+        pro.write_text('{"meta": {"filename": "%s.kicad_pro", "version": 3}}\n' % PROJECT, encoding="utf-8")
+
+
+def run_erc(root_sch: Path):
+    """Run KiCad's ERC; returns (errors, warnings) and writes erc_report.rpt."""
+    import json
+
+    report = OUT_DIR / "erc_report.rpt"
+    subprocess.run(["kicad-cli", "sch", "erc", "--severity-all", "-o", str(report), str(root_sch)],
+                   check=True, capture_output=True, text=True)
+    with tempfile.TemporaryDirectory() as tmp:
+        js = Path(tmp) / "erc.json"
+        subprocess.run(["kicad-cli", "sch", "erc", "--format", "json", "--severity-all", "-o", str(js),
+                        str(root_sch)], check=True, capture_output=True, text=True)
+        data = json.loads(js.read_text(encoding="utf-8"))
+    found = [(sh["path"], v) for sh in data["sheets"] for v in sh["violations"]]
+    errors = [f for f in found if f[1]["severity"] == "error"]
+    warnings = [f for f in found if f[1]["severity"] == "warning"]
+    for path, v in errors + warnings:
+        items = " / ".join(i["description"] for i in v["items"])
+        print(f"  ERC {v['severity']}: {path} {v['description']} | {items}")
+    return errors, warnings
+
+
 # --------------------------------------------------------------------------
 # Verification
 # --------------------------------------------------------------------------
@@ -535,7 +652,8 @@ def multi_nets_from_schematic(root_sch: Path):
         tree = parse(out.read_text(encoding="utf-8"))
     nets = set()
     for net in find(first(tree, "nets"), "net"):
-        nodes = {(str(first(n, "ref")[1]), str(first(n, "pin")[1])) for n in find(net, "node")}
+        nodes = {(str(first(n, "ref")[1]), str(first(n, "pin")[1])) for n in find(net, "node")
+                 if not str(first(n, "ref")[1]).startswith("#")}
         if len(nodes) > 1:
             nets.add(frozenset(nodes))
     return nets
@@ -585,6 +703,17 @@ def main() -> int:
             comp["value"] += " (footprint only)"
         comps_by_sheet[stem].append(comp)
 
+    flag_sym = Symbol("power", parse(PWR_FLAG_SYMBOL))
+    symbols["power"] = flag_sym
+    for i, (net, stem) in enumerate(PWR_FLAGS, 1):
+        if pad_count.get(net, 0) < 2:
+            sys.exit(f"PWR_FLAG net {net} not found in the design")
+        comps_by_sheet[stem].append({
+            "ref": f"#FLG{i:02d}", "addr": "erc_power_flags", "lib": "power", "footprint": "",
+            "lcsc": "", "mpn": "", "pads": {}, "sym": flag_sym, "pin_nets": {"1": net},
+            "value": "PWR_FLAG", "in_bom": False,
+        })
+
     OUT_DIR.mkdir(exist_ok=True)
     for old in OUT_DIR.glob("*.kicad_sch"):
         old.unlink()
@@ -596,6 +725,7 @@ def main() -> int:
         print(f"  {stem}.kicad_sch: {len(comps_by_sheet[stem])} parts on {paper}")
     root_sch = OUT_DIR / f"{PROJECT}.kicad_sch"
     root_sch.write_text(dump(build_root(root_uuid, sheet_uuids)) + "\n", encoding="utf-8")
+    write_library_tables(symbols)
     print(f"wrote {root_sch.relative_to(ROOT)}")
 
     if args.no_pdf:
@@ -620,7 +750,10 @@ def main() -> int:
         check=True, capture_output=True, text=True,
     )
     print(f"wrote {pdf.relative_to(ROOT)}")
-    return 0
+
+    errors, warnings = run_erc(root_sch)
+    print(f"ERC: {len(errors)} errors, {len(warnings)} warnings (schematic/erc_report.rpt)")
+    return 1 if errors else 0
 
 
 if __name__ == "__main__":

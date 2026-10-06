@@ -63,6 +63,13 @@ module SolartronSKB:
       inputs to the 7075:   '1' = +2.4..+5 V at 100 uA, '0' = -0.5..+0.5 V at 5 mA sink
       outputs from the 7075: '1' = +2.4..+6 V from 6 k source, '0' = <0.5 V at 10 mA sink
 
+    Input circuit (70754 board 2, diag. 9.2): every command input (range,
+    ratio, mode, autorange, rate, front panel lockout) has a 4.7 k pull-up
+    to +5 V into 74-series TTL, so an undriven (Hi-Z) input reads '1' =
+    inactive. CONTACT SAMPLE has a 2.2 k pull-up (closure to 0 V samples).
+    PULSE SAMPLE is AC-coupled (47 k + 22 nF into a transistor), so only a
+    rising edge triggers a sample.
+
     `dvm_out[n]` is SKB pin n+1 for n = 0..35:
        pins  1..25  staticised BCD data: 1x10^6, then 8,4,2,1 x10^5 ... x10^0
        pin  26/27   +ve / -ve polarity output code

@@ -701,7 +701,7 @@
 	)
 	(model "${KIPRJMOD}/../../parts/Amphenol_ICC_DD50P364TXLF/CONN-TH_50P-P2.76_DD50P364TXLF.STEP"
 		(offset
-			(xyz 0 -0 0)
+			(xyz 0 0 5.26)
 		)
 		(scale
 			(xyz 1 1 1)

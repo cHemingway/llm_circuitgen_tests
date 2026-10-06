@@ -251,7 +251,7 @@
 	)
 	(model "${KIPRJMOD}/../../parts/SHOU_HAN_BF_180/USB-B-TH_921-111A1010Y10201.step"
 		(offset
-			(xyz -0 -0.27 0)
+			(xyz 0 -0.27 16.1)
 		)
 		(scale
 			(xyz 1 1 1)

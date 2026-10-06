@@ -41,12 +41,12 @@ P: dict[str, tuple[float, float, float, str]] = {
     "drdy_buffer.decoupling": (33.5, 9.0, 0.0, "F.Cu"),
     "sample_fet": (34.0, 13.0, 0.0, "F.Cu"),
     "sample_fet_pulldown": (36.5, 13.0, 90.0, "F.Cu"),
-    "oe_pullup": (-31.5, 3.8, 0.0, "F.Cu"),
+    "oe_pullup": (-29.6, 3.8, 0.0, "F.Cu"),
     "iso_power_led.package": (36.0, 17.0, 90.0, "F.Cu"),
     "iso_power_led_resistor": (33.5, 17.0, 90.0, "F.Cu"),
     # isolated DC-DC on the west edge, straddling the barrier
     # (pins 1/2 at y = -5.08/-2.54, pins 4/6 at y = +2.54/+7.62)
-    "iso_supply.converter": (-34.0, 1.27, 270.0, "F.Cu"),
+    "iso_supply.converter": (-33.4, 1.27, 270.0, "F.Cu"),
     "iso_supply.input_capacitor": (-30.9, -6.0, 90.0, "F.Cu"),
     "iso_supply.output_capacitor": (-30.9, 7.5, 90.0, "F.Cu"),
     # --- USB side --------------------------------------------------------
@@ -54,11 +54,6 @@ P: dict[str, tuple[float, float, float, str]] = {
     "usb_in.esd": (-16.5, -17.5, 0.0, "F.Cu"),
     "usb_in.fuse": (-16.5, -13.0, 0.0, "F.Cu"),
     "usb_in.bulk": (-21.0, -12.0, 0.0, "F.Cu"),
-    "ldo.package": (-12.0, -25.0, 0.0, "F.Cu"),
-    "ldo.input_decoupling_capacitor": (-14.6, -25.0, 90.0, "F.Cu"),
-    "ldo.output_decoupling_capacitor": (-9.4, -25.0, 90.0, "F.Cu"),
-    "ldo.feedback_divider.chain.resistors[0]": (-12.5, -22.3, 0.0, "F.Cu"),
-    "ldo.feedback_divider.chain.resistors[1]": (-12.5, -27.6, 0.0, "F.Cu"),
     # MCU (QFN-60, pins 46-60 face north, 16-30 south, 1-15 west, 31-45 east)
     "mcu.package": (4.0, -17.0, 0.0, "F.Cu"),
     "mcu.vreg_inductor": (7.5, -23.0, 0.0, "F.Cu"),
@@ -94,6 +89,18 @@ P: dict[str, tuple[float, float, float, str]] = {
     "power_led_resistor": (33.0, -18.0, 90.0, "F.Cu"),
     "status_led.package": (35.5, -21.0, 90.0, "F.Cu"),
     "status_led_resistor": (35.5, -18.0, 90.0, "F.Cu"),
+}
+
+# Library modules that arrive pre-routed (their sub-layout's tracks and vias
+# are copied into this board as an atopile group). They are moved as one
+# rigid block so the library's routing stays valid:
+#   group name -> (library layout, anchor address, target x, y)
+RIGID_GROUPS = {
+    "ldo": (
+        Path(__file__).resolve().parent.parent
+        / ".ato/modules/atopile/ti-tlv75901/layouts/default/default.kicad_pcb",
+        "package", -12.0, -25.0,
+    ),
 }
 
 # Opto row on the barrier. TX: LED (pins 1/3) north; RX: LED south.
@@ -154,7 +161,7 @@ def _zone(net_number, net_name, name, rect, keepout=False):
             stroke=None,
             fill=None,
             locked=None,
-            uuid=kicad.gen_uuid(""),
+            uuid=None,  # KiCad rejects a uuid on a zone outline polygon
         ),
         min_thickness=0.2,
         filled_areas_thickness=False,
@@ -197,7 +204,7 @@ def add_zones(pcb) -> None:
     nets = {n.name: n.number for n in pcb.nets}
     e = 0.5  # pull-back from the board edge
     w, h = BOARD_W / 2 - e, BOARD_H / 2 - e
-    pour_gap = BARRIER_HALF_GAP + 0.5
+    pour_gap = BARRIER_HALF_GAP - 0.1  # just outside the keep-out strip
     for z in (
         _zone(nets["GND"], "GND", "pour_GND", (-w, -h, w, -pour_gap)),
         _zone(nets["GND_ISO"], "GND_ISO", "pour_GND_ISO", (-w, pour_gap, w, h)),
@@ -208,6 +215,44 @@ def add_zones(pcb) -> None:
         ),
     ):
         kicad.insert(pcb, "zones", pcb.zones, z)
+
+
+def place_rigid_group(pcb, by_addr, name, lib_layout, anchor, tx, ty) -> set[str]:
+    """Restore a pre-routed library block's relative layout and move it, with
+    its tracks and vias, so that its anchor footprint lands on (tx, ty).
+    Returns the atopile addresses it placed."""
+    lib = kicad.loads(kicad.pcb.PcbFile, lib_layout).kicad_pcb
+    lib_fps = {props(fp)["atopile_address"]: fp for fp in lib.footprints}
+    group = next(g for g in pcb.groups if g.name == name)
+    members = set(group.members)
+    tracks = [o for o in [*pcb.segments, *pcb.arcs, *pcb.vias] if o.uuid in members]
+
+    # where the copied routing currently sits relative to the library layout
+    def pts(objs):
+        for o in objs:
+            for k in ("start", "end", "at"):
+                if getattr(o, k, None) is not None:
+                    yield getattr(o, k)
+
+    lib_tracks = [*lib.segments, *lib.arcs, *lib.vias]
+    cur, ref = list(pts(tracks)), list(pts(lib_tracks))
+    if len(cur) != len(ref):
+        raise RuntimeError(f"group {name}: routing differs from {lib_layout}")
+    ox = sum(p.x for p in cur) / len(cur) - sum(p.x for p in ref) / len(ref)
+    oy = sum(p.y for p in cur) / len(cur) - sum(p.y for p in ref) / len(ref)
+    a = lib_fps[anchor].at
+    dx, dy = tx - (a.x + ox), ty - (a.y + oy)
+
+    for o in tracks:
+        PCB_Transformer.move_object(o, kicad.pcb.Xy(x=dx, y=dy))
+    placed = set()
+    for sub_addr, lfp in lib_fps.items():
+        addr = f"{name}.{sub_addr}"
+        x = lfp.at.x + ox + dx
+        y = lfp.at.y + oy + dy
+        PCB_Transformer.move_fp(by_addr[addr], kicad.pcb.Xyr(x=x, y=y, r=lfp.at.r or 0), lfp.layer)
+        placed.add(addr)
+    return placed
 
 
 def main() -> int:
@@ -231,8 +276,12 @@ def main() -> int:
         P[ic] = (slot_x, IC_ROW_Y, 90.0, "F.Cu")
         P[ic.replace(".package", ".decoupling")] = (slot_x, IC_ROW_Y - 6.4, 0.0, "F.Cu")
 
+    rigid = set()
+    for name, (lib_layout, anchor, tx, ty) in RIGID_GROUPS.items():
+        rigid |= place_rigid_group(pcb, by_addr, name, lib_layout, anchor, tx, ty)
+
     missing = [a for a in P if a not in by_addr]
-    unplaced = [a for a in by_addr if a and a not in P]
+    unplaced = [a for a in by_addr if a and a not in P and a not in rigid]
     if missing or unplaced:
         print("missing footprints:", missing, "\nunplaced footprints:", unplaced)
         return 1
@@ -243,7 +292,7 @@ def main() -> int:
     add_zones(pcb)
 
     kicad.dumps(pcb_file, LAYOUT)
-    print(f"placed {len(P)} footprints -> {LAYOUT}")
+    print(f"placed {len(P) + len(rigid)} footprints -> {LAYOUT}")
     return 0
 
 

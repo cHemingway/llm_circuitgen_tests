@@ -117,7 +117,7 @@
 	)
 	(model "${KIPRJMOD}/../../parts/YLPTEC_IB0505LS_1WR3/PWRM-TH_BXXXXLS-1WR3.step"
 		(offset
-			(xyz 1.25 -2.05 0)
+			(xyz 1.25 0 0)
 		)
 		(scale
 			(xyz 1 1 1)

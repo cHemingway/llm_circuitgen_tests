@@ -6,7 +6,9 @@ Placement sanity checks for the Solartron 7075 USB interface layout.
 Checks:
   1. every pad lies inside the 78 x 60 mm outline (0.5 mm margin)
   2. no two footprints on the same face overlap (pads + silk/fab extents);
-     through-hole pads count on both faces
+     through-hole pads count on both faces. Parts of a pre-routed library
+     block (an atopile group carrying tracks) are packed by the library
+     author, so between those only real pad-to-pad clearance is checked.
   3. isolation: every pad on a USB-side net is at y < -BARRIER and every pad
      on a DVM-side net is at y > +BARRIER (domains found by walking the
      netlist without crossing the optocouplers / isolated DC-DC)
@@ -92,6 +94,27 @@ def main() -> int:
         if "DD50" in fp.name:
             jackscrews = [pad_xy[(ref, s)] for s in ("S1", "S2")]
 
+    # parts that belong to a pre-routed library block (group with tracks)
+    track_uuids = {o.uuid for o in [*pcb.segments, *pcb.arcs, *pcb.vias]}
+    uuid_ref = {fp.uuid: props(fp)["Reference"] for fp in pcb.footprints}
+    block_of = {}
+    for g in pcb.groups:
+        if any(m in track_uuids for m in g.members):
+            for m in g.members:
+                if m in uuid_ref:
+                    block_of[uuid_ref[m]] = g.name
+    pad_boxes = defaultdict(list)
+    for fp in pcb.footprints:
+        ref = props(fp)["Reference"]
+        if ref not in block_of:
+            continue
+        for pad in fp.pads:
+            cx, cy = to_abs(fp, pad.at.x, pad.at.y)
+            w, h = pad.size.w, pad.size.h or pad.size.w
+            if round((fp.at.r or 0) + (pad.at.r or 0)) % 180 == 90 and (fp.at.r or 0) % 180 != 90:
+                w, h = h, w
+            pad_boxes[ref].append((cx - w / 2, cy - h / 2, cx + w / 2, cy + h / 2))
+
     # 2. overlaps (TH footprints occupy both faces with their pads)
     for face in ("F", "B"):
         boxes = list(side_boxes[face])
@@ -120,6 +143,10 @@ def main() -> int:
                         if math.hypot(px - x, py - y) < 1.6:
                             errors.append(f"{face}: {other_ref} pad {n} too close to {pr} pin")
                             break
+                continue
+            if ra in block_of and block_of.get(ra) == block_of.get(rb):
+                if any(overlap(pa, pb, CLEARANCE) for pa in pad_boxes[ra] for pb in pad_boxes[rb]):
+                    errors.append(f"{face}: {ra} pads too close to {rb} pads")
                 continue
             if overlap(a, b, CLEARANCE):
                 errors.append(f"{face}: {ra} overlaps {rb}")

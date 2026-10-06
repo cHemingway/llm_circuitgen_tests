@@ -1,0 +1,19 @@
+import has_designator_prefix
+import has_part_picked
+import is_atomic_part
+import is_auto_generated
+
+component Samsung_Electro_Mechanics_CL21A475KAQNNNE_package:
+    """4.7uF (475) ±10% 25V"""
+
+    # This trait marks this file as auto-generated
+    # If you want to manually change it, remove the trait
+    trait is_auto_generated<system="ato_part", source="easyeda:C1779", date="2026-10-06T11:37:04.045892+00:00", checksum="50b92d02a38e12a3260108244a161026657bc0fd4f3d00c196bd5fafd115b751">
+
+    trait is_atomic_part<manufacturer="Samsung Electro-Mechanics", partnumber="CL21A475KAQNNNE", footprint="C0805.kicad_mod", symbol="CL21A475KAQNNNE.kicad_sym", model="C0805_L2.0-W1.3-H1.3.step">
+    trait has_part_picked::by_supplier<supplier_id="lcsc", supplier_partno="C1779", manufacturer="Samsung Electro-Mechanics", partno="CL21A475KAQNNNE">
+    trait has_designator_prefix<prefix="C">
+
+    # pins
+    pin 1
+    pin 2

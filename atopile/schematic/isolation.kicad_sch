@@ -1,0 +1,4367 @@
+(kicad_sch
+	(version 20250114)
+	(generator "export_schematic.py")
+	(generator_version "9.0")
+	(uuid "fee6953b-7b40-5ca8-999c-82f8457a7c66")
+	(paper "A3")
+	(title_block
+		(title "Solartron 7075 USB interface - Isolation barrier")
+		(date "2026-10-06")
+		(rev "A")
+		(company "atopile design (../*.ato)")
+		(comment 1 "Auto-generated from the atopile netlist by scripts/export_schematic.py")
+		(comment 2 "The .ato files are the source of truth - do not edit this schematic")
+	)
+	(lib_symbols
+		(symbol "TOSHIBA_TLP2361_TPL_E:TLP2361(TPL,E"
+			(property "Reference" "U"
+				(id 0)
+				(at 0 10.16 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "TLP2361(TPL,E"
+				(id 1)
+				(at 0 -10.16 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" "C107626:OPTO-SMD-5_L3.7-W4.6-P1.27-LS7.0-BR"
+				(id 2)
+				(at 0 -12.7 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Datasheet" "https://lcsc.com/product-detail/SMD-Optocouplers_TOSHIBA_TLP2361-TPL-E_TLP2361-TPL-E_C107626.html"
+				(id 3)
+				(at 0 -15.24 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "LCSC Part" "C107626"
+				(id 5)
+				(at 0 -17.78 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(in_bom yes)
+			(on_board yes)
+			(symbol "TLP2361(TPL,E_0_1"
+				(polyline
+					(stroke
+						(width 0)
+						(type default)
+						(color 0 0 0 0)
+					)
+					(fill
+						(type none)
+					)
+					(pts
+						(xy -6.35 5.08)
+						(xy -3.81 5.08)
+						(xy -3.81 -5.08)
+						(xy -6.35 -5.08)
+					)
+				)
+				(polyline
+					(stroke
+						(width 0)
+						(type default)
+						(color 0 0 0 0)
+					)
+					(fill
+						(type background)
+					)
+					(pts
+						(xy -4.83 1.02)
+						(xy -2.79 1.02)
+						(xy -3.81 -0.51)
+						(xy -4.83 1.02)
+						(xy -4.83 1.02)
+					)
+				)
+				(polyline
+					(stroke
+						(width 0)
+						(type default)
+						(color 0 0 0 0)
+					)
+					(fill
+						(type none)
+					)
+					(pts
+						(xy -4.83 -0.51)
+						(xy -2.79 -0.51)
+					)
+				)
+				(polyline
+					(stroke
+						(width 0)
+						(type default)
+						(color 0 0 0 0)
+					)
+					(fill
+						(type none)
+					)
+					(pts
+						(xy -0.25 2.03)
+						(xy -0.25 -2.03)
+						(xy 4.06 -2.03)
+					)
+				)
+				(polyline
+					(stroke
+						(width 0)
+						(type default)
+						(color 0 0 0 0)
+					)
+					(fill
+						(type none)
+					)
+					(pts
+						(xy -0.25 2.03)
+						(xy 4.06 2.03)
+					)
+				)
+				(polyline
+					(stroke
+						(width 0)
+						(type default)
+						(color 0 0 0 0)
+					)
+					(fill
+						(type none)
+					)
+					(pts
+						(xy 5.08 1.27)
+						(xy 0.25 1.27)
+						(xy 0.25 -1.27)
+						(xy 0.76 -0.25)
+					)
+				)
+				(polyline
+					(stroke
+						(width 0)
+						(type default)
+						(color 0 0 0 0)
+					)
+					(fill
+						(type none)
+					)
+					(pts
+						(xy 0.25 -1.27)
+						(xy -0.25 -0.25)
+					)
+				)
+				(polyline
+					(stroke
+						(width 0)
+						(type default)
+						(color 0 0 0 0)
+					)
+					(fill
+						(type none)
+					)
+					(pts
+						(xy 0 -1.52)
+						(xy 4.83 -1.52)
+						(xy 4.83 1.02)
+						(xy 4.32 -0)
+					)
+				)
+				(polyline
+					(stroke
+						(width 0)
+						(type default)
+						(color 0 0 0 0)
+					)
+					(fill
+						(type none)
+					)
+					(pts
+						(xy 4.83 1.02)
+						(xy 5.33 -0)
+					)
+				)
+				(polyline
+					(stroke
+						(width 0)
+						(type default)
+						(color 0 0 0 0)
+					)
+					(fill
+						(type none)
+					)
+					(pts
+						(xy -1.27 5.08)
+						(xy -1.27 3.3)
+					)
+				)
+				(polyline
+					(stroke
+						(width 0)
+						(type default)
+						(color 0 0 0 0)
+					)
+					(fill
+						(type none)
+					)
+					(pts
+						(xy -1.27 2.54)
+						(xy -1.27 0.51)
+					)
+				)
+				(polyline
+					(stroke
+						(width 0)
+						(type default)
+						(color 0 0 0 0)
+					)
+					(fill
+						(type none)
+					)
+					(pts
+						(xy -1.27 -0.51)
+						(xy -1.27 -2.54)
+					)
+				)
+				(polyline
+					(stroke
+						(width 0)
+						(type default)
+						(color 0 0 0 0)
+					)
+					(fill
+						(type none)
+					)
+					(pts
+						(xy -1.27 -3.05)
+						(xy -1.27 -5.08)
+					)
+				)
+				(polyline
+					(stroke
+						(width 0)
+						(type default)
+						(color 0 0 0 0)
+					)
+					(fill
+						(type none)
+					)
+					(pts
+						(xy -1.27 -5.08)
+						(xy 6.35 -5.08)
+					)
+				)
+				(polyline
+					(stroke
+						(width 0)
+						(type default)
+						(color 0 0 0 0)
+					)
+					(fill
+						(type none)
+					)
+					(pts
+						(xy 5.59 -0)
+						(xy 6.35 -0)
+					)
+				)
+				(rectangle
+					(start -6.35 7.62)
+					(end 6.35 -7.62)
+					(stroke
+						(width 0)
+						(type default)
+						(color 0 0 0 0)
+					)
+					(fill
+						(type background)
+					)
+				)
+				(arc
+					(start 4.06 -2.03)
+					(mid 4.49 1.99)
+					(end 4.06 2.03)
+					(stroke
+						(width 0)
+						(type default)
+						(color 0 0 0 0)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(pin passive line
+					(at -11.43 5.08 0)
+					(length 5.08)
+					(name "AN"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -11.43 -5.08 0)
+					(length 5.08)
+					(name "CAT"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "3"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin power_in line
+					(at 11.43 -5.08 180)
+					(length 5.08)
+					(name "GND"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "4"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin output line
+					(at 11.43 -0 180)
+					(length 5.08)
+					(name "VO"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "5"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin power_in line
+					(at 11.43 5.08 180)
+					(length 5.08)
+					(name "VCC"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "6"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+		)
+		(symbol "Samsung_Electro_Mechanics_CL05B104KO5NNNC:CL05B104KO5NNNC"
+			(property "Reference" "C"
+				(id 0)
+				(at 0 5.08 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "CL05B104KO5NNNC"
+				(id 1)
+				(at 0 -5.08 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" "C1525:C0402"
+				(id 2)
+				(at 0 -7.62 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Datasheet" "https://lcsc.com/product-detail/Multilayer-Ceramic-Capacitors-MLCC-SMD-SMT_SAMSUNG_CL05B104KO5NNNC_100nF-104-10-16V_C1525.html"
+				(id 3)
+				(at 0 -10.16 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "LCSC Part" "C1525"
+				(id 5)
+				(at 0 -12.7 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(in_bom yes)
+			(on_board yes)
+			(symbol "CL05B104KO5NNNC_0_1"
+				(polyline
+					(stroke
+						(width 0)
+						(type default)
+						(color 0 0 0 0)
+					)
+					(fill
+						(type none)
+					)
+					(pts
+						(xy -0.51 -0)
+						(xy -2.54 -0)
+					)
+				)
+				(polyline
+					(stroke
+						(width 0)
+						(type default)
+						(color 0 0 0 0)
+					)
+					(fill
+						(type none)
+					)
+					(pts
+						(xy 0.51 2.03)
+						(xy 0.51 -2.03)
+					)
+				)
+				(polyline
+					(stroke
+						(width 0)
+						(type default)
+						(color 0 0 0 0)
+					)
+					(fill
+						(type none)
+					)
+					(pts
+						(xy 2.54 -0)
+						(xy 0.51 -0)
+					)
+				)
+				(polyline
+					(stroke
+						(width 0)
+						(type default)
+						(color 0 0 0 0)
+					)
+					(fill
+						(type none)
+					)
+					(pts
+						(xy -0.51 -2.03)
+						(xy -0.51 2.03)
+					)
+				)
+				(pin passive line
+					(at 5.08 -0 180)
+					(length 2.54)
+					(name "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -5.08 -0 0)
+					(length 2.54)
+					(name "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+		)
+		(symbol "UNI_ROYAL_0402WGF6800TCE:0402WGF6800TCE"
+			(property "Reference" "R"
+				(id 0)
+				(at 0 5.08 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "0402WGF6800TCE"
+				(id 1)
+				(at 0 -5.08 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" "C25130:R0402"
+				(id 2)
+				(at 0 -7.62 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Datasheet" "https://lcsc.com/product-detail/Chip-Resistor-Surface-Mount-UniOhm_680R-6800-1_C25130.html"
+				(id 3)
+				(at 0 -10.16 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "LCSC Part" "C25130"
+				(id 5)
+				(at 0 -12.7 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(in_bom yes)
+			(on_board yes)
+			(symbol "0402WGF6800TCE_0_1"
+				(rectangle
+					(start -2.54 1.02)
+					(end 2.54 -1.02)
+					(stroke
+						(width 0)
+						(type default)
+						(color 0 0 0 0)
+					)
+					(fill
+						(type background)
+					)
+				)
+				(pin passive line
+					(at 5.08 -0 180)
+					(length 2.54)
+					(name "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -5.08 -0 0)
+					(length 2.54)
+					(name "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+		)
+		(symbol "UNI_ROYAL_0402WGF3300TCE:0402WGF3300TCE"
+			(property "Reference" "R"
+				(id 0)
+				(at 0 5.08 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "0402WGF3300TCE"
+				(id 1)
+				(at 0 -5.08 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" "C25104:R0402"
+				(id 2)
+				(at 0 -7.62 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Datasheet" "https://lcsc.com/product-detail/Chip-Resistor-Surface-Mount-UniOhm_330R-3300-1_C25104.html"
+				(id 3)
+				(at 0 -10.16 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "LCSC Part" "C25104"
+				(id 5)
+				(at 0 -12.7 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(in_bom yes)
+			(on_board yes)
+			(symbol "0402WGF3300TCE_0_1"
+				(rectangle
+					(start -2.54 1.02)
+					(end 2.54 -1.02)
+					(stroke
+						(width 0)
+						(type default)
+						(color 0 0 0 0)
+					)
+					(fill
+						(type background)
+					)
+				)
+				(pin passive line
+					(at 5.08 -0 180)
+					(length 2.54)
+					(name "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -5.08 -0 0)
+					(length 2.54)
+					(name "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+		)
+	)
+	(text "Six non-inverting TLP2361 channels. The LED cathode is driven by the source,\nthe anode is fed through 330R (3.3 V side) or 680R (5 V side), ~4.5 mA.\nUndriven inputs leave the outputs HIGH (OE_N_ISO high = 595 outputs Hi-Z)."
+		(exclude_from_sim no)
+		(at 16 16 0)
+		(effects
+			(font
+				(size 2 2)
+			)
+			(justify left top)
+		)
+		(uuid "6ebda237-73b0-570c-8ee2-e1c66255076a")
+	)
+	(rectangle
+		(start 16 33)
+		(end 86.28 90.3)
+		(stroke
+			(width 0)
+			(type dash)
+		)
+		(fill
+			(type none)
+		)
+		(uuid "c97dba2f-148e-5519-8df8-239aa90bc4c2")
+	)
+	(text "opto_drdy"
+		(exclude_from_sim no)
+		(at 17.5 34.5 0)
+		(effects
+			(font
+				(size 1.8 1.8)
+			)
+			(justify left top)
+		)
+		(uuid "ad47b8b1-7d5b-5bba-8caa-70564a2c852c")
+	)
+	(wire
+		(pts
+			(xy 33.02 46.99)
+			(xy 30.48 46.99)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a9dab20a-b75f-5f3b-8936-d345bc0bf790")
+	)
+	(global_label "AN"
+		(shape passive)
+		(at 30.48 46.99 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "c50f400e-b37b-5e19-86fd-1631952c60e9")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 30.48 46.99 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(wire
+		(pts
+			(xy 33.02 57.15)
+			(xy 30.48 57.15)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "42191e63-23fc-5515-9c4e-526f062866f5")
+	)
+	(global_label "DRDY_ISO"
+		(shape passive)
+		(at 30.48 57.15 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "23a9fd9c-7762-562f-993b-9ad367d85fc3")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 30.48 57.15 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(wire
+		(pts
+			(xy 55.88 57.15)
+			(xy 58.42 57.15)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e914cf79-3b00-53a5-a4d3-491cc39c201f")
+	)
+	(global_label "GND"
+		(shape passive)
+		(at 58.42 57.15 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "035fb77e-965e-5cb9-bc9c-67216dc75d50")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 58.42 57.15 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(wire
+		(pts
+			(xy 55.88 52.07)
+			(xy 58.42 52.07)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "aa3b1a11-aad4-5bb1-a82e-a56873241087")
+	)
+	(global_label "DRDY"
+		(shape passive)
+		(at 58.42 52.07 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "98ba33ed-4067-507e-bcc7-bd4b566fb5fd")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 58.42 52.07 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(wire
+		(pts
+			(xy 55.88 46.99)
+			(xy 58.42 46.99)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e5e30fad-a790-5333-b228-923d0f273194")
+	)
+	(global_label "+3V3"
+		(shape passive)
+		(at 58.42 46.99 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "8315d37b-2e0a-5a34-b26b-ec1bde6b72c7")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 58.42 46.99 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(wire
+		(pts
+			(xy 39.37 77.47)
+			(xy 41.91 77.47)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6d5c36a2-ad29-5ba8-ae5f-0c9e6075ed4a")
+	)
+	(global_label "GND"
+		(shape passive)
+		(at 41.91 77.47 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "293dc587-15de-5e18-b94e-88877a43b18e")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 41.91 77.47 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(wire
+		(pts
+			(xy 29.21 77.47)
+			(xy 26.67 77.47)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "338a596e-58eb-5a9d-a406-33b5ed2d96e3")
+	)
+	(global_label "+3V3"
+		(shape passive)
+		(at 26.67 77.47 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "ad894293-9d23-5366-bb15-addbfb023732")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 26.67 77.47 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(wire
+		(pts
+			(xy 76.2 76.2)
+			(xy 78.74 76.2)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f7031b81-75e6-53b9-89ef-6de165f6d0fe")
+	)
+	(global_label "AN"
+		(shape passive)
+		(at 78.74 76.2 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "31063927-083d-58f7-bb56-833c88e69755")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 78.74 76.2 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(wire
+		(pts
+			(xy 66.04 76.2)
+			(xy 63.5 76.2)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f80a99c7-62c2-5274-8454-b902da2ab680")
+	)
+	(global_label "+5V_ISO"
+		(shape passive)
+		(at 63.5 76.2 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "5214940c-657c-5aad-a8bb-7c79610eba14")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 63.5 76.2 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(rectangle
+		(start 92.28 33)
+		(end 178.31 90.3)
+		(stroke
+			(width 0)
+			(type dash)
+		)
+		(fill
+			(type none)
+		)
+		(uuid "977ff94c-c1ad-5e01-ac2f-13e4838a0bb2")
+	)
+	(text "opto_latch"
+		(exclude_from_sim no)
+		(at 93.78 34.5 0)
+		(effects
+			(font
+				(size 1.8 1.8)
+			)
+			(justify left top)
+		)
+		(uuid "20f0ed32-8ff2-58f7-a797-d114512fd197")
+	)
+	(wire
+		(pts
+			(xy 114.3 46.99)
+			(xy 111.76 46.99)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "dc3f94e9-bc59-5039-9aea-316d097fef80")
+	)
+	(global_label "opto_latch-AN"
+		(shape passive)
+		(at 111.76 46.99 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "6429cb30-c601-5bfe-b816-3fece95187fc")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 111.76 46.99 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(wire
+		(pts
+			(xy 114.3 57.15)
+			(xy 111.76 57.15)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "96fe981f-5d40-51dc-8f09-202227dc3217")
+	)
+	(global_label "LATCH"
+		(shape passive)
+		(at 111.76 57.15 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "5b79aad6-81a7-5b55-b00a-04b59bcc0d2e")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 111.76 57.15 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(wire
+		(pts
+			(xy 137.16 57.15)
+			(xy 139.7 57.15)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a225b288-1237-5d88-923f-0b0b52cc128a")
+	)
+	(global_label "GND_ISO"
+		(shape passive)
+		(at 139.7 57.15 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "5e3d595c-0b8b-57d1-83c0-3fd7601e8869")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 139.7 57.15 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(wire
+		(pts
+			(xy 137.16 52.07)
+			(xy 139.7 52.07)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "2e4bd8b1-168f-5a5f-9c40-fc4877934a58")
+	)
+	(global_label "LATCH_ISO"
+		(shape passive)
+		(at 139.7 52.07 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "29441628-b3f0-5c12-a87d-bc47b4cfeb5c")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 139.7 52.07 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(wire
+		(pts
+			(xy 137.16 46.99)
+			(xy 139.7 46.99)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "86b77652-1a11-52ae-a684-a06d0c22414e")
+	)
+	(global_label "+5V_ISO"
+		(shape passive)
+		(at 139.7 46.99 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "54a35080-ff7e-589c-82b6-58964e9e2d35")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 139.7 46.99 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(wire
+		(pts
+			(xy 118.11 77.47)
+			(xy 120.65 77.47)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c8779946-48d1-54ac-a75e-9bc947a40fb0")
+	)
+	(global_label "GND_ISO"
+		(shape passive)
+		(at 120.65 77.47 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "f9d2ac7d-07d6-5831-b87c-f229dcbfc082")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 120.65 77.47 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(wire
+		(pts
+			(xy 107.95 77.47)
+			(xy 105.41 77.47)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c7869108-5018-54fe-8d4f-793cf853e1c3")
+	)
+	(global_label "+5V_ISO"
+		(shape passive)
+		(at 105.41 77.47 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "24caeeba-cea3-51ce-8fc5-7a194a67f0b1")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 105.41 77.47 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(wire
+		(pts
+			(xy 156.21 76.2)
+			(xy 158.75 76.2)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "31f3015a-47c3-5640-8608-7c640928ffce")
+	)
+	(global_label "opto_latch-AN"
+		(shape passive)
+		(at 158.75 76.2 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "21fb9327-fa4c-525e-b8ff-9b048ae30821")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 158.75 76.2 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(wire
+		(pts
+			(xy 146.05 76.2)
+			(xy 143.51 76.2)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "736b1c68-44a3-568c-af94-93c42e55385b")
+	)
+	(global_label "+3V3"
+		(shape passive)
+		(at 143.51 76.2 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "ba4fea05-8dbb-5697-ae70-50ef9bd2c098")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 143.51 76.2 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(rectangle
+		(start 184.31 33)
+		(end 265.09 90.3)
+		(stroke
+			(width 0)
+			(type dash)
+		)
+		(fill
+			(type none)
+		)
+		(uuid "ca7817fa-d2ba-5b37-a0cd-6a715f16eae8")
+	)
+	(text "opto_miso"
+		(exclude_from_sim no)
+		(at 185.81 34.5 0)
+		(effects
+			(font
+				(size 1.8 1.8)
+			)
+			(justify left top)
+		)
+		(uuid "486ce5dc-b646-5bef-b70c-f186034f92d3")
+	)
+	(wire
+		(pts
+			(xy 205.74 46.99)
+			(xy 203.2 46.99)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8dc753a8-28f3-5da2-af20-8828a99efa5c")
+	)
+	(global_label "opto_miso-AN"
+		(shape passive)
+		(at 203.2 46.99 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "f4e84451-4d6a-501e-be2d-fd1eb1247820")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 203.2 46.99 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(wire
+		(pts
+			(xy 205.74 57.15)
+			(xy 203.2 57.15)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0e1834a9-6570-5424-9a94-41f9bba21fa4")
+	)
+	(global_label "MISO_ISO"
+		(shape passive)
+		(at 203.2 57.15 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "f58f16d1-0900-58d5-89c5-cc0122622964")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 203.2 57.15 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(wire
+		(pts
+			(xy 228.6 57.15)
+			(xy 231.14 57.15)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "14f0fec6-fd8a-5a5b-b600-732e6860eeff")
+	)
+	(global_label "GND"
+		(shape passive)
+		(at 231.14 57.15 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "94189459-9b96-5cba-bbcf-16a6df25fe85")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 231.14 57.15 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(wire
+		(pts
+			(xy 228.6 52.07)
+			(xy 231.14 52.07)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f610e293-e86a-5cf2-848b-a31a04d122e8")
+	)
+	(global_label "MISO"
+		(shape passive)
+		(at 231.14 52.07 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "8ad8c070-fe7f-500d-b20d-130f58958c71")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 231.14 52.07 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(wire
+		(pts
+			(xy 228.6 46.99)
+			(xy 231.14 46.99)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "80cfab2d-63d5-5777-a5c2-6bcda41c6e98")
+	)
+	(global_label "+3V3"
+		(shape passive)
+		(at 231.14 46.99 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "1d674707-d27b-508f-9cc7-0d3c2c011286")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 231.14 46.99 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(wire
+		(pts
+			(xy 207.01 77.47)
+			(xy 209.55 77.47)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "628aad20-cf16-5f45-a216-b4b5ab8918bf")
+	)
+	(global_label "GND"
+		(shape passive)
+		(at 209.55 77.47 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "467ba7f4-df7b-5f11-bdee-a0a078afad2a")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 209.55 77.47 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(wire
+		(pts
+			(xy 196.85 77.47)
+			(xy 194.31 77.47)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "4fcdd97e-756b-56f1-a8b6-8ccdb2c52e5f")
+	)
+	(global_label "+3V3"
+		(shape passive)
+		(at 194.31 77.47 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "a8237eb8-23e7-501c-83c4-809135a9ab4e")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 194.31 77.47 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(wire
+		(pts
+			(xy 243.84 76.2)
+			(xy 246.38 76.2)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "1db3bb41-5a38-58db-8c9a-0ac8c458d576")
+	)
+	(global_label "opto_miso-AN"
+		(shape passive)
+		(at 246.38 76.2 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "8dc43f05-7377-55b1-805d-2ceee5920545")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 246.38 76.2 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(wire
+		(pts
+			(xy 233.68 76.2)
+			(xy 231.14 76.2)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b3a41dd0-4f81-53cc-8800-dff567f4df99")
+	)
+	(global_label "+5V_ISO"
+		(shape passive)
+		(at 231.14 76.2 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "70e97f44-583f-503d-9ef9-b2bc19456e1b")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 231.14 76.2 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(rectangle
+		(start 271.09 33)
+		(end 356.07 90.3)
+		(stroke
+			(width 0)
+			(type dash)
+		)
+		(fill
+			(type none)
+		)
+		(uuid "a3b1bf90-91bb-5339-a075-c38d8c4d9e3e")
+	)
+	(text "opto_mosi"
+		(exclude_from_sim no)
+		(at 272.59 34.5 0)
+		(effects
+			(font
+				(size 1.8 1.8)
+			)
+			(justify left top)
+		)
+		(uuid "598b98f5-fe18-5511-90f6-9edd4ac17858")
+	)
+	(wire
+		(pts
+			(xy 292.1 46.99)
+			(xy 289.56 46.99)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "2974cda9-3f9b-576a-8957-dcf66c1e6b82")
+	)
+	(global_label "opto_mosi-AN"
+		(shape passive)
+		(at 289.56 46.99 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "abecd794-6287-57c9-96c7-6dc8968e9b31")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 289.56 46.99 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(wire
+		(pts
+			(xy 292.1 57.15)
+			(xy 289.56 57.15)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "322866d4-ec04-54db-baf8-4f71723f63fa")
+	)
+	(global_label "MOSI"
+		(shape passive)
+		(at 289.56 57.15 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "ffd85735-7419-5fb8-9025-565ccf35f0fb")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 289.56 57.15 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(wire
+		(pts
+			(xy 314.96 57.15)
+			(xy 317.5 57.15)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d9004c33-b03f-5a8b-bd81-ae6ca991a94c")
+	)
+	(global_label "GND_ISO"
+		(shape passive)
+		(at 317.5 57.15 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "8d667f6e-cc85-5b25-af02-d9c8f8d494a6")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 317.5 57.15 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(wire
+		(pts
+			(xy 314.96 52.07)
+			(xy 317.5 52.07)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d6a2f5f8-fc05-5263-882e-49f9f40c435e")
+	)
+	(global_label "MOSI_ISO"
+		(shape passive)
+		(at 317.5 52.07 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "8bb16a71-fa17-56a9-a31a-c9675046e30c")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 317.5 52.07 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(wire
+		(pts
+			(xy 314.96 46.99)
+			(xy 317.5 46.99)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "1a87e880-2605-5c5f-8141-6e698ab14bfd")
+	)
+	(global_label "+5V_ISO"
+		(shape passive)
+		(at 317.5 46.99 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "9755cdb7-a581-5645-bbce-fe92d08fd033")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 317.5 46.99 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(wire
+		(pts
+			(xy 297.18 77.47)
+			(xy 299.72 77.47)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f5c42643-3385-5a28-b11d-8ebaf070fb72")
+	)
+	(global_label "GND_ISO"
+		(shape passive)
+		(at 299.72 77.47 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "04d10cfd-2fa3-528c-8440-13521a9c81f5")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 299.72 77.47 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(wire
+		(pts
+			(xy 287.02 77.47)
+			(xy 284.48 77.47)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "63767283-eb92-5409-9186-89de0455872c")
+	)
+	(global_label "+5V_ISO"
+		(shape passive)
+		(at 284.48 77.47 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "09b3d9bf-cf26-53c4-942c-f08c1a96b1a1")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 284.48 77.47 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(wire
+		(pts
+			(xy 335.28 76.2)
+			(xy 337.82 76.2)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "08c08bf7-f531-57c3-a9c4-5382dc8ed91d")
+	)
+	(global_label "opto_mosi-AN"
+		(shape passive)
+		(at 337.82 76.2 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "2ec28698-2c0e-5fe2-854f-7ba1a9b2bf4b")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 337.82 76.2 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(wire
+		(pts
+			(xy 325.12 76.2)
+			(xy 322.58 76.2)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "1ae21d70-812a-5e05-9db9-2378876335c9")
+	)
+	(global_label "+3V3"
+		(shape passive)
+		(at 322.58 76.2 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "6739b025-5cec-510a-a036-26ecb737c9ab")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 322.58 76.2 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(rectangle
+		(start 16 96.3)
+		(end 100.98 153.6)
+		(stroke
+			(width 0)
+			(type dash)
+		)
+		(fill
+			(type none)
+		)
+		(uuid "50c148f0-8045-5450-bfaa-a48c7f9fa568")
+	)
+	(text "opto_oe_n"
+		(exclude_from_sim no)
+		(at 17.5 97.8 0)
+		(effects
+			(font
+				(size 1.8 1.8)
+			)
+			(justify left top)
+		)
+		(uuid "d9bdeb33-8625-54e3-aae9-54c35122f066")
+	)
+	(wire
+		(pts
+			(xy 36.83 109.22)
+			(xy 34.29 109.22)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "90358fd9-eaa7-5fa0-b699-0704c01c0725")
+	)
+	(global_label "opto_oe_n-AN"
+		(shape passive)
+		(at 34.29 109.22 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "10ed3a81-b133-5c90-8b00-09258a0957ad")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 34.29 109.22 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(wire
+		(pts
+			(xy 36.83 119.38)
+			(xy 34.29 119.38)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "1cfa86fd-4d19-50ed-9ce4-af15aab378b5")
+	)
+	(global_label "OE_N"
+		(shape passive)
+		(at 34.29 119.38 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "408a15d8-95d0-594c-8fcf-418150a4ef0e")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 34.29 119.38 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(wire
+		(pts
+			(xy 59.69 119.38)
+			(xy 62.23 119.38)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "3c852731-bab4-550e-94b0-4e8691268f6b")
+	)
+	(global_label "GND_ISO"
+		(shape passive)
+		(at 62.23 119.38 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "8e65fb46-4f83-54b6-aa64-d57193486a47")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 62.23 119.38 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(wire
+		(pts
+			(xy 59.69 114.3)
+			(xy 62.23 114.3)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9ed32353-6f7b-5849-9123-92b76ffde335")
+	)
+	(global_label "OE_N_ISO"
+		(shape passive)
+		(at 62.23 114.3 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "e1e928b5-8def-5ad6-83aa-09b79bcffaf6")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 62.23 114.3 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(wire
+		(pts
+			(xy 59.69 109.22)
+			(xy 62.23 109.22)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6310be00-00b8-595c-ab1d-43e32571fac6")
+	)
+	(global_label "+5V_ISO"
+		(shape passive)
+		(at 62.23 109.22 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "1ffc0d93-39ba-5001-a742-2067a37628b5")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 62.23 109.22 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(wire
+		(pts
+			(xy 41.91 140.97)
+			(xy 44.45 140.97)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "30ad97b7-21ff-5408-9b33-3ec2ec6ffa84")
+	)
+	(global_label "GND_ISO"
+		(shape passive)
+		(at 44.45 140.97 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "ce05aeef-2c83-5b70-a9bf-343dcee2a8a2")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 44.45 140.97 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(wire
+		(pts
+			(xy 31.75 140.97)
+			(xy 29.21 140.97)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d7006eac-6280-5aab-9222-d512187fcb6d")
+	)
+	(global_label "+5V_ISO"
+		(shape passive)
+		(at 29.21 140.97 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "a71c48ed-d6bf-56e4-a739-53f744c534db")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 29.21 140.97 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(wire
+		(pts
+			(xy 80.01 139.7)
+			(xy 82.55 139.7)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0f84e010-25aa-5920-97f4-2467ab4a6aa6")
+	)
+	(global_label "opto_oe_n-AN"
+		(shape passive)
+		(at 82.55 139.7 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "2798364c-354c-5d8e-8275-c9331070fde1")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 82.55 139.7 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(wire
+		(pts
+			(xy 69.85 139.7)
+			(xy 67.31 139.7)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f5072db6-5ec2-5158-a886-9ba79109c3f3")
+	)
+	(global_label "+3V3"
+		(shape passive)
+		(at 67.31 139.7 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "c68d9d96-b70e-5857-8fc8-a1b44d8e3e6f")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 67.31 139.7 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(rectangle
+		(start 106.98 96.3)
+		(end 190.91 153.6)
+		(stroke
+			(width 0)
+			(type dash)
+		)
+		(fill
+			(type none)
+		)
+		(uuid "398c9d4b-d804-5649-9e21-dfaccc283bb0")
+	)
+	(text "opto_sck"
+		(exclude_from_sim no)
+		(at 108.48 97.8 0)
+		(effects
+			(font
+				(size 1.8 1.8)
+			)
+			(justify left top)
+		)
+		(uuid "ba0b6964-6cbe-52fb-844f-4fb76fbf36a0")
+	)
+	(wire
+		(pts
+			(xy 127 109.22)
+			(xy 124.46 109.22)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "172050c2-1751-5099-a276-eb44228aeb65")
+	)
+	(global_label "opto_sck-AN"
+		(shape passive)
+		(at 124.46 109.22 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "2506347e-a0a5-5f20-9919-3cc4eec4fdbb")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 124.46 109.22 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(wire
+		(pts
+			(xy 127 119.38)
+			(xy 124.46 119.38)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "93bb1040-dd9a-5137-aec8-7812c9f80b6f")
+	)
+	(global_label "SCK"
+		(shape passive)
+		(at 124.46 119.38 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "b9781226-9eef-5b88-b677-0d972c1706ef")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 124.46 119.38 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(wire
+		(pts
+			(xy 149.86 119.38)
+			(xy 152.4 119.38)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8171ab08-2490-51d9-86ee-7077386b19c7")
+	)
+	(global_label "GND_ISO"
+		(shape passive)
+		(at 152.4 119.38 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "1b0014ba-2a5d-516f-9f16-40ba3b95f4ef")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 152.4 119.38 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(wire
+		(pts
+			(xy 149.86 114.3)
+			(xy 152.4 114.3)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f5be6cb7-5abe-56a5-8484-29a4c5da9a28")
+	)
+	(global_label "SCK_ISO"
+		(shape passive)
+		(at 152.4 114.3 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "f4ff58b4-a7ab-574a-a6b0-1ed137e0feb2")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 152.4 114.3 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(wire
+		(pts
+			(xy 149.86 109.22)
+			(xy 152.4 109.22)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "1e92a61e-f4bb-5663-b4cf-3437edde4301")
+	)
+	(global_label "+5V_ISO"
+		(shape passive)
+		(at 152.4 109.22 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "241363eb-97ce-5c52-a433-cb00a649c734")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 152.4 109.22 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(wire
+		(pts
+			(xy 133.35 140.97)
+			(xy 135.89 140.97)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "fc35dcc8-5e3c-5a51-a8e3-f21f69d0f98b")
+	)
+	(global_label "GND_ISO"
+		(shape passive)
+		(at 135.89 140.97 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "8c61f887-4556-50e1-a47a-6fd326b64224")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 135.89 140.97 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(wire
+		(pts
+			(xy 123.19 140.97)
+			(xy 120.65 140.97)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "2690ab83-bd0a-57d1-a9fc-9f5e18aa3d05")
+	)
+	(global_label "+5V_ISO"
+		(shape passive)
+		(at 120.65 140.97 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "98e8bd60-6591-57e0-9c45-fc0834ef2e14")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 120.65 140.97 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(wire
+		(pts
+			(xy 171.45 139.7)
+			(xy 173.99 139.7)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "115375bf-2ad4-565b-bc3e-52ab2f89340c")
+	)
+	(global_label "opto_sck-AN"
+		(shape passive)
+		(at 173.99 139.7 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "919f1bc5-5a0b-577a-907a-862673f4823c")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 173.99 139.7 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(wire
+		(pts
+			(xy 161.29 139.7)
+			(xy 158.75 139.7)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "2c14920f-66f3-5765-8d5d-e1adea2d8d09")
+	)
+	(global_label "+3V3"
+		(shape passive)
+		(at 158.75 139.7 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "e9e2f6ee-c160-51e4-9d4e-4ee076775f94")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 158.75 139.7 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(symbol
+		(lib_id "TOSHIBA_TLP2361_TPL_E:TLP2361(TPL,E")
+		(at 44.45 52.07 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "2c9d9e40-be38-521f-bc3a-585f435b0337")
+		(property "Reference" "U6"
+			(at 33.02 42.95 0)
+			(effects
+				(font
+					(size 1.4 1.4)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "TLP2361(TPL,E"
+			(at 33.02 62.19 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "TOSHIBA_TLP2361_TPL_E:OPTO-SMD-5_L3.7-W4.6-P1.27-LS7.0-BR"
+			(at 44.45 52.07 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://lcsc.com/product-detail/SMD-Optocouplers_TOSHIBA_TLP2361-TPL-E_TLP2361-TPL-E_C107626.html"
+			(at 44.45 52.07 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 44.45 52.07 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "LCSC" "C107626"
+			(at 44.45 52.07 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "ato_address" "opto_drdy.opto"
+			(at 33.02 64.69 0)
+			(effects
+				(font
+					(size 1 1)
+				)
+				(justify left)
+			)
+		)
+		(pin "1"
+			(uuid "e12a4735-4be6-50dd-880c-ac3170e10bca")
+		)
+		(pin "3"
+			(uuid "050ab668-ef64-5214-9fae-773b71e11ec4")
+		)
+		(pin "4"
+			(uuid "289ee249-83a9-5ceb-8130-8c744d285d2c")
+		)
+		(pin "5"
+			(uuid "75e2947c-43a3-56ce-9c17-99c4ac37cdd0")
+		)
+		(pin "6"
+			(uuid "0a751e7b-554d-53ae-b209-2f506e85e940")
+		)
+		(instances
+			(project "solartron_7075_usb"
+				(path "/9805a864-4b6c-5e80-a441-394986566885/9e7f5efe-b32b-54d3-9876-1f178b10e917"
+					(reference "U6")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Samsung_Electro_Mechanics_CL05B104KO5NNNC:CL05B104KO5NNNC")
+		(at 34.29 77.47 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "68c93919-43db-57c7-a7c3-0757cc73c0f0")
+		(property "Reference" "C24"
+			(at 29.21 73.94 0)
+			(effects
+				(font
+					(size 1.4 1.4)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "100nF ±10% 16V"
+			(at 29.21 82 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Samsung_Electro_Mechanics_CL05B104KO5NNNC:C0402"
+			(at 34.29 77.47 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://lcsc.com/product-detail/Multilayer-Ceramic-Capacitors-MLCC-SMD-SMT_SAMSUNG_CL05B104KO5NNNC_100nF-104-10-16V_C1525.html"
+			(at 34.29 77.47 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 34.29 77.47 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "LCSC" "C1525"
+			(at 34.29 77.47 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "ato_address" "opto_drdy.bypass"
+			(at 29.21 84.5 0)
+			(effects
+				(font
+					(size 1 1)
+				)
+				(justify left)
+			)
+		)
+		(pin "2"
+			(uuid "6c464c78-c848-50ea-a73d-24c8f628a2e4")
+		)
+		(pin "1"
+			(uuid "4561cd00-f90d-5829-b123-d77051262802")
+		)
+		(instances
+			(project "solartron_7075_usb"
+				(path "/9805a864-4b6c-5e80-a441-394986566885/9e7f5efe-b32b-54d3-9876-1f178b10e917"
+					(reference "C24")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "UNI_ROYAL_0402WGF6800TCE:0402WGF6800TCE")
+		(at 71.12 76.2 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "92089c90-e29a-55a7-b6ff-356cddfee8e8")
+		(property "Reference" "R11"
+			(at 66.04 73.68 0)
+			(effects
+				(font
+					(size 1.4 1.4)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "680Ω ±1% 62.5mW 50V"
+			(at 66.04 79.72 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "UNI_ROYAL_0402WGF6800TCE:R0402"
+			(at 71.12 76.2 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://lcsc.com/product-detail/Chip-Resistor-Surface-Mount-UniOhm_680R-6800-1_C25130.html"
+			(at 71.12 76.2 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 71.12 76.2 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "LCSC" "C25130"
+			(at 71.12 76.2 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "ato_address" "opto_drdy.led_resistor"
+			(at 66.04 82.22 0)
+			(effects
+				(font
+					(size 1 1)
+				)
+				(justify left)
+			)
+		)
+		(pin "2"
+			(uuid "00aa63a4-15fb-5d28-ae9c-ac57687581d3")
+		)
+		(pin "1"
+			(uuid "944f2aee-1ca8-57a4-85bd-07126cd2bb2c")
+		)
+		(instances
+			(project "solartron_7075_usb"
+				(path "/9805a864-4b6c-5e80-a441-394986566885/9e7f5efe-b32b-54d3-9876-1f178b10e917"
+					(reference "R11")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "TOSHIBA_TLP2361_TPL_E:TLP2361(TPL,E")
+		(at 125.73 52.07 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "5120fac2-a43d-5c2a-a981-223f9f55750b")
+		(property "Reference" "U7"
+			(at 114.3 42.95 0)
+			(effects
+				(font
+					(size 1.4 1.4)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "TLP2361(TPL,E"
+			(at 114.3 62.19 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "TOSHIBA_TLP2361_TPL_E:OPTO-SMD-5_L3.7-W4.6-P1.27-LS7.0-BR"
+			(at 125.73 52.07 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://lcsc.com/product-detail/SMD-Optocouplers_TOSHIBA_TLP2361-TPL-E_TLP2361-TPL-E_C107626.html"
+			(at 125.73 52.07 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 125.73 52.07 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "LCSC" "C107626"
+			(at 125.73 52.07 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "ato_address" "opto_latch.opto"
+			(at 114.3 64.69 0)
+			(effects
+				(font
+					(size 1 1)
+				)
+				(justify left)
+			)
+		)
+		(pin "1"
+			(uuid "c77d4748-1ba4-5c65-8c0a-894fd24a37f4")
+		)
+		(pin "3"
+			(uuid "1d12b213-e680-5f95-a042-543aecfabdc6")
+		)
+		(pin "4"
+			(uuid "d4076ecc-98b0-569d-be70-94ce2e38b921")
+		)
+		(pin "5"
+			(uuid "73869922-4535-5254-b031-28c98721cac0")
+		)
+		(pin "6"
+			(uuid "ff1c2a60-4eec-5418-a2a4-df3cf4c26730")
+		)
+		(instances
+			(project "solartron_7075_usb"
+				(path "/9805a864-4b6c-5e80-a441-394986566885/9e7f5efe-b32b-54d3-9876-1f178b10e917"
+					(reference "U7")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Samsung_Electro_Mechanics_CL05B104KO5NNNC:CL05B104KO5NNNC")
+		(at 113.03 77.47 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "e21edac9-0600-5d56-abc6-8a3a9b55aa9a")
+		(property "Reference" "C25"
+			(at 107.95 73.94 0)
+			(effects
+				(font
+					(size 1.4 1.4)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "100nF ±10% 16V"
+			(at 107.95 82 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Samsung_Electro_Mechanics_CL05B104KO5NNNC:C0402"
+			(at 113.03 77.47 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://lcsc.com/product-detail/Multilayer-Ceramic-Capacitors-MLCC-SMD-SMT_SAMSUNG_CL05B104KO5NNNC_100nF-104-10-16V_C1525.html"
+			(at 113.03 77.47 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 113.03 77.47 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "LCSC" "C1525"
+			(at 113.03 77.47 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "ato_address" "opto_latch.bypass"
+			(at 107.95 84.5 0)
+			(effects
+				(font
+					(size 1 1)
+				)
+				(justify left)
+			)
+		)
+		(pin "2"
+			(uuid "129685ae-168b-5899-913b-46c183330778")
+		)
+		(pin "1"
+			(uuid "e81990d4-9985-5fc9-bde6-0fe95a47e4e8")
+		)
+		(instances
+			(project "solartron_7075_usb"
+				(path "/9805a864-4b6c-5e80-a441-394986566885/9e7f5efe-b32b-54d3-9876-1f178b10e917"
+					(reference "C25")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "UNI_ROYAL_0402WGF3300TCE:0402WGF3300TCE")
+		(at 151.13 76.2 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "5aeafd17-dbca-5e9c-a135-62ea0249baaa")
+		(property "Reference" "R12"
+			(at 146.05 73.68 0)
+			(effects
+				(font
+					(size 1.4 1.4)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "330Ω ±1% 62.5mW 50V"
+			(at 146.05 79.72 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "UNI_ROYAL_0402WGF3300TCE:R0402"
+			(at 151.13 76.2 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://lcsc.com/product-detail/Chip-Resistor-Surface-Mount-UniOhm_330R-3300-1_C25104.html"
+			(at 151.13 76.2 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 151.13 76.2 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "LCSC" "C25104"
+			(at 151.13 76.2 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "ato_address" "opto_latch.led_resistor"
+			(at 146.05 82.22 0)
+			(effects
+				(font
+					(size 1 1)
+				)
+				(justify left)
+			)
+		)
+		(pin "2"
+			(uuid "d4ba22ff-dce6-51d8-85e2-483224b444b2")
+		)
+		(pin "1"
+			(uuid "95069a58-9dda-5972-a917-2fe69e03ed81")
+		)
+		(instances
+			(project "solartron_7075_usb"
+				(path "/9805a864-4b6c-5e80-a441-394986566885/9e7f5efe-b32b-54d3-9876-1f178b10e917"
+					(reference "R12")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "TOSHIBA_TLP2361_TPL_E:TLP2361(TPL,E")
+		(at 217.17 52.07 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "deaddbda-5b31-5ac4-ad66-62d50abfa458")
+		(property "Reference" "U8"
+			(at 205.74 42.95 0)
+			(effects
+				(font
+					(size 1.4 1.4)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "TLP2361(TPL,E"
+			(at 205.74 62.19 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "TOSHIBA_TLP2361_TPL_E:OPTO-SMD-5_L3.7-W4.6-P1.27-LS7.0-BR"
+			(at 217.17 52.07 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://lcsc.com/product-detail/SMD-Optocouplers_TOSHIBA_TLP2361-TPL-E_TLP2361-TPL-E_C107626.html"
+			(at 217.17 52.07 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 217.17 52.07 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "LCSC" "C107626"
+			(at 217.17 52.07 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "ato_address" "opto_miso.opto"
+			(at 205.74 64.69 0)
+			(effects
+				(font
+					(size 1 1)
+				)
+				(justify left)
+			)
+		)
+		(pin "1"
+			(uuid "8323a292-fc0d-5f40-98f4-a159c7adc841")
+		)
+		(pin "3"
+			(uuid "68633260-ed88-5d03-8512-4a424f0d9264")
+		)
+		(pin "4"
+			(uuid "6c9fa726-17da-5797-a5f1-dd8fd72c2e86")
+		)
+		(pin "5"
+			(uuid "73b601dd-dc45-5a5e-8347-b048dc4eee4b")
+		)
+		(pin "6"
+			(uuid "70397a45-efe2-5318-b0c0-6ffe4964ad71")
+		)
+		(instances
+			(project "solartron_7075_usb"
+				(path "/9805a864-4b6c-5e80-a441-394986566885/9e7f5efe-b32b-54d3-9876-1f178b10e917"
+					(reference "U8")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Samsung_Electro_Mechanics_CL05B104KO5NNNC:CL05B104KO5NNNC")
+		(at 201.93 77.47 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "89fb2000-0100-521f-a1d0-64bd4cc50e38")
+		(property "Reference" "C26"
+			(at 196.85 73.94 0)
+			(effects
+				(font
+					(size 1.4 1.4)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "100nF ±10% 16V"
+			(at 196.85 82 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Samsung_Electro_Mechanics_CL05B104KO5NNNC:C0402"
+			(at 201.93 77.47 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://lcsc.com/product-detail/Multilayer-Ceramic-Capacitors-MLCC-SMD-SMT_SAMSUNG_CL05B104KO5NNNC_100nF-104-10-16V_C1525.html"
+			(at 201.93 77.47 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 201.93 77.47 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "LCSC" "C1525"
+			(at 201.93 77.47 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "ato_address" "opto_miso.bypass"
+			(at 196.85 84.5 0)
+			(effects
+				(font
+					(size 1 1)
+				)
+				(justify left)
+			)
+		)
+		(pin "2"
+			(uuid "a7ff859e-fc20-5bce-88ac-ef34bf1ffea5")
+		)
+		(pin "1"
+			(uuid "97bef8a7-e120-5289-892e-4a1e87ce3494")
+		)
+		(instances
+			(project "solartron_7075_usb"
+				(path "/9805a864-4b6c-5e80-a441-394986566885/9e7f5efe-b32b-54d3-9876-1f178b10e917"
+					(reference "C26")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "UNI_ROYAL_0402WGF6800TCE:0402WGF6800TCE")
+		(at 238.76 76.2 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "e42f33f0-629c-5f2d-8027-b7720525cc68")
+		(property "Reference" "R13"
+			(at 233.68 73.68 0)
+			(effects
+				(font
+					(size 1.4 1.4)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "680Ω ±1% 62.5mW 50V"
+			(at 233.68 79.72 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "UNI_ROYAL_0402WGF6800TCE:R0402"
+			(at 238.76 76.2 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://lcsc.com/product-detail/Chip-Resistor-Surface-Mount-UniOhm_680R-6800-1_C25130.html"
+			(at 238.76 76.2 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 238.76 76.2 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "LCSC" "C25130"
+			(at 238.76 76.2 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "ato_address" "opto_miso.led_resistor"
+			(at 233.68 82.22 0)
+			(effects
+				(font
+					(size 1 1)
+				)
+				(justify left)
+			)
+		)
+		(pin "2"
+			(uuid "53683565-3d7b-5845-8721-6b449f26ca61")
+		)
+		(pin "1"
+			(uuid "a931712f-b620-5c44-8ae0-ad368d5576f6")
+		)
+		(instances
+			(project "solartron_7075_usb"
+				(path "/9805a864-4b6c-5e80-a441-394986566885/9e7f5efe-b32b-54d3-9876-1f178b10e917"
+					(reference "R13")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "TOSHIBA_TLP2361_TPL_E:TLP2361(TPL,E")
+		(at 303.53 52.07 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "5cdbef90-9b6e-5220-b42e-5f099e47c577")
+		(property "Reference" "U9"
+			(at 292.1 42.95 0)
+			(effects
+				(font
+					(size 1.4 1.4)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "TLP2361(TPL,E"
+			(at 292.1 62.19 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "TOSHIBA_TLP2361_TPL_E:OPTO-SMD-5_L3.7-W4.6-P1.27-LS7.0-BR"
+			(at 303.53 52.07 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://lcsc.com/product-detail/SMD-Optocouplers_TOSHIBA_TLP2361-TPL-E_TLP2361-TPL-E_C107626.html"
+			(at 303.53 52.07 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 303.53 52.07 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "LCSC" "C107626"
+			(at 303.53 52.07 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "ato_address" "opto_mosi.opto"
+			(at 292.1 64.69 0)
+			(effects
+				(font
+					(size 1 1)
+				)
+				(justify left)
+			)
+		)
+		(pin "1"
+			(uuid "f3adb4bc-f4a9-52db-a568-308574cc0392")
+		)
+		(pin "3"
+			(uuid "4d751790-9be6-5e48-8755-ab8d0757ee17")
+		)
+		(pin "4"
+			(uuid "8ac163b7-15c8-5679-ac14-7096f94a2ed9")
+		)
+		(pin "5"
+			(uuid "af467f7f-06c3-50cf-81ee-172fc7e6beff")
+		)
+		(pin "6"
+			(uuid "37a0600a-b432-5c9e-830b-02adc5dd9378")
+		)
+		(instances
+			(project "solartron_7075_usb"
+				(path "/9805a864-4b6c-5e80-a441-394986566885/9e7f5efe-b32b-54d3-9876-1f178b10e917"
+					(reference "U9")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Samsung_Electro_Mechanics_CL05B104KO5NNNC:CL05B104KO5NNNC")
+		(at 292.1 77.47 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "2796c48e-62c1-5f66-8cdf-13f5feb9e29b")
+		(property "Reference" "C27"
+			(at 287.02 73.94 0)
+			(effects
+				(font
+					(size 1.4 1.4)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "100nF ±10% 16V"
+			(at 287.02 82 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Samsung_Electro_Mechanics_CL05B104KO5NNNC:C0402"
+			(at 292.1 77.47 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://lcsc.com/product-detail/Multilayer-Ceramic-Capacitors-MLCC-SMD-SMT_SAMSUNG_CL05B104KO5NNNC_100nF-104-10-16V_C1525.html"
+			(at 292.1 77.47 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 292.1 77.47 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "LCSC" "C1525"
+			(at 292.1 77.47 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "ato_address" "opto_mosi.bypass"
+			(at 287.02 84.5 0)
+			(effects
+				(font
+					(size 1 1)
+				)
+				(justify left)
+			)
+		)
+		(pin "2"
+			(uuid "505062b6-1daf-5bc1-8a44-9e75606cf3f1")
+		)
+		(pin "1"
+			(uuid "9e607d23-cb13-54bc-96bd-4a5642b98ad6")
+		)
+		(instances
+			(project "solartron_7075_usb"
+				(path "/9805a864-4b6c-5e80-a441-394986566885/9e7f5efe-b32b-54d3-9876-1f178b10e917"
+					(reference "C27")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "UNI_ROYAL_0402WGF3300TCE:0402WGF3300TCE")
+		(at 330.2 76.2 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "e2039664-ef62-53c4-8f1b-d91c9190b8d7")
+		(property "Reference" "R14"
+			(at 325.12 73.68 0)
+			(effects
+				(font
+					(size 1.4 1.4)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "330Ω ±1% 62.5mW 50V"
+			(at 325.12 79.72 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "UNI_ROYAL_0402WGF3300TCE:R0402"
+			(at 330.2 76.2 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://lcsc.com/product-detail/Chip-Resistor-Surface-Mount-UniOhm_330R-3300-1_C25104.html"
+			(at 330.2 76.2 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 330.2 76.2 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "LCSC" "C25104"
+			(at 330.2 76.2 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "ato_address" "opto_mosi.led_resistor"
+			(at 325.12 82.22 0)
+			(effects
+				(font
+					(size 1 1)
+				)
+				(justify left)
+			)
+		)
+		(pin "2"
+			(uuid "816b27f2-075c-5496-adf6-a239791e4fc8")
+		)
+		(pin "1"
+			(uuid "884c022e-28ac-511d-a4f8-0f5e81fe0bce")
+		)
+		(instances
+			(project "solartron_7075_usb"
+				(path "/9805a864-4b6c-5e80-a441-394986566885/9e7f5efe-b32b-54d3-9876-1f178b10e917"
+					(reference "R14")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "TOSHIBA_TLP2361_TPL_E:TLP2361(TPL,E")
+		(at 48.26 114.3 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "5168bb61-bb46-5a24-b9dc-683cd2f80bc1")
+		(property "Reference" "U10"
+			(at 36.83 105.18 0)
+			(effects
+				(font
+					(size 1.4 1.4)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "TLP2361(TPL,E"
+			(at 36.83 124.42 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "TOSHIBA_TLP2361_TPL_E:OPTO-SMD-5_L3.7-W4.6-P1.27-LS7.0-BR"
+			(at 48.26 114.3 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://lcsc.com/product-detail/SMD-Optocouplers_TOSHIBA_TLP2361-TPL-E_TLP2361-TPL-E_C107626.html"
+			(at 48.26 114.3 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 48.26 114.3 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "LCSC" "C107626"
+			(at 48.26 114.3 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "ato_address" "opto_oe_n.opto"
+			(at 36.83 126.92 0)
+			(effects
+				(font
+					(size 1 1)
+				)
+				(justify left)
+			)
+		)
+		(pin "1"
+			(uuid "b3fed536-607e-5239-9d01-261b82cf17bd")
+		)
+		(pin "3"
+			(uuid "baee2fef-2c54-5cc4-83ca-b74873c9b562")
+		)
+		(pin "4"
+			(uuid "dc1a3b72-8adb-5f93-b6e5-9dd60897f850")
+		)
+		(pin "5"
+			(uuid "24adb0a2-1fdd-5f23-9dc9-f1dd59f6be88")
+		)
+		(pin "6"
+			(uuid "fe13f23b-838d-5453-8635-e9b8bf1d187b")
+		)
+		(instances
+			(project "solartron_7075_usb"
+				(path "/9805a864-4b6c-5e80-a441-394986566885/9e7f5efe-b32b-54d3-9876-1f178b10e917"
+					(reference "U10")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Samsung_Electro_Mechanics_CL05B104KO5NNNC:CL05B104KO5NNNC")
+		(at 36.83 140.97 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "77bd8c48-1f0c-5b85-8f0f-eb40e8064122")
+		(property "Reference" "C28"
+			(at 31.75 137.44 0)
+			(effects
+				(font
+					(size 1.4 1.4)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "100nF ±10% 16V"
+			(at 31.75 145.5 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Samsung_Electro_Mechanics_CL05B104KO5NNNC:C0402"
+			(at 36.83 140.97 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://lcsc.com/product-detail/Multilayer-Ceramic-Capacitors-MLCC-SMD-SMT_SAMSUNG_CL05B104KO5NNNC_100nF-104-10-16V_C1525.html"
+			(at 36.83 140.97 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 36.83 140.97 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "LCSC" "C1525"
+			(at 36.83 140.97 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "ato_address" "opto_oe_n.bypass"
+			(at 31.75 148 0)
+			(effects
+				(font
+					(size 1 1)
+				)
+				(justify left)
+			)
+		)
+		(pin "2"
+			(uuid "c8ea139f-38da-5cb6-8fb0-6a53ed3203fc")
+		)
+		(pin "1"
+			(uuid "6343125b-8c27-5734-9808-0b57fcb1452d")
+		)
+		(instances
+			(project "solartron_7075_usb"
+				(path "/9805a864-4b6c-5e80-a441-394986566885/9e7f5efe-b32b-54d3-9876-1f178b10e917"
+					(reference "C28")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "UNI_ROYAL_0402WGF3300TCE:0402WGF3300TCE")
+		(at 74.93 139.7 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "6293ec80-460a-502d-a289-eaa8970df10e")
+		(property "Reference" "R15"
+			(at 69.85 137.18 0)
+			(effects
+				(font
+					(size 1.4 1.4)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "330Ω ±1% 62.5mW 50V"
+			(at 69.85 143.22 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "UNI_ROYAL_0402WGF3300TCE:R0402"
+			(at 74.93 139.7 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://lcsc.com/product-detail/Chip-Resistor-Surface-Mount-UniOhm_330R-3300-1_C25104.html"
+			(at 74.93 139.7 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 74.93 139.7 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "LCSC" "C25104"
+			(at 74.93 139.7 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "ato_address" "opto_oe_n.led_resistor"
+			(at 69.85 145.72 0)
+			(effects
+				(font
+					(size 1 1)
+				)
+				(justify left)
+			)
+		)
+		(pin "2"
+			(uuid "3134e813-877a-5bf5-a41f-b60eb2501083")
+		)
+		(pin "1"
+			(uuid "09d1e1ac-8b70-5939-921a-21b5db37c6de")
+		)
+		(instances
+			(project "solartron_7075_usb"
+				(path "/9805a864-4b6c-5e80-a441-394986566885/9e7f5efe-b32b-54d3-9876-1f178b10e917"
+					(reference "R15")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "TOSHIBA_TLP2361_TPL_E:TLP2361(TPL,E")
+		(at 138.43 114.3 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "51df1eb7-caf3-5769-b009-55354dfb030e")
+		(property "Reference" "U11"
+			(at 127 105.18 0)
+			(effects
+				(font
+					(size 1.4 1.4)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "TLP2361(TPL,E"
+			(at 127 124.42 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "TOSHIBA_TLP2361_TPL_E:OPTO-SMD-5_L3.7-W4.6-P1.27-LS7.0-BR"
+			(at 138.43 114.3 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://lcsc.com/product-detail/SMD-Optocouplers_TOSHIBA_TLP2361-TPL-E_TLP2361-TPL-E_C107626.html"
+			(at 138.43 114.3 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 138.43 114.3 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "LCSC" "C107626"
+			(at 138.43 114.3 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "ato_address" "opto_sck.opto"
+			(at 127 126.92 0)
+			(effects
+				(font
+					(size 1 1)
+				)
+				(justify left)
+			)
+		)
+		(pin "1"
+			(uuid "1521b097-e0cf-5645-bbcb-3336866bc2c9")
+		)
+		(pin "3"
+			(uuid "de6d44d1-f7ce-55f7-9d85-b4b5dcf0b933")
+		)
+		(pin "4"
+			(uuid "d7b2fb78-8960-5bb2-b25b-f725b44b0207")
+		)
+		(pin "5"
+			(uuid "6e1dcb02-585c-5103-80e8-a9c9fb09ebee")
+		)
+		(pin "6"
+			(uuid "b8d3d548-fc51-56b4-a2fd-a7307196b53c")
+		)
+		(instances
+			(project "solartron_7075_usb"
+				(path "/9805a864-4b6c-5e80-a441-394986566885/9e7f5efe-b32b-54d3-9876-1f178b10e917"
+					(reference "U11")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Samsung_Electro_Mechanics_CL05B104KO5NNNC:CL05B104KO5NNNC")
+		(at 128.27 140.97 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "75f838f3-bafa-5286-8ae4-17a3976ba1a7")
+		(property "Reference" "C29"
+			(at 123.19 137.44 0)
+			(effects
+				(font
+					(size 1.4 1.4)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "100nF ±10% 16V"
+			(at 123.19 145.5 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Samsung_Electro_Mechanics_CL05B104KO5NNNC:C0402"
+			(at 128.27 140.97 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://lcsc.com/product-detail/Multilayer-Ceramic-Capacitors-MLCC-SMD-SMT_SAMSUNG_CL05B104KO5NNNC_100nF-104-10-16V_C1525.html"
+			(at 128.27 140.97 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 128.27 140.97 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "LCSC" "C1525"
+			(at 128.27 140.97 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "ato_address" "opto_sck.bypass"
+			(at 123.19 148 0)
+			(effects
+				(font
+					(size 1 1)
+				)
+				(justify left)
+			)
+		)
+		(pin "2"
+			(uuid "9af56346-2f3f-57db-a7a5-a26d3feb7098")
+		)
+		(pin "1"
+			(uuid "206ccbe6-76cd-57df-af55-492607db1120")
+		)
+		(instances
+			(project "solartron_7075_usb"
+				(path "/9805a864-4b6c-5e80-a441-394986566885/9e7f5efe-b32b-54d3-9876-1f178b10e917"
+					(reference "C29")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "UNI_ROYAL_0402WGF3300TCE:0402WGF3300TCE")
+		(at 166.37 139.7 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "e2fcce44-1f37-595a-b390-261668efea2a")
+		(property "Reference" "R16"
+			(at 161.29 137.18 0)
+			(effects
+				(font
+					(size 1.4 1.4)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "330Ω ±1% 62.5mW 50V"
+			(at 161.29 143.22 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "UNI_ROYAL_0402WGF3300TCE:R0402"
+			(at 166.37 139.7 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://lcsc.com/product-detail/Chip-Resistor-Surface-Mount-UniOhm_330R-3300-1_C25104.html"
+			(at 166.37 139.7 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 166.37 139.7 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "LCSC" "C25104"
+			(at 166.37 139.7 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "ato_address" "opto_sck.led_resistor"
+			(at 161.29 145.72 0)
+			(effects
+				(font
+					(size 1 1)
+				)
+				(justify left)
+			)
+		)
+		(pin "2"
+			(uuid "53ff6c64-8759-5aa5-8d1c-1328d73bf642")
+		)
+		(pin "1"
+			(uuid "ed382070-bac2-581f-b1b3-393c13d12a85")
+		)
+		(instances
+			(project "solartron_7075_usb"
+				(path "/9805a864-4b6c-5e80-a441-394986566885/9e7f5efe-b32b-54d3-9876-1f178b10e917"
+					(reference "R16")
+					(unit 1)
+				)
+			)
+		)
+	)
+)

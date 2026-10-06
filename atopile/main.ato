@@ -1,0 +1,308 @@
+#pragma experiment("BRIDGE_CONNECT")
+#pragma experiment("FOR_LOOP")
+
+import ElectricPower
+import ElectricLogic
+import Resistor
+import RectangularBoardShape
+
+from "atopile/ti-tlv75901/ti-tlv75901.ato" import TI_TLV75901
+from "atopile/indicator-leds/parts/Hubei_KENTO_Elec_KT_0603G/Hubei_KENTO_Elec_KT_0603G.ato" import Hubei_KENTO_Elec_KT_0603G_driver
+from "atopile/indicator-leds/parts/Hubei_KENTO_Elec_KT_0603Y/Hubei_KENTO_Elec_KT_0603Y.ato" import Hubei_KENTO_Elec_KT_0603Y_driver
+from "atopile/programming-headers/programming-headers.ato" import TC2030_ARM_Cortex
+
+from "parts/Jiangsu_Changjing_Electronics_Technology_Co___Ltd_2N7002/Jiangsu_Changjing_Electronics_Technology_Co___Ltd_2N7002.ato" import Jiangsu_Changjing_Electronics_Technology_Co___Ltd_2N7002_package
+
+from "rp2354a.ato" import RP2354A
+from "connectors.ato" import UsbBInput
+from "connectors.ato" import SolartronSKB
+from "isolation.ato" import OptoChannelFrom3V3
+from "isolation.ato" import OptoChannelFrom5V
+from "isolation.ato" import IsolatedSupply5V
+from "logic.ato" import ShiftIn74HCT165
+from "logic.ato" import ShiftOut74HCT595
+from "logic.ato" import Buffer74AHCT1G125
+
+
+module App:
+    """
+    USB interface for the Solartron 7075 DVM (with Parallel BCD Interface
+    Unit 70754), plugging directly into its 50-way SKB socket.
+
+    USB side (GND):      USB-B -> fuse/ESD -> 5 V -> TLV75901 3.3 V -> RP2354A
+    Isolated side (ISO): IB0505LS 5 V/5 V isolated DC-DC -> 74HCT logic -> SKB
+
+    Only six logic signals cross the isolation barrier, each through a
+    TLP2361 optocoupler:
+      MCU -> DVM side: SCK, MOSI, LATCH, OE_N
+      DVM side -> MCU: MISO, DRDY (= SKB pin 34, PRINT level)
+    The 36 DVM outputs (SKB pins 1-36) are read through five chained
+    74HCT165s; the 13 DVM command inputs (SKB pins 38-50) are driven by two
+    chained 74HCT595s. See README.md for the frame/bit map.
+    """
+
+    board = new RectangularBoardShape
+    board.x = 78mm
+    board.y = 60mm
+    board.corner_radius = 2mm
+
+    # ------------------------------------------------------------------
+    # Power
+    # ------------------------------------------------------------------
+    power_5v = new ElectricPower
+    power_3v3 = new ElectricPower
+    power_iso = new ElectricPower
+    """Isolated 5 V; power_iso.lv is the DVM's logic 0 / earth (SKB pin 37)"""
+
+    signal net_5v
+    net_5v ~ power_5v.hv
+    net_5v.override_net_name = "+5V"
+    signal net_gnd
+    net_gnd ~ power_5v.lv
+    net_gnd.override_net_name = "GND"
+    signal net_3v3
+    net_3v3 ~ power_3v3.hv
+    net_3v3.override_net_name = "+3V3"
+    signal net_5v_iso
+    net_5v_iso ~ power_iso.hv
+    net_5v_iso.override_net_name = "+5V_ISO"
+    signal net_gnd_iso
+    net_gnd_iso ~ power_iso.lv
+    net_gnd_iso.override_net_name = "GND_ISO"
+
+    usb_in = new UsbBInput
+    signal net_vbus
+    net_vbus ~ usb_in.vbus_raw.hv
+    net_vbus.override_net_name = "VBUS"
+    power_5v ~ usb_in.usb.usb_if.buspower
+
+    ldo = new TI_TLV75901
+    power_5v ~> ldo ~> power_3v3
+    power_3v3.voltage = 3.3V +/- 3%
+    # Vout = 0.55 V * (1 + 100k / 20k) = 3.30 V
+    ldo.feedback_divider.chain.resistors[0].lcsc_id = "C25741"
+    ldo.feedback_divider.chain.resistors[1].lcsc_id = "C25765"
+    ldo.input_decoupling_capacitor.lcsc_id = "C52923"
+    ldo.output_decoupling_capacitor.lcsc_id = "C52923"
+    signal net_ldo_fb
+    net_ldo_fb ~ ldo.feedback_divider.ref_out.hv
+    net_ldo_fb.override_net_name = "LDO_FB"
+
+    iso_supply = new IsolatedSupply5V
+    iso_supply.power_in ~ power_5v
+    iso_supply.power_out ~ power_iso
+
+    # ------------------------------------------------------------------
+    # MCU
+    # ------------------------------------------------------------------
+    mcu = new RP2354A
+    mcu.power ~ power_3v3
+    mcu.usb ~ usb_in.usb
+    signal net_1v1
+    net_1v1 ~ mcu.core.hv
+    net_1v1.override_net_name = "+1V1"
+
+    swd_header = new TC2030_ARM_Cortex
+    swd_header.swd.dio ~ mcu.swd.dio
+    swd_header.swd.clk ~ mcu.swd.clk
+    swd_header.swd.reset.line ~ mcu.run.line
+    swd_header.swd.has_single_electric_reference.reference ~ power_3v3
+
+    # Indicators (~0.9 mA each)
+    power_led = new Hubei_KENTO_Elec_KT_0603G_driver
+    power_led_resistor = new Resistor
+    power_led_resistor.resistance = 1.5kohm +/- 5%
+    power_led_resistor.package = "0402"
+    power_led_resistor.lcsc_id = "C25867"
+    power_3v3.hv ~> power_led_resistor ~> power_led ~> power_3v3.lv
+    signal net_led_pwr
+    net_led_pwr ~ power_led.diode.anode
+    net_led_pwr.override_net_name = "LED_PWR_A"
+
+    status_led = new Hubei_KENTO_Elec_KT_0603Y_driver
+    """Yellow status LED on GPIO25 (high = on)"""
+    status_led_resistor = new Resistor
+    status_led_resistor.resistance = 1.5kohm +/- 5%
+    status_led_resistor.package = "0402"
+    status_led_resistor.lcsc_id = "C25867"
+    mcu.gpio[25].line ~> status_led_resistor ~> status_led ~> power_3v3.lv
+    mcu.gpio[25].line.suggest_net_name = "STATUS_LED"
+    signal net_led_status
+    net_led_status ~ status_led.diode.anode
+    net_led_status.override_net_name = "LED_STATUS_A"
+
+    iso_power_led = new Hubei_KENTO_Elec_KT_0603G_driver
+    iso_power_led_resistor = new Resistor
+    iso_power_led_resistor.resistance = 3.3kohm +/- 5%
+    iso_power_led_resistor.package = "0402"
+    iso_power_led_resistor.lcsc_id = "C25890"
+    power_iso.hv ~> iso_power_led_resistor ~> iso_power_led ~> power_iso.lv
+    signal net_led_iso
+    net_led_iso ~ iso_power_led.diode.anode
+    net_led_iso.override_net_name = "LED_ISO_A"
+
+    # ------------------------------------------------------------------
+    # Isolation barrier: 4 channels MCU -> DVM side, 2 channels back
+    # ------------------------------------------------------------------
+    opto_sck = new OptoChannelFrom3V3
+    opto_mosi = new OptoChannelFrom3V3
+    opto_latch = new OptoChannelFrom3V3
+    opto_oe_n = new OptoChannelFrom3V3
+    opto_miso = new OptoChannelFrom5V
+    opto_drdy = new OptoChannelFrom5V
+
+    # MCU pin map (SPI0 on GPIO16/18/19; LATCH and OE_N are plain GPIO)
+    opto_miso.output ~ mcu.gpio[16]
+    opto_latch.input ~ mcu.gpio[17]
+    opto_sck.input ~ mcu.gpio[18]
+    opto_mosi.input ~ mcu.gpio[19]
+    opto_oe_n.input ~ mcu.gpio[20]
+    opto_drdy.output ~ mcu.gpio[21]
+
+    opto_miso.output.line.suggest_net_name = "MISO"
+    opto_latch.input.line.suggest_net_name = "LATCH"
+    opto_sck.input.line.suggest_net_name = "SCK"
+    opto_mosi.input.line.suggest_net_name = "MOSI"
+    opto_oe_n.input.line.suggest_net_name = "OE_N"
+    opto_drdy.output.line.suggest_net_name = "DRDY"
+    opto_miso.input.line.suggest_net_name = "MISO_ISO"
+    opto_latch.output.line.suggest_net_name = "LATCH_ISO"
+    opto_sck.output.line.suggest_net_name = "SCK_ISO"
+    opto_mosi.output.line.suggest_net_name = "MOSI_ISO"
+    opto_oe_n.output.line.suggest_net_name = "OE_N_ISO"
+    opto_drdy.input.line.suggest_net_name = "DRDY_ISO"
+
+    opto_sck.output.reference ~ power_iso
+    opto_mosi.output.reference ~ power_iso
+    opto_latch.output.reference ~ power_iso
+    opto_oe_n.output.reference ~ power_iso
+    opto_miso.input.reference ~ power_iso
+    opto_drdy.input.reference ~ power_iso
+
+    # ------------------------------------------------------------------
+    # DVM side
+    # ------------------------------------------------------------------
+    dvm = new SolartronSKB
+    dvm.power ~ power_iso
+
+    # --- DVM outputs -> 5x 74HCT165 -> MISO ---
+    # Frame bit k (k = 0 first out after LATCH) is SKB pin k+1 for k < 36;
+    # bits 36..39 are a fixed 1,0,1,0 signature for link checking.
+    shift_in = new ShiftIn74HCT165[5]
+    for sr in shift_in:
+        sr.power ~ power_iso
+        sr.clock ~ opto_sck.output
+        sr.load_n ~ opto_latch.output
+        sr.clock_inhibit.line ~ power_iso.lv
+
+    opto_miso.input ~ shift_in[0].q7
+    shift_in[0].serial_in ~ shift_in[1].q7
+    shift_in[1].serial_in ~ shift_in[2].q7
+    shift_in[2].serial_in ~ shift_in[3].q7
+    shift_in[3].serial_in ~ shift_in[4].q7
+    shift_in[4].serial_in.line ~ power_iso.lv
+    shift_in[0].serial_in.line.suggest_net_name = "SI_CHAIN_1"
+    shift_in[1].serial_in.line.suggest_net_name = "SI_CHAIN_2"
+    shift_in[2].serial_in.line.suggest_net_name = "SI_CHAIN_3"
+    shift_in[3].serial_in.line.suggest_net_name = "SI_CHAIN_4"
+
+    shift_in[0].d[7] ~ dvm.dvm_out[0]
+    shift_in[0].d[6] ~ dvm.dvm_out[1]
+    shift_in[0].d[5] ~ dvm.dvm_out[2]
+    shift_in[0].d[4] ~ dvm.dvm_out[3]
+    shift_in[0].d[3] ~ dvm.dvm_out[4]
+    shift_in[0].d[2] ~ dvm.dvm_out[5]
+    shift_in[0].d[1] ~ dvm.dvm_out[6]
+    shift_in[0].d[0] ~ dvm.dvm_out[7]
+
+    shift_in[1].d[7] ~ dvm.dvm_out[8]
+    shift_in[1].d[6] ~ dvm.dvm_out[9]
+    shift_in[1].d[5] ~ dvm.dvm_out[10]
+    shift_in[1].d[4] ~ dvm.dvm_out[11]
+    shift_in[1].d[3] ~ dvm.dvm_out[12]
+    shift_in[1].d[2] ~ dvm.dvm_out[13]
+    shift_in[1].d[1] ~ dvm.dvm_out[14]
+    shift_in[1].d[0] ~ dvm.dvm_out[15]
+
+    shift_in[2].d[7] ~ dvm.dvm_out[16]
+    shift_in[2].d[6] ~ dvm.dvm_out[17]
+    shift_in[2].d[5] ~ dvm.dvm_out[18]
+    shift_in[2].d[4] ~ dvm.dvm_out[19]
+    shift_in[2].d[3] ~ dvm.dvm_out[20]
+    shift_in[2].d[2] ~ dvm.dvm_out[21]
+    shift_in[2].d[1] ~ dvm.dvm_out[22]
+    shift_in[2].d[0] ~ dvm.dvm_out[23]
+
+    shift_in[3].d[7] ~ dvm.dvm_out[24]
+    shift_in[3].d[6] ~ dvm.dvm_out[25]
+    shift_in[3].d[5] ~ dvm.dvm_out[26]
+    shift_in[3].d[4] ~ dvm.dvm_out[27]
+    shift_in[3].d[3] ~ dvm.dvm_out[28]
+    shift_in[3].d[2] ~ dvm.dvm_out[29]
+    shift_in[3].d[1] ~ dvm.dvm_out[30]
+    shift_in[3].d[0] ~ dvm.dvm_out[31]
+
+    shift_in[4].d[7] ~ dvm.dvm_out[32]
+    shift_in[4].d[6] ~ dvm.dvm_out[33]
+    shift_in[4].d[5] ~ dvm.dvm_out[34]
+    shift_in[4].d[4] ~ dvm.dvm_out[35]
+    shift_in[4].d[3].line ~ power_iso.hv
+    shift_in[4].d[2].line ~ power_iso.lv
+    shift_in[4].d[1].line ~ power_iso.hv
+    shift_in[4].d[0].line ~ power_iso.lv
+
+    # --- DRDY: PRINT level (SKB pin 34) buffered to drive the opto LED ---
+    drdy_buffer = new Buffer74AHCT1G125
+    drdy_buffer.power ~ power_iso
+    drdy_buffer.input ~ dvm.dvm_out[33]
+    drdy_buffer.output ~ opto_drdy.input
+
+    # --- MOSI -> 2x 74HCT595 -> DVM command inputs ---
+    # 16-bit command word, sent MSB first as the last 16 bits of the frame:
+    # bit n (0..7) -> shift_out[0].q[n], bit n (8..15) -> shift_out[1].q[n-8]
+    shift_out = new ShiftOut74HCT595[2]
+    for sr in shift_out:
+        sr.power ~ power_iso
+        sr.shift_clock ~ opto_sck.output
+        sr.storage_clock ~ opto_latch.output
+        sr.output_enable_n ~ opto_oe_n.output
+        sr.reset_n.line ~ power_iso.hv
+
+    shift_out[0].serial_in ~ opto_mosi.output
+    shift_out[1].serial_in ~ shift_out[0].serial_out
+    shift_out[1].serial_in.line.suggest_net_name = "SO_CHAIN_1"
+
+    # Outputs stay Hi-Z (7075 inputs idle at their own pull-ups) until the
+    # MCU has loaded a valid command word and drives OE_N low.
+    oe_pullup = new Resistor
+    oe_pullup.resistance = 10kohm +/- 5%
+    oe_pullup.package = "0402"
+    oe_pullup.lcsc_id = "C25744"
+    opto_oe_n.output.line ~> oe_pullup ~> power_iso.hv
+
+    dvm.front_panel_lockout ~ shift_out[0].q[0]
+    # q[1] drives the contact-closure SAMPLE MOSFET below
+    dvm.sample_pulse ~ shift_out[0].q[2]
+    dvm.ratio ~ shift_out[0].q[3]
+    dvm.function_cmd[0] ~ shift_out[0].q[4]
+    dvm.function_cmd[1] ~ shift_out[0].q[5]
+    dvm.integration_time[0] ~ shift_out[0].q[6]
+    dvm.integration_time[1] ~ shift_out[0].q[7]
+    dvm.integration_time[2] ~ shift_out[1].q[0]
+    dvm.autorange ~ shift_out[1].q[1]
+    dvm.range_cmd[0] ~ shift_out[1].q[2]
+    dvm.range_cmd[1] ~ shift_out[1].q[3]
+    dvm.range_cmd[2] ~ shift_out[1].q[4]
+
+    # --- CONTACT SAMPLE (SKB pin 39): MOSFET closure to pin 37 ---
+    sample_fet = new Jiangsu_Changjing_Electronics_Technology_Co___Ltd_2N7002_package
+    sample_fet_pulldown = new Resistor
+    sample_fet_pulldown.resistance = 100kohm +/- 5%
+    sample_fet_pulldown.package = "0402"
+    sample_fet_pulldown.lcsc_id = "C25741"
+
+    sample_fet.D ~ dvm.sample_contact.line
+    sample_fet.S ~ power_iso.lv
+    sample_fet.G ~ shift_out[0].q[1].line
+    shift_out[0].q[1].line.suggest_net_name = "SAMPLE_CONTACT_GATE"
+    sample_fet.G ~> sample_fet_pulldown ~> power_iso.lv

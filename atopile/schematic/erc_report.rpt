@@ -1,0 +1,20 @@
+ERC report (2026-10-06T12:41:01, Encoding UTF8)
+Report includes: Errors, Warnings, Exclusions
+
+***** Sheet /
+
+***** Sheet /2. USB input and power/
+
+***** Sheet /3. RP2354A/
+
+***** Sheet /4. Isolation barrier/
+
+***** Sheet /5. Solartron SKB interface/
+
+ ** ERC messages: 0  Errors 0  Warnings 0
+
+ ** Ignored checks:
+    - Global label only appears once in the schematic
+    - Four connection points are joined together
+    - SPICE model issue
+    - Assigned footprint doesn't match footprint filters

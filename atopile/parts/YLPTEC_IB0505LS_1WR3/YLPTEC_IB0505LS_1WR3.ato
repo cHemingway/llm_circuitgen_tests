@@ -1,0 +1,19 @@
+import has_designator_prefix
+import has_part_picked
+import is_atomic_part
+import is_auto_generated
+
+component YLPTEC_IB0505LS_1WR3_package:
+    # This trait marks this file as auto-generated
+    # If you want to manually change it, remove the trait
+    trait is_auto_generated<system="ato_part", source="easyeda:C5369607", date="2026-10-06T10:57:15.777615+00:00", checksum="d7dae52164ede71c6ea210cd8936d891b7ad00ecff890b619f03b00877e14d35">
+
+    trait is_atomic_part<manufacturer="YLPTEC", partnumber="IB0505LS-1WR3", footprint="PWRM-TH_BXXXXLS-1WR3.kicad_mod", symbol="IB0505LS-1WR3_C5369607.kicad_sym", model="PWRM-TH_BXXXXLS-1WR3.step">
+    trait has_part_picked::by_supplier<supplier_id="lcsc", supplier_partno="C5369607", manufacturer="YLPTEC", partno="IB0505LS-1WR3">
+    trait has_designator_prefix<prefix="U">
+
+    # pins
+    signal GND ~ pin 2
+    signal P0V ~ pin 4
+    signal VIN ~ pin 1
+    signal Vopos ~ pin 6

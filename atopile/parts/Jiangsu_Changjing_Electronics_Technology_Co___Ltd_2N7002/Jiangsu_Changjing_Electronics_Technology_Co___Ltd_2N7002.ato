@@ -1,0 +1,20 @@
+import has_designator_prefix
+import has_part_picked
+import is_atomic_part
+import is_auto_generated
+
+component Jiangsu_Changjing_Electronics_Technology_Co___Ltd_2N7002_package:
+    """2N7002 7002"""
+
+    # This trait marks this file as auto-generated
+    # If you want to manually change it, remove the trait
+    trait is_auto_generated<system="ato_part", source="easyeda:C8545", date="2026-10-06T10:57:28.316851+00:00", checksum="e4918f09a9fe57647a57ac101ccb6b49d8d651e8806cb5cfaf85181710525648">
+
+    trait is_atomic_part<manufacturer="Jiangsu Changjing Electronics Technology Co., Ltd.", partnumber="2N7002", footprint="SOT-23-3_L2.9-W1.3-P1.90-LS2.4-BR.kicad_mod", symbol="2N7002.kicad_sym", model="SOT-23-3P_L2.9-W1.3-H1.0-LS2.4-P0.95.step">
+    trait has_part_picked::by_supplier<supplier_id="lcsc", supplier_partno="C8545", manufacturer="Jiangsu Changjing Electronics Technology Co., Ltd.", partno="2N7002">
+    trait has_designator_prefix<prefix="Q">
+
+    # pins
+    signal D ~ pin 3
+    signal G ~ pin 1
+    signal S ~ pin 2

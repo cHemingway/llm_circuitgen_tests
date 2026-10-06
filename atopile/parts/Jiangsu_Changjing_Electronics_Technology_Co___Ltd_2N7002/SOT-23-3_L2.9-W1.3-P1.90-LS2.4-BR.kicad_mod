@@ -1,0 +1,143 @@
+(footprint "Jiangsu_Changjing_Electronics_Technology_Co___Ltd_2N7002:SOT-23-3_L2.9-W1.3-P1.90-LS2.4-BR"
+	(version 20241229)
+	(generator "faebryk_convert")
+	(generator_version "v5")
+	(layer "F.Cu")
+	(tedit "5DC5F6A4")
+	(uuid "c502aaae-33b3-4dfd-9d40-1ffd014ed17d")
+	(property "Reference" "REF**"
+		(at 0 -4.95)
+		(layer "F.SilkS")
+		(uuid "afdafc6d-9206-404d-a14f-65e6119f62d5")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Value" "SOT-23-3_L2.9-W1.3-P1.90-LS2.4-BR"
+		(at 0 4.95)
+		(layer "F.Fab")
+		(uuid "87792a90-86c5-4326-b95c-22b995583d82")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(attr smd)
+	(fp_circle
+		(center 1.2 1.45)
+		(end 1.23 1.45)
+		(stroke
+			(width 0.06)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(locked no)
+		(uuid "4930530c-6fa0-4388-87ac-17507c216392")
+	)
+	(fp_circle
+		(center 1.46 1.1)
+		(end 1.56 1.1)
+		(stroke
+			(width 0.2)
+			(type solid)
+		)
+		(layer "Cmts.User")
+		(locked no)
+		(uuid "d676f54a-87d2-4808-9859-eb458062c8ad")
+	)
+	(fp_line
+		(start 0.73 -1.53)
+		(end -0.73 -1.53)
+		(stroke
+			(width 0.15)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(layers "F.SilkS")
+		(locked no)
+		(uuid "49ba2fa9-5201-4a56-9f1e-918234a9b9df")
+	)
+	(fp_line
+		(start -0.73 -1.53)
+		(end -0.73 -0.49)
+		(stroke
+			(width 0.15)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(layers "F.SilkS")
+		(locked no)
+		(uuid "ed09cbf7-b19d-4691-9f04-d17f49145bd4")
+	)
+	(fp_line
+		(start 0.73 1.53)
+		(end -0.73 1.53)
+		(stroke
+			(width 0.15)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(layers "F.SilkS")
+		(locked no)
+		(uuid "1299561e-6d4d-45b2-a492-7aa058fcf0e0")
+	)
+	(fp_line
+		(start -0.73 1.53)
+		(end -0.73 0.49)
+		(stroke
+			(width 0.15)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(layers "F.SilkS")
+		(locked no)
+		(uuid "6901892c-ac16-462c-8360-2d66ae1e73b5")
+	)
+	(fp_line
+		(start 0.73 -0.46)
+		(end 0.73 0.46)
+		(stroke
+			(width 0.15)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(layers "F.SilkS")
+		(locked no)
+		(uuid "902ce547-b4c1-40c9-8aec-8d4c5919f4bb")
+	)
+	(pad "1" smd rect
+		(at 1 0.95 0)
+		(size 1 0.65)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(uuid "718aa04f-a4b5-4f68-acec-0505c0a34db1")
+	)
+	(pad "2" smd rect
+		(at 1 -0.95 0)
+		(size 1 0.65)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(uuid "af57d836-3ee8-4505-b9a9-d4123eed6e3b")
+	)
+	(pad "3" smd rect
+		(at -1 0 0)
+		(size 1 0.65)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(uuid "275fa571-1076-4d63-8875-ccb756c47651")
+	)
+	(model "${KIPRJMOD}/../../parts/Jiangsu_Changjing_Electronics_Technology_Co___Ltd_2N7002/SOT-23-3P_L2.9-W1.3-H1.0-LS2.4-P0.95.step"
+		(offset
+			(xyz 0 0 -0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz 0 0 180)
+		)
+	)
+	(embedded_fonts no)
+)

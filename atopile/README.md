@@ -202,10 +202,45 @@ python3 scripts/export_schematic.py   # needs kicad-cli (KiCad 9/10; made with 1
 
 ## Open items before fabrication
 
-* Route the board in KiCad.
+Layout:
+* Route the board in KiCad, fill the zones and run DRC. ERC/DRC have not been
+  run yet.
 * Orient the RP2354A regulator inductor's polarity dot as in RP2350
   datasheet figures 26 and 28 (VREG_LX → DVDD).
-* DD50P364TXLF currently shows no JLCPCB stock. It is a common Amphenol part
-  (DigiKey/Mouser) and is through-hole, so hand-fit it or consign it.
+* Check how the DD-50 mates now it is flipped onto the bottom face. Print the
+  board 1:1 or use the 3D view to confirm that plug pin 1 meets SKB pin 1 and
+  that the D-shape lets the board extend the intended way.
+
+Mechanical:
 * Check the 7075 rear panel for clearance around the 78 × 60 mm outline. The
   board extends from the DD-50 towards the "north" (USB) edge.
+* Confirm the thread of the SKB screwlocks. I assumed 4-40 UNC; a 1970s
+  Cannon socket may differ. Then choose a jackscrew length for 1.6 mm board
+  plus the flange.
+
+Parts:
+* DD50P364TXLF currently shows no JLCPCB stock. It is a common Amphenol part
+  (DigiKey/Mouser) and is through-hole, so hand-fit it or consign it. Every
+  other part was in stock at JLCPCB when checked.
+* Some details are inferred, because the manufacturer datasheets couldn't be
+  downloaded here. Confirm them against the datasheets:
+  * DD50P364TXLF is the vertical PCB-mount version with plain 3.1 mm flange
+    holes. This came from LCSC data and the footprint.
+  * SHOU HAN "BF 180" is a vertical USB-B. This came from the footprint's
+    pin layout.
+  * TLP2361 pinout (from the LCSC symbol) and its recommended IF(ON) for the
+    ~4.5 mA LED drive. The logic type and threshold came from Toshiba's
+    product page.
+
+Electrical margins:
+* The isolated rail is 5 V ±5%, so a 74HCT595 output high can reach 5.25 V.
+  The 7075 input spec is "+2.4 V < '1' < +5 V". This is likely harmless for
+  TTL, but check it against the 70754 input circuit.
+* I assumed the 7075 command inputs have pull-ups, so Hi-Z outputs read as
+  inactive. Check against the 70754 board diagrams (manual §9).
+* The IB0505LS-1WR3 input is specified at 4.75–5.25 V. VBUS after the PTC can
+  sag below that on a weak port or long cable. Check that +5V_ISO holds up,
+  or use a wider-input isolated converter.
+
+Firmware:
+* None written yet. The protocol is in the "Firmware interface" section above.

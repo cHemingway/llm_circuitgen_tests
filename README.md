@@ -57,6 +57,26 @@ Statistics cover the Claude Code session from the first prompt to the merge into
 
 A dash means the figure was not recorded.
 
+## Review feedback
+
+After the design is finished, each tool's session gets the same review comments,
+in this order:
+
+> 1. Can you tidy up the routing through pin swapping the shift registers /
+>    resistor arrays?
+> 2. Did you try swapping pins between parts as well or just within the same
+>    part?
+> 3. Try moving parts too
+
+Statistics are measured as above, from the first review comment to the last
+reply.
+
+| Tool | Active time | of which tool time | Total tokens | API calls | API-price estimate | Notes |
+| --- | --- | --- | --- | --- | --- | --- |
+| [tscircuit](https://tscircuit.com) | 1 h 35 min | 1 h 12 min | 48.9 M | 97 | $16.38 | Review log and statistics: [`tscircuit/REVIEW_CONVERSATION.md`](tscircuit/REVIEW_CONVERSATION.md) |
+| [atopile](https://atopile.io) | – | – | – | – | – | |
+| [SKiDL](https://github.com/devbisme/skidl) | – | – | – | – | – | |
+
 ## Layout
 
 | Folder | Contents |

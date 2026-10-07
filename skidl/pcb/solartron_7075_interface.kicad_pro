@@ -320,6 +320,10 @@
       },
       {
         "netclass": "Power",
+        "pattern": "/VBUS_RAW"
+      },
+      {
+        "netclass": "Power",
         "pattern": "ISO_+5V"
       },
       {
@@ -329,10 +333,6 @@
       {
         "netclass": "Power",
         "pattern": "ISO_GND"
-      },
-      {
-        "netclass": "Power",
-        "pattern": "/VBUS_RAW"
       }
     ]
   },

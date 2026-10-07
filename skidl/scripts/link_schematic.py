@@ -6,7 +6,8 @@ the board to scripts/gen_schematic.py's schematic. This does what KiCad's
 "Update PCB from Schematic" would: each footprint gets its symbol's path (root
 sheet, uuid = the component tstamp from the SKiDL netlist) and BOM fields, and
 nets take the schematic's names (local-label nets become "/NAME"), so
-`kicad-cli pcb drc --schematic-parity` passes and cross-probing works.
+`kicad-cli pcb drc --schematic-parity` passes and cross-probing works. The
+board also gets a title block for the prints.
 """
 
 import json
@@ -82,7 +83,7 @@ def main():
             net.SetNetname(new)
             renamed += 1
     ns.ClearNetclassPatternAssignments()
-    for n, cls in classes.items():
+    for n, cls in sorted(classes.items()):
         ns.SetNetclassPatternAssignment(n, cls)
 
     # No-connect pins: KiCad gives each its own "unconnected-(...)" net
@@ -94,7 +95,7 @@ def main():
         (ref, num), = nodes
         for p in fps[ref].Pads():
             if p.GetNumber() == num:
-                if p.GetNetCode() > 0:
+                if p.GetNetCode() > 0 and p.GetNetname() != name:
                     sys.exit(f"{ref}.{num} is no-connect in the schematic but on {p.GetNetname()}")
                 ni = board.FindNet(name)
                 if ni is None:
@@ -102,6 +103,10 @@ def main():
                     board.Add(ni)
                 p.SetNet(ni)
                 nc += 1
+    tb = board.GetTitleBlock()
+    tb.SetTitle(re.search(r'\(title "([^"]*)"\)', SCH.read_text()).group(1))
+    tb.SetComment(0, "112 x 44 mm, 4 layers, 1.6 mm FR4. J1 on the bottom side")
+    tb.SetComment(1, "Schematic: solartron_7075_interface.kicad_sch")
     board.Save(str(BOARD))
 
     # Project: point the top-level sheet at the schematic's root uuid

@@ -7,6 +7,11 @@
 		(legacy_teardrops no)
 	)
 	(paper "A4")
+	(title_block
+		(title "Solartron 7075 USB interface (SKiDL)")
+		(comment 1 "112 x 44 mm, 4 layers, 1.6 mm FR4. J1 on the bottom side")
+		(comment 2 "Schematic: solartron_7075_interface.kicad_sch")
+	)
 	(layers
 		(0 "F.Cu" signal)
 		(4 "In1.Cu" power)

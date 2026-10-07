@@ -56,4 +56,6 @@ kicad-cli pcb render --rotate "320,0,330" --perspective --quality high -w 2000 -
     -o pcb/render/iso.png "$B"
 kicad-cli pcb export pdf --mode-multipage -l F.Cu,F.Silkscreen,In1.Cu,In2.Cu,B.Cu,B.Silkscreen \
     --cl Edge.Cuts -o pcb/render/layers.pdf "$B" >/dev/null
+
+echo "== prints";     "$KICAD_PYTHON" scripts/make_prints.py
 echo "done"

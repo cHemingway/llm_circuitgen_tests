@@ -218,6 +218,24 @@ Typical remote measurement:
   and keep USB noise away from the meter. It is not a safety barrier. The
   TLP2361s are rated 3.75 kV<sub>rms</sub> and the B0509S 1.5 kV DC.
 
+## Gerbers and prints
+
+| File | Contents |
+|---|---|
+| `pcb/fab/gerbers.zip` | Gerbers for 4 layers, mask, paste, silkscreen and outline, plus Excellon drill files (PTH; the NPTH file is empty) and drill maps. Upload this to the board house |
+| `pcb/fab/bom_jlcpcb.csv`, `pcb/fab/cpl_jlcpcb.csv` | JLCPCB assembly BOM and placement |
+| `pcb/print/pcb_prints.pdf` | 7 A4 pages, black and white, with title block: top and bottom assembly (fab layers, pads sketched), F.Cu, In1.Cu, In2.Cu and B.Cu, all at 2:1, then a 1:1 bottom view for a fit check |
+| `pcb/print/gerber_preview.png` | the Gerber and drill files rendered by gerbv, independently of KiCad |
+| `pcb/render/` | KiCad 3D renders and a colour multi-layer PDF |
+
+For the fit check, print page 7 at 100 % ("actual size"). The board outline
+there should measure 112 × 44 mm. Hold it against the meter's SKB socket to
+check the jackscrew holes, the pin rows and the overhang on each side. Bottom
+views (pages 2, 6 and 7) are mirrored, so they show the board as seen from
+the meter side.
+
+[![Gerber preview](pcb/print/gerber_preview.png)](pcb/print/gerber_preview.png)
+
 ## Files
 
 | Path | What |
@@ -230,16 +248,18 @@ Typical remote measurement:
 | `scripts/gen_schematic.py` | draws the single-page schematic from the netlist and checks it (`--check`) |
 | `scripts/link_schematic.py` | links the routed board to the schematic (symbol paths, net names) |
 | `scripts/make_bom.py`, `scripts/jlc_cpl.py` | BOM and placement files |
+| `scripts/make_prints.py` | the print PDF and the Gerber preview |
 | `build.sh` | runs the whole flow |
 | `output/` | SKiDL netlist, ERC log, BOM, unplaced board straight from SKiDL |
-| `pcb/` | KiCad 10 project: schematic, routed board, ERC and DRC reports, `render/` (schematic PDF/PNG, board renders), `fab/` (Gerbers, drill, BOM, CPL) |
+| `pcb/` | KiCad 10 project: schematic, routed board, ERC and DRC reports, `render/` (schematic PDF/PNG, board renders), `print/` (prints, Gerber preview), `fab/` (Gerbers, drill, BOM, CPL) |
 
 ## Rebuilding
 
 Tested with KiCad 10.0.6 (Ubuntu PPA), SKiDL 2.3.0 with kinet2pcb 1.1.4,
 Freerouting 2.5.0 (needs Java 25), and Python 3.12. Use the system Python,
-because it has KiCad's `pcbnew` module. `pdftoppm` (poppler-utils) is optional,
-for the schematic PNG.
+because it has KiCad's `pcbnew` module. The prints need `pdfunite` and
+`pdftoppm` (poppler-utils) and ImageMagick. `gerbv` is optional; without it the
+Gerber preview is skipped.
 
 ```sh
 python3 -m venv --system-site-packages .venv && .venv/bin/pip install skidl

@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
-# Full rebuild: SKiDL description -> netlist/BOM -> placed + autorouted
-# KiCad 10 board -> DRC -> fabrication outputs.
+# Full rebuild: SKiDL description -> netlist/BOM -> single-page schematic ->
+# placed + autorouted KiCad 10 board -> DRC/parity -> fabrication outputs.
 #
 #   SKIDL_PYTHON    Python with skidl 2.3+ installed (and KiCad's pcbnew importable)
 #   KICAD_PYTHON    Python that provides KiCad 10's pcbnew module (Ubuntu: /usr/bin/python3)
 #   FREEROUTING_JAR Freerouting 2.x executable jar (Maven Central: app.freerouting:freerouting)
 #   JAVA            Java runtime for Freerouting (2.5 needs Java 25)
-#   SKIDL_SCH=1     also emit SKiDL's auto-generated KiCad schematic (slow, label-heavy)
+#   SKIDL_SCH=1     also emit SKiDL's own schematic (mis-connects nets here; see README)
 set -euo pipefail
 cd "$(dirname "$0")"
 : "${SKIDL_PYTHON:=python3}"
@@ -22,12 +22,21 @@ FAB=pcb/fab
 echo "== libraries";  python3 scripts/gen_dd50_footprint.py; python3 scripts/gen_symbols.py
 echo "== SKiDL";      SKIDL_SCH=${SKIDL_SCH:-0} "$SKIDL_PYTHON" solartron_7075_interface.py
 echo "== BOM";        python3 scripts/make_bom.py
+echo "== schematic";  python3 scripts/gen_schematic.py --check
+kicad-cli sch erc --severity-all -o pcb/erc_report.txt pcb/solartron_7075_interface.kicad_sch \
+    | grep -E "Found" || true
+mkdir -p pcb/render
+kicad-cli sch export pdf -o pcb/render/schematic.pdf pcb/solartron_7075_interface.kicad_sch >/dev/null
+if command -v pdftoppm >/dev/null; then  # PNG for the README (poppler-utils)
+    pdftoppm -r 130 -png -singlefile pcb/render/schematic.pdf pcb/render/schematic
+fi
 echo "== placement";  "$KICAD_PYTHON" scripts/layout_pcb.py
 echo "== routing";    "$KICAD_PYTHON" scripts/route_pcb.py --freerouting "$FREEROUTING_JAR" --java "$JAVA"
+echo "== link to schematic"; "$KICAD_PYTHON" scripts/link_schematic.py
 echo "== DRC"
-kicad-cli pcb drc --refill-zones --save-board --severity-all --units mm \
+kicad-cli pcb drc --refill-zones --save-board --schematic-parity --severity-all --units mm \
     -o pcb/drc_report.txt "$B" || true
-grep -E "^\*\* Found|Found [0-9]+" pcb/drc_report.txt || true
+grep -E "^\*\* Found" pcb/drc_report.txt || true
 
 echo "== fabrication outputs"
 rm -rf "$FAB/gerbers"; mkdir -p "$FAB/gerbers"

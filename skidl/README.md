@@ -17,7 +17,27 @@ USB through an RP2354A.
 | MCU | RP2354A (RP2350 with 2 MB of flash in the package), 12 MHz crystal, SWD header, BOOTSEL and RESET buttons |
 | Isolation | 5 × TLP2361 optocouplers (4 to the meter, 1 back) + B0509S isolated DC/DC. There is a 4 mm copper-free gap between the domains (0.8 mm at the DC/DC pins) |
 | Meter side | 5 × 74HCT165 (36 inputs + 4 check bits), 2 × 74HC595 (13 command outputs), supplied from its own regulated 5 V |
-| Checks | SKiDL ERC: 0 errors / 0 warnings. KiCad 10 DRC (all severities): **0 violations, 0 unconnected, 0 footprint errors** (`pcb/drc_report.txt`) |
+| Checks | SKiDL ERC: 0 errors / 0 warnings. Schematic ERC (KiCad 10, all severities): 0 violations (`pcb/erc_report.txt`). DRC with schematic parity (all severities): **0 violations, 0 unconnected, 0 parity errors** (`pcb/drc_report.txt`) |
+
+## Schematic
+
+[![schematic](pcb/render/schematic.png)](pcb/render/schematic.pdf)
+
+One A2 sheet (`pcb/solartron_7075_interface.kicad_sch`, PDF in
+`pcb/render/schematic.pdf`), grouped by function: USB input and 3.3 V, the
+RP2354A, the isolation barrier (drawn as a dashed line through the
+optocouplers and the DC/DC), the 595 command outputs, the meter-side 5 V, J1,
+and the 165 input chain along the bottom. Labels with the same name are
+connected.
+
+SKiDL's own schematic output is not usable on this design (see
+[Tool issues](#tool-issues)), so `scripts/gen_schematic.py` draws the sheet from
+the SKiDL netlist. Part positions are set by hand per block; every pin then
+gets a stub with a net label, power symbol or no-connect flag. The script
+re-exports the netlist from the drawn sheet with `kicad-cli` and fails unless
+every net has the same pins and the same name as in the SKiDL netlist.
+`scripts/link_schematic.py` then ties the board's footprints to the symbols,
+so KiCad's schematic-parity DRC and cross-probing work.
 
 ## How it works
 
@@ -207,16 +227,19 @@ Typical remote measurement:
 | `scripts/gen_dd50_footprint.py`, `scripts/gen_symbols.py` | library generators |
 | `scripts/layout_pcb.py` | placement, stack-up, rules, planes, isolation keep-outs, silkscreen |
 | `scripts/route_pcb.py`, `scripts/fanout.py` | QFN hand fan-out, plane vias, Freerouting, clean-up, ground pours |
+| `scripts/gen_schematic.py` | draws the single-page schematic from the netlist and checks it (`--check`) |
+| `scripts/link_schematic.py` | links the routed board to the schematic (symbol paths, net names) |
 | `scripts/make_bom.py`, `scripts/jlc_cpl.py` | BOM and placement files |
 | `build.sh` | runs the whole flow |
 | `output/` | SKiDL netlist, ERC log, BOM, unplaced board straight from SKiDL |
-| `pcb/` | KiCad 10 project + routed board, DRC report, renders, `fab/` (Gerbers, drill, BOM, CPL) |
+| `pcb/` | KiCad 10 project: schematic, routed board, ERC and DRC reports, `render/` (schematic PDF/PNG, board renders), `fab/` (Gerbers, drill, BOM, CPL) |
 
 ## Rebuilding
 
 Tested with KiCad 10.0.6 (Ubuntu PPA), SKiDL 2.3.0 with kinet2pcb 1.1.4,
 Freerouting 2.5.0 (needs Java 25), and Python 3.12. Use the system Python,
-because it has KiCad's `pcbnew` module.
+because it has KiCad's `pcbnew` module. `pdftoppm` (poppler-utils) is optional,
+for the schematic PNG.
 
 ```sh
 python3 -m venv --system-site-packages .venv && .venv/bin/pip install skidl
@@ -229,34 +252,52 @@ Freerouting is not fully deterministic, so a rebuild gives a board that is
 equivalent but not byte-identical. The committed board is the one checked by
 `pcb/drc_report.txt`.
 
-## Caveats and workarounds
+## Tool issues
+
+Problems with SKiDL, kinet2pcb, Freerouting and the KiCad libraries, and what
+this flow does about them.
+
+* **SKiDL schematic generator.** SKiDL 2.3's KiCad 10 schematic output
+  (`SKIDL_SCH=1`, hierarchical or flat) runs, but on this design it draws some
+  power symbols and labels touching other nets. KiCad's netlist export of the
+  result merges nets, e.g. +3V3 with +1V1_DVDD, and puts decoupling caps on the
+  wrong rails. It is off by default. The shipped sheet comes from
+  `scripts/gen_schematic.py` and is checked against the netlist, as described
+  under [Schematic](#schematic).
+* **kinet2pcb:**
+  * It can't parse KiCad 10's quoted `fp-lib-table` entries, so the footprint
+    directories are passed explicitly.
+  * It puts every no-connect pin on one shared `__NOCONNECT` net, so
+    `layout_pcb.py` detaches them.
+  * Its footprints carry no symbol paths, so the board is not linked to any
+    schematic. `link_schematic.py` adds the paths and BOM fields, renames nets
+    the way KiCad's "Update PCB from Schematic" would (local-label nets become
+    `/NAME`), and gives no-connect pins their `unconnected-(…)` nets.
+* **SKiDL pin names.** SKiDL mangles pin names containing `'` (the 595's
+  `QH'`), so pin numbers are used there.
+* **Freerouting** doesn't drop vias into the inner planes by itself, and it
+  can't escape the RP2354A's 0.4 mm-pitch supply pins. The QFN fan-out and the
+  plane vias are pre-routed and locked, and Freerouting routes the rest. It is
+  also not fully deterministic (see [Rebuilding](#rebuilding)).
+* **KiCad libraries.** There is no 50-way D-sub footprint or TLP2361 symbol,
+  so these are generated or substituted (see
+  [Parts and sourcing](#parts-and-sourcing)). The 3D library has no models for
+  the DD-50, the vertical USB-B, the TS-1187A switches, the MEE1/B0509S or the
+  QFN-60, so those parts are missing from the renders.
+
+## Design caveats
 
 * **Not built or bench-tested.** Before ordering:
   * Check J1's footprint against the datasheet of the plug you actually buy.
   * Check the jackscrew thread and the socket orientation on your 70754.
   * Check the orientation of every part in JLCPCB's placement preview.
-* **No schematic drawing is shipped.** SKiDL 2.3's KiCad 10 schematic generator
-  (`SKIDL_SCH=1`) runs, but on this design it draws some power symbols and
-  labels touching other nets. KiCad ERC reports e.g. +3V3 merged with
-  +1V1_DVDD. The netlist (`output/*.net`) is the source of truth, and the PCB is
-  built from it.
-* **SKiDL / kinet2pcb quirks this flow works around:**
-  * kinet2pcb can't parse KiCad 10's quoted `fp-lib-table` entries, so the
-    footprint directories are passed explicitly.
-  * kinet2pcb puts every no-connect pin on one shared `__NOCONNECT` net, so
-    `layout_pcb.py` detaches them.
-  * SKiDL mangles pin names containing `'` (the 595's `QH'`), so pin numbers
-    are used there.
-* **Freerouting** doesn't drop vias into the inner planes by itself, and it
-  can't escape the RP2354A's 0.4 mm-pitch supply pins. The QFN fan-out and the
-  plane vias are pre-routed and locked, and Freerouting routes the rest.
-* **3D models.** KiCad's 3D library has no models for the DD-50 (custom), the
-  vertical USB-B, the TS-1187A switches, the MEE1/B0509S or the QFN-60, so
-  those parts are missing from the renders.
 * **Power sequencing.** If the meter is switched off while the board is powered
   and /OE is enabled, the 595 outputs back-feed the meter's TTL inputs.
   Firmware should release /OE when the meter outputs read implausibly, for
   example everything low.
 * The 595s' '1' level is the 78L05 output, 5.0 V ± 4 %. The manual gives
   "< +5 V" for its inputs, which the TTL inputs tolerate.
+* J1 had no LCSC stock at design time, and the jackscrews are not on LCSC (see
+  [Parts and sourcing](#parts-and-sourcing)).
+* Isolation is functional, not a safety barrier.
 * No firmware is included.

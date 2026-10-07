@@ -316,15 +316,7 @@
     "netclass_patterns": [
       {
         "netclass": "Power",
-        "pattern": "VBUS_RAW"
-      },
-      {
-        "netclass": "Power",
         "pattern": "+5V_USB"
-      },
-      {
-        "netclass": "Power",
-        "pattern": "ISO_+9V"
       },
       {
         "netclass": "Power",
@@ -332,7 +324,15 @@
       },
       {
         "netclass": "Power",
+        "pattern": "ISO_+9V"
+      },
+      {
+        "netclass": "Power",
         "pattern": "ISO_GND"
+      },
+      {
+        "netclass": "Power",
+        "pattern": "/VBUS_RAW"
       }
     ]
   },
@@ -353,9 +353,9 @@
     "legacy_lib_list": [],
     "top_level_sheets": [
       {
-        "filename": "solartron_7075_interface_unplaced.kicad_sch",
-        "name": "solartron_7075_interface_unplaced",
-        "uuid": "00000000-0000-0000-0000-000000000000"
+        "filename": "solartron_7075_interface.kicad_sch",
+        "name": "solartron_7075_interface",
+        "uuid": "d01a49c2-4828-5dc2-95e7-642bd8bd206b"
       }
     ]
   },

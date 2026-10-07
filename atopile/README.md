@@ -88,32 +88,32 @@ constants: firmware should check them on every read.
 
 | Byte | bit7 | bit6 | bit5 | bit4 | bit3 | bit2 | bit1 | bit0 |
 |---|---|---|---|---|---|---|---|---|
-| 0 | `0` | 33 PRINT pulse | 16 2×10² | 17 1×10² | 15 4×10² | 32 range (1) | `1` | `1` |
-| 1 | 30 range (4) | 13 1×10³ | 31 range (2) | 14 8×10² | 12 2×10³ | 29 function B | `0` | 11 4×10³ |
-| 2 | 9 1×10⁴ | 27 −ve | 10 8×10³ | 28 function A | 26 +ve | 8 2×10⁴ | 25 1×10⁰ | 24 2×10⁰ |
-| 3 | 22 8×10⁰ | 6 8×10⁴ | 23 4×10⁰ | 7 4×10⁴ | 5 1×10⁵ | 21 1×10¹ | 4 2×10⁵ | 20 2×10¹ |
-| 4 | 2 8×10⁵ | 19 4×10¹ | 36 OVERLOAD | 3 4×10⁵ | 18 8×10¹ | 35 DATA CAN CHANGE | 1 1×10⁶ | 34 PRINT level |
+| 0 | 1 1×10⁶ | 34 PRINT level | 2 8×10⁵ | 18 8×10¹ | `0` | `1` | `0` | 35 DATA CAN CHANGE |
+| 1 | 19 4×10¹ | 3 4×10⁵ | 36 OVERLOAD | 20 2×10¹ | 22 8×10⁰ | 5 1×10⁵ | 21 1×10¹ | 4 2×10⁵ |
+| 2 | 6 8×10⁴ | 23 4×10⁰ | 7 4×10⁴ | 24 2×10⁰ | `1` | 9 1×10⁴ | 25 1×10⁰ | 8 2×10⁴ |
+| 3 | 11 4×10³ | 27 −ve | 10 8×10³ | 26 +ve | 28 function A | 12 2×10³ | 29 function B | 13 1×10³ |
+| 4 | 32 range (1) | 14 8×10² | 31 range (2) | 30 range (4) | 15 4×10² | 33 PRINT pulse | 16 2×10² | 17 1×10² |
 
 ### Command word (MOSI bytes 3–4, CMD_HI = bits 15–8)
 
 | Bit | SKB pin | Signal (manual §9) |
 |---|---|---|
-| 0 | – | unused |
-| 1 | 38 | FRONT PANEL LOCKOUT (0 = locked out) |
-| 2 | – | unused |
-| 3 | – | unused |
-| 4 | 40 | PULSE SAMPLE (pulse high for more than 100 µs) |
+| 0 | 38 | FRONT PANEL LOCKOUT (0 = locked out) |
+| 1 | 39 | CONTACT SAMPLE (1 = MOSFET closes 39 to 37) |
+| 2 | 43 | FUNCTION B |
+| 3 | 42 | FUNCTION A |
+| 4 | 44 | Integration time (4) |
 | 5 | 41 | RATIO (0 = ratio) |
-| 6 | 42 | FUNCTION A |
-| 7 | 39 | CONTACT SAMPLE (1 = MOSFET closes 39 to 37) |
-| 8 | 43 | FUNCTION B |
-| 9 | 44 | Integration time (4) |
-| 10 | 45 | Integration time (2) |
-| 11 | 46 | Integration time (1) |
+| 6 | 40 | PULSE SAMPLE (pulse high for more than 100 µs) |
+| 7 | – | unused |
+| 8 | 45 | Integration time (2) |
+| 9 | 49 | Range (2) |
+| 10 | 50 | Range (4) |
+| 11 | 48 | Range (1) |
 | 12 | 47 | AUTORANGE (1 = autorange inhibited, use the commanded range) |
-| 13 | 48 | Range (1) |
-| 14 | 49 | Range (2) |
-| 15 | 50 | Range (4) |
+| 13 | 46 | Integration time (1) |
+| 14 | – | unused |
+| 15 | – | unused |
 
 * FUNCTION, read as (43, 42): 11 = DC, 01 = AC, 10 = Ω, 00 = CHECK.
 * Integration time, read as (44, 45, 46) = (4)(2)(1): 011 = 1 ms, 100 = 20 ms,
@@ -153,16 +153,16 @@ REMOTE button is pressed, or the FRONT PANEL LOCKOUT bit = 0.
 * **Not done yet:** routing. Open `layouts/default/default.kicad_pcb` in
   KiCad 10 to route it and fill the zones.
 
-### Pin swapping
+### Pin swapping and part moves
 
-![DVM-side ratsnest before and after pin swapping](docs/pin_swap.svg)
+![DVM-side ratsnest: original, after pin swapping, after moving parts](docs/pin_swap.svg)
 
 Blue: SKB outputs to 74HCT165 inputs. Orange: 74HCT595 outputs to SKB
-command inputs and the SAMPLE MOSFET. Green: the two shift chains.
+command inputs and the SAMPLE MOSFET. Green: the two shift chains. Grey:
+the control nets (SCK/LATCH/OE_N/DRDY) and the MOSFET drain to SKB 39.
 
-`scripts/pin_swap.py` decides which SKB signal goes on which shift-register
-pin. Swaps are made within a part and between parts; part positions are
-unchanged.
+**Pin swapping.** `scripts/pin_swap.py` decides which SKB signal goes on
+which shift-register pin. Swaps are made within a part and between parts.
 * Any SKB output (pins 1–36) can go on any of the 40 74HCT165 inputs. The
   four link-check constants take the spare inputs.
 * Any SKB command input (38, 40–50) and the SAMPLE MOSFET gate can go on any
@@ -170,35 +170,56 @@ unchanged.
 * The order of the five 165s in their chain, and of the two 595s, is free.
 
 The script minimises ratsnest length plus 5 mm per ratsnest crossing, using
-seeded simulated annealing. It then rewrites the generated `pin map` block in
-`main.ato` and the bit-map tables under "Firmware interface", so the firmware
-tables always match the board.
+seeded simulated annealing. Crossings with the control nets count too. It
+then rewrites the generated `pin map` block in `main.ato` and the bit-map
+tables under "Firmware interface", so the firmware tables always match the
+board.
 
-| DVM-side ratsnest | Before | After |
-|---|---|---|
-| SKB outputs → 165 inputs | 1060 mm | 506 mm |
-| 595 outputs → SKB inputs and MOSFET gate | 303 mm | 236 mm |
-| 165 chain (MISO_ISO, SI_CHAIN_1–4) | 124 mm | 56 mm |
-| Total, including the 595 chain and constants | 1544 mm | 860 mm |
-| Ratsnest crossings | 839 | 154 |
+**Moving parts.** `scripts/optimise_placement.py` then searched the DVM-side
+placement, running a short pin-swap search for every candidate:
+* which register type sits in each of the seven slots of the IC row, and
+  the rotation of the 165s and of the 595s
+* a few legal spots each for the DRDY buffer (U1) and the SAMPLE MOSFET (Q1)
+* the order of the six optocouplers along the barrier
 
-As an independent check, both versions of the whole board were autorouted
-with Freerouting 2.1 for 40 minutes each, side by side on the same machine.
-(2.1 was built from source; 2.5 needs Java 25.) Neither board finished, and
-Freerouting logged internal errors on both. The pin-swapped board still
-routed clearly better:
+The result, written into the generated block of `place_components.py`:
+* IC row, east to west: 165, 595, 165, 595, 165, 165, 165. The 595s now sit
+  above SKB 38–50.
+* The 165s are turned 180°, so their LATCH/SCK pins face away from the
+  DD-50 and their chain pins (QH, SER) face it.
+* U1 moved from the east end to the west end, next to SKB 34.
+* Q1 and its pull-down moved from the east end to the strip south of the
+  DD-50, in line with SKB 39.
+* The opto order, west to east, is now DRDY, MISO, LATCH, MOSI, OE_N, SCK.
+  That puts DRDY next to U1 and MISO next to the head of the 165 chain.
 
-| Freerouting 2.1, 40 min each | Before | After |
+| DVM-side ratsnest | Original | Pin swap | Pin swap + moved parts |
+|---|---|---|---|
+| SKB outputs → 165 inputs | 1059 mm | 506 mm | 458 mm |
+| 595 outputs → SKB inputs and MOSFET gate | 303 mm | 236 mm | 111 mm |
+| Shift chains (MISO_ISO, SI_CHAIN, MOSI_ISO, SO_CHAIN) | 166 mm | 100 mm | 98 mm |
+| Total of the swappable nets, including constants | 1543 mm | 860 mm | 678 mm |
+| Control nets, MOSFET drain and MCU ↔ opto nets | 346 mm | 346 mm | 307 mm |
+| Crossings among the swappable nets | 839 | 154 | 83 |
+| Crossings, all of the above nets | 1000 | 297 | 112 |
+
+As an independent check, the whole board was autorouted with Freerouting
+2.1 for 40 minutes, two versions side by side on the same machine. (2.1 was
+built from source; 2.5 needs Java 25.) No run finished, and Freerouting
+logged internal errors on all of them, but the trend is clear:
+
+| Freerouting 2.1, 40 min | Original | Pin swap |
 |---|---|---|
 | Passes completed | 55 | 456 |
 | Unrouted connections, best after 20 passes | 59 | 39 |
-| Unrouted connections, best after 55 passes | 55 | 35 |
 | Unrouted connections, best within 40 min | 55 | 30 |
 
-The run was a measurement only; its routing was not kept.
+The runs were measurements only; their routing was not kept.
 
 ```
-python3 scripts/pin_swap.py           # report: current map vs best found (about 2.5 min)
+python3 scripts/optimise_placement.py --write   # placement search, about 8 min
+~/.local/share/uv/tools/atopile/bin/python scripts/place_components.py
+python3 scripts/pin_swap.py           # report: current map vs best found (about 5 min)
 python3 scripts/pin_swap.py --write   # rewrite main.ato's pin map and the README tables
 ato build                             # move the nets in the layout; placement is kept
 ```
@@ -221,8 +242,9 @@ a fab's gerber viewer, not for ordering. Print the PDF at 100 % / actual size.
 Page 2, held against SKB, checks the DD-50 pin 1 and the outline.
 
 The other DRC items:
-* 1 starved thermal (U8 pad 4, GND). This goes away once the pad is routed.
-* 68 silk-over-copper and 158 silk-overlap warnings, from the EasyEDA
+* 1 starved thermal (U8 pad 4, GND; KiCad lists it three times). This goes
+  away once the pad is routed.
+* 66 silk-over-copper and 171 silk-overlap warnings, from the EasyEDA
   footprints' silk and the reference designators. These are cosmetic; tidy
   them after routing.
 * 1 footprint-mismatch warning on J1. The TC2030 footprint comes from the
@@ -364,17 +386,14 @@ Layout:
   finds no unrouted connections. The schematic ERC is clean (see
   "Schematic").
 * Clean up the silkscreen (see "PCB outputs").
-* Revisit the DVM-side placement. Pin swapping can only work with the
-  current slots, and some of them are poor:
-  * The shift-register row was placed in reverse order relative to the
-    DD-50. The placement script derived the order from the SKB pins on each
-    register and got the sign wrong once the DD-50 was on the bottom face.
-    The script now uses fixed slots, so the pin map stays valid.
-  * The two 595s sit at x = 0 and the far west end, while SKB 38–50 lie
-    under the east half of the row.
-  * The DRDY buffer (U1) and the SAMPLE MOSFET (Q1) sit at the east end, but
-    SKB 34 and 39 are at the west end. Those two nets are still the longest,
-    at about 64 mm and 60 mm of ratsnest.
+* Q1 now sits south of the DD-50, so its drain (to SKB 39) and its gate
+  (from a 595) each have to pass between the DD-50 pins. Check this when
+  routing; if it is too tight, the west-end spot in
+  `scripts/optimise_placement.py` scored only slightly worse.
+* The shift-register row was first placed in reverse order relative to the
+  DD-50: the placement script derived the order from the SKB pins and got
+  the sign wrong once the DD-50 was on the bottom face. The DVM-side
+  placement is now an explicit, generated table.
 * Orient the RP2354A regulator inductor's polarity dot as in RP2350
   datasheet figures 26 and 28 (VREG_LX → DVDD).
 * Check how the DD-50 mates now it is flipped onto the bottom face. Hold

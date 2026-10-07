@@ -18,7 +18,8 @@ that minimises
     total ratsnest length + CROSSING_MM x number of ratsnest crossings
 
 over the SKB nets, the CONTACT SAMPLE gate, the 165 chain (MISO_ISO,
-SI_CHAIN_*) and the 595 chain (MOSI_ISO, SO_CHAIN_1).
+SI_CHAIN_*) and the 595 chain (MOSI_ISO, SO_CHAIN_1). Crossings with the
+control nets that the swaps cannot change (FIXED_NETS) count as well.
 
     python3 scripts/pin_swap.py           # report only
     python3 scripts/pin_swap.py --write   # rewrite the generated blocks
@@ -47,7 +48,7 @@ README = ROOT / "README.md"
 CROSSING_MM = 5.0  # cost of one ratsnest crossing, in mm of extra length
 SEED = 7075
 RESTARTS = 3
-ITERATIONS = 60000
+ITERATIONS = 200000
 
 N_IN, N_OUT = 5, 2
 # 74HCT165: data input pins, D0..D7 (= A..H); QH = pin 9, SER = pin 10
@@ -74,6 +75,13 @@ DVM_CMD = {  # SKB pin -> SolartronSKB member driven by a 595
 }
 GATE = "G"  # 595 output driving the CONTACT SAMPLE MOSFET (SKB 39)
 SIGNATURE = ["H0", "L0", "H1", "L1"]  # link-check constants: 1, 0, 1, 0
+# Nets the swaps do not change but which the swapped nets must route around;
+# counted for crossings so the search sees the control buses too.
+FIXED_NETS = [
+    "SCK_ISO", "LATCH_ISO", "OE_N_ISO", "DRDY_ISO",  # DVM-side control nets
+    "SKB39_SAMPLE_CONTACT",  # MOSFET drain to SKB 39
+    "SCK", "MOSI", "LATCH", "OE_N", "MISO", "DRDY",  # MCU <-> opto
+]
 
 OUT_NAMES = {1: "1×10⁶"}
 for d, first in enumerate(range(2, 26, 4)):
@@ -156,6 +164,14 @@ def mst(points):
         done.append(b)
         todo.remove(b)
     return edges
+
+
+def fixed_segs(pads, nets):
+    by_net = {}
+    for key, net in nets.items():
+        if net in FIXED_NETS:
+            by_net.setdefault(net, []).append(pads[key])
+    return {("fixed", n): mst(pts) for n, pts in by_net.items()}
 
 
 def crosses(s, t):
@@ -278,8 +294,11 @@ class State:
                     changed.append(self.out_net(j))
                     self.segs[self.out_net(j)] = self.out_segs(j)
         else:
-            chain = self.chain_in if kind == "chain_in" else self.chain_out
-            chain[a], chain[b] = chain[b], chain[a]
+            chain = self.chain_in if kind.startswith("chain_in") else self.chain_out
+            if kind == "chain_in_rev":
+                chain.reverse()
+            else:
+                chain[a], chain[b] = chain[b], chain[a]
             new = self.chain_segs()
             self.segs.update(new)
             changed = list(new)
@@ -302,9 +321,11 @@ def random_move(rng, s):
     if r < 0.94:
         a, b = rng.sample(range(len(s.out_items)), 2)
         return ("out", a, b)
-    if r < 0.99:
+    if r < 0.98:
         a, b = rng.sample(range(N_IN), 2)
         return ("chain_in", a, b)
+    if r < 0.99:
+        return ("chain_in_rev", 0, 0)  # reverse the whole 165 chain
     return ("chain_out", 0, 1)
 
 
@@ -332,7 +353,7 @@ def anneal(start, rng):
 
 
 # ---------------------------------------------------------------- current map
-def current_state(geo, nets):
+def current_state(geo, nets, fixed=None):
     in_items, sig = [], iter(SIGNATURE)
     hv = iter(i for i in SIGNATURE if i.startswith("H"))
     lv = iter(i for i in SIGNATURE if i.startswith("L"))
@@ -354,7 +375,7 @@ def current_state(geo, nets):
         ser = nets[(sin(chain_in[-1]), IN_SER)]
         chain_in.append(next(k for k in range(N_IN) if nets[(sin(k), IN_QH)] == ser))
     first = next(k for k in range(N_OUT) if nets[(sout(k), OUT_SER)] == "MOSI_ISO")
-    return State(geo, in_items, out_items, chain_in, [first, 1 - first])
+    return State(geo, in_items, out_items, chain_in, [first, 1 - first], fixed)
 
 
 # ---------------------------------------------------------------- outputs
@@ -449,7 +470,7 @@ COLOURS = {"in": "#2f6fdf", "out": "#e07020", "chain": "#2a9d50"}
 
 def svg(panels, path):
     """Ratsnest pictures of the DVM half of the board, one panel per state."""
-    x0, x1, y0, y1, s = -40.0, 40.0, 1.0, 27.5, 9.0
+    x0, x1, y0, y1, s = -40.0, 40.0, 1.0, 29.8, 9.0
     w, h = (x1 - x0) * s, (y1 - y0) * s + 30
     out = [f'<svg xmlns="http://www.w3.org/2000/svg" width="{w:.0f}" height="{h * len(panels):.0f}" '
            f'font-family="sans-serif" font-size="13">']
@@ -475,11 +496,13 @@ def svg(panels, path):
 
 def panel(title, s):
     segs = [(net[0] if net[0] != "in" or isinstance(net[1], int) else "const", a, b)
-            for net, ss in s.segs.items() for a, b in ss]
+            for net, ss in s.segs.items() for a, b in ss
+            if net[0] != "fixed" or net[1].endswith("_ISO") or net[1].startswith("SKB")]
     pads = [(xy, 0.8 if a == "dvm.connector" else 0.45) for (a, _), xy in s.geo.pads.items()
             if xy[1] > 1.5 and (a == "dvm.connector" or a.startswith("shift_") or a.startswith(
                 ("drdy_buffer", "sample_fet", "opto_miso", "opto_mosi")))]
-    return (f"{title}: {s.length():.0f} mm of ratsnest, {s.crossings()} crossings", segs, pads)
+    return (f"{title}: {s.length():.0f} mm of ratsnest, {s.crossings()} crossings (incl. control nets)",
+            segs, pads)
 
 
 def replace_block(text, begin, end, new):
@@ -489,10 +512,15 @@ def replace_block(text, begin, end, new):
     return text[:line_start] + new + text[j:]
 
 
+def data_nets(s):
+    return [n for n in s.segs if n[0] != "fixed"]
+
+
 def report(name, s):
-    longest = max(s.segs, key=lambda n: s.length([n]))
-    print(f"{name:8s} length {s.length():7.1f} mm   crossings {s.crossings():4d}   "
-          f"cost {s.cost():7.1f}   longest {longest[1]} {s.length([longest]):.1f} mm")
+    data = data_nets(s)
+    longest = max(data, key=lambda n: s.length([n]))
+    print(f"{name:8s} cost {s.cost():7.1f}   all nets {s.length():6.0f} mm {s.crossings():4d} crossings   "
+          f"swapped nets {s.length(data):6.0f} mm   longest {longest[1]} {s.length([longest]):.0f} mm")
 
 
 def main():
@@ -506,7 +534,8 @@ def main():
 
     pads, nets = load_layout()
     geo = Geometry(pads, nets)
-    now = current_state(geo, nets)
+    fixed = fixed_segs(pads, nets)
+    now = current_state(geo, nets, fixed)
     report("current", now)
     if args.save:
         Path(args.save).write_text(json.dumps(
@@ -515,7 +544,7 @@ def main():
         panels = []
         if args.before:
             d = json.loads(Path(args.before).read_text())
-            old = State(geo, d["in"], d["out"], d["chain_in"], d["chain_out"])
+            old = State(geo, d["in"], d["out"], d["chain_in"], d["chain_out"], fixed)
             panels.append(panel("Before pin swap", old))
         panels.append(panel("After pin swap" if args.before else "Current", now))
         svg(panels, args.plot)
@@ -530,9 +559,9 @@ def main():
         if r:  # random restarts from shuffled maps
             rng.shuffle(start.in_items)
             rng.shuffle(start.out_items)
-            start = State(geo, start.in_items, start.out_items, start.chain_in, start.chain_out)
+            start = State(geo, start.in_items, start.out_items, start.chain_in, start.chain_out, fixed)
         cand = anneal(start, rng)
-        cand = State(geo, cand.in_items, cand.out_items, cand.chain_in, cand.chain_out)  # exact recount
+        cand = State(geo, cand.in_items, cand.out_items, cand.chain_in, cand.chain_out, fixed)  # recount
         report(f"run {r}", cand)
         if cand.cost() < best.cost() - 1e-6:
             best = cand

@@ -44,11 +44,6 @@ BEGIN, END = "# --- BEGIN DVM placement", "# --- END DVM placement"
 SHORT_ITER = 6000  # pin-swap iterations per candidate
 TOP = 6  # IC patterns carried into the spot search
 
-FIXED_NETS = [
-    "SCK_ISO", "LATCH_ISO", "OE_N_ISO", "DRDY_ISO",  # DVM-side control nets
-    "SKB39_SAMPLE_CONTACT",  # MOSFET drain to SKB 39
-    "SCK", "MOSI", "LATCH", "OE_N", "MISO", "DRDY",  # MCU <-> opto
-]
 
 # Candidate spots, all checked against check_layout.py (outline, overlaps,
 # jackscrew keep-outs). "east" is the original placement.
@@ -60,7 +55,7 @@ U1_SPOTS = {
 Q1_SPOTS = {
     "east": {"sample_fet": (34.0, 13.0, 0.0), "sample_fet_pulldown": (36.5, 13.0, 90.0)},
     "west": {"sample_fet": (-36.6, 20.5, 180.0), "sample_fet_pulldown": (-36.6, 23.5, 0.0)},
-    "south": {"sample_fet": (-8.3, 27.6, 270.0), "sample_fet_pulldown": (-5.3, 27.6, 90.0)},
+    "south": {"sample_fet": (-8.3, 27.6, 270.0), "sample_fet_pulldown": (-5.3, 27.6, 270.0)},
 }
 
 
@@ -137,19 +132,11 @@ def moves_for(cfg, consts):
     return m
 
 
-def fixed_segs(pads, nets):
-    by_net = {}
-    for key, net in nets.items():
-        if net in FIXED_NETS:
-            by_net.setdefault(net, []).append(pads[key])
-    return {("fixed", n): ps.mst(pts) for n, pts in by_net.items()}
-
-
 def evaluate(board, cfg, consts, start, iters, seed):
     pads = board.placed(moves_for(cfg, consts))
     geo = ps.Geometry(pads, board.nets)
     s = ps.State(geo, start.in_items, start.out_items, start.chain_in, start.chain_out,
-                 fixed=fixed_segs(pads, board.nets))
+                 fixed=ps.fixed_segs(pads, board.nets))
     if iters:
         ps.ITERATIONS = iters
         s = ps.anneal(s, random.Random(seed))

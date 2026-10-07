@@ -27,7 +27,8 @@ USB-B ─ ESD ─┬─ AP2112K 3.3 V ─ RP2354A ── SPI0 ──┐
 | `lib/sections/Mcu.tsx` | RP2354A, core regulator, crystal, BOOTSEL/RUN, SWD pads, LEDs |
 | `lib/sections/Isolation.tsx` | TLP2361 barrier and isolated DC-DC converter |
 | `lib/sections/DvmInterface.tsx` | Isolated 3.3 V, shift registers, open-drain drivers, D-sub |
-| `lib/solartronSkb.ts` | SKB pin table transcribed from manual p. 9.9 and bit maps for firmware |
+| `lib/solartronSkb.ts` | SKB pin table transcribed from manual p. 9.9 |
+| `lib/dvmPinMap.ts` | Which shift-register, buffer and pull-up pin serves each SKB signal, and the resulting firmware bit maps |
 | `lib/DSub50MaleVertical.tsx` | DD-50 vertical plug footprint (no LCSC/EasyEDA footprint available) |
 | `lib/passives.tsx` | Resistor/capacitor values pinned to LCSC part numbers |
 | `lib/schLayout.ts` | Schematic grouping helpers (decoupling caps per rail) |
@@ -102,14 +103,39 @@ Verification of the committed board:
   outline and drill are identical once aperture numbering is normalised, apart
   from the 11 U2/U3 pads rewritten without `%LR`. Only the paste layers differ
   in substance.
-- The only DRC item is a via on net `DVM_D4_2` overlapping the toe of its own
-  pad, U6 pin 11. It is the same net, so it is harmless electrically; move it
-  off the pad during final review if the board is assembled by reflow.
+- The build reports no DRC errors.
 - The tscircuit autorouter (capacity-autorouter 0.0.958) is very sensitive to
   small placement changes. Re-run `npm run check` after any edit, because a new
   route can differ.
 - Check JLCPCB pick-and-place rotations in their preview. The exporter cannot
   verify pin-1 rotation for the SOICs and some imported parts.
+
+## Routing
+
+On the DVM side, the pins are assigned to suit the routing, not the bit order.
+No part changed position:
+
+- **74LV165A inputs.**
+  - Above the D-sub, the traces run in x order across both pin rows, so each
+    74LV165A reads the eight SKB pins nearest it.
+  - The outer pins go to the upper pads of each pad column, so the fan-in
+    doesn't cross itself.
+  - The chain runs from one side of the board to the other, with U8 (x = 22)
+    driving MISO, instead of zig-zagging between the chips.
+- **Commands.** Which 74LV595A output, 74LVC07A channel and pull-up element
+  each command uses was chosen by simulated annealing, minimising crossings
+  between the straight connection lines. RN3 and RN4 are rotated 180° so that
+  their signal pins face the buffers.
+
+Against the previous routing:
+
+| | Before | After |
+| --- | --- | --- |
+| Connection-line crossings, 74LV165A side | 321 | 52 |
+| Connection-line crossings, command side | 152 | 79 |
+| Track length (DVM side) | 3520 mm (2738 mm) | 2780 mm (2017 mm) |
+| Vias (DVM side) | 385 (307) | 248 (175) |
+| DRC errors | 1 | 0 |
 
 ## Mechanical
 
@@ -169,10 +195,8 @@ One transaction:
    74LV165As capture the DVM outputs. The rising edge loads the 74LV595A
    outputs with the previous frame's last 16 bits.
 2. Clock 40 bits (5 bytes) MSB first.
-   - **MISO:** bit k (k = 0 ... 39, first bit received = 0) is SKB pin k+1, so
-     bits 0-24 are BCD 1x10^6 ... 1x10^0, 25-26 polarity, 27-28 function,
-     29-31 range, 32 PRINT pulse, 33 PRINT level, 34 DATA CAN CHANGE,
-     35 overload, and 36-39 read 0.
+   - **MISO:** bit k (k = 0 ... 39, first bit received = 0) reads the SKB pin
+     in the MISO table below. Spare bits read 0.
    - **MOSI:** the last 16 bits clocked out are the command word, b15 first,
      b0 last. Writing a command takes effect at the next LATCH rising edge, so
      to change commands send the frame, then pulse LATCH again.
@@ -180,24 +204,48 @@ One transaction:
    high, so the command outputs are disabled while the RP2354A is in reset or
    BOOTSEL.
 
+The bit order is not the SKB pin order. Shift-register pins were assigned to
+untangle the routing, as described under Routing. `lib/dvmPinMap.ts` holds the
+assignment, and it exports the two maps below as `MISO_BITS` and
+`COMMAND_BITS` for firmware.
+
+MISO: the SKB pin read in each bit. The meaning of each pin is in
+`lib/solartronSkb.ts`: pins 1-25 are BCD 1x10^6 ... 1x10^0, 26-27 polarity,
+28-29 function, 30-32 range, 33 PRINT pulse, 34 PRINT level, 35 DATA CAN
+CHANGE and 36 overload.
+
+| Bits | +0 | +1 | +2 | +3 | +4 | +5 | +6 | +7 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| 0-7 (U8) | 2 | 19 | 36 | 3 | 34 | 1 | 18 | 35 |
+| 8-15 (U6) | 22 | 6 | 23 | 7 | 20 | 4 | 21 | 5 |
+| 16-23 (U9) | 26 | 10 | 27 | 11 | 24 | 8 | 25 | 9 |
+| 24-31 (U7) | 30 | 14 | 31 | 15 | 28 | 12 | 29 | 13 |
+| 32-39 (U10) | 33 | 17 | - | - | - | - | 32 | 16 |
+
 Command word: write the manual's logic levels directly (1 = high/idle).
 
 | bit | SKB pin | function |
 | --- | --- | --- |
-| 0 | 38 | FRONT PANEL LOCKOUT (0 = lockout) |
-| 1 | 39 | CONTACT SAMPLE (0 = contact closed) |
-| 2 | 41 | RATIO (0 = ratio) |
-| 3 | 42 | function select (with 43: 11 DC, 01 AC, 10 Ω, 00 check) |
-| 4 | 43 | function select |
-| 5, 6, 7 | 44, 45, 46 | integration time 4/2/1 (011 1 ms ... 111 10 s) |
-| 8 | 47 | AUTORANGE inhibit (1 = use range command) |
-| 9, 10, 11 | 48, 49, 50 | range 1/2/4 |
-| 12 | 40 | PULSE SAMPLE (push-pull, idle 0, pulse > 100 µs) |
-| 13-15 | - | spare (U12 QF..QH, unconnected) |
+| 0 | - | spare (U11 QA, unconnected) |
+| 1 | 44 | integration time 4 (with 45, 46: 011 1 ms ... 111 10 s) |
+| 2 | 46 | integration time 1 |
+| 3 | 38 | FRONT PANEL LOCKOUT (0 = lockout) |
+| 4 | 41 | RATIO (0 = ratio) |
+| 5 | 39 | CONTACT SAMPLE (0 = contact closed) |
+| 6 | 48 | range 1 |
+| 7 | 50 | range 4 |
+| 8 | - | spare (U12 QA, unconnected) |
+| 9 | 40 | PULSE SAMPLE (push-pull, idle 0, pulse > 100 µs) |
+| 10 | - | spare (U12 QC, unconnected) |
+| 11 | 43 | function select (43, 42: 11 DC, 01 AC, 10 Ω, 00 check) |
+| 12 | 42 | function select |
+| 13 | 45 | integration time 2 |
+| 14 | 47 | AUTORANGE inhibit (1 = use range command) |
+| 15 | 49 | range 2 |
 
-The idle word is `0x0FFF`. A reading is complete when PRINT level (MISO bit 33)
-is 1. The level stays high until the next sample, so polling is enough and no
-interrupt line is needed.
+The idle word is `0xF8FE`. A reading is complete when PRINT level (SKB pin 34,
+MISO bit 4) is 1. The level stays high until the next sample, so polling is
+enough and no interrupt line is needed.
 
 ## Bill of materials
 

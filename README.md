@@ -36,13 +36,13 @@ substituted where needed:
 > the jackscrews on the D-Sub connector, so doesn't need any other mounting
 > holes.
 
-## Tools
+## Results
 
-| Tool | Folder | Active time | of which tool time | Total tokens | API calls | API-price estimate | Notes |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-| [tscircuit](https://tscircuit.com) | `tscircuit/` | 3 h 11 min | 2 h 06 min | 156.3 M | 376 | $59.32 | Parts from tscircuit/common, then LCSC. Session log and statistics: [`tscircuit/CONVERSATION.md`](tscircuit/CONVERSATION.md) |
-| [atopile](https://atopile.io) | `atopile/` | 1 h 46 min | 38 min | 149.5 M | 370 | $49.34 | CLI version (`ato`, 0.15.x). This is the last open CLI line and is effectively end-of-life: [PyPI](https://pypi.org/project/atopile/) lists 0.15.9 (12 Sep 2026) as the latest release, and atopile has moved on to [0.16](https://atopile.io/enterprise). Parts from atopile's library, then LCSC. Session log and statistics: [`atopile/CONVERSATION.md`](atopile/CONVERSATION.md) |
-| [SKiDL](https://github.com/devbisme/skidl) | `skidl/` | 2 h 29 min | 59 min | 124.5 M | 347 | $46.64 | SKiDL 2.3.0 on KiCad 10 (the brief added "use KiCad 10"). SKiDL has no part library of its own, so parts come from KiCad's libraries, then LCSC. Board built with kinet2pcb and routed with Freerouting 2.5. SKiDL's schematic generator mis-connects nets on this design, so the schematic is drawn by a script and checked against the netlist. Statistics run to the conversation export, and exclude the merge into `main` that came after it. Session log and statistics: [`skidl/CONVERSATION.md`](skidl/CONVERSATION.md) |
+| Tool | Folder | Active time | of which tool time | Total tokens | API calls | API-price estimate | Schematic | PCB prints | Notes |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| [tscircuit](https://tscircuit.com) | `tscircuit/` | 3 h 11 min | 2 h 06 min | 156.3 M | 376 | $59.32 | [PDF](tscircuit/outputs/schematic.pdf) | [PDF](tscircuit/outputs/pcb-prints.pdf) | Parts from tscircuit/common, then LCSC. Session log and statistics: [`tscircuit/CONVERSATION.md`](tscircuit/CONVERSATION.md) |
+| [atopile](https://atopile.io) | `atopile/` | 1 h 46 min | 38 min | 149.5 M | 370 | $49.34 | [PDF](atopile/schematic/solartron_7075_usb.pdf) | [PDF](atopile/fab/solartron_7075_usb_prints.pdf) | CLI version (`ato`, 0.15.x). This is the last open CLI line and is effectively end-of-life: [PyPI](https://pypi.org/project/atopile/) lists 0.15.9 (12 Sep 2026) as the latest release, and atopile has moved on to [0.16](https://atopile.io/enterprise). Parts from atopile's library, then LCSC. Session log and statistics: [`atopile/CONVERSATION.md`](atopile/CONVERSATION.md) |
+| [SKiDL](https://github.com/devbisme/skidl) | `skidl/` | 2 h 29 min | 59 min | 124.5 M | 347 | $46.64 | [PDF](skidl/pcb/render/schematic.pdf) | [PDF](skidl/pcb/print/pcb_prints.pdf) | SKiDL 2.3.0 on KiCad 10 (the brief added "use KiCad 10"). SKiDL has no part library of its own, so parts come from KiCad's libraries, then LCSC. Board built with kinet2pcb and routed with Freerouting 2.5. SKiDL's schematic generator mis-connects nets on this design, so the schematic is drawn by a script and checked against the netlist. Statistics run to the conversation export, and exclude the merge into `main` that came after it. Session log and statistics: [`skidl/CONVERSATION.md`](skidl/CONVERSATION.md) |
 
 Statistics cover the Claude Code session from the first prompt to the merge into
 `main`.

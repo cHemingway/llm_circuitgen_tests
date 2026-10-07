@@ -58,22 +58,22 @@ A dash means the figure was not recorded.
 
 ## Review feedback
 
-This table covers follow-up work requested after the initial design, carried
-out in the same session as that design.
+After the design is finished, each tool's session gets the same review comments,
+in this order:
 
-| Tool | Feedback handled | Active time | of which tool time | Total tokens | Tokens excl. cache reads | API calls | API-price estimate |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-| [tscircuit](https://tscircuit.com) | Tidy the routing: pin swapping within and between parts, then moving the command-side parts (3 prompts) | 1 h 35 min | 1 h 12 min | 48.9 M | 0.64 M | 97 | $16.38 |
-| [atopile](https://atopile.io) | – | – | – | – | – | – | – |
+> 1. Can you tidy up the routing through pin swapping the shift registers /
+>    resistor arrays?
+> 2. Did you try swapping pins between parts as well or just within the same
+>    part?
+> 3. Try moving parts too
 
-- **Measured span:** for tscircuit, from the first review prompt ("Can you tidy
-  up the routing through pin swapping…") to the last reply before this README
-  update. It excludes the conversation export and README updates that came
-  before it.
-- **Tool time:** this includes the background autorouter runs, which routed up
-  to four candidate layouts in parallel.
-- **Total tokens:** the total includes 48.2 M prompt-cache reads. Output was
-  135 k tokens, of which 68 k were thinking.
+Statistics are measured as above, from the first review comment to the last
+reply.
+
+| Tool | Active time | of which tool time | Total tokens | API calls | API-price estimate | Notes |
+| --- | --- | --- | --- | --- | --- | --- |
+| [tscircuit](https://tscircuit.com) | 1 h 35 min | 1 h 12 min | 48.9 M | 97 | $16.38 | Review log and statistics: [`tscircuit/REVIEW_CONVERSATION.md`](tscircuit/REVIEW_CONVERSATION.md) |
+| [atopile](https://atopile.io) | – | – | – | – | – | |
 
 ## Layout
 

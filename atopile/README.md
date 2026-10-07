@@ -182,6 +182,21 @@ tables always match the board.
 | Total, including the 595 chain and constants | 1544 mm | 860 mm |
 | Ratsnest crossings | 839 | 154 |
 
+As an independent check, both versions of the whole board were autorouted
+with Freerouting 2.1 for 40 minutes each, side by side on the same machine.
+(2.1 was built from source; 2.5 needs Java 25.) Neither board finished, and
+Freerouting logged internal errors on both. The pin-swapped board still
+routed clearly better:
+
+| Freerouting 2.1, 40 min each | Before | After |
+|---|---|---|
+| Passes completed | 55 | 456 |
+| Unrouted connections, best after 20 passes | 59 | 39 |
+| Unrouted connections, best after 55 passes | 55 | 35 |
+| Unrouted connections, best within 40 min | 55 | 30 |
+
+The run was a measurement only; its routing was not kept.
+
 ```
 python3 scripts/pin_swap.py           # report: current map vs best found (about 2.5 min)
 python3 scripts/pin_swap.py --write   # rewrite main.ato's pin map and the README tables

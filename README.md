@@ -56,6 +56,25 @@ Statistics cover the Claude Code session from the first prompt to the merge into
 
 A dash means the figure was not recorded.
 
+## Review feedback
+
+This table covers follow-up work requested after the initial design, carried
+out in the same session as that design.
+
+| Tool | Feedback handled | Active time | of which tool time | Total tokens | Tokens excl. cache reads | API calls | API-price estimate |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| [tscircuit](https://tscircuit.com) | Tidy the routing: pin swapping within and between parts, then moving the command-side parts (3 prompts) | 1 h 35 min | 1 h 12 min | 48.9 M | 0.64 M | 97 | $16.38 |
+| [atopile](https://atopile.io) | – | – | – | – | – | – | – |
+
+- **Measured span:** for tscircuit, from the first review prompt ("Can you tidy
+  up the routing through pin swapping…") to the last reply before this README
+  update. It excludes the conversation export and README updates that came
+  before it.
+- **Tool time:** this includes the background autorouter runs, which routed up
+  to four candidate layouts in parallel.
+- **Total tokens:** the total includes 48.2 M prompt-cache reads. Output was
+  135 k tokens, of which 68 k were thinking.
+
 ## Layout
 
 | Folder | Contents |

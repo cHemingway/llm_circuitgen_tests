@@ -1,0 +1,4 @@
+(fp_lib_table
+  (version 7)
+  (lib (name "Solartron7075")(type "KiCad")(uri "${KIPRJMOD}/../lib/Solartron7075.pretty")(options "")(descr "DD-50 vertical plug for the Solartron 7075 interface"))
+)

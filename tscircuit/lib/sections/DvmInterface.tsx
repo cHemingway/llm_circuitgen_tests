@@ -14,6 +14,7 @@ import {
   READ_CHAIN,
   type InputLetter,
 } from "../dvmPinMap"
+import { COMMAND_PLACEMENT, type Placement } from "../dvmPlacement"
 import { SKB_PINS, dvmNet, skbPin } from "../solartronSkb"
 
 const secPower = "dvm_power"
@@ -68,15 +69,37 @@ const srInConnections = (ref: string) => {
 // ---------------------------------------------------------------------------
 // Output side: 2 x 74LV595A -> 2 x 74LVC07A open-drain -> SKB inputs
 // ---------------------------------------------------------------------------
-const SR_OUT_ROW_Y = -26
 const srOut = [
-  { name: "U11", x: 10, cap: "C45" }, // first in the chain (MOSI)
-  { name: "U12", x: 24, cap: "C46" },
+  { name: "U11", cap: "C45" }, // first in the chain (MOSI)
+  { name: "U12", cap: "C46" },
 ]
 const odBuf = [
-  { name: "U13", x: -4, cap: "C47" },
-  { name: "U14", x: -18, cap: "C48" },
+  { name: "U13", cap: "C47" },
+  { name: "U14", cap: "C48" },
 ]
+
+/** Position and rotation of a command-side part (lib/dvmPlacement.ts) */
+const placed = (ref: string) => {
+  const p: Placement | undefined = COMMAND_PLACEMENT[ref]
+  if (!p) throw new Error(`${ref} missing from COMMAND_PLACEMENT`)
+  return { pcbX: p.x, pcbY: p.y, pcbRotation: p.rotation }
+}
+
+/**
+ * Decoupling cap next to a command-side chip's VCC pin. At chip rotation 270
+ * the cap sits 4.2 mm right of and 6.3 mm above the chip centre; the offset
+ * turns with the chip.
+ */
+const capBeside = (ref: string) => {
+  const { x, y, rotation } = COMMAND_PLACEMENT[ref]
+  const a = ((rotation - 270) * Math.PI) / 180
+  const [dx, dy] = [4.2, 6.3]
+  return {
+    pcbX: Math.round((x + dx * Math.cos(a) - dy * Math.sin(a)) * 100) / 100,
+    pcbY: Math.round((y + dx * Math.sin(a) + dy * Math.cos(a)) * 100) / 100,
+    pcbRotation: (rotation + 90) % 360,
+  }
+}
 const byRef = <T extends { ref: string }>(list: T[], ref: string): T => {
   const item = list.find((i) => i.ref === ref)
   if (!item) throw new Error(`${ref} missing from dvmPinMap`)
@@ -115,11 +138,7 @@ const odConnections = (ref: string) => {
 }
 
 /** 10k pull-ups on the 74LVC07A inputs: outputs stay off while OE_N is high */
-const pullupArrays = [
-  { name: "RN2", x: -18 },
-  { name: "RN3", x: -10 },
-  { name: "RN4", x: -2 },
-]
+const pullupArrays = ["RN2", "RN3", "RN4"]
 
 export const DvmInterface = () => (
   <>
@@ -191,9 +210,7 @@ export const DvmInterface = () => (
       <SN74LV595ADR
         key={u.name}
         name={u.name}
-        pcbX={u.x}
-        pcbY={SR_OUT_ROW_Y}
-        pcbRotation={-90}
+        {...placed(u.name)}
         schSectionName={secOut}
         schX={2 + idx * 5}
         schY={-24}
@@ -204,8 +221,7 @@ export const DvmInterface = () => (
         name={u.cap}
         capacitance="100nF"
         footprint="0603"
-        pcbX={u.x + 4.2}
-        pcbY={SR_OUT_ROW_Y + 6.3}
+        {...capBeside(u.name)}
         schOrientation="vertical"
         {...decapSch("V3V3_ISO", 10 + idx)}
         connections={{ pin1: "net.V3V3_ISO", pin2: "net.GND_ISO" }}
@@ -215,8 +231,7 @@ export const DvmInterface = () => (
       name="R20"
       resistance="10k"
       footprint="0603"
-      pcbX={17}
-      pcbY={-32.6}
+      {...placed("R20")}
       schSectionName={secOut}
       schX={0}
       schY={-21}
@@ -229,9 +244,7 @@ export const DvmInterface = () => (
       <SN74LVC07ADR
         key={u.name}
         name={u.name}
-        pcbX={u.x}
-        pcbY={SR_OUT_ROW_Y}
-        pcbRotation={-90}
+        {...placed(u.name)}
         schSectionName={secOut}
         schX={13 + idx * 5}
         schY={-24}
@@ -242,22 +255,19 @@ export const DvmInterface = () => (
         name={u.cap}
         capacitance="100nF"
         footprint="0603"
-        pcbX={u.x + 4.2}
-        pcbY={SR_OUT_ROW_Y + 6.3}
+        {...capBeside(u.name)}
         schOrientation="vertical"
         {...decapSch("V3V3_ISO", 12 + idx)}
         connections={{ pin1: "net.V3V3_ISO", pin2: "net.GND_ISO" }}
       />,
     ])}
-    {pullupArrays.map((rn, idx) => {
-      const { rotation, elements } = byRef(PULLUP_ARRAYS, rn.name)
+    {pullupArrays.map((ref, idx) => {
+      const { elements } = byRef(PULLUP_ARRAYS, ref)
       return (
       <A_4D03WGJ0103T5E
-        key={rn.name}
-        name={rn.name}
-        pcbX={rn.x}
-        pcbY={-32.6}
-        pcbRotation={rotation}
+        key={ref}
+        name={ref}
+        {...placed(ref)}
         schSectionName={secOut}
         schX={12.1 + idx * 2.6}
         schY={-28}
@@ -280,9 +290,7 @@ export const DvmInterface = () => (
       name="R21"
       resistance="100"
       footprint="0603"
-      pcbX={6.4}
-      pcbY={-19.7}
-      pcbRotation={180}
+      {...placed("R21")}
       schSectionName={secOut}
       schX={7.9}
       schY={-28}

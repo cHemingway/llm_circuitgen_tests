@@ -1,7 +1,8 @@
 /**
  * Which shift-register, buffer and resistor-array pin serves each SKB signal.
- * Chosen to untangle the routing (no part changed position), so the bit order
- * is not the SKB pin order: firmware should use MISO_BITS and COMMAND_BITS.
+ * Chosen together with the command-side placement (dvmPlacement.ts) to
+ * untangle the routing, so the bit order is not the SKB pin order: firmware
+ * should use MISO_BITS and COMMAND_BITS.
  */
 import { SKB_PINS } from "./solartronSkb"
 
@@ -24,8 +25,8 @@ export const READ_CHAIN: { ref: string; inputs: Partial<Record<InputLetter, numb
 
 /**
  * 74LV595A chain: entry 0 takes MOSI. Output -> SKB pin. This, the buffer
- * channels and the pull-up elements were chosen by minimising ratsnest
- * crossings (simulated annealing).
+ * channels, the pull-up elements and the command-side placement were chosen
+ * together by minimising ratsnest crossings (simulated annealing).
  */
 export const COMMAND_CHAIN: { ref: string; outputs: Partial<Record<OutputLetter, number>> }[] = [
   { ref: "U11", outputs: { QB: 44, QC: 46, QD: 38, QE: 41, QF: 39, QG: 48, QH: 50 } },
@@ -42,10 +43,10 @@ export const OD_BUFFERS: { ref: string; channels: Record<1 | 2 | 3 | 4 | 5 | 6, 
  * 10k pull-up arrays on the 74LVC07A inputs. Element n (pins n and 9 - n)
  * pulls up the command line for the SKB pin listed at position n - 1.
  */
-export const PULLUP_ARRAYS: { ref: string; rotation: 0 | 180; elements: [number, number, number, number] }[] = [
-  { ref: "RN2", rotation: 0, elements: [50, 46, 47, 49] },
-  { ref: "RN3", rotation: 180, elements: [41, 42, 48, 44] },
-  { ref: "RN4", rotation: 180, elements: [43, 39, 38, 45] },
+export const PULLUP_ARRAYS: { ref: string; elements: [number, number, number, number] }[] = [
+  { ref: "RN2", elements: [50, 46, 47, 49] },
+  { ref: "RN3", elements: [41, 42, 48, 44] },
+  { ref: "RN4", elements: [43, 39, 38, 45] },
 ]
 
 // ---------------------------------------------------------------------------

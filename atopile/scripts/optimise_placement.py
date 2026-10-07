@@ -11,10 +11,10 @@ What may move (everything else stays where place_components.py puts it):
   * the order of the six optocouplers along the isolation barrier
 
 Each candidate is scored with scripts/pin_swap.py's cost (ratsnest length +
-CROSSING_MM per crossing) after a short pin-swap search. The control buses
-(SCK/LATCH/OE_N/DRDY on the DVM side, the six MCU <-> opto nets on the USB
-side) are included as fixed nets, so the opto order and IC rotation are
-judged on them too.
+CROSSING_MM per crossing) after a short pin-swap search. Fixed nets are
+scored too: the DVM-side control nets (SCK/LATCH/OE_N/DRDY), the MOSFET
+drain to SKB 39 and the six MCU <-> opto nets on the USB side. So the opto
+order, the IC rotation and the part spots are judged on them as well.
 
     python3 scripts/optimise_placement.py           # report
     python3 scripts/optimise_placement.py --write   # update place_components.py
@@ -44,7 +44,11 @@ BEGIN, END = "# --- BEGIN DVM placement", "# --- END DVM placement"
 SHORT_ITER = 6000  # pin-swap iterations per candidate
 TOP = 6  # IC patterns carried into the spot search
 
-FIXED_NETS = ["SCK_ISO", "LATCH_ISO", "OE_N_ISO", "DRDY_ISO", "SCK", "MOSI", "LATCH", "OE_N", "MISO", "DRDY"]
+FIXED_NETS = [
+    "SCK_ISO", "LATCH_ISO", "OE_N_ISO", "DRDY_ISO",  # DVM-side control nets
+    "SKB39_SAMPLE_CONTACT",  # MOSFET drain to SKB 39
+    "SCK", "MOSI", "LATCH", "OE_N", "MISO", "DRDY",  # MCU <-> opto
+]
 
 # Candidate spots, all checked against check_layout.py (outline, overlaps,
 # jackscrew keep-outs). "east" is the original placement.

@@ -208,13 +208,16 @@ As an independent check, the whole board was autorouted with Freerouting
 built from source; 2.5 needs Java 25.) No run finished, and Freerouting
 logged internal errors on all of them, but the trend is clear:
 
-| Freerouting 2.1, 40 min | Original | Pin swap |
-|---|---|---|
-| Passes completed | 55 | 456 |
-| Unrouted connections, best after 20 passes | 59 | 39 |
-| Unrouted connections, best within 40 min | 55 | 30 |
+| Freerouting 2.1, 40 min | Run 1: original | Run 1: pin swap | Run 2: pin swap | Run 2: pin swap + moved parts |
+|---|---|---|---|---|
+| Passes completed | 55 | 456 | 432 | 508 |
+| Unrouted connections, best after 20 passes | 59 | 39 | 40 | 33 |
+| Unrouted connections, best within 40 min | 55 | 30 | 31 | 30 |
 
-The runs were measurements only; their routing was not kept.
+Pin swapping made the biggest difference. Moving parts helped the router
+early on (33 instead of 40 unrouted after 20 passes), but after 40 minutes
+both pin-swapped boards ended at about 30. The runs were measurements only;
+their routing was not kept.
 
 ```
 python3 scripts/optimise_placement.py --write   # placement search, about 8 min

@@ -11,13 +11,13 @@ export interface Placement {
 }
 
 export const COMMAND_PLACEMENT: Record<string, Placement> = {
-  U11: { x: 10, y: -26, rotation: 270 },
-  U12: { x: 24, y: -26, rotation: 270 },
-  U13: { x: -4, y: -26, rotation: 270 },
-  U14: { x: -18, y: -26, rotation: 270 },
-  RN2: { x: -18, y: -32.6, rotation: 0 },
-  RN3: { x: -10, y: -32.6, rotation: 180 },
-  RN4: { x: -2, y: -32.6, rotation: 180 },
-  R20: { x: 17, y: -32.6, rotation: 0 },
-  R21: { x: 6.4, y: -19.7, rotation: 180 },
+  U11: { x: 13.0, y: -27.0, rotation: 0 },
+  U12: { x: 26.8, y: -27.0, rotation: 0 },
+  U13: { x: 0.2, y: -23.6, rotation: 90 },
+  U14: { x: -15.1, y: -23.3, rotation: 90 },
+  RN2: { x: -16.2, y: -30.7, rotation: 270 },
+  RN3: { x: -7.6, y: -28.2, rotation: 180 },
+  RN4: { x: 6.0, y: -26.5, rotation: 270 },
+  R20: { x: 34.9, y: -21.0, rotation: 180 },
+  R21: { x: 9.4, y: -21.5, rotation: 0 },
 }

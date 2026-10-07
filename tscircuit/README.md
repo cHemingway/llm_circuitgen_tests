@@ -28,6 +28,7 @@ USB-B ─ ESD ─┬─ AP2112K 3.3 V ─ RP2354A ── SPI0 ──┐
 | `lib/sections/Isolation.tsx` | TLP2361 barrier and isolated DC-DC converter |
 | `lib/sections/DvmInterface.tsx` | Isolated 3.3 V, shift registers, open-drain drivers, D-sub |
 | `lib/solartronSkb.ts` | SKB pin table transcribed from manual p. 9.9 |
+| `lib/dvmPlacement.ts` | Positions of the command-side parts (595s, buffers, pull-ups, R20, R21) |
 | `lib/dvmPinMap.ts` | Which shift-register, buffer and pull-up pin serves each SKB signal, and the resulting firmware bit maps |
 | `lib/DSub50MaleVertical.tsx` | DD-50 vertical plug footprint (no LCSC/EasyEDA footprint available) |
 | `lib/passives.tsx` | Resistor/capacitor values pinned to LCSC part numbers |
@@ -112,30 +113,39 @@ Verification of the committed board:
 
 ## Routing
 
-On the DVM side, the pins are assigned to suit the routing, not the bit order.
-No part changed position:
+On the DVM side, the pins are assigned and the command-side parts placed to
+suit the routing, not the bit order:
 
-- **74LV165A inputs.**
+- **74LV165A inputs.** These parts stay where they were.
   - Above the D-sub, the traces run in x order across both pin rows, so each
     74LV165A reads the eight SKB pins nearest it.
   - The outer pins go to the upper pads of each pad column, so the fan-in
     doesn't cross itself.
   - The chain runs from one side of the board to the other, with U8 (x = 22)
     driving MISO, instead of zig-zagging between the chips.
-- **Commands.** Which 74LV595A output, 74LVC07A channel and pull-up element
-  each command uses was chosen by simulated annealing, minimising crossings
-  between the straight connection lines. RN3 and RN4 are rotated 180° so that
-  their signal pins face the buffers.
+- **Commands.** The positions and rotations of the 74LV595As, 74LVC07As,
+  pull-up arrays, R20 and R21 were chosen by simulated annealing, together
+  with which 595 output, buffer channel and pull-up element each command uses.
+  The annealing minimises crossings between straight connection lines, and
+  each chip's decoupling cap moves with it. The positions are in
+  `lib/dvmPlacement.ts`.
+  - The buffers stand on end under their D-sub pins, so their outputs run
+    straight up to the connector.
+  - The 595s lie along the bottom edge and feed the buffers along a bus.
+- **Picking the route.** The autorouter is chaotic, so several of the
+  best-scoring layouts were routed. I kept the one with the least routing and
+  no DRC errors.
 
-Against the previous routing:
+| | Original | Pin swap | Pin swap + moved parts |
+| --- | --- | --- | --- |
+| Connection-line crossings, 74LV165A side | 321 | 52 | 52 |
+| Connection-line crossings, command side (incl. control and supply lines) | 288 | 158 | 37 |
+| Track length (DVM side) | 3520 mm (2738 mm) | 2780 mm (2017 mm) | 2643 mm (1878 mm) |
+| Vias (DVM side) | 385 (307) | 248 (175) | 227 (154) |
+| DRC errors | 1 | 0 | 0 |
 
-| | Before | After |
-| --- | --- | --- |
-| Connection-line crossings, 74LV165A side | 321 | 52 |
-| Connection-line crossings, command side | 152 | 79 |
-| Track length (DVM side) | 3520 mm (2738 mm) | 2780 mm (2017 mm) |
-| Vias (DVM side) | 385 (307) | 248 (175) |
-| DRC errors | 1 | 0 |
+Below the D-sub alone, where the parts moved, track length fell from 915 mm to
+817 mm and vias from 91 to 67 against the pin-swap version.
 
 ## Mechanical
 
@@ -226,24 +236,23 @@ Command word: write the manual's logic levels directly (1 = high/idle).
 
 | bit | SKB pin | function |
 | --- | --- | --- |
-| 0 | - | spare (U11 QA, unconnected) |
-| 1 | 44 | integration time 4 (with 45, 46: 011 1 ms ... 111 10 s) |
-| 2 | 46 | integration time 1 |
-| 3 | 38 | FRONT PANEL LOCKOUT (0 = lockout) |
-| 4 | 41 | RATIO (0 = ratio) |
-| 5 | 39 | CONTACT SAMPLE (0 = contact closed) |
+| 0 | 40 | PULSE SAMPLE (push-pull, idle 0, pulse > 100 µs) |
+| 1 | 47 | AUTORANGE inhibit (1 = use range command) |
+| 2 | 44 | integration time 4 (with 45, 46: 011 1 ms ... 111 10 s) |
+| 3 | 46 | integration time 1 |
+| 4 | 42 | function select (43, 42: 11 DC, 01 AC, 10 Ω, 00 check) |
+| 5 | 45 | integration time 2 |
 | 6 | 48 | range 1 |
-| 7 | 50 | range 4 |
-| 8 | - | spare (U12 QA, unconnected) |
-| 9 | 40 | PULSE SAMPLE (push-pull, idle 0, pulse > 100 µs) |
-| 10 | - | spare (U12 QC, unconnected) |
-| 11 | 43 | function select (43, 42: 11 DC, 01 AC, 10 Ω, 00 check) |
-| 12 | 42 | function select |
-| 13 | 45 | integration time 2 |
-| 14 | 47 | AUTORANGE inhibit (1 = use range command) |
-| 15 | 49 | range 2 |
+| 7 | 49 | range 2 |
+| 8 | 39 | CONTACT SAMPLE (0 = contact closed) |
+| 9 | 50 | range 4 |
+| 10 | 43 | function select |
+| 11, 12 | - | spare (U12 QD, QE, unconnected) |
+| 13 | 38 | FRONT PANEL LOCKOUT (0 = lockout) |
+| 14 | 41 | RATIO (0 = ratio) |
+| 15 | - | spare (U12 QH, unconnected) |
 
-The idle word is `0xF8FE`. A reading is complete when PRINT level (SKB pin 34,
+The idle word is `0x67FE`. A reading is complete when PRINT level (SKB pin 34,
 MISO bit 4) is 1. The level stays high until the next sample, so polling is
 enough and no interrupt line is needed.
 

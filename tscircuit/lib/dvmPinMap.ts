@@ -29,14 +29,14 @@ export const READ_CHAIN: { ref: string; inputs: Partial<Record<InputLetter, numb
  * together by minimising ratsnest crossings (simulated annealing).
  */
 export const COMMAND_CHAIN: { ref: string; outputs: Partial<Record<OutputLetter, number>> }[] = [
-  { ref: "U11", outputs: { QB: 44, QC: 46, QD: 38, QE: 41, QF: 39, QG: 48, QH: 50 } },
-  { ref: "U12", outputs: { QB: 40, QD: 43, QE: 42, QF: 45, QG: 47, QH: 49 } },
+  { ref: "U11", outputs: { QA: 40, QB: 47, QC: 44, QD: 46, QE: 42, QF: 45, QG: 48, QH: 49 } },
+  { ref: "U12", outputs: { QA: 39, QB: 50, QC: 43, QF: 38, QG: 41 } },
 ]
 
 /** 74LVC07A open-drain buffers: channel n (nA in, nY out) -> SKB pin. */
 export const OD_BUFFERS: { ref: string; channels: Record<1 | 2 | 3 | 4 | 5 | 6, number> }[] = [
-  { ref: "U13", channels: { 1: 44, 2: 41, 3: 45, 4: 43, 5: 39, 6: 38 } },
-  { ref: "U14", channels: { 1: 49, 2: 47, 3: 50, 4: 48, 5: 42, 6: 46 } },
+  { ref: "U13", channels: { 1: 42, 2: 38, 3: 39, 4: 41, 5: 43, 6: 45 } },
+  { ref: "U14", channels: { 1: 47, 2: 44, 3: 46, 4: 48, 5: 49, 6: 50 } },
 ]
 
 /**
@@ -44,9 +44,9 @@ export const OD_BUFFERS: { ref: string; channels: Record<1 | 2 | 3 | 4 | 5 | 6, 
  * pulls up the command line for the SKB pin listed at position n - 1.
  */
 export const PULLUP_ARRAYS: { ref: string; elements: [number, number, number, number] }[] = [
-  { ref: "RN2", elements: [50, 46, 47, 49] },
-  { ref: "RN3", elements: [41, 42, 48, 44] },
-  { ref: "RN4", elements: [43, 39, 38, 45] },
+  { ref: "RN2", elements: [47, 48, 49, 50] },
+  { ref: "RN3", elements: [45, 42, 46, 44] },
+  { ref: "RN4", elements: [39, 41, 38, 43] },
 ]
 
 // ---------------------------------------------------------------------------

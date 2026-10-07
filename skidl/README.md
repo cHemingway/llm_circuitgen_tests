@@ -250,6 +250,7 @@ the meter side.
 | `scripts/make_bom.py`, `scripts/jlc_cpl.py` | BOM and placement files |
 | `scripts/make_prints.py` | the print PDF and the Gerber preview |
 | `build.sh` | runs the whole flow |
+| `CONVERSATION.md` | export of the Claude Code session that produced this design, with its time and token totals |
 | `output/` | SKiDL netlist, ERC log, BOM, unplaced board straight from SKiDL |
 | `pcb/` | KiCad 10 project: schematic, routed board, ERC and DRC reports, `render/` (schematic PDF/PNG, board renders), `print/` (prints, Gerber preview), `fab/` (Gerbers, drill, BOM, CPL) |
 

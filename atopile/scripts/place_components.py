@@ -32,6 +32,15 @@ BARRIER_HALF_GAP = 2.0
 DSUB_Y = 21.8
 IC_ROW_Y = 11.5
 IC_SLOTS_X = [25.8, 17.2, 8.6, 0.0, -8.6, -17.2, -25.8]
+IC_SLOT_ORDER = [  # register in each IC_SLOTS_X slot, east to west
+    "shift_in[0].package",
+    "shift_in[4].package",
+    "shift_in[2].package",
+    "shift_out[0].package",
+    "shift_in[3].package",
+    "shift_in[1].package",
+    "shift_out[1].package",
+]
 
 # address -> (x, y, rotation, layer)
 P: dict[str, tuple[float, float, float, str]] = {
@@ -260,19 +269,10 @@ def main() -> int:
     pcb = pcb_file.kicad_pcb
     by_addr = {props(fp).get("atopile_address", ""): fp for fp in pcb.footprints}
 
-    # Shift registers: order the IC slots by where their SKB pins land so the
-    # traces to the DD-50 stay short. (Pins are mirrored: DD-50 is on B.Cu.)
-    dsub_local_x = {
-        p.name: p.at.x for p in by_addr["dvm.connector"].pads if p.name.isdigit()
-    }
-    ic_pins = {f"shift_in[{c}].package": range(8 * c + 1, min(8 * c + 9, 37)) for c in range(5)}
-    ic_pins["shift_out[0].package"] = [38, 39, 40, 41, 42, 43, 44, 45]
-    ic_pins["shift_out[1].package"] = [46, 47, 48, 49, 50]
-    centroid = {
-        ic: sum(-dsub_local_x[str(n)] for n in pins) / len(pins)
-        for ic, pins in ic_pins.items()
-    }
-    for ic, slot_x in zip(sorted(centroid, key=centroid.get, reverse=True), IC_SLOTS_X):
+    # Shift registers: fixed slots. (The slot order used to be derived from
+    # the SKB pins on each register, but the pin map is now chosen for these
+    # slots by scripts/pin_swap.py, so the slots must not follow it.)
+    for ic, slot_x in zip(IC_SLOT_ORDER, IC_SLOTS_X):
         P[ic] = (slot_x, IC_ROW_Y, 90.0, "F.Cu")
         P[ic.replace(".package", ".decoupling")] = (slot_x, IC_ROW_Y - 6.4, 0.0, "F.Cu")
 

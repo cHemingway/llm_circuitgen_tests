@@ -162,6 +162,9 @@ def crosses(s, t):
     (a, b), (c, d) = s, t
     if a in (c, d) or b in (c, d):
         return False
+    if (max(a[0], b[0]) < min(c[0], d[0]) or max(c[0], d[0]) < min(a[0], b[0])
+            or max(a[1], b[1]) < min(c[1], d[1]) or max(c[1], d[1]) < min(a[1], b[1])):
+        return False
 
     def orient(p, q, r):
         v = (q[0] - p[0]) * (r[1] - p[1]) - (q[1] - p[1]) * (r[0] - p[0])
@@ -176,11 +179,11 @@ class State:
     chain_in[p] = 165 index at chain position p (p = 0 drives MISO);
     chain_out[p] = 595 index at chain position p (p = 0 is fed by MOSI)."""
 
-    def __init__(self, geo, in_items, out_items, chain_in, chain_out):
+    def __init__(self, geo, in_items, out_items, chain_in, chain_out, fixed=None):
         self.geo = geo
         self.in_items, self.out_items = list(in_items), list(out_items)
         self.chain_in, self.chain_out = list(chain_in), list(chain_out)
-        self.segs = {}
+        self.segs = dict(fixed or {})  # nets the swaps don't change (counted for crossings)
         for i in range(len(in_items)):
             self.segs[self.in_net(i)] = self.in_segs(i)
         for j in range(len(out_items)):
@@ -236,14 +239,21 @@ class State:
         return sum(math.dist(*s) for n in (nets or self.segs) for s in self.segs[n])
 
     def crossings(self, nets=None):
-        names = list(self.segs)
-        pick = set(nets) if nets else None
+        """Crossings between different nets; with `nets`, only pairs involving them."""
+        segs = self.segs
+
+        def count(a, b):
+            return sum(crosses(s, t) for s in segs[a] for t in segs[b])
+
+        if nets is None:
+            names = list(segs)
+            return sum(count(a, b) for i, a in enumerate(names) for b in names[i + 1:])
+        pick = list(dict.fromkeys(nets))
+        picked = set(pick)
         n = 0
-        for i, a in enumerate(names):
-            for b in names[i + 1:]:
-                if pick is not None and a not in pick and b not in pick:
-                    continue
-                n += sum(crosses(s, t) for s in self.segs[a] for t in self.segs[b])
+        for i, a in enumerate(pick):
+            n += sum(count(a, b) for b in segs if b not in picked)
+            n += sum(count(a, b) for b in pick[i + 1:])
         return n
 
     def cost(self):

@@ -84,34 +84,5 @@ export const skbPin = (pin: number): SkbPin => {
 /** Net name for an SKB signal, e.g. `net.DVM_D6_1` */
 export const dvmNet = (pin: number) => `net.DVM_${skbPin(pin).label}`
 
-/**
- * DVM outputs are read by a chain of five 74LV165A. Bit k (0 based) of the
- * 40-bit MISO frame, clocked MSB first, is SKB pin k+1. Bits 36..39 are spare
- * inputs tied to ground. SR_IN1 is the last device in the chain (drives MISO).
- */
-export const DVM_OUTPUT_PINS = SKB_PINS.filter((p) => p.dir === "out").map(
-  (p) => p.pin,
-)
-
-/**
- * Commands are written to two 74LV595A (16 bits, the last 16 bits of each
- * frame). Bit b of the command word (b0 = last bit clocked out) drives the SKB
- * pin below. Except for pin 40 every command goes through a 74LVC07A
- * open-drain buffer, so a 1 in the command word leaves the DVM input at its
- * idle logic 1 and the codes in the manual can be written directly.
- */
-export const COMMAND_BITS: { bit: number; pin: number; openDrain: boolean }[] = [
-  { bit: 0, pin: 38, openDrain: true },
-  { bit: 1, pin: 39, openDrain: true },
-  { bit: 2, pin: 41, openDrain: true },
-  { bit: 3, pin: 42, openDrain: true },
-  { bit: 4, pin: 43, openDrain: true },
-  { bit: 5, pin: 44, openDrain: true },
-  { bit: 6, pin: 45, openDrain: true },
-  { bit: 7, pin: 46, openDrain: true },
-  { bit: 8, pin: 47, openDrain: true },
-  { bit: 9, pin: 48, openDrain: true },
-  { bit: 10, pin: 49, openDrain: true },
-  { bit: 11, pin: 50, openDrain: true },
-  { bit: 12, pin: 40, openDrain: false },
-]
+// Which shift-register pin serves each signal, and the resulting firmware bit
+// maps, are in ./dvmPinMap.ts.

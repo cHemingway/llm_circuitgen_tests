@@ -7,7 +7,15 @@ import { CL10A106KP8NNNC } from "../common/CL10A106KP8NNNC"
 import { DSub50MaleVertical } from "../DSub50MaleVertical"
 import { C, R } from "../passives"
 import { decapSch } from "../schLayout"
-import { COMMAND_BITS, DVM_OUTPUT_PINS, dvmNet } from "../solartronSkb"
+import {
+  COMMAND_CHAIN,
+  OD_BUFFERS,
+  PULLUP_ARRAYS,
+  READ_CHAIN,
+  type InputLetter,
+} from "../dvmPinMap"
+import { COMMAND_PLACEMENT, type Placement } from "../dvmPlacement"
+import { SKB_PINS, dvmNet, skbPin } from "../solartronSkb"
 
 const secPower = "dvm_power"
 const secIn = "dvm_inputs"
@@ -19,60 +27,87 @@ export const DSUB_X = 0
 export const DSUB_Y = -14
 
 // ---------------------------------------------------------------------------
-// Input side: 5 x 74LV165A, 40 bits. Bit k of the MISO frame = SKB pin k+1.
-// SR_IN1 is last in the chain and drives the MISO optocoupler.
+// Input side: 5 x 74LV165A, 40 bits, read in the order given by READ_CHAIN
+// (lib/dvmPinMap.ts). Its first entry drives the MISO optocoupler.
 // ---------------------------------------------------------------------------
-const INPUT_LETTERS = ["H", "G", "F", "E", "D", "C", "B", "A"] as const
+const INPUT_LETTERS: InputLetter[] = ["A", "B", "C", "D", "E", "F", "G", "H"]
 const SR_IN_ROW_Y = -3
 const srIn = [
-  { name: "U6", x: 11, cap: "C40" }, // SR_IN1: bits 0-7   (SKB 1-8)
-  { name: "U7", x: -11, cap: "C41" }, // SR_IN2: bits 8-15  (SKB 9-16)
-  { name: "U8", x: 22, cap: "C42" }, // SR_IN3: bits 16-23 (SKB 17-24)
-  { name: "U9", x: 0, cap: "C43" }, // SR_IN4: bits 24-31 (SKB 25-32)
-  { name: "U10", x: -22, cap: "C44" }, // SR_IN5: bits 32-39 (SKB 33-36, spare)
+  { name: "U10", x: -22, cap: "C44" },
+  { name: "U7", x: -11, cap: "C41" },
+  { name: "U9", x: 0, cap: "C43" },
+  { name: "U6", x: 11, cap: "C40" },
+  { name: "U8", x: 22, cap: "C42" },
 ]
+const chainIndex = (ref: string) => {
+  const idx = READ_CHAIN.findIndex((sr) => sr.ref === ref)
+  if (idx < 0) throw new Error(`${ref} missing from READ_CHAIN`)
+  return idx
+}
 
-const srInConnections = (idx: number) => {
+const srInConnections = (ref: string) => {
+  const idx = chainIndex(ref)
   const conns: Record<string, string> = {
     SH: "net.ISO_LATCH",
     CLK: "net.ISO_SCK",
     CLKINH: "net.GND_ISO",
     GND: "net.GND_ISO",
     VCC: "net.V3V3_ISO",
-    SER: idx === srIn.length - 1 ? "net.GND_ISO" : `net.SR_IN_CHAIN${idx + 1}`,
+    SER:
+      idx === READ_CHAIN.length - 1
+        ? "net.GND_ISO"
+        : `net.SR_IN_CHAIN${idx + 1}`,
     QH: idx === 0 ? "net.ISO_MISO" : `net.SR_IN_CHAIN${idx}`,
   }
-  INPUT_LETTERS.forEach((letter, bit) => {
-    const k = idx * 8 + bit
-    conns[letter] =
-      k < DVM_OUTPUT_PINS.length ? dvmNet(DVM_OUTPUT_PINS[k]) : "net.GND_ISO"
-  })
+  for (const letter of INPUT_LETTERS) {
+    const pin = READ_CHAIN[idx].inputs[letter]
+    conns[letter] = pin === undefined ? "net.GND_ISO" : dvmNet(pin)
+  }
   return conns
 }
 
 // ---------------------------------------------------------------------------
 // Output side: 2 x 74LV595A -> 2 x 74LVC07A open-drain -> SKB inputs
 // ---------------------------------------------------------------------------
-const SR_OUT_ROW_Y = -26
-const OUTPUT_LETTERS = ["QA", "QB", "QC", "QD", "QE", "QF", "QG", "QH"] as const
 const srOut = [
-  { name: "U11", x: 10, cap: "C45" }, // SR_OUT1: command bits 0-7
-  { name: "U12", x: 24, cap: "C46" }, // SR_OUT2: command bits 8-15
+  { name: "U11", cap: "C45" }, // first in the chain (MOSI)
+  { name: "U12", cap: "C46" },
 ]
 const odBuf = [
-  { name: "U13", x: -4, cap: "C47" }, // bits 0-5
-  { name: "U14", x: -18, cap: "C48" }, // bits 6-11
+  { name: "U13", cap: "C47" },
+  { name: "U14", cap: "C48" },
 ]
-const OD_CHANNELS = [
-  ["1A", "1Y"],
-  ["2A", "2Y"],
-  ["3A", "3Y"],
-  ["4A", "4Y"],
-  ["5A", "5Y"],
-  ["6A", "6Y"],
-] as const
 
-const cmdNet = (bit: number) => `net.CMD_B${bit}`
+/** Position and rotation of a command-side part (lib/dvmPlacement.ts) */
+const placed = (ref: string) => {
+  const p: Placement | undefined = COMMAND_PLACEMENT[ref]
+  if (!p) throw new Error(`${ref} missing from COMMAND_PLACEMENT`)
+  return { pcbX: p.x, pcbY: p.y, pcbRotation: p.rotation }
+}
+
+/**
+ * Decoupling cap next to a command-side chip's VCC pin. At chip rotation 270
+ * the cap sits 4.2 mm right of and 6.3 mm above the chip centre; the offset
+ * turns with the chip.
+ */
+const capBeside = (ref: string) => {
+  const { x, y, rotation } = COMMAND_PLACEMENT[ref]
+  const a = ((rotation - 270) * Math.PI) / 180
+  const [dx, dy] = [4.2, 6.3]
+  return {
+    pcbX: Math.round((x + dx * Math.cos(a) - dy * Math.sin(a)) * 100) / 100,
+    pcbY: Math.round((y + dx * Math.sin(a) + dy * Math.cos(a)) * 100) / 100,
+    pcbRotation: (rotation + 90) % 360,
+  }
+}
+const byRef = <T extends { ref: string }>(list: T[], ref: string): T => {
+  const item = list.find((i) => i.ref === ref)
+  if (!item) throw new Error(`${ref} missing from dvmPinMap`)
+  return item
+}
+
+/** Command line between a 74LV595A output and its buffer, named by SKB signal */
+const cmdNet = (pin: number) => `net.CMD_${skbPin(pin).label}`
 
 const srOutConnections = (idx: number) => {
   const conns: Record<string, string> = {
@@ -85,34 +120,25 @@ const srOutConnections = (idx: number) => {
     VCC: "net.V3V3_ISO",
   }
   if (idx === 0) conns.QH_ = "net.SR_OUT_CHAIN"
-  OUTPUT_LETTERS.forEach((letter, i) => {
-    const bit = idx * 8 + i
-    if (COMMAND_BITS.some((c) => c.bit === bit)) conns[letter] = cmdNet(bit)
-  })
+  const outputs = byRef(COMMAND_CHAIN, srOut[idx].name).outputs
+  for (const [q, pin] of Object.entries(outputs)) conns[q] = cmdNet(pin)
   return conns
 }
 
-const odBits = COMMAND_BITS.filter((c) => c.openDrain)
-
-const odConnections = (idx: number) => {
+const odConnections = (ref: string) => {
   const conns: Record<string, string> = {
     GND: "net.GND_ISO",
     VCC: "net.V3V3_ISO",
   }
-  OD_CHANNELS.forEach(([a, y], ch) => {
-    const cmd = odBits[idx * 6 + ch]
-    conns[a] = cmdNet(cmd.bit)
-    conns[y] = dvmNet(cmd.pin)
-  })
+  for (const [ch, pin] of Object.entries(byRef(OD_BUFFERS, ref).channels)) {
+    conns[`${ch}A`] = cmdNet(pin)
+    conns[`${ch}Y`] = dvmNet(pin)
+  }
   return conns
 }
 
 /** 10k pull-ups on the 74LVC07A inputs: outputs stay off while OE_N is high */
-const pullupArrays = [
-  { name: "RN2", x: -18, bits: [6, 7, 8, 9] },
-  { name: "RN3", x: -10, bits: [10, 11, 0, 1] },
-  { name: "RN4", x: -2, bits: [2, 3, 4, 5] },
-]
+const pullupArrays = ["RN2", "RN3", "RN4"]
 
 export const DvmInterface = () => (
   <>
@@ -164,7 +190,7 @@ export const DvmInterface = () => (
         schSectionName={secIn}
         schX={2 + idx * 6}
         schY={-14}
-        connections={srInConnections(idx)}
+        connections={srInConnections(u.name)}
       />,
       <C
         key={u.cap}
@@ -184,9 +210,7 @@ export const DvmInterface = () => (
       <SN74LV595ADR
         key={u.name}
         name={u.name}
-        pcbX={u.x}
-        pcbY={SR_OUT_ROW_Y}
-        pcbRotation={-90}
+        {...placed(u.name)}
         schSectionName={secOut}
         schX={2 + idx * 5}
         schY={-24}
@@ -197,8 +221,7 @@ export const DvmInterface = () => (
         name={u.cap}
         capacitance="100nF"
         footprint="0603"
-        pcbX={u.x + 4.2}
-        pcbY={SR_OUT_ROW_Y + 6.3}
+        {...capBeside(u.name)}
         schOrientation="vertical"
         {...decapSch("V3V3_ISO", 10 + idx)}
         connections={{ pin1: "net.V3V3_ISO", pin2: "net.GND_ISO" }}
@@ -208,8 +231,7 @@ export const DvmInterface = () => (
       name="R20"
       resistance="10k"
       footprint="0603"
-      pcbX={17}
-      pcbY={-32.6}
+      {...placed("R20")}
       schSectionName={secOut}
       schX={0}
       schY={-21}
@@ -222,60 +244,57 @@ export const DvmInterface = () => (
       <SN74LVC07ADR
         key={u.name}
         name={u.name}
-        pcbX={u.x}
-        pcbY={SR_OUT_ROW_Y}
-        pcbRotation={-90}
+        {...placed(u.name)}
         schSectionName={secOut}
         schX={13 + idx * 5}
         schY={-24}
-        connections={odConnections(idx)}
+        connections={odConnections(u.name)}
       />,
       <C
         key={u.cap}
         name={u.cap}
         capacitance="100nF"
         footprint="0603"
-        pcbX={u.x + 4.2}
-        pcbY={SR_OUT_ROW_Y + 6.3}
+        {...capBeside(u.name)}
         schOrientation="vertical"
         {...decapSch("V3V3_ISO", 12 + idx)}
         connections={{ pin1: "net.V3V3_ISO", pin2: "net.GND_ISO" }}
       />,
     ])}
-    {pullupArrays.map((rn, idx) => (
+    {pullupArrays.map((ref, idx) => {
+      const { elements } = byRef(PULLUP_ARRAYS, ref)
+      return (
       <A_4D03WGJ0103T5E
-        key={rn.name}
-        name={rn.name}
-        pcbX={rn.x}
-        pcbY={-32.6}
+        key={ref}
+        name={ref}
+        {...placed(ref)}
         schSectionName={secOut}
         schX={12.1 + idx * 2.6}
         schY={-28}
         connections={{
-          pin1: cmdNet(rn.bits[0]),
-          pin2: cmdNet(rn.bits[1]),
-          pin3: cmdNet(rn.bits[2]),
-          pin4: cmdNet(rn.bits[3]),
+          pin1: cmdNet(elements[0]),
+          pin2: cmdNet(elements[1]),
+          pin3: cmdNet(elements[2]),
+          pin4: cmdNet(elements[3]),
           pin5: "net.V3V3_ISO",
           pin6: "net.V3V3_ISO",
           pin7: "net.V3V3_ISO",
           pin8: "net.V3V3_ISO",
         }}
       />
-    ))}
+      )
+    })}
 
     {/* Pulse SAMPLE (pin 40) is the only push-pull command: 3.3 V > +3 V min */}
     <R
       name="R21"
       resistance="100"
       footprint="0603"
-      pcbX={6.4}
-      pcbY={-19.7}
-      pcbRotation={180}
+      {...placed("R21")}
       schSectionName={secOut}
       schX={7.9}
       schY={-28}
-      connections={{ pin1: cmdNet(12), pin2: dvmNet(40) }}
+      connections={{ pin1: cmdNet(40), pin2: dvmNet(40) }}
     />
 
     {/* ---------------- SKB connector ---------------- */}
@@ -288,8 +307,10 @@ export const DvmInterface = () => (
       schX={36}
       schY={-18}
       connections={Object.fromEntries([
-        ...DVM_OUTPUT_PINS.map((p) => [`pin${p}`, dvmNet(p)]),
-        ...COMMAND_BITS.map((c) => [`pin${c.pin}`, dvmNet(c.pin)]),
+        ...SKB_PINS.filter((p) => p.dir !== "ground").map((p) => [
+          `pin${p.pin}`,
+          dvmNet(p.pin),
+        ]),
         ["pin37", "net.GND_ISO"],
         ["pin51", "net.GND_ISO"],
         ["pin52", "net.GND_ISO"],

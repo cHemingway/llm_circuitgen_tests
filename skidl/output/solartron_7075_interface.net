@@ -1,0 +1,5580 @@
+(export 
+  (version "D")
+  (design
+    (source "solartron_7075_interface.py")
+    (date "10/07/2026 02:59 AM")
+    (tool "SKiDL (2.3.0)")
+    (sheet
+      (number 1)
+      (name "/opto_U7/")
+      (tstamps "/236ecb4d-8310-53ed-9ed4-d7df6c9d2f2d/")
+      (title_block
+        (title)
+        (company)
+        (rev)
+        (date)
+        (source "solartron_7075_interface.py")
+        (comment
+          (number "1")
+          (value ""))
+        (comment
+          (number "2")
+          (value ""))
+        (comment
+          (number "3")
+          (value ""))
+        (comment
+          (number "4")
+          (value ""))
+        (comment
+          (number "5")
+          (value ""))
+        (comment
+          (number "6")
+          (value ""))
+        (comment
+          (number "7")
+          (value ""))
+        (comment
+          (number "8")
+          (value ""))
+        (comment
+          (number "9")
+          (value ""))))
+    (sheet
+      (number 2)
+      (name "/opto_U5/")
+      (tstamps "/8d9ee159-9b07-51f2-95ac-2dc66fa08467/")
+      (title_block
+        (title)
+        (company)
+        (rev)
+        (date)
+        (source "solartron_7075_interface.py")
+        (comment
+          (number "1")
+          (value ""))
+        (comment
+          (number "2")
+          (value ""))
+        (comment
+          (number "3")
+          (value ""))
+        (comment
+          (number "4")
+          (value ""))
+        (comment
+          (number "5")
+          (value ""))
+        (comment
+          (number "6")
+          (value ""))
+        (comment
+          (number "7")
+          (value ""))
+        (comment
+          (number "8")
+          (value ""))
+        (comment
+          (number "9")
+          (value ""))))
+    (sheet
+      (number 3)
+      (name "/opto_U8/")
+      (tstamps "/e421a17b-f92b-5d76-b9ba-2004b867c3a3/")
+      (title_block
+        (title)
+        (company)
+        (rev)
+        (date)
+        (source "solartron_7075_interface.py")
+        (comment
+          (number "1")
+          (value ""))
+        (comment
+          (number "2")
+          (value ""))
+        (comment
+          (number "3")
+          (value ""))
+        (comment
+          (number "4")
+          (value ""))
+        (comment
+          (number "5")
+          (value ""))
+        (comment
+          (number "6")
+          (value ""))
+        (comment
+          (number "7")
+          (value ""))
+        (comment
+          (number "8")
+          (value ""))
+        (comment
+          (number "9")
+          (value ""))))
+    (sheet
+      (number 4)
+      (name "/iso_pwr/")
+      (tstamps "/9b867fd0-0184-58ed-9a8b-e8a849348ccd/")
+      (title_block
+        (title)
+        (company)
+        (rev)
+        (date)
+        (source "solartron_7075_interface.py")
+        (comment
+          (number "1")
+          (value ""))
+        (comment
+          (number "2")
+          (value ""))
+        (comment
+          (number "3")
+          (value ""))
+        (comment
+          (number "4")
+          (value ""))
+        (comment
+          (number "5")
+          (value ""))
+        (comment
+          (number "6")
+          (value ""))
+        (comment
+          (number "7")
+          (value ""))
+        (comment
+          (number "8")
+          (value ""))
+        (comment
+          (number "9")
+          (value ""))))
+    (sheet
+      (number 5)
+      (name "/usb/")
+      (tstamps "/2500deb9-bb4c-5b15-b8e0-5232ce6d6f19/")
+      (title_block
+        (title)
+        (company)
+        (rev)
+        (date)
+        (source "solartron_7075_interface.py")
+        (comment
+          (number "1")
+          (value ""))
+        (comment
+          (number "2")
+          (value ""))
+        (comment
+          (number "3")
+          (value ""))
+        (comment
+          (number "4")
+          (value ""))
+        (comment
+          (number "5")
+          (value ""))
+        (comment
+          (number "6")
+          (value ""))
+        (comment
+          (number "7")
+          (value ""))
+        (comment
+          (number "8")
+          (value ""))
+        (comment
+          (number "9")
+          (value ""))))
+    (sheet
+      (number 6)
+      (name "/opto_U9/")
+      (tstamps "/c6523693-d11a-5a7b-b566-693bc328f470/")
+      (title_block
+        (title)
+        (company)
+        (rev)
+        (date)
+        (source "solartron_7075_interface.py")
+        (comment
+          (number "1")
+          (value ""))
+        (comment
+          (number "2")
+          (value ""))
+        (comment
+          (number "3")
+          (value ""))
+        (comment
+          (number "4")
+          (value ""))
+        (comment
+          (number "5")
+          (value ""))
+        (comment
+          (number "6")
+          (value ""))
+        (comment
+          (number "7")
+          (value ""))
+        (comment
+          (number "8")
+          (value ""))
+        (comment
+          (number "9")
+          (value ""))))
+    (sheet
+      (number 7)
+      (name "/sr_in/")
+      (tstamps "/a2a23899-ca95-5d0b-b789-b7d214893621/")
+      (title_block
+        (title)
+        (company)
+        (rev)
+        (date)
+        (source "solartron_7075_interface.py")
+        (comment
+          (number "1")
+          (value ""))
+        (comment
+          (number "2")
+          (value ""))
+        (comment
+          (number "3")
+          (value ""))
+        (comment
+          (number "4")
+          (value ""))
+        (comment
+          (number "5")
+          (value ""))
+        (comment
+          (number "6")
+          (value ""))
+        (comment
+          (number "7")
+          (value ""))
+        (comment
+          (number "8")
+          (value ""))
+        (comment
+          (number "9")
+          (value ""))))
+    (sheet
+      (number 8)
+      (name "/sr_out/")
+      (tstamps "/59ee197e-28f7-5b7a-9b84-f25c8a83ec50/")
+      (title_block
+        (title)
+        (company)
+        (rev)
+        (date)
+        (source "solartron_7075_interface.py")
+        (comment
+          (number "1")
+          (value ""))
+        (comment
+          (number "2")
+          (value ""))
+        (comment
+          (number "3")
+          (value ""))
+        (comment
+          (number "4")
+          (value ""))
+        (comment
+          (number "5")
+          (value ""))
+        (comment
+          (number "6")
+          (value ""))
+        (comment
+          (number "7")
+          (value ""))
+        (comment
+          (number "8")
+          (value ""))
+        (comment
+          (number "9")
+          (value ""))))
+    (sheet
+      (number 9)
+      (name "/opto_U6/")
+      (tstamps "/4db410a7-35e4-52d1-8275-e2e02d739150/")
+      (title_block
+        (title)
+        (company)
+        (rev)
+        (date)
+        (source "solartron_7075_interface.py")
+        (comment
+          (number "1")
+          (value ""))
+        (comment
+          (number "2")
+          (value ""))
+        (comment
+          (number "3")
+          (value ""))
+        (comment
+          (number "4")
+          (value ""))
+        (comment
+          (number "5")
+          (value ""))
+        (comment
+          (number "6")
+          (value ""))
+        (comment
+          (number "7")
+          (value ""))
+        (comment
+          (number "8")
+          (value ""))
+        (comment
+          (number "9")
+          (value ""))))
+    (sheet
+      (number 10)
+      (name "/mcu/")
+      (tstamps "/ad3342b0-03e3-5e36-8315-3fae0a0761fa/")
+      (title_block
+        (title)
+        (company)
+        (rev)
+        (date)
+        (source "solartron_7075_interface.py")
+        (comment
+          (number "1")
+          (value ""))
+        (comment
+          (number "2")
+          (value ""))
+        (comment
+          (number "3")
+          (value ""))
+        (comment
+          (number "4")
+          (value ""))
+        (comment
+          (number "5")
+          (value ""))
+        (comment
+          (number "6")
+          (value ""))
+        (comment
+          (number "7")
+          (value ""))
+        (comment
+          (number "8")
+          (value ""))
+        (comment
+          (number "9")
+          (value ""))))
+    (sheet
+      (number 11)
+      (name "/meter/")
+      (tstamps "/b829eab6-1a6b-5ffb-8776-8affd198506e/")
+      (title_block
+        (title)
+        (company)
+        (rev)
+        (date)
+        (source "solartron_7075_interface.py")
+        (comment
+          (number "1")
+          (value ""))
+        (comment
+          (number "2")
+          (value ""))
+        (comment
+          (number "3")
+          (value ""))
+        (comment
+          (number "4")
+          (value ""))
+        (comment
+          (number "5")
+          (value ""))
+        (comment
+          (number "6")
+          (value ""))
+        (comment
+          (number "7")
+          (value ""))
+        (comment
+          (number "8")
+          (value ""))
+        (comment
+          (number "9")
+          (value ""))))
+    (sheet
+      (number 12)
+      (name "/")
+      (tstamps "/")
+      (title_block
+        (title)
+        (company)
+        (rev)
+        (date)
+        (source "solartron_7075_interface.py")
+        (comment
+          (number "1")
+          (value ""))
+        (comment
+          (number "2")
+          (value ""))
+        (comment
+          (number "3")
+          (value ""))
+        (comment
+          (number "4")
+          (value ""))
+        (comment
+          (number "5")
+          (value ""))
+        (comment
+          (number "6")
+          (value ""))
+        (comment
+          (number "7")
+          (value ""))
+        (comment
+          (number "8")
+          (value ""))
+        (comment
+          (number "9")
+          (value "")))))
+  (components
+    (comp
+      (ref "C1")
+      (value "4.7n")
+      (description "Unpolarized capacitor")
+      (footprint "Capacitor_SMD:C_0603_1608Metric")
+      (fields
+        (field
+          (name "LCSC") "C53987")
+        (field
+          (name "MPN") "0603B472K500NT")
+        (field
+          (name "Manufacturer") "FH")
+        (field
+          (name "Description") "Unpolarized capacitor")
+        (field
+          (name "Footprint") "Capacitor_SMD:C_0603_1608Metric")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "C1")
+        (field
+          (name "SKiDL Line") "solartron_7075_interface.py:124"))
+      (libsource
+        (lib "Device")
+        (part "C"))
+      (sheetpath
+        (names "/usb/")
+        (tstamps "/2500deb9-bb4c-5b15-b8e0-5232ce6d6f19/"))
+      (component_classes)
+      (tstamps "6b9dfeab-ebc9-53b0-a5c4-23ba63057444"))
+    (comp
+      (ref "C10")
+      (value "100n")
+      (description "Unpolarized capacitor")
+      (footprint "Capacitor_SMD:C_0402_1005Metric")
+      (fields
+        (field
+          (name "LCSC") "C1525")
+        (field
+          (name "MPN") "CL05B104KO5NNNC")
+        (field
+          (name "Manufacturer") "Samsung")
+        (field
+          (name "Description") "Unpolarized capacitor")
+        (field
+          (name "Footprint") "Capacitor_SMD:C_0402_1005Metric")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "C10")
+        (field
+          (name "SKiDL Line") "solartron_7075_interface.py:124"))
+      (libsource
+        (lib "Device")
+        (part "C"))
+      (sheetpath
+        (names "/mcu/")
+        (tstamps "/ad3342b0-03e3-5e36-8315-3fae0a0761fa/"))
+      (component_classes)
+      (tstamps "0cf676ac-9601-56ee-910d-6c09b120fa3b"))
+    (comp
+      (ref "C11")
+      (value "100n")
+      (description "Unpolarized capacitor")
+      (footprint "Capacitor_SMD:C_0402_1005Metric")
+      (fields
+        (field
+          (name "LCSC") "C1525")
+        (field
+          (name "MPN") "CL05B104KO5NNNC")
+        (field
+          (name "Manufacturer") "Samsung")
+        (field
+          (name "Description") "Unpolarized capacitor")
+        (field
+          (name "Footprint") "Capacitor_SMD:C_0402_1005Metric")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "C11")
+        (field
+          (name "SKiDL Line") "solartron_7075_interface.py:124"))
+      (libsource
+        (lib "Device")
+        (part "C"))
+      (sheetpath
+        (names "/mcu/")
+        (tstamps "/ad3342b0-03e3-5e36-8315-3fae0a0761fa/"))
+      (component_classes)
+      (tstamps "877ba440-0ed1-5810-b922-78c72c074609"))
+    (comp
+      (ref "C12")
+      (value "100n")
+      (description "Unpolarized capacitor")
+      (footprint "Capacitor_SMD:C_0402_1005Metric")
+      (fields
+        (field
+          (name "LCSC") "C1525")
+        (field
+          (name "MPN") "CL05B104KO5NNNC")
+        (field
+          (name "Manufacturer") "Samsung")
+        (field
+          (name "Description") "Unpolarized capacitor")
+        (field
+          (name "Footprint") "Capacitor_SMD:C_0402_1005Metric")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "C12")
+        (field
+          (name "SKiDL Line") "solartron_7075_interface.py:124"))
+      (libsource
+        (lib "Device")
+        (part "C"))
+      (sheetpath
+        (names "/mcu/")
+        (tstamps "/ad3342b0-03e3-5e36-8315-3fae0a0761fa/"))
+      (component_classes)
+      (tstamps "721e8b92-b9fd-5f12-9443-bfdbd92bbd0c"))
+    (comp
+      (ref "C13")
+      (value "100n")
+      (description "Unpolarized capacitor")
+      (footprint "Capacitor_SMD:C_0402_1005Metric")
+      (fields
+        (field
+          (name "LCSC") "C1525")
+        (field
+          (name "MPN") "CL05B104KO5NNNC")
+        (field
+          (name "Manufacturer") "Samsung")
+        (field
+          (name "Description") "Unpolarized capacitor")
+        (field
+          (name "Footprint") "Capacitor_SMD:C_0402_1005Metric")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "C13")
+        (field
+          (name "SKiDL Line") "solartron_7075_interface.py:124"))
+      (libsource
+        (lib "Device")
+        (part "C"))
+      (sheetpath
+        (names "/mcu/")
+        (tstamps "/ad3342b0-03e3-5e36-8315-3fae0a0761fa/"))
+      (component_classes)
+      (tstamps "a8c40d61-ac3f-5271-817b-57c6046d798a"))
+    (comp
+      (ref "C14")
+      (value "4.7u")
+      (description "Unpolarized capacitor")
+      (footprint "Capacitor_SMD:C_0402_1005Metric")
+      (fields
+        (field
+          (name "LCSC") "C23733")
+        (field
+          (name "MPN") "CL05A475MP5NRNC")
+        (field
+          (name "Manufacturer") "Samsung")
+        (field
+          (name "Description") "Unpolarized capacitor")
+        (field
+          (name "Footprint") "Capacitor_SMD:C_0402_1005Metric")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "C14")
+        (field
+          (name "SKiDL Line") "solartron_7075_interface.py:124"))
+      (libsource
+        (lib "Device")
+        (part "C"))
+      (sheetpath
+        (names "/mcu/")
+        (tstamps "/ad3342b0-03e3-5e36-8315-3fae0a0761fa/"))
+      (component_classes)
+      (tstamps "c76c9f8f-c876-5b8d-8375-589321b5a500"))
+    (comp
+      (ref "C15")
+      (value "4.7u")
+      (description "Unpolarized capacitor")
+      (footprint "Capacitor_SMD:C_0402_1005Metric")
+      (fields
+        (field
+          (name "LCSC") "C23733")
+        (field
+          (name "MPN") "CL05A475MP5NRNC")
+        (field
+          (name "Manufacturer") "Samsung")
+        (field
+          (name "Description") "Unpolarized capacitor")
+        (field
+          (name "Footprint") "Capacitor_SMD:C_0402_1005Metric")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "C15")
+        (field
+          (name "SKiDL Line") "solartron_7075_interface.py:124"))
+      (libsource
+        (lib "Device")
+        (part "C"))
+      (sheetpath
+        (names "/mcu/")
+        (tstamps "/ad3342b0-03e3-5e36-8315-3fae0a0761fa/"))
+      (component_classes)
+      (tstamps "4f7834af-a6ab-5822-a0a2-24363d0e387d"))
+    (comp
+      (ref "C16")
+      (value "4.7u")
+      (description "Unpolarized capacitor")
+      (footprint "Capacitor_SMD:C_0402_1005Metric")
+      (fields
+        (field
+          (name "LCSC") "C23733")
+        (field
+          (name "MPN") "CL05A475MP5NRNC")
+        (field
+          (name "Manufacturer") "Samsung")
+        (field
+          (name "Description") "Unpolarized capacitor")
+        (field
+          (name "Footprint") "Capacitor_SMD:C_0402_1005Metric")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "C16")
+        (field
+          (name "SKiDL Line") "solartron_7075_interface.py:124"))
+      (libsource
+        (lib "Device")
+        (part "C"))
+      (sheetpath
+        (names "/mcu/")
+        (tstamps "/ad3342b0-03e3-5e36-8315-3fae0a0761fa/"))
+      (component_classes)
+      (tstamps "aff6e7e1-a98f-5bd8-aa0a-10a19b0ce6bd"))
+    (comp
+      (ref "C17")
+      (value "100n")
+      (description "Unpolarized capacitor")
+      (footprint "Capacitor_SMD:C_0402_1005Metric")
+      (fields
+        (field
+          (name "LCSC") "C1525")
+        (field
+          (name "MPN") "CL05B104KO5NNNC")
+        (field
+          (name "Manufacturer") "Samsung")
+        (field
+          (name "Description") "Unpolarized capacitor")
+        (field
+          (name "Footprint") "Capacitor_SMD:C_0402_1005Metric")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "C17")
+        (field
+          (name "SKiDL Line") "solartron_7075_interface.py:124"))
+      (libsource
+        (lib "Device")
+        (part "C"))
+      (sheetpath
+        (names "/mcu/")
+        (tstamps "/ad3342b0-03e3-5e36-8315-3fae0a0761fa/"))
+      (component_classes)
+      (tstamps "f7eae6e4-dafd-5ca2-8eb7-02e45a295e73"))
+    (comp
+      (ref "C18")
+      (value "100n")
+      (description "Unpolarized capacitor")
+      (footprint "Capacitor_SMD:C_0402_1005Metric")
+      (fields
+        (field
+          (name "LCSC") "C1525")
+        (field
+          (name "MPN") "CL05B104KO5NNNC")
+        (field
+          (name "Manufacturer") "Samsung")
+        (field
+          (name "Description") "Unpolarized capacitor")
+        (field
+          (name "Footprint") "Capacitor_SMD:C_0402_1005Metric")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "C18")
+        (field
+          (name "SKiDL Line") "solartron_7075_interface.py:124"))
+      (libsource
+        (lib "Device")
+        (part "C"))
+      (sheetpath
+        (names "/mcu/")
+        (tstamps "/ad3342b0-03e3-5e36-8315-3fae0a0761fa/"))
+      (component_classes)
+      (tstamps "63a9ba3a-aa4c-5c53-ae42-63380423053b"))
+    (comp
+      (ref "C19")
+      (value "100n")
+      (description "Unpolarized capacitor")
+      (footprint "Capacitor_SMD:C_0402_1005Metric")
+      (fields
+        (field
+          (name "LCSC") "C1525")
+        (field
+          (name "MPN") "CL05B104KO5NNNC")
+        (field
+          (name "Manufacturer") "Samsung")
+        (field
+          (name "Description") "Unpolarized capacitor")
+        (field
+          (name "Footprint") "Capacitor_SMD:C_0402_1005Metric")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "C19")
+        (field
+          (name "SKiDL Line") "solartron_7075_interface.py:124"))
+      (libsource
+        (lib "Device")
+        (part "C"))
+      (sheetpath
+        (names "/mcu/")
+        (tstamps "/ad3342b0-03e3-5e36-8315-3fae0a0761fa/"))
+      (component_classes)
+      (tstamps "804a9a7a-815b-5925-b93e-dc76beb01536"))
+    (comp
+      (ref "C2")
+      (value "10u")
+      (description "Unpolarized capacitor")
+      (footprint "Capacitor_SMD:C_0603_1608Metric")
+      (fields
+        (field
+          (name "LCSC") "C19702")
+        (field
+          (name "MPN") "CL10A106KP8NNNC")
+        (field
+          (name "Manufacturer") "Samsung")
+        (field
+          (name "Description") "Unpolarized capacitor")
+        (field
+          (name "Footprint") "Capacitor_SMD:C_0603_1608Metric")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "C2")
+        (field
+          (name "SKiDL Line") "solartron_7075_interface.py:124"))
+      (libsource
+        (lib "Device")
+        (part "C"))
+      (sheetpath
+        (names "/usb/")
+        (tstamps "/2500deb9-bb4c-5b15-b8e0-5232ce6d6f19/"))
+      (component_classes)
+      (tstamps "31c885a7-1ac7-51a3-b30b-798440c21355"))
+    (comp
+      (ref "C20")
+      (value "15p")
+      (description "Unpolarized capacitor")
+      (footprint "Capacitor_SMD:C_0402_1005Metric")
+      (fields
+        (field
+          (name "LCSC") "C1548")
+        (field
+          (name "MPN") "0402CG150J500NT")
+        (field
+          (name "Manufacturer") "FH")
+        (field
+          (name "Description") "Unpolarized capacitor")
+        (field
+          (name "Footprint") "Capacitor_SMD:C_0402_1005Metric")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "C20")
+        (field
+          (name "SKiDL Line") "solartron_7075_interface.py:124"))
+      (libsource
+        (lib "Device")
+        (part "C"))
+      (sheetpath
+        (names "/mcu/")
+        (tstamps "/ad3342b0-03e3-5e36-8315-3fae0a0761fa/"))
+      (component_classes)
+      (tstamps "e0329e1c-2286-5bd0-be27-300ebfc8a836"))
+    (comp
+      (ref "C21")
+      (value "15p")
+      (description "Unpolarized capacitor")
+      (footprint "Capacitor_SMD:C_0402_1005Metric")
+      (fields
+        (field
+          (name "LCSC") "C1548")
+        (field
+          (name "MPN") "0402CG150J500NT")
+        (field
+          (name "Manufacturer") "FH")
+        (field
+          (name "Description") "Unpolarized capacitor")
+        (field
+          (name "Footprint") "Capacitor_SMD:C_0402_1005Metric")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "C21")
+        (field
+          (name "SKiDL Line") "solartron_7075_interface.py:124"))
+      (libsource
+        (lib "Device")
+        (part "C"))
+      (sheetpath
+        (names "/mcu/")
+        (tstamps "/ad3342b0-03e3-5e36-8315-3fae0a0761fa/"))
+      (component_classes)
+      (tstamps "c381f4dc-9285-53ff-8cef-c6fb08fc3602"))
+    (comp
+      (ref "C22")
+      (value "4.7u")
+      (description "Unpolarized capacitor")
+      (footprint "Capacitor_SMD:C_0603_1608Metric")
+      (fields
+        (field
+          (name "LCSC") "C19666")
+        (field
+          (name "MPN") "CL10A475KO8NNNC")
+        (field
+          (name "Manufacturer") "Samsung")
+        (field
+          (name "Description") "Unpolarized capacitor")
+        (field
+          (name "Footprint") "Capacitor_SMD:C_0603_1608Metric")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "C22")
+        (field
+          (name "SKiDL Line") "solartron_7075_interface.py:124"))
+      (libsource
+        (lib "Device")
+        (part "C"))
+      (sheetpath
+        (names "/iso_pwr/")
+        (tstamps "/9b867fd0-0184-58ed-9a8b-e8a849348ccd/"))
+      (component_classes)
+      (tstamps "3f58c633-7fe5-5227-a622-bbfceb2fdd5c"))
+    (comp
+      (ref "C23")
+      (value "2.2u")
+      (description "Unpolarized capacitor")
+      (footprint "Capacitor_SMD:C_0603_1608Metric")
+      (fields
+        (field
+          (name "LCSC") "C23630")
+        (field
+          (name "MPN") "CL10A225KO8NNNC")
+        (field
+          (name "Manufacturer") "Samsung")
+        (field
+          (name "Description") "Unpolarized capacitor")
+        (field
+          (name "Footprint") "Capacitor_SMD:C_0603_1608Metric")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "C23")
+        (field
+          (name "SKiDL Line") "solartron_7075_interface.py:124"))
+      (libsource
+        (lib "Device")
+        (part "C"))
+      (sheetpath
+        (names "/iso_pwr/")
+        (tstamps "/9b867fd0-0184-58ed-9a8b-e8a849348ccd/"))
+      (component_classes)
+      (tstamps "3941ecb2-cef3-5b74-8abd-4882c7c3613a"))
+    (comp
+      (ref "C24")
+      (value "1u")
+      (description "Unpolarized capacitor")
+      (footprint "Capacitor_SMD:C_0603_1608Metric")
+      (fields
+        (field
+          (name "LCSC") "C15849")
+        (field
+          (name "MPN") "CL10A105KB8NNNC")
+        (field
+          (name "Manufacturer") "Samsung")
+        (field
+          (name "Description") "Unpolarized capacitor")
+        (field
+          (name "Footprint") "Capacitor_SMD:C_0603_1608Metric")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "C24")
+        (field
+          (name "SKiDL Line") "solartron_7075_interface.py:124"))
+      (libsource
+        (lib "Device")
+        (part "C"))
+      (sheetpath
+        (names "/iso_pwr/")
+        (tstamps "/9b867fd0-0184-58ed-9a8b-e8a849348ccd/"))
+      (component_classes)
+      (tstamps "34661a16-d04f-5946-a3cf-bbc70bf4bb80"))
+    (comp
+      (ref "C25")
+      (value "10u")
+      (description "Unpolarized capacitor")
+      (footprint "Capacitor_SMD:C_0603_1608Metric")
+      (fields
+        (field
+          (name "LCSC") "C19702")
+        (field
+          (name "MPN") "CL10A106KP8NNNC")
+        (field
+          (name "Manufacturer") "Samsung")
+        (field
+          (name "Description") "Unpolarized capacitor")
+        (field
+          (name "Footprint") "Capacitor_SMD:C_0603_1608Metric")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "C25")
+        (field
+          (name "SKiDL Line") "solartron_7075_interface.py:124"))
+      (libsource
+        (lib "Device")
+        (part "C"))
+      (sheetpath
+        (names "/iso_pwr/")
+        (tstamps "/9b867fd0-0184-58ed-9a8b-e8a849348ccd/"))
+      (component_classes)
+      (tstamps "9ab8924c-2517-5960-a751-29c5e3e51997"))
+    (comp
+      (ref "C26")
+      (value "100n")
+      (description "Unpolarized capacitor")
+      (footprint "Capacitor_SMD:C_0603_1608Metric")
+      (fields
+        (field
+          (name "LCSC") "C14663")
+        (field
+          (name "MPN") "CC0603KRX7R9BB104")
+        (field
+          (name "Manufacturer") "YAGEO")
+        (field
+          (name "Description") "Unpolarized capacitor")
+        (field
+          (name "Footprint") "Capacitor_SMD:C_0603_1608Metric")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "C26")
+        (field
+          (name "SKiDL Line") "solartron_7075_interface.py:124"))
+      (libsource
+        (lib "Device")
+        (part "C"))
+      (sheetpath
+        (names "/sr_in/")
+        (tstamps "/a2a23899-ca95-5d0b-b789-b7d214893621/"))
+      (component_classes)
+      (tstamps "581865c4-6176-5e4f-bbfb-bb2439d584f5"))
+    (comp
+      (ref "C27")
+      (value "100n")
+      (description "Unpolarized capacitor")
+      (footprint "Capacitor_SMD:C_0603_1608Metric")
+      (fields
+        (field
+          (name "LCSC") "C14663")
+        (field
+          (name "MPN") "CC0603KRX7R9BB104")
+        (field
+          (name "Manufacturer") "YAGEO")
+        (field
+          (name "Description") "Unpolarized capacitor")
+        (field
+          (name "Footprint") "Capacitor_SMD:C_0603_1608Metric")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "C27")
+        (field
+          (name "SKiDL Line") "solartron_7075_interface.py:124"))
+      (libsource
+        (lib "Device")
+        (part "C"))
+      (sheetpath
+        (names "/sr_in/")
+        (tstamps "/a2a23899-ca95-5d0b-b789-b7d214893621/"))
+      (component_classes)
+      (tstamps "8528f682-feda-54de-8ae7-e7bc03f7098c"))
+    (comp
+      (ref "C28")
+      (value "100n")
+      (description "Unpolarized capacitor")
+      (footprint "Capacitor_SMD:C_0603_1608Metric")
+      (fields
+        (field
+          (name "LCSC") "C14663")
+        (field
+          (name "MPN") "CC0603KRX7R9BB104")
+        (field
+          (name "Manufacturer") "YAGEO")
+        (field
+          (name "Description") "Unpolarized capacitor")
+        (field
+          (name "Footprint") "Capacitor_SMD:C_0603_1608Metric")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "C28")
+        (field
+          (name "SKiDL Line") "solartron_7075_interface.py:124"))
+      (libsource
+        (lib "Device")
+        (part "C"))
+      (sheetpath
+        (names "/sr_in/")
+        (tstamps "/a2a23899-ca95-5d0b-b789-b7d214893621/"))
+      (component_classes)
+      (tstamps "4ba27bba-f04e-5318-aeaf-1cc3b71379b4"))
+    (comp
+      (ref "C29")
+      (value "100n")
+      (description "Unpolarized capacitor")
+      (footprint "Capacitor_SMD:C_0603_1608Metric")
+      (fields
+        (field
+          (name "LCSC") "C14663")
+        (field
+          (name "MPN") "CC0603KRX7R9BB104")
+        (field
+          (name "Manufacturer") "YAGEO")
+        (field
+          (name "Description") "Unpolarized capacitor")
+        (field
+          (name "Footprint") "Capacitor_SMD:C_0603_1608Metric")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "C29")
+        (field
+          (name "SKiDL Line") "solartron_7075_interface.py:124"))
+      (libsource
+        (lib "Device")
+        (part "C"))
+      (sheetpath
+        (names "/sr_in/")
+        (tstamps "/a2a23899-ca95-5d0b-b789-b7d214893621/"))
+      (component_classes)
+      (tstamps "fb479e91-dde1-5955-b5aa-dbadacb4c6c0"))
+    (comp
+      (ref "C3")
+      (value "1u")
+      (description "Unpolarized capacitor")
+      (footprint "Capacitor_SMD:C_0603_1608Metric")
+      (fields
+        (field
+          (name "LCSC") "C15849")
+        (field
+          (name "MPN") "CL10A105KB8NNNC")
+        (field
+          (name "Manufacturer") "Samsung")
+        (field
+          (name "Description") "Unpolarized capacitor")
+        (field
+          (name "Footprint") "Capacitor_SMD:C_0603_1608Metric")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "C3")
+        (field
+          (name "SKiDL Line") "solartron_7075_interface.py:124"))
+      (libsource
+        (lib "Device")
+        (part "C"))
+      (sheetpath
+        (names "/usb/")
+        (tstamps "/2500deb9-bb4c-5b15-b8e0-5232ce6d6f19/"))
+      (component_classes)
+      (tstamps "714c74a4-5691-5525-89e0-173e712d7cb2"))
+    (comp
+      (ref "C30")
+      (value "100n")
+      (description "Unpolarized capacitor")
+      (footprint "Capacitor_SMD:C_0603_1608Metric")
+      (fields
+        (field
+          (name "LCSC") "C14663")
+        (field
+          (name "MPN") "CC0603KRX7R9BB104")
+        (field
+          (name "Manufacturer") "YAGEO")
+        (field
+          (name "Description") "Unpolarized capacitor")
+        (field
+          (name "Footprint") "Capacitor_SMD:C_0603_1608Metric")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "C30")
+        (field
+          (name "SKiDL Line") "solartron_7075_interface.py:124"))
+      (libsource
+        (lib "Device")
+        (part "C"))
+      (sheetpath
+        (names "/sr_in/")
+        (tstamps "/a2a23899-ca95-5d0b-b789-b7d214893621/"))
+      (component_classes)
+      (tstamps "b2eeba5a-8c54-5185-8418-e5ca2551ec5b"))
+    (comp
+      (ref "C31")
+      (value "100n")
+      (description "Unpolarized capacitor")
+      (footprint "Capacitor_SMD:C_0603_1608Metric")
+      (fields
+        (field
+          (name "LCSC") "C14663")
+        (field
+          (name "MPN") "CC0603KRX7R9BB104")
+        (field
+          (name "Manufacturer") "YAGEO")
+        (field
+          (name "Description") "Unpolarized capacitor")
+        (field
+          (name "Footprint") "Capacitor_SMD:C_0603_1608Metric")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "C31")
+        (field
+          (name "SKiDL Line") "solartron_7075_interface.py:124"))
+      (libsource
+        (lib "Device")
+        (part "C"))
+      (sheetpath
+        (names "/sr_out/")
+        (tstamps "/59ee197e-28f7-5b7a-9b84-f25c8a83ec50/"))
+      (component_classes)
+      (tstamps "ca9bfa55-79f4-5f1f-840d-4753d10e1243"))
+    (comp
+      (ref "C32")
+      (value "100n")
+      (description "Unpolarized capacitor")
+      (footprint "Capacitor_SMD:C_0603_1608Metric")
+      (fields
+        (field
+          (name "LCSC") "C14663")
+        (field
+          (name "MPN") "CC0603KRX7R9BB104")
+        (field
+          (name "Manufacturer") "YAGEO")
+        (field
+          (name "Description") "Unpolarized capacitor")
+        (field
+          (name "Footprint") "Capacitor_SMD:C_0603_1608Metric")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "C32")
+        (field
+          (name "SKiDL Line") "solartron_7075_interface.py:124"))
+      (libsource
+        (lib "Device")
+        (part "C"))
+      (sheetpath
+        (names "/sr_out/")
+        (tstamps "/59ee197e-28f7-5b7a-9b84-f25c8a83ec50/"))
+      (component_classes)
+      (tstamps "90206605-ae61-5579-a3df-90dba75829a4"))
+    (comp
+      (ref "C33")
+      (value "100n")
+      (description "Unpolarized capacitor")
+      (footprint "Capacitor_SMD:C_0603_1608Metric")
+      (fields
+        (field
+          (name "LCSC") "C14663")
+        (field
+          (name "MPN") "CC0603KRX7R9BB104")
+        (field
+          (name "Manufacturer") "YAGEO")
+        (field
+          (name "Description") "Unpolarized capacitor")
+        (field
+          (name "Footprint") "Capacitor_SMD:C_0603_1608Metric")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "C33")
+        (field
+          (name "SKiDL Line") "solartron_7075_interface.py:124"))
+      (libsource
+        (lib "Device")
+        (part "C"))
+      (sheetpath
+        (names "/opto_U5/")
+        (tstamps "/8d9ee159-9b07-51f2-95ac-2dc66fa08467/"))
+      (component_classes)
+      (tstamps "e34eb543-8a54-51f5-961f-1967785ca35f"))
+    (comp
+      (ref "C34")
+      (value "100n")
+      (description "Unpolarized capacitor")
+      (footprint "Capacitor_SMD:C_0603_1608Metric")
+      (fields
+        (field
+          (name "LCSC") "C14663")
+        (field
+          (name "MPN") "CC0603KRX7R9BB104")
+        (field
+          (name "Manufacturer") "YAGEO")
+        (field
+          (name "Description") "Unpolarized capacitor")
+        (field
+          (name "Footprint") "Capacitor_SMD:C_0603_1608Metric")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "C34")
+        (field
+          (name "SKiDL Line") "solartron_7075_interface.py:124"))
+      (libsource
+        (lib "Device")
+        (part "C"))
+      (sheetpath
+        (names "/opto_U6/")
+        (tstamps "/4db410a7-35e4-52d1-8275-e2e02d739150/"))
+      (component_classes)
+      (tstamps "cfd73df6-70fd-58b2-af41-bedc1f0753c1"))
+    (comp
+      (ref "C35")
+      (value "100n")
+      (description "Unpolarized capacitor")
+      (footprint "Capacitor_SMD:C_0603_1608Metric")
+      (fields
+        (field
+          (name "LCSC") "C14663")
+        (field
+          (name "MPN") "CC0603KRX7R9BB104")
+        (field
+          (name "Manufacturer") "YAGEO")
+        (field
+          (name "Description") "Unpolarized capacitor")
+        (field
+          (name "Footprint") "Capacitor_SMD:C_0603_1608Metric")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "C35")
+        (field
+          (name "SKiDL Line") "solartron_7075_interface.py:124"))
+      (libsource
+        (lib "Device")
+        (part "C"))
+      (sheetpath
+        (names "/opto_U7/")
+        (tstamps "/236ecb4d-8310-53ed-9ed4-d7df6c9d2f2d/"))
+      (component_classes)
+      (tstamps "5c1a1272-ad44-528f-82ac-0b827745b1bc"))
+    (comp
+      (ref "C36")
+      (value "100n")
+      (description "Unpolarized capacitor")
+      (footprint "Capacitor_SMD:C_0603_1608Metric")
+      (fields
+        (field
+          (name "LCSC") "C14663")
+        (field
+          (name "MPN") "CC0603KRX7R9BB104")
+        (field
+          (name "Manufacturer") "YAGEO")
+        (field
+          (name "Description") "Unpolarized capacitor")
+        (field
+          (name "Footprint") "Capacitor_SMD:C_0603_1608Metric")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "C36")
+        (field
+          (name "SKiDL Line") "solartron_7075_interface.py:124"))
+      (libsource
+        (lib "Device")
+        (part "C"))
+      (sheetpath
+        (names "/opto_U8/")
+        (tstamps "/e421a17b-f92b-5d76-b9ba-2004b867c3a3/"))
+      (component_classes)
+      (tstamps "1fa05735-ac10-520e-a19d-24c4f4bdca35"))
+    (comp
+      (ref "C37")
+      (value "100n")
+      (description "Unpolarized capacitor")
+      (footprint "Capacitor_SMD:C_0603_1608Metric")
+      (fields
+        (field
+          (name "LCSC") "C14663")
+        (field
+          (name "MPN") "CC0603KRX7R9BB104")
+        (field
+          (name "Manufacturer") "YAGEO")
+        (field
+          (name "Description") "Unpolarized capacitor")
+        (field
+          (name "Footprint") "Capacitor_SMD:C_0603_1608Metric")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "C37")
+        (field
+          (name "SKiDL Line") "solartron_7075_interface.py:124"))
+      (libsource
+        (lib "Device")
+        (part "C"))
+      (sheetpath
+        (names "/opto_U9/")
+        (tstamps "/c6523693-d11a-5a7b-b566-693bc328f470/"))
+      (component_classes)
+      (tstamps "72c0317a-5f1b-58b6-b008-387adaeb4cee"))
+    (comp
+      (ref "C4")
+      (value "10u")
+      (description "Unpolarized capacitor")
+      (footprint "Capacitor_SMD:C_0603_1608Metric")
+      (fields
+        (field
+          (name "LCSC") "C19702")
+        (field
+          (name "MPN") "CL10A106KP8NNNC")
+        (field
+          (name "Manufacturer") "Samsung")
+        (field
+          (name "Description") "Unpolarized capacitor")
+        (field
+          (name "Footprint") "Capacitor_SMD:C_0603_1608Metric")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "C4")
+        (field
+          (name "SKiDL Line") "solartron_7075_interface.py:124"))
+      (libsource
+        (lib "Device")
+        (part "C"))
+      (sheetpath
+        (names "/usb/")
+        (tstamps "/2500deb9-bb4c-5b15-b8e0-5232ce6d6f19/"))
+      (component_classes)
+      (tstamps "bad02925-9330-5c1f-a444-e1837425a435"))
+    (comp
+      (ref "C5")
+      (value "100n")
+      (description "Unpolarized capacitor")
+      (footprint "Capacitor_SMD:C_0402_1005Metric")
+      (fields
+        (field
+          (name "LCSC") "C1525")
+        (field
+          (name "MPN") "CL05B104KO5NNNC")
+        (field
+          (name "Manufacturer") "Samsung")
+        (field
+          (name "Description") "Unpolarized capacitor")
+        (field
+          (name "Footprint") "Capacitor_SMD:C_0402_1005Metric")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "C5")
+        (field
+          (name "SKiDL Line") "solartron_7075_interface.py:124"))
+      (libsource
+        (lib "Device")
+        (part "C"))
+      (sheetpath
+        (names "/mcu/")
+        (tstamps "/ad3342b0-03e3-5e36-8315-3fae0a0761fa/"))
+      (component_classes)
+      (tstamps "fe976cc3-6963-5d67-a15d-37e4f93017d8"))
+    (comp
+      (ref "C6")
+      (value "100n")
+      (description "Unpolarized capacitor")
+      (footprint "Capacitor_SMD:C_0402_1005Metric")
+      (fields
+        (field
+          (name "LCSC") "C1525")
+        (field
+          (name "MPN") "CL05B104KO5NNNC")
+        (field
+          (name "Manufacturer") "Samsung")
+        (field
+          (name "Description") "Unpolarized capacitor")
+        (field
+          (name "Footprint") "Capacitor_SMD:C_0402_1005Metric")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "C6")
+        (field
+          (name "SKiDL Line") "solartron_7075_interface.py:124"))
+      (libsource
+        (lib "Device")
+        (part "C"))
+      (sheetpath
+        (names "/mcu/")
+        (tstamps "/ad3342b0-03e3-5e36-8315-3fae0a0761fa/"))
+      (component_classes)
+      (tstamps "c1d62125-7b09-5c0b-b3a7-24ac7c534e75"))
+    (comp
+      (ref "C7")
+      (value "100n")
+      (description "Unpolarized capacitor")
+      (footprint "Capacitor_SMD:C_0402_1005Metric")
+      (fields
+        (field
+          (name "LCSC") "C1525")
+        (field
+          (name "MPN") "CL05B104KO5NNNC")
+        (field
+          (name "Manufacturer") "Samsung")
+        (field
+          (name "Description") "Unpolarized capacitor")
+        (field
+          (name "Footprint") "Capacitor_SMD:C_0402_1005Metric")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "C7")
+        (field
+          (name "SKiDL Line") "solartron_7075_interface.py:124"))
+      (libsource
+        (lib "Device")
+        (part "C"))
+      (sheetpath
+        (names "/mcu/")
+        (tstamps "/ad3342b0-03e3-5e36-8315-3fae0a0761fa/"))
+      (component_classes)
+      (tstamps "e4c77db3-76b1-5222-84da-d67f445a065d"))
+    (comp
+      (ref "C8")
+      (value "100n")
+      (description "Unpolarized capacitor")
+      (footprint "Capacitor_SMD:C_0402_1005Metric")
+      (fields
+        (field
+          (name "LCSC") "C1525")
+        (field
+          (name "MPN") "CL05B104KO5NNNC")
+        (field
+          (name "Manufacturer") "Samsung")
+        (field
+          (name "Description") "Unpolarized capacitor")
+        (field
+          (name "Footprint") "Capacitor_SMD:C_0402_1005Metric")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "C8")
+        (field
+          (name "SKiDL Line") "solartron_7075_interface.py:124"))
+      (libsource
+        (lib "Device")
+        (part "C"))
+      (sheetpath
+        (names "/mcu/")
+        (tstamps "/ad3342b0-03e3-5e36-8315-3fae0a0761fa/"))
+      (component_classes)
+      (tstamps "67dd7d0c-f5c0-56eb-b62e-ab0d3fd3f337"))
+    (comp
+      (ref "C9")
+      (value "100n")
+      (description "Unpolarized capacitor")
+      (footprint "Capacitor_SMD:C_0402_1005Metric")
+      (fields
+        (field
+          (name "LCSC") "C1525")
+        (field
+          (name "MPN") "CL05B104KO5NNNC")
+        (field
+          (name "Manufacturer") "Samsung")
+        (field
+          (name "Description") "Unpolarized capacitor")
+        (field
+          (name "Footprint") "Capacitor_SMD:C_0402_1005Metric")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "C9")
+        (field
+          (name "SKiDL Line") "solartron_7075_interface.py:124"))
+      (libsource
+        (lib "Device")
+        (part "C"))
+      (sheetpath
+        (names "/mcu/")
+        (tstamps "/ad3342b0-03e3-5e36-8315-3fae0a0761fa/"))
+      (component_classes)
+      (tstamps "e4c1d7c0-5222-5a5a-9bbe-40708d105a9c"))
+    (comp
+      (ref "D1")
+      (value "green")
+      (description "Light emitting diode")
+      (footprint "LED_SMD:LED_0603_1608Metric")
+      (fields
+        (field
+          (name "LCSC") "C125094")
+        (field
+          (name "MPN") "LTST-C190KGKT")
+        (field
+          (name "Manufacturer") "Lite-On")
+        (field
+          (name "Description") "Light emitting diode")
+        (field
+          (name "Footprint") "LED_SMD:LED_0603_1608Metric")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "D1")
+        (field
+          (name "SKiDL Line") "solartron_7075_interface.py:137"))
+      (libsource
+        (lib "Device")
+        (part "LED"))
+      (sheetpath
+        (names "/usb/")
+        (tstamps "/2500deb9-bb4c-5b15-b8e0-5232ce6d6f19/"))
+      (component_classes)
+      (tstamps "86f05435-b1fd-594e-9e58-1a4815fd3966"))
+    (comp
+      (ref "D2")
+      (value "green")
+      (description "Light emitting diode")
+      (footprint "LED_SMD:LED_0603_1608Metric")
+      (fields
+        (field
+          (name "LCSC") "C125094")
+        (field
+          (name "MPN") "LTST-C190KGKT")
+        (field
+          (name "Manufacturer") "Lite-On")
+        (field
+          (name "Description") "Light emitting diode")
+        (field
+          (name "Footprint") "LED_SMD:LED_0603_1608Metric")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "D2")
+        (field
+          (name "SKiDL Line") "solartron_7075_interface.py:137"))
+      (libsource
+        (lib "Device")
+        (part "LED"))
+      (sheetpath
+        (names "/mcu/")
+        (tstamps "/ad3342b0-03e3-5e36-8315-3fae0a0761fa/"))
+      (component_classes)
+      (tstamps "39684b44-b6b2-51ab-9ca3-b4ff0ac9776d"))
+    (comp
+      (ref "D3")
+      (value "green")
+      (description "Light emitting diode")
+      (footprint "LED_SMD:LED_0603_1608Metric")
+      (fields
+        (field
+          (name "LCSC") "C125094")
+        (field
+          (name "MPN") "LTST-C190KGKT")
+        (field
+          (name "Manufacturer") "Lite-On")
+        (field
+          (name "Description") "Light emitting diode")
+        (field
+          (name "Footprint") "LED_SMD:LED_0603_1608Metric")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "D3")
+        (field
+          (name "SKiDL Line") "solartron_7075_interface.py:137"))
+      (libsource
+        (lib "Device")
+        (part "LED"))
+      (sheetpath
+        (names "/iso_pwr/")
+        (tstamps "/9b867fd0-0184-58ed-9a8b-e8a849348ccd/"))
+      (component_classes)
+      (tstamps "c7b3c04b-e00b-5a06-a52e-21b763e3b315"))
+    (comp
+      (ref "D4")
+      (value "red")
+      (description "Light emitting diode")
+      (footprint "LED_SMD:LED_0603_1608Metric")
+      (fields
+        (field
+          (name "LCSC") "C2286")
+        (field
+          (name "MPN") "KT-0603R")
+        (field
+          (name "Manufacturer") "Hubei KENTO")
+        (field
+          (name "Description") "Light emitting diode")
+        (field
+          (name "Footprint") "LED_SMD:LED_0603_1608Metric")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "D4")
+        (field
+          (name "SKiDL Line") "solartron_7075_interface.py:137"))
+      (libsource
+        (lib "Device")
+        (part "LED"))
+      (sheetpath
+        (names "/sr_out/")
+        (tstamps "/59ee197e-28f7-5b7a-9b84-f25c8a83ec50/"))
+      (component_classes)
+      (tstamps "bb52a4f6-b2f9-53eb-adab-7cbab16c5bc6"))
+    (comp
+      (ref "F1")
+      (value "500mA")
+      (description "Resettable fuse, polymeric positive temperature coefficient")
+      (footprint "Fuse:Fuse_1206_3216Metric")
+      (fields
+        (field
+          (name "LCSC") "C20799")
+        (field
+          (name "MPN") "SMD1206P050TF")
+        (field
+          (name "Manufacturer") "RUILON")
+        (field
+          (name "Description") "Resettable fuse, polymeric positive temperature coefficient")
+        (field
+          (name "Footprint") "Fuse:Fuse_1206_3216Metric")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "F1")
+        (field
+          (name "SKiDL Line") "solartron_7075_interface.py:237"))
+      (libsource
+        (lib "Device")
+        (part "Polyfuse"))
+      (sheetpath
+        (names "/usb/")
+        (tstamps "/2500deb9-bb4c-5b15-b8e0-5232ce6d6f19/"))
+      (component_classes)
+      (tstamps "fe831c6f-41ca-5f53-b522-034847e2fba5"))
+    (comp
+      (ref "J1")
+      (value "DD-50 plug")
+      (description "50-pin D-Sub (DD-50) connector, pins (male), shell/mounting holes on pin SH")
+      (footprint "Solartron7075:DSUB-50_Pins_Vertical_P2.77x2.84mm_MountingHoles")
+      (fields
+        (field
+          (name "LCSC") "C17502305")
+        (field
+          (name "MPN") "D50P24A4PA00LF")
+        (field
+          (name "Manufacturer") "Amphenol ICC")
+        (field
+          (name "Description") "50-pin D-Sub (DD-50) connector, pins (male), shell/mounting holes on pin SH")
+        (field
+          (name "Footprint") "Solartron7075:DSUB-50_Pins_Vertical_P2.77x2.84mm_MountingHoles")
+        (field
+          (name "Datasheet") "https://www.amphenol-icc.com/media/wysiwyg/files/documentation/datasheet/inputoutput/io_dsub_signal_pcb_deltad.pdf")
+        (field
+          (name "SKiDL Tag") "J1")
+        (field
+          (name "SKiDL Line") "solartron_7075_interface.py:560"))
+      (libsource
+        (lib "Solartron7075")
+        (part "DD50_Pins_MountingHoles"))
+      (sheetpath
+        (names "/meter/")
+        (tstamps "/b829eab6-1a6b-5ffb-8776-8affd198506e/"))
+      (component_classes)
+      (tstamps "90d6ced1-64c4-5bd2-a148-f84c101c72f6"))
+    (comp
+      (ref "J2")
+      (value "USB_B")
+      (description "USB Type B connector")
+      (footprint "Connector_USB:USB_B_TE_5787834_Vertical")
+      (fields
+        (field
+          (name "LCSC") "C592900")
+        (field
+          (name "MPN") "5787834-1")
+        (field
+          (name "Manufacturer") "TE Connectivity")
+        (field
+          (name "Description") "USB Type B connector")
+        (field
+          (name "Footprint") "Connector_USB:USB_B_TE_5787834_Vertical")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "J2")
+        (field
+          (name "SKiDL Line") "solartron_7075_interface.py:222"))
+      (libsource
+        (lib "Connector")
+        (part "USB_B"))
+      (sheetpath
+        (names "/usb/")
+        (tstamps "/2500deb9-bb4c-5b15-b8e0-5232ce6d6f19/"))
+      (component_classes)
+      (tstamps "a055fbad-0407-58f7-becc-8901df59eec9"))
+    (comp
+      (ref "J3")
+      (value "SWD")
+      (description "Generic connector, single row, 01x03, script generated (kicad-library-utils/schlib/autogen/connector/)")
+      (footprint "Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical")
+      (fields
+        (field
+          (name "LCSC") "C2937625")
+        (field
+          (name "MPN") "PZ254V-11-03P")
+        (field
+          (name "Manufacturer") "XFCN")
+        (field
+          (name "Description") "Generic connector, single row, 01x03, script generated (kicad-library-utils/schlib/autogen/connector/)")
+        (field
+          (name "Footprint") "Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "J3")
+        (field
+          (name "SKiDL Line") "solartron_7075_interface.py:353"))
+      (libsource
+        (lib "Connector_Generic")
+        (part "Conn_01x03"))
+      (sheetpath
+        (names "/mcu/")
+        (tstamps "/ad3342b0-03e3-5e36-8315-3fae0a0761fa/"))
+      (component_classes)
+      (tstamps "9c38f23d-6e5c-516f-ae9a-837d832e72cc"))
+    (comp
+      (ref "L1")
+      (value "3.3uH")
+      (description "Inductor")
+      (footprint "Inductor_SMD:L_Murata_DFE201610P")
+      (fields
+        (field
+          (name "LCSC") "C42411119")
+        (field
+          (name "MPN") "AOTA-B201610S3R3-101-T")
+        (field
+          (name "Manufacturer") "Abracon")
+        (field
+          (name "Description") "Inductor")
+        (field
+          (name "Footprint") "Inductor_SMD:L_Murata_DFE201610P")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "L1")
+        (field
+          (name "SKiDL Line") "solartron_7075_interface.py:295"))
+      (libsource
+        (lib "Device")
+        (part "L"))
+      (sheetpath
+        (names "/mcu/")
+        (tstamps "/ad3342b0-03e3-5e36-8315-3fae0a0761fa/"))
+      (component_classes)
+      (tstamps "1c5a91e3-ea67-5be1-a010-3c1febfcce48"))
+    (comp
+      (ref "PS1")
+      (value "B0509S-1WR3")
+      (description "1W, 1000 VDC isolated DC/DC converter, 5V input, 9V output, SIP")
+      (footprint "Converter_DCDC:Converter_DCDC_Murata_MEE1SxxxxSC_THT")
+      (fields
+        (field
+          (name "LCSC") "C7500906")
+        (field
+          (name "MPN") "B0509S-1WR3")
+        (field
+          (name "Manufacturer") "EVISUN")
+        (field
+          (name "Description") "1W, 1000 VDC isolated DC/DC converter, 5V input, 9V output, SIP")
+        (field
+          (name "Footprint") "Converter_DCDC:Converter_DCDC_Murata_MEE1SxxxxSC_THT")
+        (field
+          (name "Datasheet") "https://pim.murata.com/asset/pim4/isolatedDCDCconverter/KDC_MEE1_PDF_ISOLATEDDCDCCONVERTER")
+        (field
+          (name "SKiDL Tag") "PS1")
+        (field
+          (name "SKiDL Line") "solartron_7075_interface.py:408"))
+      (libsource
+        (lib "Converter_DCDC_Isolated")
+        (part "MEE1S0509SC"))
+      (sheetpath
+        (names "/iso_pwr/")
+        (tstamps "/9b867fd0-0184-58ed-9a8b-e8a849348ccd/"))
+      (component_classes)
+      (tstamps "09ba9123-83f3-55fb-82a4-27ce30a40602"))
+    (comp
+      (ref "Q1")
+      (value "2N7002")
+      (description "0.115A Id, 60V Vds, N-Channel MOSFET, SOT-23")
+      (footprint "Package_TO_SOT_SMD:SOT-23")
+      (fields
+        (field
+          (name "LCSC") "C8545")
+        (field
+          (name "MPN") "2N7002")
+        (field
+          (name "Manufacturer") "CJ")
+        (field
+          (name "Description") "0.115A Id, 60V Vds, N-Channel MOSFET, SOT-23")
+        (field
+          (name "Footprint") "Package_TO_SOT_SMD:SOT-23")
+        (field
+          (name "Datasheet") "https://www.onsemi.com/pub/Collateral/NDS7002A-D.PDF")
+        (field
+          (name "SKiDL Tag") "Q1")
+        (field
+          (name "SKiDL Line") "solartron_7075_interface.py:540"))
+      (libsource
+        (lib "Transistor_FET")
+        (part "2N7002"))
+      (sheetpath
+        (names "/sr_out/")
+        (tstamps "/59ee197e-28f7-5b7a-9b84-f25c8a83ec50/"))
+      (component_classes)
+      (tstamps "7b70cf49-5aa2-5a35-80c1-a6f6c929828e"))
+    (comp
+      (ref "R1")
+      (value "1M")
+      (description "Resistor")
+      (footprint "Resistor_SMD:R_0603_1608Metric")
+      (fields
+        (field
+          (name "LCSC") "C22935")
+        (field
+          (name "MPN") "0603WAF1004T5E")
+        (field
+          (name "Manufacturer") "UNI-ROYAL")
+        (field
+          (name "Description") "Resistor")
+        (field
+          (name "Footprint") "Resistor_SMD:R_0603_1608Metric")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "R1")
+        (field
+          (name "SKiDL Line") "solartron_7075_interface.py:118"))
+      (libsource
+        (lib "Device")
+        (part "R"))
+      (sheetpath
+        (names "/usb/")
+        (tstamps "/2500deb9-bb4c-5b15-b8e0-5232ce6d6f19/"))
+      (component_classes)
+      (tstamps "6ee786e6-012f-5206-8342-a42c69fefa7b"))
+    (comp
+      (ref "R10")
+      (value "2.2k")
+      (description "Resistor")
+      (footprint "Resistor_SMD:R_0603_1608Metric")
+      (fields
+        (field
+          (name "LCSC") "C4190")
+        (field
+          (name "MPN") "0603WAF2201T5E")
+        (field
+          (name "Manufacturer") "UNI-ROYAL")
+        (field
+          (name "Description") "Resistor")
+        (field
+          (name "Footprint") "Resistor_SMD:R_0603_1608Metric")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "R10")
+        (field
+          (name "SKiDL Line") "solartron_7075_interface.py:118"))
+      (libsource
+        (lib "Device")
+        (part "R"))
+      (sheetpath
+        (names "/iso_pwr/")
+        (tstamps "/9b867fd0-0184-58ed-9a8b-e8a849348ccd/"))
+      (component_classes)
+      (tstamps "b2261707-e8be-5f82-9ee8-a5dac9c99edd"))
+    (comp
+      (ref "R11")
+      (value "1k")
+      (description "Resistor")
+      (footprint "Resistor_SMD:R_0603_1608Metric")
+      (fields
+        (field
+          (name "LCSC") "C21190")
+        (field
+          (name "MPN") "0603WAF1001T5E")
+        (field
+          (name "Manufacturer") "UNI-ROYAL")
+        (field
+          (name "Description") "Resistor")
+        (field
+          (name "Footprint") "Resistor_SMD:R_0603_1608Metric")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "R11")
+        (field
+          (name "SKiDL Line") "solartron_7075_interface.py:118"))
+      (libsource
+        (lib "Device")
+        (part "R"))
+      (sheetpath
+        (names "/iso_pwr/")
+        (tstamps "/9b867fd0-0184-58ed-9a8b-e8a849348ccd/"))
+      (component_classes)
+      (tstamps "d3a5d128-ed0a-51b5-982a-980288bc7d18"))
+    (comp
+      (ref "R12")
+      (value "100k")
+      (description "Resistor")
+      (footprint "Resistor_SMD:R_0603_1608Metric")
+      (fields
+        (field
+          (name "LCSC") "C25803")
+        (field
+          (name "MPN") "0603WAF1003T5E")
+        (field
+          (name "Manufacturer") "UNI-ROYAL")
+        (field
+          (name "Description") "Resistor")
+        (field
+          (name "Footprint") "Resistor_SMD:R_0603_1608Metric")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "R12")
+        (field
+          (name "SKiDL Line") "solartron_7075_interface.py:118"))
+      (libsource
+        (lib "Device")
+        (part "R"))
+      (sheetpath
+        (names "/sr_out/")
+        (tstamps "/59ee197e-28f7-5b7a-9b84-f25c8a83ec50/"))
+      (component_classes)
+      (tstamps "868fd063-1eaf-5b7b-97bf-18fd1b3a2969"))
+    (comp
+      (ref "R13")
+      (value "1k")
+      (description "Resistor")
+      (footprint "Resistor_SMD:R_0603_1608Metric")
+      (fields
+        (field
+          (name "LCSC") "C21190")
+        (field
+          (name "MPN") "0603WAF1001T5E")
+        (field
+          (name "Manufacturer") "UNI-ROYAL")
+        (field
+          (name "Description") "Resistor")
+        (field
+          (name "Footprint") "Resistor_SMD:R_0603_1608Metric")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "R13")
+        (field
+          (name "SKiDL Line") "solartron_7075_interface.py:118"))
+      (libsource
+        (lib "Device")
+        (part "R"))
+      (sheetpath
+        (names "/sr_out/")
+        (tstamps "/59ee197e-28f7-5b7a-9b84-f25c8a83ec50/"))
+      (component_classes)
+      (tstamps "a55a6e08-cbe6-59e4-a3f8-3e990f96539f"))
+    (comp
+      (ref "R14")
+      (value "390")
+      (description "Resistor")
+      (footprint "Resistor_SMD:R_0603_1608Metric")
+      (fields
+        (field
+          (name "LCSC") "C23151")
+        (field
+          (name "MPN") "0603WAF3900T5E")
+        (field
+          (name "Manufacturer") "UNI-ROYAL")
+        (field
+          (name "Description") "Resistor")
+        (field
+          (name "Footprint") "Resistor_SMD:R_0603_1608Metric")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "R14")
+        (field
+          (name "SKiDL Line") "solartron_7075_interface.py:118"))
+      (libsource
+        (lib "Device")
+        (part "R"))
+      (sheetpath
+        (names "/opto_U5/")
+        (tstamps "/8d9ee159-9b07-51f2-95ac-2dc66fa08467/"))
+      (component_classes)
+      (tstamps "de443092-59ef-51de-8d22-83131e5813ca"))
+    (comp
+      (ref "R15")
+      (value "390")
+      (description "Resistor")
+      (footprint "Resistor_SMD:R_0603_1608Metric")
+      (fields
+        (field
+          (name "LCSC") "C23151")
+        (field
+          (name "MPN") "0603WAF3900T5E")
+        (field
+          (name "Manufacturer") "UNI-ROYAL")
+        (field
+          (name "Description") "Resistor")
+        (field
+          (name "Footprint") "Resistor_SMD:R_0603_1608Metric")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "R15")
+        (field
+          (name "SKiDL Line") "solartron_7075_interface.py:118"))
+      (libsource
+        (lib "Device")
+        (part "R"))
+      (sheetpath
+        (names "/opto_U6/")
+        (tstamps "/4db410a7-35e4-52d1-8275-e2e02d739150/"))
+      (component_classes)
+      (tstamps "52b9217a-c7e9-5cb1-b1f9-cec12dcfc4a0"))
+    (comp
+      (ref "R16")
+      (value "390")
+      (description "Resistor")
+      (footprint "Resistor_SMD:R_0603_1608Metric")
+      (fields
+        (field
+          (name "LCSC") "C23151")
+        (field
+          (name "MPN") "0603WAF3900T5E")
+        (field
+          (name "Manufacturer") "UNI-ROYAL")
+        (field
+          (name "Description") "Resistor")
+        (field
+          (name "Footprint") "Resistor_SMD:R_0603_1608Metric")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "R16")
+        (field
+          (name "SKiDL Line") "solartron_7075_interface.py:118"))
+      (libsource
+        (lib "Device")
+        (part "R"))
+      (sheetpath
+        (names "/opto_U7/")
+        (tstamps "/236ecb4d-8310-53ed-9ed4-d7df6c9d2f2d/"))
+      (component_classes)
+      (tstamps "f722a527-2826-559d-84ca-21713cd74aeb"))
+    (comp
+      (ref "R17")
+      (value "390")
+      (description "Resistor")
+      (footprint "Resistor_SMD:R_0603_1608Metric")
+      (fields
+        (field
+          (name "LCSC") "C23151")
+        (field
+          (name "MPN") "0603WAF3900T5E")
+        (field
+          (name "Manufacturer") "UNI-ROYAL")
+        (field
+          (name "Description") "Resistor")
+        (field
+          (name "Footprint") "Resistor_SMD:R_0603_1608Metric")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "R17")
+        (field
+          (name "SKiDL Line") "solartron_7075_interface.py:118"))
+      (libsource
+        (lib "Device")
+        (part "R"))
+      (sheetpath
+        (names "/opto_U8/")
+        (tstamps "/e421a17b-f92b-5d76-b9ba-2004b867c3a3/"))
+      (component_classes)
+      (tstamps "9b2443b5-da75-5300-a6f9-7ae719a2a830"))
+    (comp
+      (ref "R18")
+      (value "820")
+      (description "Resistor")
+      (footprint "Resistor_SMD:R_0603_1608Metric")
+      (fields
+        (field
+          (name "LCSC") "C23253")
+        (field
+          (name "MPN") "0603WAF8200T5E")
+        (field
+          (name "Manufacturer") "UNI-ROYAL")
+        (field
+          (name "Description") "Resistor")
+        (field
+          (name "Footprint") "Resistor_SMD:R_0603_1608Metric")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "R18")
+        (field
+          (name "SKiDL Line") "solartron_7075_interface.py:118"))
+      (libsource
+        (lib "Device")
+        (part "R"))
+      (sheetpath
+        (names "/opto_U9/")
+        (tstamps "/c6523693-d11a-5a7b-b566-693bc328f470/"))
+      (component_classes)
+      (tstamps "8fd72f04-21a3-5a68-9be8-21af125b3d42"))
+    (comp
+      (ref "R2")
+      (value "1k")
+      (description "Resistor")
+      (footprint "Resistor_SMD:R_0603_1608Metric")
+      (fields
+        (field
+          (name "LCSC") "C21190")
+        (field
+          (name "MPN") "0603WAF1001T5E")
+        (field
+          (name "Manufacturer") "UNI-ROYAL")
+        (field
+          (name "Description") "Resistor")
+        (field
+          (name "Footprint") "Resistor_SMD:R_0603_1608Metric")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "R2")
+        (field
+          (name "SKiDL Line") "solartron_7075_interface.py:118"))
+      (libsource
+        (lib "Device")
+        (part "R"))
+      (sheetpath
+        (names "/usb/")
+        (tstamps "/2500deb9-bb4c-5b15-b8e0-5232ce6d6f19/"))
+      (component_classes)
+      (tstamps "12ead267-269a-585d-b500-5c7367771ff0"))
+    (comp
+      (ref "R3")
+      (value "33")
+      (description "Resistor")
+      (footprint "Resistor_SMD:R_0402_1005Metric")
+      (fields
+        (field
+          (name "LCSC") "C25105")
+        (field
+          (name "MPN") "0402WGF330JTCE")
+        (field
+          (name "Manufacturer") "UNI-ROYAL")
+        (field
+          (name "Description") "Resistor")
+        (field
+          (name "Footprint") "Resistor_SMD:R_0402_1005Metric")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "R3")
+        (field
+          (name "SKiDL Line") "solartron_7075_interface.py:118"))
+      (libsource
+        (lib "Device")
+        (part "R"))
+      (sheetpath
+        (names "/mcu/")
+        (tstamps "/ad3342b0-03e3-5e36-8315-3fae0a0761fa/"))
+      (component_classes)
+      (tstamps "887f27cc-e222-5eef-9418-acc84b281b20"))
+    (comp
+      (ref "R4")
+      (value "1k")
+      (description "Resistor")
+      (footprint "Resistor_SMD:R_0402_1005Metric")
+      (fields
+        (field
+          (name "LCSC") "C11702")
+        (field
+          (name "MPN") "0402WGF1001TCE")
+        (field
+          (name "Manufacturer") "UNI-ROYAL")
+        (field
+          (name "Description") "Resistor")
+        (field
+          (name "Footprint") "Resistor_SMD:R_0402_1005Metric")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "R4")
+        (field
+          (name "SKiDL Line") "solartron_7075_interface.py:118"))
+      (libsource
+        (lib "Device")
+        (part "R"))
+      (sheetpath
+        (names "/mcu/")
+        (tstamps "/ad3342b0-03e3-5e36-8315-3fae0a0761fa/"))
+      (component_classes)
+      (tstamps "4d8df89b-3dfc-5cb8-a526-551276f759bc"))
+    (comp
+      (ref "R5")
+      (value "27")
+      (description "Resistor")
+      (footprint "Resistor_SMD:R_0402_1005Metric")
+      (fields
+        (field
+          (name "LCSC") "C25100")
+        (field
+          (name "MPN") "0402WGF270JTCE")
+        (field
+          (name "Manufacturer") "UNI-ROYAL")
+        (field
+          (name "Description") "Resistor")
+        (field
+          (name "Footprint") "Resistor_SMD:R_0402_1005Metric")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "R5")
+        (field
+          (name "SKiDL Line") "solartron_7075_interface.py:118"))
+      (libsource
+        (lib "Device")
+        (part "R"))
+      (sheetpath
+        (names "/mcu/")
+        (tstamps "/ad3342b0-03e3-5e36-8315-3fae0a0761fa/"))
+      (component_classes)
+      (tstamps "1d806461-b18f-529a-8cd5-28a4caba0dfd"))
+    (comp
+      (ref "R6")
+      (value "27")
+      (description "Resistor")
+      (footprint "Resistor_SMD:R_0402_1005Metric")
+      (fields
+        (field
+          (name "LCSC") "C25100")
+        (field
+          (name "MPN") "0402WGF270JTCE")
+        (field
+          (name "Manufacturer") "UNI-ROYAL")
+        (field
+          (name "Description") "Resistor")
+        (field
+          (name "Footprint") "Resistor_SMD:R_0402_1005Metric")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "R6")
+        (field
+          (name "SKiDL Line") "solartron_7075_interface.py:118"))
+      (libsource
+        (lib "Device")
+        (part "R"))
+      (sheetpath
+        (names "/mcu/")
+        (tstamps "/ad3342b0-03e3-5e36-8315-3fae0a0761fa/"))
+      (component_classes)
+      (tstamps "c01fcbdc-496d-50ca-b4bd-713ebc1a6638"))
+    (comp
+      (ref "R7")
+      (value "10k")
+      (description "Resistor")
+      (footprint "Resistor_SMD:R_0402_1005Metric")
+      (fields
+        (field
+          (name "LCSC") "C25744")
+        (field
+          (name "MPN") "0402WGF1002TCE")
+        (field
+          (name "Manufacturer") "UNI-ROYAL")
+        (field
+          (name "Description") "Resistor")
+        (field
+          (name "Footprint") "Resistor_SMD:R_0402_1005Metric")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "R7")
+        (field
+          (name "SKiDL Line") "solartron_7075_interface.py:118"))
+      (libsource
+        (lib "Device")
+        (part "R"))
+      (sheetpath
+        (names "/mcu/")
+        (tstamps "/ad3342b0-03e3-5e36-8315-3fae0a0761fa/"))
+      (component_classes)
+      (tstamps "c692d670-7e88-57a1-8288-fd2dd3f1ab7e"))
+    (comp
+      (ref "R8")
+      (value "1k")
+      (description "Resistor")
+      (footprint "Resistor_SMD:R_0402_1005Metric")
+      (fields
+        (field
+          (name "LCSC") "C11702")
+        (field
+          (name "MPN") "0402WGF1001TCE")
+        (field
+          (name "Manufacturer") "UNI-ROYAL")
+        (field
+          (name "Description") "Resistor")
+        (field
+          (name "Footprint") "Resistor_SMD:R_0402_1005Metric")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "R8")
+        (field
+          (name "SKiDL Line") "solartron_7075_interface.py:118"))
+      (libsource
+        (lib "Device")
+        (part "R"))
+      (sheetpath
+        (names "/mcu/")
+        (tstamps "/ad3342b0-03e3-5e36-8315-3fae0a0761fa/"))
+      (component_classes)
+      (tstamps "a0894c70-01f2-5bca-a7f6-cf186ecb17ae"))
+    (comp
+      (ref "R9")
+      (value "1k")
+      (description "Resistor")
+      (footprint "Resistor_SMD:R_0402_1005Metric")
+      (fields
+        (field
+          (name "LCSC") "C11702")
+        (field
+          (name "MPN") "0402WGF1001TCE")
+        (field
+          (name "Manufacturer") "UNI-ROYAL")
+        (field
+          (name "Description") "Resistor")
+        (field
+          (name "Footprint") "Resistor_SMD:R_0402_1005Metric")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "R9")
+        (field
+          (name "SKiDL Line") "solartron_7075_interface.py:118"))
+      (libsource
+        (lib "Device")
+        (part "R"))
+      (sheetpath
+        (names "/mcu/")
+        (tstamps "/ad3342b0-03e3-5e36-8315-3fae0a0761fa/"))
+      (component_classes)
+      (tstamps "daf2f914-5b8c-53ac-8f2d-c18bf153aa31"))
+    (comp
+      (ref "RN1")
+      (value "10k")
+      (description "4 resistor network, parallel topology")
+      (footprint "Resistor_SMD:R_Array_Convex_4x0603")
+      (fields
+        (field
+          (name "LCSC") "C29718")
+        (field
+          (name "MPN") "4D03WGJ0103T5E")
+        (field
+          (name "Manufacturer") "UNI-ROYAL")
+        (field
+          (name "Description") "4 resistor network, parallel topology")
+        (field
+          (name "Footprint") "Resistor_SMD:R_Array_Convex_4x0603")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "RN1")
+        (field
+          (name "SKiDL Line") "solartron_7075_interface.py:466"))
+      (libsource
+        (lib "Device")
+        (part "R_Pack04"))
+      (sheetpath
+        (names "/sr_in/")
+        (tstamps "/a2a23899-ca95-5d0b-b789-b7d214893621/"))
+      (component_classes)
+      (tstamps "ecb4796a-e6b7-52cb-a130-ec80a18472ac"))
+    (comp
+      (ref "RN2")
+      (value "10k")
+      (description "4 resistor network, parallel topology")
+      (footprint "Resistor_SMD:R_Array_Convex_4x0603")
+      (fields
+        (field
+          (name "LCSC") "C29718")
+        (field
+          (name "MPN") "4D03WGJ0103T5E")
+        (field
+          (name "Manufacturer") "UNI-ROYAL")
+        (field
+          (name "Description") "4 resistor network, parallel topology")
+        (field
+          (name "Footprint") "Resistor_SMD:R_Array_Convex_4x0603")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "RN2")
+        (field
+          (name "SKiDL Line") "solartron_7075_interface.py:466"))
+      (libsource
+        (lib "Device")
+        (part "R_Pack04"))
+      (sheetpath
+        (names "/sr_in/")
+        (tstamps "/a2a23899-ca95-5d0b-b789-b7d214893621/"))
+      (component_classes)
+      (tstamps "b8ac714a-79ea-5ab3-a716-d68e6cba62fd"))
+    (comp
+      (ref "RN3")
+      (value "10k")
+      (description "4 resistor network, parallel topology")
+      (footprint "Resistor_SMD:R_Array_Convex_4x0603")
+      (fields
+        (field
+          (name "LCSC") "C29718")
+        (field
+          (name "MPN") "4D03WGJ0103T5E")
+        (field
+          (name "Manufacturer") "UNI-ROYAL")
+        (field
+          (name "Description") "4 resistor network, parallel topology")
+        (field
+          (name "Footprint") "Resistor_SMD:R_Array_Convex_4x0603")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "RN3")
+        (field
+          (name "SKiDL Line") "solartron_7075_interface.py:466"))
+      (libsource
+        (lib "Device")
+        (part "R_Pack04"))
+      (sheetpath
+        (names "/sr_in/")
+        (tstamps "/a2a23899-ca95-5d0b-b789-b7d214893621/"))
+      (component_classes)
+      (tstamps "d15beb69-1246-50e4-a72b-3495e39af110"))
+    (comp
+      (ref "RN4")
+      (value "10k")
+      (description "4 resistor network, parallel topology")
+      (footprint "Resistor_SMD:R_Array_Convex_4x0603")
+      (fields
+        (field
+          (name "LCSC") "C29718")
+        (field
+          (name "MPN") "4D03WGJ0103T5E")
+        (field
+          (name "Manufacturer") "UNI-ROYAL")
+        (field
+          (name "Description") "4 resistor network, parallel topology")
+        (field
+          (name "Footprint") "Resistor_SMD:R_Array_Convex_4x0603")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "RN4")
+        (field
+          (name "SKiDL Line") "solartron_7075_interface.py:466"))
+      (libsource
+        (lib "Device")
+        (part "R_Pack04"))
+      (sheetpath
+        (names "/sr_in/")
+        (tstamps "/a2a23899-ca95-5d0b-b789-b7d214893621/"))
+      (component_classes)
+      (tstamps "80e0f567-de06-5eaf-937a-70065056d557"))
+    (comp
+      (ref "RN5")
+      (value "10k")
+      (description "4 resistor network, parallel topology")
+      (footprint "Resistor_SMD:R_Array_Convex_4x0603")
+      (fields
+        (field
+          (name "LCSC") "C29718")
+        (field
+          (name "MPN") "4D03WGJ0103T5E")
+        (field
+          (name "Manufacturer") "UNI-ROYAL")
+        (field
+          (name "Description") "4 resistor network, parallel topology")
+        (field
+          (name "Footprint") "Resistor_SMD:R_Array_Convex_4x0603")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "RN5")
+        (field
+          (name "SKiDL Line") "solartron_7075_interface.py:466"))
+      (libsource
+        (lib "Device")
+        (part "R_Pack04"))
+      (sheetpath
+        (names "/sr_in/")
+        (tstamps "/a2a23899-ca95-5d0b-b789-b7d214893621/"))
+      (component_classes)
+      (tstamps "2c7fa206-75ee-59ea-a3bf-a4caef327794"))
+    (comp
+      (ref "RN6")
+      (value "10k")
+      (description "4 resistor network, parallel topology")
+      (footprint "Resistor_SMD:R_Array_Convex_4x0603")
+      (fields
+        (field
+          (name "LCSC") "C29718")
+        (field
+          (name "MPN") "4D03WGJ0103T5E")
+        (field
+          (name "Manufacturer") "UNI-ROYAL")
+        (field
+          (name "Description") "4 resistor network, parallel topology")
+        (field
+          (name "Footprint") "Resistor_SMD:R_Array_Convex_4x0603")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "RN6")
+        (field
+          (name "SKiDL Line") "solartron_7075_interface.py:466"))
+      (libsource
+        (lib "Device")
+        (part "R_Pack04"))
+      (sheetpath
+        (names "/sr_in/")
+        (tstamps "/a2a23899-ca95-5d0b-b789-b7d214893621/"))
+      (component_classes)
+      (tstamps "3943d6bb-a988-55cf-bbf1-2b3e555e99eb"))
+    (comp
+      (ref "RN7")
+      (value "10k")
+      (description "4 resistor network, parallel topology")
+      (footprint "Resistor_SMD:R_Array_Convex_4x0603")
+      (fields
+        (field
+          (name "LCSC") "C29718")
+        (field
+          (name "MPN") "4D03WGJ0103T5E")
+        (field
+          (name "Manufacturer") "UNI-ROYAL")
+        (field
+          (name "Description") "4 resistor network, parallel topology")
+        (field
+          (name "Footprint") "Resistor_SMD:R_Array_Convex_4x0603")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "RN7")
+        (field
+          (name "SKiDL Line") "solartron_7075_interface.py:466"))
+      (libsource
+        (lib "Device")
+        (part "R_Pack04"))
+      (sheetpath
+        (names "/sr_in/")
+        (tstamps "/a2a23899-ca95-5d0b-b789-b7d214893621/"))
+      (component_classes)
+      (tstamps "911d61a6-b1f7-5ab5-a489-af8ff3aca581"))
+    (comp
+      (ref "RN8")
+      (value "10k")
+      (description "4 resistor network, parallel topology")
+      (footprint "Resistor_SMD:R_Array_Convex_4x0603")
+      (fields
+        (field
+          (name "LCSC") "C29718")
+        (field
+          (name "MPN") "4D03WGJ0103T5E")
+        (field
+          (name "Manufacturer") "UNI-ROYAL")
+        (field
+          (name "Description") "4 resistor network, parallel topology")
+        (field
+          (name "Footprint") "Resistor_SMD:R_Array_Convex_4x0603")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "RN8")
+        (field
+          (name "SKiDL Line") "solartron_7075_interface.py:466"))
+      (libsource
+        (lib "Device")
+        (part "R_Pack04"))
+      (sheetpath
+        (names "/sr_in/")
+        (tstamps "/a2a23899-ca95-5d0b-b789-b7d214893621/"))
+      (component_classes)
+      (tstamps "8fa22785-d9d8-5275-bdde-060ec3569367"))
+    (comp
+      (ref "RN9")
+      (value "10k")
+      (description "4 resistor network, parallel topology")
+      (footprint "Resistor_SMD:R_Array_Convex_4x0603")
+      (fields
+        (field
+          (name "LCSC") "C29718")
+        (field
+          (name "MPN") "4D03WGJ0103T5E")
+        (field
+          (name "Manufacturer") "UNI-ROYAL")
+        (field
+          (name "Description") "4 resistor network, parallel topology")
+        (field
+          (name "Footprint") "Resistor_SMD:R_Array_Convex_4x0603")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "RN9")
+        (field
+          (name "SKiDL Line") "solartron_7075_interface.py:466"))
+      (libsource
+        (lib "Device")
+        (part "R_Pack04"))
+      (sheetpath
+        (names "/sr_in/")
+        (tstamps "/a2a23899-ca95-5d0b-b789-b7d214893621/"))
+      (component_classes)
+      (tstamps "b780aa3f-aa88-533a-a9cc-3b0bd33bd140"))
+    (comp
+      (ref "SW1")
+      (value "BOOTSEL")
+      (description "Push button switch, generic, two pins")
+      (footprint "Button_Switch_SMD:SW_Push_1P1T_XKB_TS-1187A")
+      (fields
+        (field
+          (name "LCSC") "C318884")
+        (field
+          (name "MPN") "TS-1187A-B-A-B")
+        (field
+          (name "Manufacturer") "XKB Connection")
+        (field
+          (name "Description") "Push button switch, generic, two pins")
+        (field
+          (name "Footprint") "Button_Switch_SMD:SW_Push_1P1T_XKB_TS-1187A")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "SW1")
+        (field
+          (name "SKiDL Line") "solartron_7075_interface.py:344"))
+      (libsource
+        (lib "Switch")
+        (part "SW_Push"))
+      (sheetpath
+        (names "/mcu/")
+        (tstamps "/ad3342b0-03e3-5e36-8315-3fae0a0761fa/"))
+      (component_classes)
+      (tstamps "f04c69b5-e9c0-5837-9487-33689d6b82f5"))
+    (comp
+      (ref "SW2")
+      (value "RESET")
+      (description "Push button switch, generic, two pins")
+      (footprint "Button_Switch_SMD:SW_Push_1P1T_XKB_TS-1187A")
+      (fields
+        (field
+          (name "LCSC") "C318884")
+        (field
+          (name "MPN") "TS-1187A-B-A-B")
+        (field
+          (name "Manufacturer") "XKB Connection")
+        (field
+          (name "Description") "Push button switch, generic, two pins")
+        (field
+          (name "Footprint") "Button_Switch_SMD:SW_Push_1P1T_XKB_TS-1187A")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "SW2")
+        (field
+          (name "SKiDL Line") "solartron_7075_interface.py:335"))
+      (libsource
+        (lib "Switch")
+        (part "SW_Push"))
+      (sheetpath
+        (names "/mcu/")
+        (tstamps "/ad3342b0-03e3-5e36-8315-3fae0a0761fa/"))
+      (component_classes)
+      (tstamps "22fe5030-f264-5959-b052-c3c91233513a"))
+    (comp
+      (ref "U1")
+      (value "RP2354A")
+      (description "A microcontroller by Raspberry Pi, dual CPU architecture (ARM Cortex-M33 / RISC-V Hazard3), 150MHz, 2MB flash, 520KB SRAM, 12 PIO state machines, VQFN-60")
+      (footprint "Package_DFN_QFN:QFN-60-1EP_7x7mm_P0.4mm_EP3.4x3.4mm_ThermalVias")
+      (fields
+        (field
+          (name "LCSC") "C41378174")
+        (field
+          (name "MPN") "RP2354A")
+        (field
+          (name "Manufacturer") "Raspberry Pi")
+        (field
+          (name "Description") "A microcontroller by Raspberry Pi, dual CPU architecture (ARM Cortex-M33 / RISC-V Hazard3), 150MHz, 2MB flash, 520KB SRAM, 12 PIO state machines, VQFN-60")
+        (field
+          (name "Footprint") "Package_DFN_QFN:QFN-60-1EP_7x7mm_P0.4mm_EP3.4x3.4mm_ThermalVias")
+        (field
+          (name "Datasheet") "https://datasheets.raspberrypi.com/rp2350/rp2350-datasheet.pdf")
+        (field
+          (name "SKiDL Tag") "U1")
+        (field
+          (name "SKiDL Line") "solartron_7075_interface.py:271"))
+      (libsource
+        (lib "MCU_RaspberryPi")
+        (part "RP2354A"))
+      (sheetpath
+        (names "/mcu/")
+        (tstamps "/ad3342b0-03e3-5e36-8315-3fae0a0761fa/"))
+      (component_classes)
+      (tstamps "772463cc-e37e-5430-b0d2-81610a7800eb"))
+    (comp
+      (ref "U10")
+      (value "74HCT165")
+      (description "Shift Register, 8-bit, Parallel Load")
+      (footprint "Package_SO:SOIC-16_3.9x9.9mm_P1.27mm")
+      (fields
+        (field
+          (name "LCSC") "C456131")
+        (field
+          (name "MPN") "74HCT165D,653")
+        (field
+          (name "Manufacturer") "Nexperia")
+        (field
+          (name "Description") "Shift Register, 8-bit, Parallel Load")
+        (field
+          (name "Footprint") "Package_SO:SOIC-16_3.9x9.9mm_P1.27mm")
+        (field
+          (name "Datasheet") "https://assets.nexperia.com/documents/data-sheet/74HC_HCT165.pdf")
+        (field
+          (name "SKiDL Tag") "U10")
+        (field
+          (name "SKiDL Line") "solartron_7075_interface.py:475"))
+      (libsource
+        (lib "74xx")
+        (part "74HC165"))
+      (sheetpath
+        (names "/sr_in/")
+        (tstamps "/a2a23899-ca95-5d0b-b789-b7d214893621/"))
+      (component_classes)
+      (tstamps "35e368ba-2eb8-5596-9341-b78f6971f63c"))
+    (comp
+      (ref "U11")
+      (value "74HCT165")
+      (description "Shift Register, 8-bit, Parallel Load")
+      (footprint "Package_SO:SOIC-16_3.9x9.9mm_P1.27mm")
+      (fields
+        (field
+          (name "LCSC") "C456131")
+        (field
+          (name "MPN") "74HCT165D,653")
+        (field
+          (name "Manufacturer") "Nexperia")
+        (field
+          (name "Description") "Shift Register, 8-bit, Parallel Load")
+        (field
+          (name "Footprint") "Package_SO:SOIC-16_3.9x9.9mm_P1.27mm")
+        (field
+          (name "Datasheet") "https://assets.nexperia.com/documents/data-sheet/74HC_HCT165.pdf")
+        (field
+          (name "SKiDL Tag") "U11")
+        (field
+          (name "SKiDL Line") "solartron_7075_interface.py:475"))
+      (libsource
+        (lib "74xx")
+        (part "74HC165"))
+      (sheetpath
+        (names "/sr_in/")
+        (tstamps "/a2a23899-ca95-5d0b-b789-b7d214893621/"))
+      (component_classes)
+      (tstamps "f2be0298-f134-56ef-afe1-2f4f3ea91720"))
+    (comp
+      (ref "U12")
+      (value "74HCT165")
+      (description "Shift Register, 8-bit, Parallel Load")
+      (footprint "Package_SO:SOIC-16_3.9x9.9mm_P1.27mm")
+      (fields
+        (field
+          (name "LCSC") "C456131")
+        (field
+          (name "MPN") "74HCT165D,653")
+        (field
+          (name "Manufacturer") "Nexperia")
+        (field
+          (name "Description") "Shift Register, 8-bit, Parallel Load")
+        (field
+          (name "Footprint") "Package_SO:SOIC-16_3.9x9.9mm_P1.27mm")
+        (field
+          (name "Datasheet") "https://assets.nexperia.com/documents/data-sheet/74HC_HCT165.pdf")
+        (field
+          (name "SKiDL Tag") "U12")
+        (field
+          (name "SKiDL Line") "solartron_7075_interface.py:475"))
+      (libsource
+        (lib "74xx")
+        (part "74HC165"))
+      (sheetpath
+        (names "/sr_in/")
+        (tstamps "/a2a23899-ca95-5d0b-b789-b7d214893621/"))
+      (component_classes)
+      (tstamps "6092eeaf-f789-5ae6-a7d0-7a7be2636eba"))
+    (comp
+      (ref "U13")
+      (value "74HCT165")
+      (description "Shift Register, 8-bit, Parallel Load")
+      (footprint "Package_SO:SOIC-16_3.9x9.9mm_P1.27mm")
+      (fields
+        (field
+          (name "LCSC") "C456131")
+        (field
+          (name "MPN") "74HCT165D,653")
+        (field
+          (name "Manufacturer") "Nexperia")
+        (field
+          (name "Description") "Shift Register, 8-bit, Parallel Load")
+        (field
+          (name "Footprint") "Package_SO:SOIC-16_3.9x9.9mm_P1.27mm")
+        (field
+          (name "Datasheet") "https://assets.nexperia.com/documents/data-sheet/74HC_HCT165.pdf")
+        (field
+          (name "SKiDL Tag") "U13")
+        (field
+          (name "SKiDL Line") "solartron_7075_interface.py:475"))
+      (libsource
+        (lib "74xx")
+        (part "74HC165"))
+      (sheetpath
+        (names "/sr_in/")
+        (tstamps "/a2a23899-ca95-5d0b-b789-b7d214893621/"))
+      (component_classes)
+      (tstamps "40954902-fa11-5ec8-ae29-25b456aef621"))
+    (comp
+      (ref "U14")
+      (value "74HCT165")
+      (description "Shift Register, 8-bit, Parallel Load")
+      (footprint "Package_SO:SOIC-16_3.9x9.9mm_P1.27mm")
+      (fields
+        (field
+          (name "LCSC") "C456131")
+        (field
+          (name "MPN") "74HCT165D,653")
+        (field
+          (name "Manufacturer") "Nexperia")
+        (field
+          (name "Description") "Shift Register, 8-bit, Parallel Load")
+        (field
+          (name "Footprint") "Package_SO:SOIC-16_3.9x9.9mm_P1.27mm")
+        (field
+          (name "Datasheet") "https://assets.nexperia.com/documents/data-sheet/74HC_HCT165.pdf")
+        (field
+          (name "SKiDL Tag") "U14")
+        (field
+          (name "SKiDL Line") "solartron_7075_interface.py:475"))
+      (libsource
+        (lib "74xx")
+        (part "74HC165"))
+      (sheetpath
+        (names "/sr_in/")
+        (tstamps "/a2a23899-ca95-5d0b-b789-b7d214893621/"))
+      (component_classes)
+      (tstamps "50e646a4-e607-572e-8f10-910c9eda887e"))
+    (comp
+      (ref "U15")
+      (value "74HC595")
+      (description "8-bit serial in/out Shift Register 3-State Outputs")
+      (footprint "Package_SO:SOIC-16_3.9x9.9mm_P1.27mm")
+      (fields
+        (field
+          (name "LCSC") "C5947")
+        (field
+          (name "MPN") "74HC595D,118")
+        (field
+          (name "Manufacturer") "Nexperia")
+        (field
+          (name "Description") "8-bit serial in/out Shift Register 3-State Outputs")
+        (field
+          (name "Footprint") "Package_SO:SOIC-16_3.9x9.9mm_P1.27mm")
+        (field
+          (name "Datasheet") "http://www.ti.com/lit/ds/symlink/sn74hc595.pdf")
+        (field
+          (name "SKiDL Tag") "U15")
+        (field
+          (name "SKiDL Line") "solartron_7075_interface.py:505"))
+      (libsource
+        (lib "74xx")
+        (part "74HC595"))
+      (sheetpath
+        (names "/sr_out/")
+        (tstamps "/59ee197e-28f7-5b7a-9b84-f25c8a83ec50/"))
+      (component_classes)
+      (tstamps "b416f71f-b753-54e5-9ed4-cb5afebbcece"))
+    (comp
+      (ref "U16")
+      (value "74HC595")
+      (description "8-bit serial in/out Shift Register 3-State Outputs")
+      (footprint "Package_SO:SOIC-16_3.9x9.9mm_P1.27mm")
+      (fields
+        (field
+          (name "LCSC") "C5947")
+        (field
+          (name "MPN") "74HC595D,118")
+        (field
+          (name "Manufacturer") "Nexperia")
+        (field
+          (name "Description") "8-bit serial in/out Shift Register 3-State Outputs")
+        (field
+          (name "Footprint") "Package_SO:SOIC-16_3.9x9.9mm_P1.27mm")
+        (field
+          (name "Datasheet") "http://www.ti.com/lit/ds/symlink/sn74hc595.pdf")
+        (field
+          (name "SKiDL Tag") "U16")
+        (field
+          (name "SKiDL Line") "solartron_7075_interface.py:506"))
+      (libsource
+        (lib "74xx")
+        (part "74HC595"))
+      (sheetpath
+        (names "/sr_out/")
+        (tstamps "/59ee197e-28f7-5b7a-9b84-f25c8a83ec50/"))
+      (component_classes)
+      (tstamps "ad90c4ac-bdb9-514d-a7f2-c6fb2b04d06c"))
+    (comp
+      (ref "U2")
+      (value "AP2112K-3.3")
+      (description "600mA low dropout linear regulator, with enable pin, 3.8V-6V input voltage range, 3.3V fixed positive output, SOT-23-5")
+      (footprint "Package_TO_SOT_SMD:SOT-23-5")
+      (fields
+        (field
+          (name "LCSC") "C51118")
+        (field
+          (name "MPN") "AP2112K-3.3TRG1")
+        (field
+          (name "Manufacturer") "Diodes Incorporated")
+        (field
+          (name "Description") "600mA low dropout linear regulator, with enable pin, 3.8V-6V input voltage range, 3.3V fixed positive output, SOT-23-5")
+        (field
+          (name "Footprint") "Package_TO_SOT_SMD:SOT-23-5")
+        (field
+          (name "Datasheet") "https://www.diodes.com/assets/Datasheets/AP2112.pdf")
+        (field
+          (name "SKiDL Tag") "U2")
+        (field
+          (name "SKiDL Line") "solartron_7075_interface.py:252"))
+      (libsource
+        (lib "Regulator_Linear")
+        (part "AP2112K-3.3"))
+      (sheetpath
+        (names "/usb/")
+        (tstamps "/2500deb9-bb4c-5b15-b8e0-5232ce6d6f19/"))
+      (component_classes)
+      (tstamps "b206694a-f984-51a3-a759-3bc75499c411"))
+    (comp
+      (ref "U3")
+      (value "USBLC6-2SC6")
+      (description "Very low capacitance ESD protection diode, 2 data-line, SOT-23-6")
+      (footprint "Package_TO_SOT_SMD:SOT-23-6")
+      (fields
+        (field
+          (name "LCSC") "C7519")
+        (field
+          (name "MPN") "USBLC6-2SC6")
+        (field
+          (name "Manufacturer") "STMicroelectronics")
+        (field
+          (name "Description") "Very low capacitance ESD protection diode, 2 data-line, SOT-23-6")
+        (field
+          (name "Footprint") "Package_TO_SOT_SMD:SOT-23-6")
+        (field
+          (name "Datasheet") "https://www.st.com/resource/en/datasheet/usblc6-2.pdf")
+        (field
+          (name "SKiDL Tag") "U3")
+        (field
+          (name "SKiDL Line") "solartron_7075_interface.py:241"))
+      (libsource
+        (lib "Power_Protection")
+        (part "USBLC6-2SC6"))
+      (sheetpath
+        (names "/usb/")
+        (tstamps "/2500deb9-bb4c-5b15-b8e0-5232ce6d6f19/"))
+      (component_classes)
+      (tstamps "80a35ee2-49ab-5404-aab7-c51485acf272"))
+    (comp
+      (ref "U4")
+      (value "78L05")
+      (description "Positive 100mA 30V Linear Regulator, Fixed Output 5V, SOT-89")
+      (footprint "Package_TO_SOT_SMD:SOT-89-3")
+      (fields
+        (field
+          (name "LCSC") "C347258")
+        (field
+          (name "MPN") "78L05 (SOT-89)")
+        (field
+          (name "Manufacturer") "UMW")
+        (field
+          (name "Description") "Positive 100mA 30V Linear Regulator, Fixed Output 5V, SOT-89")
+        (field
+          (name "Footprint") "Package_TO_SOT_SMD:SOT-89-3")
+        (field
+          (name "Datasheet") "http://www.st.com/content/ccc/resource/technical/document/datasheet/15/55/e5/aa/23/5b/43/fd/CD00000446.pdf/files/CD00000446.pdf/jcr:content/translations/en.CD00000446.pdf")
+        (field
+          (name "SKiDL Tag") "U4")
+        (field
+          (name "SKiDL Line") "solartron_7075_interface.py:421"))
+      (libsource
+        (lib "Regulator_Linear")
+        (part "L78L05_SOT89"))
+      (sheetpath
+        (names "/iso_pwr/")
+        (tstamps "/9b867fd0-0184-58ed-9a8b-e8a849348ccd/"))
+      (component_classes)
+      (tstamps "e3797ab5-3b73-5c22-b129-89751acf4c3c"))
+    (comp
+      (ref "U5")
+      (value "TLP2361")
+      (description "5-Mbps low-power non inverting photocouple, 3.75 kVrms, 2.7 - 5.5 Vdd, push-pull output")
+      (footprint "Package_SO:Toshiba_SOIC-5-6_4.4x3.6mm_P1.27mm")
+      (fields
+        (field
+          (name "LCSC") "C107626")
+        (field
+          (name "MPN") "TLP2361(TPL,E")
+        (field
+          (name "Manufacturer") "Toshiba")
+        (field
+          (name "Description") "5-Mbps low-power non inverting photocouple, 3.75 kVrms, 2.7 - 5.5 Vdd, push-pull output")
+        (field
+          (name "Footprint") "Package_SO:Toshiba_SOIC-5-6_4.4x3.6mm_P1.27mm")
+        (field
+          (name "Datasheet") "https://toshiba.semicon-storage.com/info/TLP2310_datasheet_en_20220913.pdf?did=29657&prodName=TLP2310")
+        (field
+          (name "SKiDL Tag") "U5")
+        (field
+          (name "SKiDL Line") "solartron_7075_interface.py:392"))
+      (libsource
+        (lib "Isolator")
+        (part "TLP2310"))
+      (sheetpath
+        (names "/opto_U5/")
+        (tstamps "/8d9ee159-9b07-51f2-95ac-2dc66fa08467/"))
+      (component_classes)
+      (tstamps "dd401673-3c5f-5d33-81ba-6481d7c24b55"))
+    (comp
+      (ref "U6")
+      (value "TLP2361")
+      (description "5-Mbps low-power non inverting photocouple, 3.75 kVrms, 2.7 - 5.5 Vdd, push-pull output")
+      (footprint "Package_SO:Toshiba_SOIC-5-6_4.4x3.6mm_P1.27mm")
+      (fields
+        (field
+          (name "LCSC") "C107626")
+        (field
+          (name "MPN") "TLP2361(TPL,E")
+        (field
+          (name "Manufacturer") "Toshiba")
+        (field
+          (name "Description") "5-Mbps low-power non inverting photocouple, 3.75 kVrms, 2.7 - 5.5 Vdd, push-pull output")
+        (field
+          (name "Footprint") "Package_SO:Toshiba_SOIC-5-6_4.4x3.6mm_P1.27mm")
+        (field
+          (name "Datasheet") "https://toshiba.semicon-storage.com/info/TLP2310_datasheet_en_20220913.pdf?did=29657&prodName=TLP2310")
+        (field
+          (name "SKiDL Tag") "U6")
+        (field
+          (name "SKiDL Line") "solartron_7075_interface.py:392"))
+      (libsource
+        (lib "Isolator")
+        (part "TLP2310"))
+      (sheetpath
+        (names "/opto_U6/")
+        (tstamps "/4db410a7-35e4-52d1-8275-e2e02d739150/"))
+      (component_classes)
+      (tstamps "a9d31aea-b293-50d1-8280-1392fc6c5c57"))
+    (comp
+      (ref "U7")
+      (value "TLP2361")
+      (description "5-Mbps low-power non inverting photocouple, 3.75 kVrms, 2.7 - 5.5 Vdd, push-pull output")
+      (footprint "Package_SO:Toshiba_SOIC-5-6_4.4x3.6mm_P1.27mm")
+      (fields
+        (field
+          (name "LCSC") "C107626")
+        (field
+          (name "MPN") "TLP2361(TPL,E")
+        (field
+          (name "Manufacturer") "Toshiba")
+        (field
+          (name "Description") "5-Mbps low-power non inverting photocouple, 3.75 kVrms, 2.7 - 5.5 Vdd, push-pull output")
+        (field
+          (name "Footprint") "Package_SO:Toshiba_SOIC-5-6_4.4x3.6mm_P1.27mm")
+        (field
+          (name "Datasheet") "https://toshiba.semicon-storage.com/info/TLP2310_datasheet_en_20220913.pdf?did=29657&prodName=TLP2310")
+        (field
+          (name "SKiDL Tag") "U7")
+        (field
+          (name "SKiDL Line") "solartron_7075_interface.py:392"))
+      (libsource
+        (lib "Isolator")
+        (part "TLP2310"))
+      (sheetpath
+        (names "/opto_U7/")
+        (tstamps "/236ecb4d-8310-53ed-9ed4-d7df6c9d2f2d/"))
+      (component_classes)
+      (tstamps "646fddb5-23f8-5931-bd06-f98892333726"))
+    (comp
+      (ref "U8")
+      (value "TLP2361")
+      (description "5-Mbps low-power non inverting photocouple, 3.75 kVrms, 2.7 - 5.5 Vdd, push-pull output")
+      (footprint "Package_SO:Toshiba_SOIC-5-6_4.4x3.6mm_P1.27mm")
+      (fields
+        (field
+          (name "LCSC") "C107626")
+        (field
+          (name "MPN") "TLP2361(TPL,E")
+        (field
+          (name "Manufacturer") "Toshiba")
+        (field
+          (name "Description") "5-Mbps low-power non inverting photocouple, 3.75 kVrms, 2.7 - 5.5 Vdd, push-pull output")
+        (field
+          (name "Footprint") "Package_SO:Toshiba_SOIC-5-6_4.4x3.6mm_P1.27mm")
+        (field
+          (name "Datasheet") "https://toshiba.semicon-storage.com/info/TLP2310_datasheet_en_20220913.pdf?did=29657&prodName=TLP2310")
+        (field
+          (name "SKiDL Tag") "U8")
+        (field
+          (name "SKiDL Line") "solartron_7075_interface.py:392"))
+      (libsource
+        (lib "Isolator")
+        (part "TLP2310"))
+      (sheetpath
+        (names "/opto_U8/")
+        (tstamps "/e421a17b-f92b-5d76-b9ba-2004b867c3a3/"))
+      (component_classes)
+      (tstamps "f5fc7c07-89bd-508d-8b49-165ea4e0deba"))
+    (comp
+      (ref "U9")
+      (value "TLP2361")
+      (description "5-Mbps low-power non inverting photocouple, 3.75 kVrms, 2.7 - 5.5 Vdd, push-pull output")
+      (footprint "Package_SO:Toshiba_SOIC-5-6_4.4x3.6mm_P1.27mm")
+      (fields
+        (field
+          (name "LCSC") "C107626")
+        (field
+          (name "MPN") "TLP2361(TPL,E")
+        (field
+          (name "Manufacturer") "Toshiba")
+        (field
+          (name "Description") "5-Mbps low-power non inverting photocouple, 3.75 kVrms, 2.7 - 5.5 Vdd, push-pull output")
+        (field
+          (name "Footprint") "Package_SO:Toshiba_SOIC-5-6_4.4x3.6mm_P1.27mm")
+        (field
+          (name "Datasheet") "https://toshiba.semicon-storage.com/info/TLP2310_datasheet_en_20220913.pdf?did=29657&prodName=TLP2310")
+        (field
+          (name "SKiDL Tag") "U9")
+        (field
+          (name "SKiDL Line") "solartron_7075_interface.py:392"))
+      (libsource
+        (lib "Isolator")
+        (part "TLP2310"))
+      (sheetpath
+        (names "/opto_U9/")
+        (tstamps "/c6523693-d11a-5a7b-b566-693bc328f470/"))
+      (component_classes)
+      (tstamps "50ca6822-611b-5d42-9886-547caee597a8"))
+    (comp
+      (ref "Y1")
+      (value "12MHz")
+      (description "Four pin crystal, GND on pins 2 and 4")
+      (footprint "Crystal:Crystal_SMD_3225-4Pin_3.2x2.5mm")
+      (fields
+        (field
+          (name "LCSC") "C20625731")
+        (field
+          (name "MPN") "ABM8-272-T3")
+        (field
+          (name "Manufacturer") "Abracon")
+        (field
+          (name "Description") "Four pin crystal, GND on pins 2 and 4")
+        (field
+          (name "Footprint") "Crystal:Crystal_SMD_3225-4Pin_3.2x2.5mm")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "Y1")
+        (field
+          (name "SKiDL Line") "solartron_7075_interface.py:307"))
+      (libsource
+        (lib "Device")
+        (part "Crystal_GND24"))
+      (sheetpath
+        (names "/mcu/")
+        (tstamps "/ad3342b0-03e3-5e36-8315-3fae0a0761fa/"))
+      (component_classes)
+      (tstamps "90d2fbed-cb7a-596c-8e68-cc9d6c4ec83f")))
+  (nets
+    (net
+      (code 1)
+      (name "+1V1_DVDD")
+      (class "Default")
+      (node
+        (ref "C16")
+        (pin "1")
+        (pintype "PASSIVE"))
+      (node
+        (ref "C17")
+        (pin "1")
+        (pintype "PASSIVE"))
+      (node
+        (ref "C18")
+        (pin "1")
+        (pintype "PASSIVE"))
+      (node
+        (ref "C19")
+        (pin "1")
+        (pintype "PASSIVE"))
+      (node
+        (ref "L1")
+        (pin "2")
+        (pintype "PASSIVE"))
+      (node
+        (ref "U1")
+        (pin "23")
+        (pintype "PASSIVE"))
+      (node
+        (ref "U1")
+        (pin "39")
+        (pintype "PASSIVE"))
+      (node
+        (ref "U1")
+        (pin "50")
+        (pintype "PASSIVE"))
+      (node
+        (ref "U1")
+        (pin "6")
+        (pintype "POWER-IN")))
+    (net
+      (code 2)
+      (name "+3V3")
+      (class "Default")
+      (node
+        (ref "C10")
+        (pin "1")
+        (pintype "PASSIVE"))
+      (node
+        (ref "C11")
+        (pin "1")
+        (pintype "PASSIVE"))
+      (node
+        (ref "C12")
+        (pin "1")
+        (pintype "PASSIVE"))
+      (node
+        (ref "C13")
+        (pin "1")
+        (pintype "PASSIVE"))
+      (node
+        (ref "C14")
+        (pin "1")
+        (pintype "PASSIVE"))
+      (node
+        (ref "C37")
+        (pin "1")
+        (pintype "PASSIVE"))
+      (node
+        (ref "C4")
+        (pin "1")
+        (pintype "PASSIVE"))
+      (node
+        (ref "C5")
+        (pin "1")
+        (pintype "PASSIVE"))
+      (node
+        (ref "C6")
+        (pin "1")
+        (pintype "PASSIVE"))
+      (node
+        (ref "C7")
+        (pin "1")
+        (pintype "PASSIVE"))
+      (node
+        (ref "C8")
+        (pin "1")
+        (pintype "PASSIVE"))
+      (node
+        (ref "C9")
+        (pin "1")
+        (pintype "PASSIVE"))
+      (node
+        (ref "R14")
+        (pin "1")
+        (pintype "PASSIVE"))
+      (node
+        (ref "R15")
+        (pin "1")
+        (pintype "PASSIVE"))
+      (node
+        (ref "R16")
+        (pin "1")
+        (pintype "PASSIVE"))
+      (node
+        (ref "R17")
+        (pin "1")
+        (pintype "PASSIVE"))
+      (node
+        (ref "R2")
+        (pin "1")
+        (pintype "PASSIVE"))
+      (node
+        (ref "R3")
+        (pin "1")
+        (pintype "PASSIVE"))
+      (node
+        (ref "R7")
+        (pin "1")
+        (pintype "PASSIVE"))
+      (node
+        (ref "U1")
+        (pin "1")
+        (pintype "POWER-IN"))
+      (node
+        (ref "U1")
+        (pin "11")
+        (pintype "PASSIVE"))
+      (node
+        (ref "U1")
+        (pin "20")
+        (pintype "PASSIVE"))
+      (node
+        (ref "U1")
+        (pin "30")
+        (pintype "PASSIVE"))
+      (node
+        (ref "U1")
+        (pin "38")
+        (pintype "PASSIVE"))
+      (node
+        (ref "U1")
+        (pin "44")
+        (pintype "POWER-IN"))
+      (node
+        (ref "U1")
+        (pin "45")
+        (pintype "PASSIVE"))
+      (node
+        (ref "U1")
+        (pin "49")
+        (pintype "POWER-IN"))
+      (node
+        (ref "U1")
+        (pin "53")
+        (pintype "POWER-IN"))
+      (node
+        (ref "U1")
+        (pin "54")
+        (pintype "POWER-IN"))
+      (node
+        (ref "U2")
+        (pin "5")
+        (pintype "POWER-OUT"))
+      (node
+        (ref "U9")
+        (pin "6")
+        (pintype "POWER-IN")))
+    (net
+      (code 3)
+      (name "+5V_USB")
+      (class "Default")
+      (node
+        (ref "C2")
+        (pin "1")
+        (pintype "PASSIVE"))
+      (node
+        (ref "C22")
+        (pin "1")
+        (pintype "PASSIVE"))
+      (node
+        (ref "C3")
+        (pin "1")
+        (pintype "PASSIVE"))
+      (node
+        (ref "F1")
+        (pin "2")
+        (pintype "PASSIVE"))
+      (node
+        (ref "PS1")
+        (pin "2")
+        (pintype "POWER-IN"))
+      (node
+        (ref "U2")
+        (pin "1")
+        (pintype "POWER-IN"))
+      (node
+        (ref "U2")
+        (pin "3")
+        (pintype "INPUT"))
+      (node
+        (ref "U3")
+        (pin "5")
+        (pintype "PASSIVE")))
+    (net
+      (code 4)
+      (name "AUTORANGE_INH")
+      (class "Default")
+      (node
+        (ref "J1")
+        (pin "47")
+        (pintype "PASSIVE"))
+      (node
+        (ref "U15")
+        (pin "7")
+        (pintype "TRISTATE")))
+    (net
+      (code 5)
+      (name "BCD_1E0_1")
+      (class "Default")
+      (node
+        (ref "J1")
+        (pin "25")
+        (pintype "PASSIVE"))
+      (node
+        (ref "RN8")
+        (pin "4")
+        (pintype "PASSIVE")))
+    (net
+      (code 6)
+      (name "BCD_1E0_1_R")
+      (class "Default")
+      (node
+        (ref "RN8")
+        (pin "5")
+        (pintype "PASSIVE"))
+      (node
+        (ref "U13")
+        (pin "11")
+        (pintype "INPUT")))
+    (net
+      (code 7)
+      (name "BCD_1E0_2")
+      (class "Default")
+      (node
+        (ref "J1")
+        (pin "24")
+        (pintype "PASSIVE"))
+      (node
+        (ref "RN8")
+        (pin "3")
+        (pintype "PASSIVE")))
+    (net
+      (code 8)
+      (name "BCD_1E0_2_R")
+      (class "Default")
+      (node
+        (ref "RN8")
+        (pin "6")
+        (pintype "PASSIVE"))
+      (node
+        (ref "U13")
+        (pin "12")
+        (pintype "INPUT")))
+    (net
+      (code 9)
+      (name "BCD_1E0_4")
+      (class "Default")
+      (node
+        (ref "J1")
+        (pin "23")
+        (pintype "PASSIVE"))
+      (node
+        (ref "RN8")
+        (pin "2")
+        (pintype "PASSIVE")))
+    (net
+      (code 10)
+      (name "BCD_1E0_4_R")
+      (class "Default")
+      (node
+        (ref "RN8")
+        (pin "7")
+        (pintype "PASSIVE"))
+      (node
+        (ref "U13")
+        (pin "13")
+        (pintype "INPUT")))
+    (net
+      (code 11)
+      (name "BCD_1E0_8")
+      (class "Default")
+      (node
+        (ref "J1")
+        (pin "22")
+        (pintype "PASSIVE"))
+      (node
+        (ref "RN8")
+        (pin "1")
+        (pintype "PASSIVE")))
+    (net
+      (code 12)
+      (name "BCD_1E0_8_R")
+      (class "Default")
+      (node
+        (ref "RN8")
+        (pin "8")
+        (pintype "PASSIVE"))
+      (node
+        (ref "U13")
+        (pin "14")
+        (pintype "INPUT")))
+    (net
+      (code 13)
+      (name "BCD_1E1_1")
+      (class "Default")
+      (node
+        (ref "J1")
+        (pin "21")
+        (pintype "PASSIVE"))
+      (node
+        (ref "RN7")
+        (pin "4")
+        (pintype "PASSIVE")))
+    (net
+      (code 14)
+      (name "BCD_1E1_1_R")
+      (class "Default")
+      (node
+        (ref "RN7")
+        (pin "5")
+        (pintype "PASSIVE"))
+      (node
+        (ref "U13")
+        (pin "3")
+        (pintype "INPUT")))
+    (net
+      (code 15)
+      (name "BCD_1E1_2")
+      (class "Default")
+      (node
+        (ref "J1")
+        (pin "20")
+        (pintype "PASSIVE"))
+      (node
+        (ref "RN7")
+        (pin "3")
+        (pintype "PASSIVE")))
+    (net
+      (code 16)
+      (name "BCD_1E1_2_R")
+      (class "Default")
+      (node
+        (ref "RN7")
+        (pin "6")
+        (pintype "PASSIVE"))
+      (node
+        (ref "U13")
+        (pin "4")
+        (pintype "INPUT")))
+    (net
+      (code 17)
+      (name "BCD_1E1_4")
+      (class "Default")
+      (node
+        (ref "J1")
+        (pin "19")
+        (pintype "PASSIVE"))
+      (node
+        (ref "RN7")
+        (pin "2")
+        (pintype "PASSIVE")))
+    (net
+      (code 18)
+      (name "BCD_1E1_4_R")
+      (class "Default")
+      (node
+        (ref "RN7")
+        (pin "7")
+        (pintype "PASSIVE"))
+      (node
+        (ref "U13")
+        (pin "5")
+        (pintype "INPUT")))
+    (net
+      (code 19)
+      (name "BCD_1E1_8")
+      (class "Default")
+      (node
+        (ref "J1")
+        (pin "18")
+        (pintype "PASSIVE"))
+      (node
+        (ref "RN7")
+        (pin "1")
+        (pintype "PASSIVE")))
+    (net
+      (code 20)
+      (name "BCD_1E1_8_R")
+      (class "Default")
+      (node
+        (ref "RN7")
+        (pin "8")
+        (pintype "PASSIVE"))
+      (node
+        (ref "U13")
+        (pin "6")
+        (pintype "INPUT")))
+    (net
+      (code 21)
+      (name "BCD_1E2_1")
+      (class "Default")
+      (node
+        (ref "J1")
+        (pin "17")
+        (pintype "PASSIVE"))
+      (node
+        (ref "RN4")
+        (pin "4")
+        (pintype "PASSIVE")))
+    (net
+      (code 22)
+      (name "BCD_1E2_1_R")
+      (class "Default")
+      (node
+        (ref "RN4")
+        (pin "5")
+        (pintype "PASSIVE"))
+      (node
+        (ref "U11")
+        (pin "11")
+        (pintype "INPUT")))
+    (net
+      (code 23)
+      (name "BCD_1E2_2")
+      (class "Default")
+      (node
+        (ref "J1")
+        (pin "16")
+        (pintype "PASSIVE"))
+      (node
+        (ref "RN4")
+        (pin "3")
+        (pintype "PASSIVE")))
+    (net
+      (code 24)
+      (name "BCD_1E2_2_R")
+      (class "Default")
+      (node
+        (ref "RN4")
+        (pin "6")
+        (pintype "PASSIVE"))
+      (node
+        (ref "U11")
+        (pin "12")
+        (pintype "INPUT")))
+    (net
+      (code 25)
+      (name "BCD_1E2_4")
+      (class "Default")
+      (node
+        (ref "J1")
+        (pin "15")
+        (pintype "PASSIVE"))
+      (node
+        (ref "RN4")
+        (pin "2")
+        (pintype "PASSIVE")))
+    (net
+      (code 26)
+      (name "BCD_1E2_4_R")
+      (class "Default")
+      (node
+        (ref "RN4")
+        (pin "7")
+        (pintype "PASSIVE"))
+      (node
+        (ref "U11")
+        (pin "13")
+        (pintype "INPUT")))
+    (net
+      (code 27)
+      (name "BCD_1E2_8")
+      (class "Default")
+      (node
+        (ref "J1")
+        (pin "14")
+        (pintype "PASSIVE"))
+      (node
+        (ref "RN4")
+        (pin "1")
+        (pintype "PASSIVE")))
+    (net
+      (code 28)
+      (name "BCD_1E2_8_R")
+      (class "Default")
+      (node
+        (ref "RN4")
+        (pin "8")
+        (pintype "PASSIVE"))
+      (node
+        (ref "U11")
+        (pin "14")
+        (pintype "INPUT")))
+    (net
+      (code 29)
+      (name "BCD_1E3_1")
+      (class "Default")
+      (node
+        (ref "J1")
+        (pin "13")
+        (pintype "PASSIVE"))
+      (node
+        (ref "RN3")
+        (pin "4")
+        (pintype "PASSIVE")))
+    (net
+      (code 30)
+      (name "BCD_1E3_1_R")
+      (class "Default")
+      (node
+        (ref "RN3")
+        (pin "5")
+        (pintype "PASSIVE"))
+      (node
+        (ref "U11")
+        (pin "3")
+        (pintype "INPUT")))
+    (net
+      (code 31)
+      (name "BCD_1E3_2")
+      (class "Default")
+      (node
+        (ref "J1")
+        (pin "12")
+        (pintype "PASSIVE"))
+      (node
+        (ref "RN3")
+        (pin "3")
+        (pintype "PASSIVE")))
+    (net
+      (code 32)
+      (name "BCD_1E3_2_R")
+      (class "Default")
+      (node
+        (ref "RN3")
+        (pin "6")
+        (pintype "PASSIVE"))
+      (node
+        (ref "U11")
+        (pin "4")
+        (pintype "INPUT")))
+    (net
+      (code 33)
+      (name "BCD_1E3_4")
+      (class "Default")
+      (node
+        (ref "J1")
+        (pin "11")
+        (pintype "PASSIVE"))
+      (node
+        (ref "RN3")
+        (pin "2")
+        (pintype "PASSIVE")))
+    (net
+      (code 34)
+      (name "BCD_1E3_4_R")
+      (class "Default")
+      (node
+        (ref "RN3")
+        (pin "7")
+        (pintype "PASSIVE"))
+      (node
+        (ref "U11")
+        (pin "5")
+        (pintype "INPUT")))
+    (net
+      (code 35)
+      (name "BCD_1E3_8")
+      (class "Default")
+      (node
+        (ref "J1")
+        (pin "10")
+        (pintype "PASSIVE"))
+      (node
+        (ref "RN3")
+        (pin "1")
+        (pintype "PASSIVE")))
+    (net
+      (code 36)
+      (name "BCD_1E3_8_R")
+      (class "Default")
+      (node
+        (ref "RN3")
+        (pin "8")
+        (pintype "PASSIVE"))
+      (node
+        (ref "U11")
+        (pin "6")
+        (pintype "INPUT")))
+    (net
+      (code 37)
+      (name "BCD_1E4_1")
+      (class "Default")
+      (node
+        (ref "J1")
+        (pin "9")
+        (pintype "PASSIVE"))
+      (node
+        (ref "RN6")
+        (pin "4")
+        (pintype "PASSIVE")))
+    (net
+      (code 38)
+      (name "BCD_1E4_1_R")
+      (class "Default")
+      (node
+        (ref "RN6")
+        (pin "5")
+        (pintype "PASSIVE"))
+      (node
+        (ref "U12")
+        (pin "11")
+        (pintype "INPUT")))
+    (net
+      (code 39)
+      (name "BCD_1E4_2")
+      (class "Default")
+      (node
+        (ref "J1")
+        (pin "8")
+        (pintype "PASSIVE"))
+      (node
+        (ref "RN6")
+        (pin "3")
+        (pintype "PASSIVE")))
+    (net
+      (code 40)
+      (name "BCD_1E4_2_R")
+      (class "Default")
+      (node
+        (ref "RN6")
+        (pin "6")
+        (pintype "PASSIVE"))
+      (node
+        (ref "U12")
+        (pin "12")
+        (pintype "INPUT")))
+    (net
+      (code 41)
+      (name "BCD_1E4_4")
+      (class "Default")
+      (node
+        (ref "J1")
+        (pin "7")
+        (pintype "PASSIVE"))
+      (node
+        (ref "RN6")
+        (pin "2")
+        (pintype "PASSIVE")))
+    (net
+      (code 42)
+      (name "BCD_1E4_4_R")
+      (class "Default")
+      (node
+        (ref "RN6")
+        (pin "7")
+        (pintype "PASSIVE"))
+      (node
+        (ref "U12")
+        (pin "13")
+        (pintype "INPUT")))
+    (net
+      (code 43)
+      (name "BCD_1E4_8")
+      (class "Default")
+      (node
+        (ref "J1")
+        (pin "6")
+        (pintype "PASSIVE"))
+      (node
+        (ref "RN6")
+        (pin "1")
+        (pintype "PASSIVE")))
+    (net
+      (code 44)
+      (name "BCD_1E4_8_R")
+      (class "Default")
+      (node
+        (ref "RN6")
+        (pin "8")
+        (pintype "PASSIVE"))
+      (node
+        (ref "U12")
+        (pin "14")
+        (pintype "INPUT")))
+    (net
+      (code 45)
+      (name "BCD_1E5_1")
+      (class "Default")
+      (node
+        (ref "J1")
+        (pin "5")
+        (pintype "PASSIVE"))
+      (node
+        (ref "RN5")
+        (pin "4")
+        (pintype "PASSIVE")))
+    (net
+      (code 46)
+      (name "BCD_1E5_1_R")
+      (class "Default")
+      (node
+        (ref "RN5")
+        (pin "5")
+        (pintype "PASSIVE"))
+      (node
+        (ref "U12")
+        (pin "3")
+        (pintype "INPUT")))
+    (net
+      (code 47)
+      (name "BCD_1E5_2")
+      (class "Default")
+      (node
+        (ref "J1")
+        (pin "4")
+        (pintype "PASSIVE"))
+      (node
+        (ref "RN5")
+        (pin "3")
+        (pintype "PASSIVE")))
+    (net
+      (code 48)
+      (name "BCD_1E5_2_R")
+      (class "Default")
+      (node
+        (ref "RN5")
+        (pin "6")
+        (pintype "PASSIVE"))
+      (node
+        (ref "U12")
+        (pin "4")
+        (pintype "INPUT")))
+    (net
+      (code 49)
+      (name "BCD_1E5_4")
+      (class "Default")
+      (node
+        (ref "J1")
+        (pin "3")
+        (pintype "PASSIVE"))
+      (node
+        (ref "RN5")
+        (pin "2")
+        (pintype "PASSIVE")))
+    (net
+      (code 50)
+      (name "BCD_1E5_4_R")
+      (class "Default")
+      (node
+        (ref "RN5")
+        (pin "7")
+        (pintype "PASSIVE"))
+      (node
+        (ref "U12")
+        (pin "5")
+        (pintype "INPUT")))
+    (net
+      (code 51)
+      (name "BCD_1E5_8")
+      (class "Default")
+      (node
+        (ref "J1")
+        (pin "2")
+        (pintype "PASSIVE"))
+      (node
+        (ref "RN5")
+        (pin "1")
+        (pintype "PASSIVE")))
+    (net
+      (code 52)
+      (name "BCD_1E5_8_R")
+      (class "Default")
+      (node
+        (ref "RN5")
+        (pin "8")
+        (pintype "PASSIVE"))
+      (node
+        (ref "U12")
+        (pin "6")
+        (pintype "INPUT")))
+    (net
+      (code 53)
+      (name "BCD_1E6_1")
+      (class "Default")
+      (node
+        (ref "J1")
+        (pin "1")
+        (pintype "PASSIVE"))
+      (node
+        (ref "RN9")
+        (pin "4")
+        (pintype "PASSIVE")))
+    (net
+      (code 54)
+      (name "BCD_1E6_1_R")
+      (class "Default")
+      (node
+        (ref "RN9")
+        (pin "5")
+        (pintype "PASSIVE"))
+      (node
+        (ref "U14")
+        (pin "3")
+        (pintype "INPUT")))
+    (net
+      (code 55)
+      (name "BOOTSEL")
+      (class "Default")
+      (node
+        (ref "R8")
+        (pin "2")
+        (pintype "PASSIVE"))
+      (node
+        (ref "SW1")
+        (pin "1")
+        (pintype "PASSIVE")))
+    (net
+      (code 56)
+      (name "DATA_CAN_CHANGE")
+      (class "Default")
+      (node
+        (ref "J1")
+        (pin "35")
+        (pintype "PASSIVE"))
+      (node
+        (ref "RN9")
+        (pin "2")
+        (pintype "PASSIVE")))
+    (net
+      (code 57)
+      (name "DATA_CAN_CHANGE_R")
+      (class "Default")
+      (node
+        (ref "RN9")
+        (pin "7")
+        (pintype "PASSIVE"))
+      (node
+        (ref "U14")
+        (pin "5")
+        (pintype "INPUT")))
+    (net
+      (code 58)
+      (name "FUNC_CMD_42")
+      (class "Default")
+      (node
+        (ref "J1")
+        (pin "42")
+        (pintype "PASSIVE"))
+      (node
+        (ref "U15")
+        (pin "2")
+        (pintype "TRISTATE")))
+    (net
+      (code 59)
+      (name "FUNC_CMD_43")
+      (class "Default")
+      (node
+        (ref "J1")
+        (pin "43")
+        (pintype "PASSIVE"))
+      (node
+        (ref "U15")
+        (pin "3")
+        (pintype "TRISTATE")))
+    (net
+      (code 60)
+      (name "FUNC_OUT_A")
+      (class "Default")
+      (node
+        (ref "J1")
+        (pin "28")
+        (pintype "PASSIVE"))
+      (node
+        (ref "RN1")
+        (pin "3")
+        (pintype "PASSIVE")))
+    (net
+      (code 61)
+      (name "FUNC_OUT_A_R")
+      (class "Default")
+      (node
+        (ref "RN1")
+        (pin "6")
+        (pintype "PASSIVE"))
+      (node
+        (ref "U10")
+        (pin "4")
+        (pintype "INPUT")))
+    (net
+      (code 62)
+      (name "FUNC_OUT_B")
+      (class "Default")
+      (node
+        (ref "J1")
+        (pin "29")
+        (pintype "PASSIVE"))
+      (node
+        (ref "RN1")
+        (pin "4")
+        (pintype "PASSIVE")))
+    (net
+      (code 63)
+      (name "FUNC_OUT_B_R")
+      (class "Default")
+      (node
+        (ref "RN1")
+        (pin "5")
+        (pintype "PASSIVE"))
+      (node
+        (ref "U10")
+        (pin "3")
+        (pintype "INPUT")))
+    (net
+      (code 64)
+      (name "GND")
+      (class "Default")
+      (node
+        (ref "C1")
+        (pin "2")
+        (pintype "PASSIVE"))
+      (node
+        (ref "C10")
+        (pin "2")
+        (pintype "PASSIVE"))
+      (node
+        (ref "C11")
+        (pin "2")
+        (pintype "PASSIVE"))
+      (node
+        (ref "C12")
+        (pin "2")
+        (pintype "PASSIVE"))
+      (node
+        (ref "C13")
+        (pin "2")
+        (pintype "PASSIVE"))
+      (node
+        (ref "C14")
+        (pin "2")
+        (pintype "PASSIVE"))
+      (node
+        (ref "C15")
+        (pin "2")
+        (pintype "PASSIVE"))
+      (node
+        (ref "C16")
+        (pin "2")
+        (pintype "PASSIVE"))
+      (node
+        (ref "C17")
+        (pin "2")
+        (pintype "PASSIVE"))
+      (node
+        (ref "C18")
+        (pin "2")
+        (pintype "PASSIVE"))
+      (node
+        (ref "C19")
+        (pin "2")
+        (pintype "PASSIVE"))
+      (node
+        (ref "C2")
+        (pin "2")
+        (pintype "PASSIVE"))
+      (node
+        (ref "C20")
+        (pin "2")
+        (pintype "PASSIVE"))
+      (node
+        (ref "C21")
+        (pin "2")
+        (pintype "PASSIVE"))
+      (node
+        (ref "C22")
+        (pin "2")
+        (pintype "PASSIVE"))
+      (node
+        (ref "C3")
+        (pin "2")
+        (pintype "PASSIVE"))
+      (node
+        (ref "C37")
+        (pin "2")
+        (pintype "PASSIVE"))
+      (node
+        (ref "C4")
+        (pin "2")
+        (pintype "PASSIVE"))
+      (node
+        (ref "C5")
+        (pin "2")
+        (pintype "PASSIVE"))
+      (node
+        (ref "C6")
+        (pin "2")
+        (pintype "PASSIVE"))
+      (node
+        (ref "C7")
+        (pin "2")
+        (pintype "PASSIVE"))
+      (node
+        (ref "C8")
+        (pin "2")
+        (pintype "PASSIVE"))
+      (node
+        (ref "C9")
+        (pin "2")
+        (pintype "PASSIVE"))
+      (node
+        (ref "D1")
+        (pin "1")
+        (pintype "PASSIVE"))
+      (node
+        (ref "D2")
+        (pin "1")
+        (pintype "PASSIVE"))
+      (node
+        (ref "J2")
+        (pin "4")
+        (pintype "POWER-OUT"))
+      (node
+        (ref "J3")
+        (pin "2")
+        (pintype "PASSIVE"))
+      (node
+        (ref "PS1")
+        (pin "1")
+        (pintype "POWER-IN"))
+      (node
+        (ref "R1")
+        (pin "2")
+        (pintype "PASSIVE"))
+      (node
+        (ref "SW1")
+        (pin "2")
+        (pintype "PASSIVE"))
+      (node
+        (ref "SW2")
+        (pin "2")
+        (pintype "PASSIVE"))
+      (node
+        (ref "U1")
+        (pin "47")
+        (pintype "POWER-IN"))
+      (node
+        (ref "U1")
+        (pin "61")
+        (pintype "POWER-IN"))
+      (node
+        (ref "U2")
+        (pin "2")
+        (pintype "POWER-IN"))
+      (node
+        (ref "U3")
+        (pin "2")
+        (pintype "PASSIVE"))
+      (node
+        (ref "U9")
+        (pin "4")
+        (pintype "POWER-IN"))
+      (node
+        (ref "Y1")
+        (pin "2")
+        (pintype "PASSIVE"))
+      (node
+        (ref "Y1")
+        (pin "4")
+        (pintype "PASSIVE")))
+    (net
+      (code 65)
+      (name "INTEG_1")
+      (class "Default")
+      (node
+        (ref "J1")
+        (pin "46")
+        (pintype "PASSIVE"))
+      (node
+        (ref "U15")
+        (pin "4")
+        (pintype "TRISTATE")))
+    (net
+      (code 66)
+      (name "INTEG_2")
+      (class "Default")
+      (node
+        (ref "J1")
+        (pin "45")
+        (pintype "PASSIVE"))
+      (node
+        (ref "U15")
+        (pin "5")
+        (pintype "TRISTATE")))
+    (net
+      (code 67)
+      (name "INTEG_4")
+      (class "Default")
+      (node
+        (ref "J1")
+        (pin "44")
+        (pintype "PASSIVE"))
+      (node
+        (ref "U15")
+        (pin "6")
+        (pintype "TRISTATE")))
+    (net
+      (code 68)
+      (name "ISO_+5V")
+      (class "Default")
+      (node
+        (ref "C25")
+        (pin "1")
+        (pintype "PASSIVE"))
+      (node
+        (ref "C26")
+        (pin "1")
+        (pintype "PASSIVE"))
+      (node
+        (ref "C27")
+        (pin "1")
+        (pintype "PASSIVE"))
+      (node
+        (ref "C28")
+        (pin "1")
+        (pintype "PASSIVE"))
+      (node
+        (ref "C29")
+        (pin "1")
+        (pintype "PASSIVE"))
+      (node
+        (ref "C30")
+        (pin "1")
+        (pintype "PASSIVE"))
+      (node
+        (ref "C31")
+        (pin "1")
+        (pintype "PASSIVE"))
+      (node
+        (ref "C32")
+        (pin "1")
+        (pintype "PASSIVE"))
+      (node
+        (ref "C33")
+        (pin "1")
+        (pintype "PASSIVE"))
+      (node
+        (ref "C34")
+        (pin "1")
+        (pintype "PASSIVE"))
+      (node
+        (ref "C35")
+        (pin "1")
+        (pintype "PASSIVE"))
+      (node
+        (ref "C36")
+        (pin "1")
+        (pintype "PASSIVE"))
+      (node
+        (ref "R11")
+        (pin "1")
+        (pintype "PASSIVE"))
+      (node
+        (ref "R18")
+        (pin "1")
+        (pintype "PASSIVE"))
+      (node
+        (ref "U10")
+        (pin "16")
+        (pintype "POWER-IN"))
+      (node
+        (ref "U11")
+        (pin "16")
+        (pintype "POWER-IN"))
+      (node
+        (ref "U12")
+        (pin "16")
+        (pintype "POWER-IN"))
+      (node
+        (ref "U13")
+        (pin "16")
+        (pintype "POWER-IN"))
+      (node
+        (ref "U14")
+        (pin "12")
+        (pintype "INPUT"))
+      (node
+        (ref "U14")
+        (pin "14")
+        (pintype "INPUT"))
+      (node
+        (ref "U14")
+        (pin "16")
+        (pintype "POWER-IN"))
+      (node
+        (ref "U15")
+        (pin "10")
+        (pintype "INPUT"))
+      (node
+        (ref "U15")
+        (pin "16")
+        (pintype "POWER-IN"))
+      (node
+        (ref "U16")
+        (pin "10")
+        (pintype "INPUT"))
+      (node
+        (ref "U16")
+        (pin "16")
+        (pintype "POWER-IN"))
+      (node
+        (ref "U4")
+        (pin "1")
+        (pintype "POWER-OUT"))
+      (node
+        (ref "U5")
+        (pin "6")
+        (pintype "POWER-IN"))
+      (node
+        (ref "U6")
+        (pin "6")
+        (pintype "POWER-IN"))
+      (node
+        (ref "U7")
+        (pin "6")
+        (pintype "POWER-IN"))
+      (node
+        (ref "U8")
+        (pin "6")
+        (pintype "POWER-IN")))
+    (net
+      (code 69)
+      (name "ISO_+9V")
+      (class "Default")
+      (node
+        (ref "C23")
+        (pin "1")
+        (pintype "PASSIVE"))
+      (node
+        (ref "C24")
+        (pin "1")
+        (pintype "PASSIVE"))
+      (node
+        (ref "PS1")
+        (pin "4")
+        (pintype "POWER-OUT"))
+      (node
+        (ref "R10")
+        (pin "1")
+        (pintype "PASSIVE"))
+      (node
+        (ref "U4")
+        (pin "3")
+        (pintype "POWER-IN")))
+    (net
+      (code 70)
+      (name "ISO_GND")
+      (class "Default")
+      (node
+        (ref "C23")
+        (pin "2")
+        (pintype "PASSIVE"))
+      (node
+        (ref "C24")
+        (pin "2")
+        (pintype "PASSIVE"))
+      (node
+        (ref "C25")
+        (pin "2")
+        (pintype "PASSIVE"))
+      (node
+        (ref "C26")
+        (pin "2")
+        (pintype "PASSIVE"))
+      (node
+        (ref "C27")
+        (pin "2")
+        (pintype "PASSIVE"))
+      (node
+        (ref "C28")
+        (pin "2")
+        (pintype "PASSIVE"))
+      (node
+        (ref "C29")
+        (pin "2")
+        (pintype "PASSIVE"))
+      (node
+        (ref "C30")
+        (pin "2")
+        (pintype "PASSIVE"))
+      (node
+        (ref "C31")
+        (pin "2")
+        (pintype "PASSIVE"))
+      (node
+        (ref "C32")
+        (pin "2")
+        (pintype "PASSIVE"))
+      (node
+        (ref "C33")
+        (pin "2")
+        (pintype "PASSIVE"))
+      (node
+        (ref "C34")
+        (pin "2")
+        (pintype "PASSIVE"))
+      (node
+        (ref "C35")
+        (pin "2")
+        (pintype "PASSIVE"))
+      (node
+        (ref "C36")
+        (pin "2")
+        (pintype "PASSIVE"))
+      (node
+        (ref "D3")
+        (pin "1")
+        (pintype "PASSIVE"))
+      (node
+        (ref "D4")
+        (pin "1")
+        (pintype "PASSIVE"))
+      (node
+        (ref "J1")
+        (pin "37")
+        (pintype "PASSIVE"))
+      (node
+        (ref "J1")
+        (pin "SH")
+        (pintype "PASSIVE"))
+      (node
+        (ref "PS1")
+        (pin "3")
+        (pintype "POWER-OUT"))
+      (node
+        (ref "Q1")
+        (pin "2")
+        (pintype "PASSIVE"))
+      (node
+        (ref "R10")
+        (pin "2")
+        (pintype "PASSIVE"))
+      (node
+        (ref "R12")
+        (pin "2")
+        (pintype "PASSIVE"))
+      (node
+        (ref "U10")
+        (pin "15")
+        (pintype "INPUT"))
+      (node
+        (ref "U10")
+        (pin "8")
+        (pintype "POWER-IN"))
+      (node
+        (ref "U11")
+        (pin "15")
+        (pintype "INPUT"))
+      (node
+        (ref "U11")
+        (pin "8")
+        (pintype "POWER-IN"))
+      (node
+        (ref "U12")
+        (pin "15")
+        (pintype "INPUT"))
+      (node
+        (ref "U12")
+        (pin "8")
+        (pintype "POWER-IN"))
+      (node
+        (ref "U13")
+        (pin "15")
+        (pintype "INPUT"))
+      (node
+        (ref "U13")
+        (pin "8")
+        (pintype "POWER-IN"))
+      (node
+        (ref "U14")
+        (pin "10")
+        (pintype "INPUT"))
+      (node
+        (ref "U14")
+        (pin "11")
+        (pintype "INPUT"))
+      (node
+        (ref "U14")
+        (pin "13")
+        (pintype "INPUT"))
+      (node
+        (ref "U14")
+        (pin "15")
+        (pintype "INPUT"))
+      (node
+        (ref "U14")
+        (pin "8")
+        (pintype "POWER-IN"))
+      (node
+        (ref "U15")
+        (pin "8")
+        (pintype "POWER-IN"))
+      (node
+        (ref "U16")
+        (pin "8")
+        (pintype "POWER-IN"))
+      (node
+        (ref "U4")
+        (pin "2")
+        (pintype "POWER-IN"))
+      (node
+        (ref "U5")
+        (pin "4")
+        (pintype "POWER-IN"))
+      (node
+        (ref "U6")
+        (pin "4")
+        (pintype "POWER-IN"))
+      (node
+        (ref "U7")
+        (pin "4")
+        (pintype "POWER-IN"))
+      (node
+        (ref "U8")
+        (pin "4")
+        (pintype "POWER-IN")))
+    (net
+      (code 71)
+      (name "ISO_LATCH")
+      (class "Default")
+      (node
+        (ref "U10")
+        (pin "1")
+        (pintype "INPUT"))
+      (node
+        (ref "U11")
+        (pin "1")
+        (pintype "INPUT"))
+      (node
+        (ref "U12")
+        (pin "1")
+        (pintype "INPUT"))
+      (node
+        (ref "U13")
+        (pin "1")
+        (pintype "INPUT"))
+      (node
+        (ref "U14")
+        (pin "1")
+        (pintype "INPUT"))
+      (node
+        (ref "U15")
+        (pin "12")
+        (pintype "INPUT"))
+      (node
+        (ref "U16")
+        (pin "12")
+        (pintype "INPUT"))
+      (node
+        (ref "U7")
+        (pin "5")
+        (pintype "OUTPUT")))
+    (net
+      (code 72)
+      (name "ISO_MISO_K")
+      (class "Default")
+      (node
+        (ref "U10")
+        (pin "9")
+        (pintype "OUTPUT"))
+      (node
+        (ref "U9")
+        (pin "3")
+        (pintype "PASSIVE")))
+    (net
+      (code 73)
+      (name "ISO_MOSI")
+      (class "Default")
+      (node
+        (ref "U15")
+        (pin "14")
+        (pintype "INPUT"))
+      (node
+        (ref "U6")
+        (pin "5")
+        (pintype "OUTPUT")))
+    (net
+      (code 74)
+      (name "ISO_OE_N")
+      (class "Default")
+      (node
+        (ref "U15")
+        (pin "13")
+        (pintype "INPUT"))
+      (node
+        (ref "U16")
+        (pin "13")
+        (pintype "INPUT"))
+      (node
+        (ref "U8")
+        (pin "5")
+        (pintype "OUTPUT")))
+    (net
+      (code 75)
+      (name "ISO_SCLK")
+      (class "Default")
+      (node
+        (ref "U10")
+        (pin "2")
+        (pintype "INPUT"))
+      (node
+        (ref "U11")
+        (pin "2")
+        (pintype "INPUT"))
+      (node
+        (ref "U12")
+        (pin "2")
+        (pintype "INPUT"))
+      (node
+        (ref "U13")
+        (pin "2")
+        (pintype "INPUT"))
+      (node
+        (ref "U14")
+        (pin "2")
+        (pintype "INPUT"))
+      (node
+        (ref "U15")
+        (pin "11")
+        (pintype "INPUT"))
+      (node
+        (ref "U16")
+        (pin "11")
+        (pintype "INPUT"))
+      (node
+        (ref "U5")
+        (pin "5")
+        (pintype "OUTPUT")))
+    (net
+      (code 76)
+      (name "LED_ISO_PWR_A")
+      (class "Default")
+      (node
+        (ref "D3")
+        (pin "2")
+        (pintype "PASSIVE"))
+      (node
+        (ref "R11")
+        (pin "2")
+        (pintype "PASSIVE")))
+    (net
+      (code 77)
+      (name "LED_PWR_A")
+      (class "Default")
+      (node
+        (ref "D1")
+        (pin "2")
+        (pintype "PASSIVE"))
+      (node
+        (ref "R2")
+        (pin "2")
+        (pintype "PASSIVE")))
+    (net
+      (code 78)
+      (name "LED_REMOTE")
+      (class "Default")
+      (node
+        (ref "R13")
+        (pin "1")
+        (pintype "PASSIVE"))
+      (node
+        (ref "U16")
+        (pin "5")
+        (pintype "TRISTATE")))
+    (net
+      (code 79)
+      (name "LED_REMOTE_A")
+      (class "Default")
+      (node
+        (ref "D4")
+        (pin "2")
+        (pintype "PASSIVE"))
+      (node
+        (ref "R13")
+        (pin "2")
+        (pintype "PASSIVE")))
+    (net
+      (code 80)
+      (name "LED_STATUS")
+      (class "Default")
+      (node
+        (ref "R9")
+        (pin "1")
+        (pintype "PASSIVE"))
+      (node
+        (ref "U1")
+        (pin "8")
+        (pintype "BIDIRECTIONAL")))
+    (net
+      (code 81)
+      (name "LED_STATUS_A")
+      (class "Default")
+      (node
+        (ref "D2")
+        (pin "2")
+        (pintype "PASSIVE"))
+      (node
+        (ref "R9")
+        (pin "2")
+        (pintype "PASSIVE")))
+    (net
+      (code 82)
+      (name "LOCKOUT_N")
+      (class "Default")
+      (node
+        (ref "J1")
+        (pin "38")
+        (pintype "PASSIVE"))
+      (node
+        (ref "U15")
+        (pin "15")
+        (pintype "TRISTATE")))
+    (net
+      (code 83)
+      (name "MCU_LATCH")
+      (class "Default")
+      (node
+        (ref "U1")
+        (pin "33")
+        (pintype "BIDIRECTIONAL"))
+      (node
+        (ref "U7")
+        (pin "3")
+        (pintype "PASSIVE")))
+    (net
+      (code 84)
+      (name "MCU_MISO")
+      (class "Default")
+      (node
+        (ref "U1")
+        (pin "32")
+        (pintype "BIDIRECTIONAL"))
+      (node
+        (ref "U9")
+        (pin "5")
+        (pintype "OUTPUT")))
+    (net
+      (code 85)
+      (name "MCU_MOSI")
+      (class "Default")
+      (node
+        (ref "U1")
+        (pin "35")
+        (pintype "BIDIRECTIONAL"))
+      (node
+        (ref "U6")
+        (pin "3")
+        (pintype "PASSIVE")))
+    (net
+      (code 86)
+      (name "MCU_OE_N")
+      (class "Default")
+      (node
+        (ref "U1")
+        (pin "36")
+        (pintype "BIDIRECTIONAL"))
+      (node
+        (ref "U8")
+        (pin "3")
+        (pintype "PASSIVE")))
+    (net
+      (code 87)
+      (name "MCU_SCLK")
+      (class "Default")
+      (node
+        (ref "U1")
+        (pin "34")
+        (pintype "BIDIRECTIONAL"))
+      (node
+        (ref "U5")
+        (pin "3")
+        (pintype "PASSIVE")))
+    (net
+      (code 88)
+      (name "MCU_USB_DM")
+      (class "Default")
+      (node
+        (ref "R6")
+        (pin "2")
+        (pintype "PASSIVE"))
+      (node
+        (ref "U1")
+        (pin "51")
+        (pintype "BIDIRECTIONAL")))
+    (net
+      (code 89)
+      (name "MCU_USB_DP")
+      (class "Default")
+      (node
+        (ref "R5")
+        (pin "2")
+        (pintype "PASSIVE"))
+      (node
+        (ref "U1")
+        (pin "52")
+        (pintype "BIDIRECTIONAL")))
+    (net
+      (code 90)
+      (name "OVERLOAD")
+      (class "Default")
+      (node
+        (ref "J1")
+        (pin "36")
+        (pintype "PASSIVE"))
+      (node
+        (ref "RN9")
+        (pin "3")
+        (pintype "PASSIVE")))
+    (net
+      (code 91)
+      (name "OVERLOAD_R")
+      (class "Default")
+      (node
+        (ref "RN9")
+        (pin "6")
+        (pintype "PASSIVE"))
+      (node
+        (ref "U14")
+        (pin "4")
+        (pintype "INPUT")))
+    (net
+      (code 92)
+      (name "POL_NEG")
+      (class "Default")
+      (node
+        (ref "J1")
+        (pin "27")
+        (pintype "PASSIVE"))
+      (node
+        (ref "RN1")
+        (pin "2")
+        (pintype "PASSIVE")))
+    (net
+      (code 93)
+      (name "POL_NEG_R")
+      (class "Default")
+      (node
+        (ref "RN1")
+        (pin "7")
+        (pintype "PASSIVE"))
+      (node
+        (ref "U10")
+        (pin "5")
+        (pintype "INPUT")))
+    (net
+      (code 94)
+      (name "POL_POS")
+      (class "Default")
+      (node
+        (ref "J1")
+        (pin "26")
+        (pintype "PASSIVE"))
+      (node
+        (ref "RN1")
+        (pin "1")
+        (pintype "PASSIVE")))
+    (net
+      (code 95)
+      (name "POL_POS_R")
+      (class "Default")
+      (node
+        (ref "RN1")
+        (pin "8")
+        (pintype "PASSIVE"))
+      (node
+        (ref "U10")
+        (pin "6")
+        (pintype "INPUT")))
+    (net
+      (code 96)
+      (name "PRINT_LEVEL")
+      (class "Default")
+      (node
+        (ref "J1")
+        (pin "34")
+        (pintype "PASSIVE"))
+      (node
+        (ref "RN9")
+        (pin "1")
+        (pintype "PASSIVE")))
+    (net
+      (code 97)
+      (name "PRINT_LEVEL_R")
+      (class "Default")
+      (node
+        (ref "RN9")
+        (pin "8")
+        (pintype "PASSIVE"))
+      (node
+        (ref "U14")
+        (pin "6")
+        (pintype "INPUT")))
+    (net
+      (code 98)
+      (name "PRINT_PULSE")
+      (class "Default")
+      (node
+        (ref "J1")
+        (pin "33")
+        (pintype "PASSIVE"))
+      (node
+        (ref "RN2")
+        (pin "4")
+        (pintype "PASSIVE")))
+    (net
+      (code 99)
+      (name "PRINT_PULSE_R")
+      (class "Default")
+      (node
+        (ref "RN2")
+        (pin "5")
+        (pintype "PASSIVE"))
+      (node
+        (ref "U10")
+        (pin "11")
+        (pintype "INPUT")))
+    (net
+      (code 100)
+      (name "QSPI_SS")
+      (class "Default")
+      (node
+        (ref "R8")
+        (pin "1")
+        (pintype "PASSIVE"))
+      (node
+        (ref "U1")
+        (pin "60")
+        (pintype "OUTPUT")))
+    (net
+      (code 101)
+      (name "RANGE_CMD_1")
+      (class "Default")
+      (node
+        (ref "J1")
+        (pin "48")
+        (pintype "PASSIVE"))
+      (node
+        (ref "U16")
+        (pin "15")
+        (pintype "TRISTATE")))
+    (net
+      (code 102)
+      (name "RANGE_CMD_2")
+      (class "Default")
+      (node
+        (ref "J1")
+        (pin "49")
+        (pintype "PASSIVE"))
+      (node
+        (ref "U16")
+        (pin "1")
+        (pintype "TRISTATE")))
+    (net
+      (code 103)
+      (name "RANGE_CMD_4")
+      (class "Default")
+      (node
+        (ref "J1")
+        (pin "50")
+        (pintype "PASSIVE"))
+      (node
+        (ref "U16")
+        (pin "2")
+        (pintype "TRISTATE")))
+    (net
+      (code 104)
+      (name "RANGE_OUT_1")
+      (class "Default")
+      (node
+        (ref "J1")
+        (pin "32")
+        (pintype "PASSIVE"))
+      (node
+        (ref "RN2")
+        (pin "3")
+        (pintype "PASSIVE")))
+    (net
+      (code 105)
+      (name "RANGE_OUT_1_R")
+      (class "Default")
+      (node
+        (ref "RN2")
+        (pin "6")
+        (pintype "PASSIVE"))
+      (node
+        (ref "U10")
+        (pin "12")
+        (pintype "INPUT")))
+    (net
+      (code 106)
+      (name "RANGE_OUT_2")
+      (class "Default")
+      (node
+        (ref "J1")
+        (pin "31")
+        (pintype "PASSIVE"))
+      (node
+        (ref "RN2")
+        (pin "2")
+        (pintype "PASSIVE")))
+    (net
+      (code 107)
+      (name "RANGE_OUT_2_R")
+      (class "Default")
+      (node
+        (ref "RN2")
+        (pin "7")
+        (pintype "PASSIVE"))
+      (node
+        (ref "U10")
+        (pin "13")
+        (pintype "INPUT")))
+    (net
+      (code 108)
+      (name "RANGE_OUT_4")
+      (class "Default")
+      (node
+        (ref "J1")
+        (pin "30")
+        (pintype "PASSIVE"))
+      (node
+        (ref "RN2")
+        (pin "1")
+        (pintype "PASSIVE")))
+    (net
+      (code 109)
+      (name "RANGE_OUT_4_R")
+      (class "Default")
+      (node
+        (ref "RN2")
+        (pin "8")
+        (pintype "PASSIVE"))
+      (node
+        (ref "U10")
+        (pin "14")
+        (pintype "INPUT")))
+    (net
+      (code 110)
+      (name "RATIO_N")
+      (class "Default")
+      (node
+        (ref "J1")
+        (pin "41")
+        (pintype "PASSIVE"))
+      (node
+        (ref "U15")
+        (pin "1")
+        (pintype "TRISTATE")))
+    (net
+      (code 111)
+      (name "RUN")
+      (class "Default")
+      (node
+        (ref "R7")
+        (pin "2")
+        (pintype "PASSIVE"))
+      (node
+        (ref "SW2")
+        (pin "1")
+        (pintype "PASSIVE"))
+      (node
+        (ref "U1")
+        (pin "26")
+        (pintype "INPUT")))
+    (net
+      (code 112)
+      (name "SAMPLE_CONTACT")
+      (class "Default")
+      (node
+        (ref "J1")
+        (pin "39")
+        (pintype "PASSIVE"))
+      (node
+        (ref "Q1")
+        (pin "3")
+        (pintype "PASSIVE")))
+    (net
+      (code 113)
+      (name "SAMPLE_CONTACT_DRV")
+      (class "Default")
+      (node
+        (ref "Q1")
+        (pin "1")
+        (pintype "INPUT"))
+      (node
+        (ref "R12")
+        (pin "1")
+        (pintype "PASSIVE"))
+      (node
+        (ref "U16")
+        (pin "4")
+        (pintype "TRISTATE")))
+    (net
+      (code 114)
+      (name "SAMPLE_PULSE")
+      (class "Default")
+      (node
+        (ref "J1")
+        (pin "40")
+        (pintype "PASSIVE"))
+      (node
+        (ref "U16")
+        (pin "3")
+        (pintype "TRISTATE")))
+    (net
+      (code 115)
+      (name "SR165_CHAIN1")
+      (class "Default")
+      (node
+        (ref "U10")
+        (pin "10")
+        (pintype "INPUT"))
+      (node
+        (ref "U11")
+        (pin "9")
+        (pintype "OUTPUT")))
+    (net
+      (code 116)
+      (name "SR165_CHAIN2")
+      (class "Default")
+      (node
+        (ref "U11")
+        (pin "10")
+        (pintype "INPUT"))
+      (node
+        (ref "U12")
+        (pin "9")
+        (pintype "OUTPUT")))
+    (net
+      (code 117)
+      (name "SR165_CHAIN3")
+      (class "Default")
+      (node
+        (ref "U12")
+        (pin "10")
+        (pintype "INPUT"))
+      (node
+        (ref "U13")
+        (pin "9")
+        (pintype "OUTPUT")))
+    (net
+      (code 118)
+      (name "SR165_CHAIN4")
+      (class "Default")
+      (node
+        (ref "U13")
+        (pin "10")
+        (pintype "INPUT"))
+      (node
+        (ref "U14")
+        (pin "9")
+        (pintype "OUTPUT")))
+    (net
+      (code 119)
+      (name "SR595_CHAIN")
+      (class "Default")
+      (node
+        (ref "U15")
+        (pin "9")
+        (pintype "OUTPUT"))
+      (node
+        (ref "U16")
+        (pin "14")
+        (pintype "INPUT")))
+    (net
+      (code 120)
+      (name "SWCLK")
+      (class "Default")
+      (node
+        (ref "J3")
+        (pin "1")
+        (pintype "PASSIVE"))
+      (node
+        (ref "U1")
+        (pin "24")
+        (pintype "INPUT")))
+    (net
+      (code 121)
+      (name "SWDIO")
+      (class "Default")
+      (node
+        (ref "J3")
+        (pin "3")
+        (pintype "PASSIVE"))
+      (node
+        (ref "U1")
+        (pin "25")
+        (pintype "BIDIRECTIONAL")))
+    (net
+      (code 122)
+      (name "U5_A")
+      (class "Default")
+      (node
+        (ref "R14")
+        (pin "2")
+        (pintype "PASSIVE"))
+      (node
+        (ref "U5")
+        (pin "1")
+        (pintype "PASSIVE")))
+    (net
+      (code 123)
+      (name "U6_A")
+      (class "Default")
+      (node
+        (ref "R15")
+        (pin "2")
+        (pintype "PASSIVE"))
+      (node
+        (ref "U6")
+        (pin "1")
+        (pintype "PASSIVE")))
+    (net
+      (code 124)
+      (name "U7_A")
+      (class "Default")
+      (node
+        (ref "R16")
+        (pin "2")
+        (pintype "PASSIVE"))
+      (node
+        (ref "U7")
+        (pin "1")
+        (pintype "PASSIVE")))
+    (net
+      (code 125)
+      (name "U8_A")
+      (class "Default")
+      (node
+        (ref "R17")
+        (pin "2")
+        (pintype "PASSIVE"))
+      (node
+        (ref "U8")
+        (pin "1")
+        (pintype "PASSIVE")))
+    (net
+      (code 126)
+      (name "U9_A")
+      (class "Default")
+      (node
+        (ref "R18")
+        (pin "2")
+        (pintype "PASSIVE"))
+      (node
+        (ref "U9")
+        (pin "1")
+        (pintype "PASSIVE")))
+    (net
+      (code 127)
+      (name "USB_D+")
+      (class "Default")
+      (node
+        (ref "J2")
+        (pin "3")
+        (pintype "BIDIRECTIONAL"))
+      (node
+        (ref "R5")
+        (pin "1")
+        (pintype "PASSIVE"))
+      (node
+        (ref "U3")
+        (pin "1")
+        (pintype "PASSIVE"))
+      (node
+        (ref "U3")
+        (pin "6")
+        (pintype "PASSIVE")))
+    (net
+      (code 128)
+      (name "USB_D-")
+      (class "Default")
+      (node
+        (ref "J2")
+        (pin "2")
+        (pintype "BIDIRECTIONAL"))
+      (node
+        (ref "R6")
+        (pin "1")
+        (pintype "PASSIVE"))
+      (node
+        (ref "U3")
+        (pin "3")
+        (pintype "PASSIVE"))
+      (node
+        (ref "U3")
+        (pin "4")
+        (pintype "PASSIVE")))
+    (net
+      (code 129)
+      (name "USB_SHIELD")
+      (class "Default")
+      (node
+        (ref "C1")
+        (pin "1")
+        (pintype "PASSIVE"))
+      (node
+        (ref "J2")
+        (pin "SH")
+        (pintype "PASSIVE"))
+      (node
+        (ref "R1")
+        (pin "1")
+        (pintype "PASSIVE")))
+    (net
+      (code 130)
+      (name "VBUS_RAW")
+      (class "Default")
+      (node
+        (ref "F1")
+        (pin "1")
+        (pintype "PASSIVE"))
+      (node
+        (ref "J2")
+        (pin "1")
+        (pintype "POWER-OUT")))
+    (net
+      (code 131)
+      (name "VREG_AVDD")
+      (class "Default")
+      (node
+        (ref "C15")
+        (pin "1")
+        (pintype "PASSIVE"))
+      (node
+        (ref "R3")
+        (pin "2")
+        (pintype "PASSIVE"))
+      (node
+        (ref "U1")
+        (pin "46")
+        (pintype "POWER-IN")))
+    (net
+      (code 132)
+      (name "VREG_LX")
+      (class "Default")
+      (node
+        (ref "L1")
+        (pin "1")
+        (pintype "PASSIVE"))
+      (node
+        (ref "U1")
+        (pin "48")
+        (pintype "POWER-OUT")))
+    (net
+      (code 133)
+      (name "XIN")
+      (class "Default")
+      (node
+        (ref "C20")
+        (pin "1")
+        (pintype "PASSIVE"))
+      (node
+        (ref "U1")
+        (pin "21")
+        (pintype "INPUT"))
+      (node
+        (ref "Y1")
+        (pin "1")
+        (pintype "PASSIVE")))
+    (net
+      (code 134)
+      (name "XOUT")
+      (class "Default")
+      (node
+        (ref "R4")
+        (pin "1")
+        (pintype "PASSIVE"))
+      (node
+        (ref "U1")
+        (pin "22")
+        (pintype "OUTPUT")))
+    (net
+      (code 135)
+      (name "XOUT_R")
+      (class "Default")
+      (node
+        (ref "C21")
+        (pin "1")
+        (pintype "PASSIVE"))
+      (node
+        (ref "R4")
+        (pin "2")
+        (pintype "PASSIVE"))
+      (node
+        (ref "Y1")
+        (pin "3")
+        (pintype "PASSIVE")))))

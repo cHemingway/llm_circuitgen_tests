@@ -64,16 +64,16 @@ COMPONENTS:
  - C36: 10uF capacitor
  - U5: HT7533-1
  - C37: 10uF capacitor
- - U6: SN74LV165ADR
- - C40: 100nF cap0603 capacitor
- - U7: SN74LV165ADR
- - C41: 100nF cap0603 capacitor
- - U8: SN74LV165ADR
- - C42: 100nF cap0603 capacitor
- - U9: SN74LV165ADR
- - C43: 100nF cap0603 capacitor
  - U10: SN74LV165ADR
  - C44: 100nF cap0603 capacitor
+ - U7: SN74LV165ADR
+ - C41: 100nF cap0603 capacitor
+ - U9: SN74LV165ADR
+ - C43: 100nF cap0603 capacitor
+ - U6: SN74LV165ADR
+ - C40: 100nF cap0603 capacitor
+ - U8: SN74LV165ADR
+ - C42: 100nF cap0603 capacitor
  - U11: SN74LV595ADR
  - C45: 100nF cap0603 capacitor
  - U12: SN74LV595ADR
@@ -321,25 +321,25 @@ NET: V5_ISO
   - C35 pin1 (+)
   - U4 VO_POS
 
-NET: ISO_MISO
-  - U6 QH
-  - OC5 pin3
-
-NET: SR_IN_CHAIN1
-  - U7 QH
-  - U6 SER
-
-NET: SR_IN_CHAIN2
-  - U8 QH
+NET: SR_IN_CHAIN4
   - U7 SER
+  - U10 QH
 
 NET: SR_IN_CHAIN3
-  - U9 QH
-  - U8 SER
-
-NET: SR_IN_CHAIN4
-  - U10 QH
   - U9 SER
+  - U7 QH
+
+NET: SR_IN_CHAIN2
+  - U6 SER
+  - U9 QH
+
+NET: SR_IN_CHAIN1
+  - U8 SER
+  - U6 QH
+
+NET: ISO_MISO
+  - U8 QH
+  - OC5 pin3
 
 NET: ISO_MOSI
   - U11 SER
@@ -352,21 +352,21 @@ NET: SR_OUT_CHAIN
 NET: ISO_SCK
   - U12 SRCLK
   - U11 SRCLK
-  - U10 CLK
-  - U9 CLK
   - U8 CLK
-  - U7 CLK
   - U6 CLK
+  - U9 CLK
+  - U7 CLK
+  - U10 CLK
   - OC1 pin5
 
 NET: ISO_LATCH
   - U12 RCLK
   - U11 RCLK
-  - U10 SH
-  - U9 SH
   - U8 SH
-  - U7 SH
   - U6 SH
+  - U9 SH
+  - U7 SH
+  - U10 SH
   - OC3 pin5
 
 NET: ISO_OE_N
@@ -375,65 +375,65 @@ NET: ISO_OE_N
   - U11 OE_n
   - OC4 pin5
 
-NET: CMD_B6
+NET: CMD_AUTORANGE_INH
   - RN2 pin1
   - U14 1A
-  - U11 QG
-
-NET: CMD_B7
-  - RN2 pin2
-  - U14 2A
-  - U11 QH
-
-NET: CMD_B8
-  - RN2 pin3
-  - U14 3A
-  - U12 QA
-
-NET: CMD_B9
-  - RN2 pin4
-  - U14 4A
-  - U12 QB
-
-NET: CMD_B10
-  - RN3 pin1
-  - U14 5A
-  - U12 QC
-
-NET: CMD_B11
-  - RN3 pin2
-  - U14 6A
-  - U12 QD
-
-NET: CMD_B0
-  - RN3 pin3
-  - U13 1A
-  - U11 QA
-
-NET: CMD_B1
-  - RN3 pin4
-  - U13 2A
   - U11 QB
 
-NET: CMD_B2
-  - RN4 pin1
-  - U13 3A
-  - U11 QC
+NET: CMD_RANGE_CMD_1
+  - RN2 pin2
+  - U14 4A
+  - U11 QG
 
-NET: CMD_B3
-  - RN4 pin2
-  - U13 4A
-  - U11 QD
+NET: CMD_RANGE_CMD_2
+  - RN2 pin3
+  - U14 5A
+  - U11 QH
 
-NET: CMD_B4
-  - RN4 pin3
-  - U13 5A
-  - U11 QE
+NET: CMD_RANGE_CMD_4
+  - RN2 pin4
+  - U14 6A
+  - U12 QB
 
-NET: CMD_B5
-  - RN4 pin4
+NET: CMD_INT_CMD_2
+  - RN3 pin1
   - U13 6A
   - U11 QF
+
+NET: CMD_FUNC_CMD_42
+  - RN3 pin2
+  - U13 1A
+  - U11 QE
+
+NET: CMD_INT_CMD_1
+  - RN3 pin3
+  - U14 3A
+  - U11 QD
+
+NET: CMD_INT_CMD_4
+  - RN3 pin4
+  - U14 2A
+  - U11 QC
+
+NET: CMD_SAMPLE_CONTACT
+  - RN4 pin1
+  - U13 3A
+  - U12 QA
+
+NET: CMD_RATIO_N
+  - RN4 pin2
+  - U13 4A
+  - U12 QG
+
+NET: CMD_LOCKOUT_N
+  - RN4 pin3
+  - U13 2A
+  - U12 QF
+
+NET: CMD_FUNC_CMD_43
+  - RN4 pin4
+  - U13 5A
+  - U12 QC
 
 NET: V3V3_ISO
   - RN4 pin8
@@ -459,16 +459,16 @@ NET: V3V3_ISO
   - C45 pin1 (+)
   - U11 VCC
   - U11 SRCLR_n
-  - C44 pin1 (+)
-  - U10 VCC
-  - C43 pin1 (+)
-  - U9 VCC
   - C42 pin1 (+)
   - U8 VCC
-  - C41 pin1 (+)
-  - U7 VCC
   - C40 pin1 (+)
   - U6 VCC
+  - C43 pin1 (+)
+  - U9 VCC
+  - C41 pin1 (+)
+  - U7 VCC
+  - C44 pin1 (+)
+  - U10 VCC
   - C37 pin1 (+)
   - U5 Vout
   - R14 pin1
@@ -481,113 +481,113 @@ NET: V3V3_ISO
   - C30 pin1 (+)
   - OC1 pin6
 
-NET: CMD_B12
+NET: CMD_SAMPLE_PULSE
   - R21 pin1
-  - U12 QE
+  - U11 QA
 
 NET: DVM_D6_1
   - J2 D6_1
-  - U6 H
+  - U8 C
 
 NET: DVM_D5_8
   - J2 D5_8
-  - U6 G
+  - U8 H
 
 NET: DVM_D5_4
   - J2 D5_4
-  - U6 F
+  - U8 E
 
 NET: DVM_D5_2
   - J2 D5_2
-  - U6 E
+  - U6 C
 
 NET: DVM_D5_1
   - J2 D5_1
-  - U6 D
+  - U6 A
 
 NET: DVM_D4_8
   - J2 D4_8
-  - U6 C
+  - U6 G
 
 NET: DVM_D4_4
   - J2 D4_4
-  - U6 B
+  - U6 E
 
 NET: DVM_D4_2
   - J2 D4_2
-  - U6 A
+  - U9 C
 
 NET: DVM_D4_1
   - J2 D4_1
-  - U7 H
+  - U9 A
 
 NET: DVM_D3_8
   - J2 D3_8
-  - U7 G
+  - U9 G
 
 NET: DVM_D3_4
   - J2 D3_4
-  - U7 F
+  - U9 E
 
 NET: DVM_D3_2
   - J2 D3_2
-  - U7 E
+  - U7 C
 
 NET: DVM_D3_1
   - J2 D3_1
-  - U7 D
+  - U7 A
 
 NET: DVM_D2_8
   - J2 D2_8
-  - U7 C
+  - U7 G
 
 NET: DVM_D2_4
   - J2 D2_4
-  - U7 B
+  - U7 E
 
 NET: DVM_D2_2
   - J2 D2_2
-  - U7 A
+  - U10 A
 
 NET: DVM_D2_1
   - J2 D2_1
-  - U8 H
+  - U10 G
 
 NET: DVM_D1_8
   - J2 D1_8
-  - U8 G
+  - U8 B
 
 NET: DVM_D1_4
   - J2 D1_4
-  - U8 F
+  - U8 G
 
 NET: DVM_D1_2
   - J2 D1_2
-  - U8 E
+  - U6 D
 
 NET: DVM_D1_1
   - J2 D1_1
-  - U8 D
+  - U6 B
 
 NET: DVM_D0_8
   - J2 D0_8
-  - U8 C
+  - U6 H
 
 NET: DVM_D0_4
   - J2 D0_4
-  - U8 B
+  - U6 F
 
 NET: DVM_D0_2
   - J2 D0_2
-  - U8 A
+  - U9 D
 
 NET: DVM_D0_1
   - J2 D0_1
-  - U9 H
+  - U9 B
 
 NET: DVM_POL_POS
   - J2 POL_POS
-  - U9 G
+  - U9 H
 
 NET: DVM_POL_NEG
   - J2 POL_NEG
@@ -595,23 +595,23 @@ NET: DVM_POL_NEG
 
 NET: DVM_FUNC_OUT_28
   - J2 FUNC_OUT_28
-  - U9 E
+  - U7 D
 
 NET: DVM_FUNC_OUT_29
   - J2 FUNC_OUT_29
-  - U9 D
+  - U7 B
 
 NET: DVM_RANGE_OUT_4
   - J2 RANGE_OUT_4
-  - U9 C
+  - U7 H
 
 NET: DVM_RANGE_OUT_2
   - J2 RANGE_OUT_2
-  - U9 B
+  - U7 F
 
 NET: DVM_RANGE_OUT_1
   - J2 RANGE_OUT_1
-  - U9 A
+  - U10 B
 
 NET: DVM_PRINT_PULSE
   - J2 PRINT_PULSE
@@ -619,31 +619,35 @@ NET: DVM_PRINT_PULSE
 
 NET: DVM_PRINT_LEVEL
   - J2 PRINT_LEVEL
-  - U10 G
+  - U8 D
 
 NET: DVM_DATA_CAN_CHANGE
   - J2 DATA_CAN_CHANGE
-  - U10 F
+  - U8 A
 
 NET: DVM_OVERLOAD
   - J2 OVERLOAD
-  - U10 E
+  - U8 F
 
 NET: DVM_LOCKOUT_N
   - J2 LOCKOUT_N
-  - U13 1Y
+  - U13 2Y
 
 NET: DVM_SAMPLE_CONTACT
   - J2 SAMPLE_CONTACT
-  - U13 2Y
+  - U13 3Y
+
+NET: DVM_SAMPLE_PULSE
+  - J2 SAMPLE_PULSE
+  - R21 pin2
 
 NET: DVM_RATIO_N
   - J2 RATIO_N
-  - U13 3Y
+  - U13 4Y
 
 NET: DVM_FUNC_CMD_42
   - J2 FUNC_CMD_42
-  - U13 4Y
+  - U13 1Y
 
 NET: DVM_FUNC_CMD_43
   - J2 FUNC_CMD_43
@@ -651,19 +655,19 @@ NET: DVM_FUNC_CMD_43
 
 NET: DVM_INT_CMD_4
   - J2 INT_CMD_4
-  - U13 6Y
+  - U14 2Y
 
 NET: DVM_INT_CMD_2
   - J2 INT_CMD_2
-  - U14 1Y
+  - U13 6Y
 
 NET: DVM_INT_CMD_1
   - J2 INT_CMD_1
-  - U14 2Y
+  - U14 3Y
 
 NET: DVM_AUTORANGE_INH
   - J2 AUTORANGE_INH
-  - U14 3Y
+  - U14 1Y
 
 NET: DVM_RANGE_CMD_1
   - J2 RANGE_CMD_1
@@ -677,10 +681,6 @@ NET: DVM_RANGE_CMD_4
   - J2 RANGE_CMD_4
   - U14 6Y
 
-NET: DVM_SAMPLE_PULSE
-  - J2 SAMPLE_PULSE
-  - R21 pin2
-
 NET: GND_ISO
   - J2 SHELL2
   - J2 SHELL1
@@ -693,26 +693,26 @@ NET: GND_ISO
   - U12 GND
   - C45 pin2 (-)
   - U11 GND
-  - C44 pin2 (-)
-  - U10 A
-  - U10 B
-  - U10 C
-  - U10 D
-  - U10 SER
-  - U10 GND
-  - U10 CLKINH
-  - C43 pin2 (-)
-  - U9 GND
-  - U9 CLKINH
   - C42 pin2 (-)
   - U8 GND
   - U8 CLKINH
-  - C41 pin2 (-)
-  - U7 GND
-  - U7 CLKINH
   - C40 pin2 (-)
   - U6 GND
   - U6 CLKINH
+  - C43 pin2 (-)
+  - U9 GND
+  - U9 CLKINH
+  - C41 pin2 (-)
+  - U7 GND
+  - U7 CLKINH
+  - C44 pin2 (-)
+  - U10 F
+  - U10 E
+  - U10 D
+  - U10 C
+  - U10 SER
+  - U10 GND
+  - U10 CLKINH
   - C37 pin2 (-)
   - U5 GND
   - C36 pin2 (-)
@@ -1086,107 +1086,19 @@ C37 (10uF undefined)
 - pin1(anode, pos, left): NETS(V3V3_ISO)
 - pin2(cathode, neg, right): NETS(GND_ISO)
 
-U6 (SN74LV165ADR)
-- pin1(SH, N_LD): NETS(ISO_LATCH)
-- pin2(CLK): NETS(ISO_SCK)
-- pin3(E): NETS(DVM_D5_2)
-- pin4(F): NETS(DVM_D5_4)
-- pin5(G): NETS(DVM_D5_8)
-- pin6(H): NETS(DVM_D6_1)
-- pin7(N_QH): NOT_CONNECTED
-- pin8(GND): NETS(GND_ISO)
-- pin9(QH): NETS(ISO_MISO)
-- pin10(SER): NETS(SR_IN_CHAIN1)
-- pin11(A): NETS(DVM_D4_2)
-- pin12(B): NETS(DVM_D4_4)
-- pin13(C): NETS(DVM_D4_8)
-- pin14(D): NETS(DVM_D5_1)
-- pin15(CLKINH): NETS(GND_ISO)
-- pin16(VCC): NETS(V3V3_ISO)
-
-C40 (100nF cap0603)
-- pin1(anode, pos, left): NETS(V3V3_ISO)
-- pin2(cathode, neg, right): NETS(GND_ISO)
-
-U7 (SN74LV165ADR)
-- pin1(SH, N_LD): NETS(ISO_LATCH)
-- pin2(CLK): NETS(ISO_SCK)
-- pin3(E): NETS(DVM_D3_2)
-- pin4(F): NETS(DVM_D3_4)
-- pin5(G): NETS(DVM_D3_8)
-- pin6(H): NETS(DVM_D4_1)
-- pin7(N_QH): NOT_CONNECTED
-- pin8(GND): NETS(GND_ISO)
-- pin9(QH): NETS(SR_IN_CHAIN1)
-- pin10(SER): NETS(SR_IN_CHAIN2)
-- pin11(A): NETS(DVM_D2_2)
-- pin12(B): NETS(DVM_D2_4)
-- pin13(C): NETS(DVM_D2_8)
-- pin14(D): NETS(DVM_D3_1)
-- pin15(CLKINH): NETS(GND_ISO)
-- pin16(VCC): NETS(V3V3_ISO)
-
-C41 (100nF cap0603)
-- pin1(anode, pos, left): NETS(V3V3_ISO)
-- pin2(cathode, neg, right): NETS(GND_ISO)
-
-U8 (SN74LV165ADR)
-- pin1(SH, N_LD): NETS(ISO_LATCH)
-- pin2(CLK): NETS(ISO_SCK)
-- pin3(E): NETS(DVM_D1_2)
-- pin4(F): NETS(DVM_D1_4)
-- pin5(G): NETS(DVM_D1_8)
-- pin6(H): NETS(DVM_D2_1)
-- pin7(N_QH): NOT_CONNECTED
-- pin8(GND): NETS(GND_ISO)
-- pin9(QH): NETS(SR_IN_CHAIN2)
-- pin10(SER): NETS(SR_IN_CHAIN3)
-- pin11(A): NETS(DVM_D0_2)
-- pin12(B): NETS(DVM_D0_4)
-- pin13(C): NETS(DVM_D0_8)
-- pin14(D): NETS(DVM_D1_1)
-- pin15(CLKINH): NETS(GND_ISO)
-- pin16(VCC): NETS(V3V3_ISO)
-
-C42 (100nF cap0603)
-- pin1(anode, pos, left): NETS(V3V3_ISO)
-- pin2(cathode, neg, right): NETS(GND_ISO)
-
-U9 (SN74LV165ADR)
-- pin1(SH, N_LD): NETS(ISO_LATCH)
-- pin2(CLK): NETS(ISO_SCK)
-- pin3(E): NETS(DVM_FUNC_OUT_28)
-- pin4(F): NETS(DVM_POL_NEG)
-- pin5(G): NETS(DVM_POL_POS)
-- pin6(H): NETS(DVM_D0_1)
-- pin7(N_QH): NOT_CONNECTED
-- pin8(GND): NETS(GND_ISO)
-- pin9(QH): NETS(SR_IN_CHAIN3)
-- pin10(SER): NETS(SR_IN_CHAIN4)
-- pin11(A): NETS(DVM_RANGE_OUT_1)
-- pin12(B): NETS(DVM_RANGE_OUT_2)
-- pin13(C): NETS(DVM_RANGE_OUT_4)
-- pin14(D): NETS(DVM_FUNC_OUT_29)
-- pin15(CLKINH): NETS(GND_ISO)
-- pin16(VCC): NETS(V3V3_ISO)
-
-C43 (100nF cap0603)
-- pin1(anode, pos, left): NETS(V3V3_ISO)
-- pin2(cathode, neg, right): NETS(GND_ISO)
-
 U10 (SN74LV165ADR)
 - pin1(SH, N_LD): NETS(ISO_LATCH)
 - pin2(CLK): NETS(ISO_SCK)
-- pin3(E): NETS(DVM_OVERLOAD)
-- pin4(F): NETS(DVM_DATA_CAN_CHANGE)
-- pin5(G): NETS(DVM_PRINT_LEVEL)
+- pin3(E): NETS(GND_ISO)
+- pin4(F): NETS(GND_ISO)
+- pin5(G): NETS(DVM_D2_1)
 - pin6(H): NETS(DVM_PRINT_PULSE)
 - pin7(N_QH): NOT_CONNECTED
 - pin8(GND): NETS(GND_ISO)
 - pin9(QH): NETS(SR_IN_CHAIN4)
 - pin10(SER): NETS(GND_ISO)
-- pin11(A): NETS(GND_ISO)
-- pin12(B): NETS(GND_ISO)
+- pin11(A): NETS(DVM_D2_2)
+- pin12(B): NETS(DVM_RANGE_OUT_1)
 - pin13(C): NETS(GND_ISO)
 - pin14(D): NETS(GND_ISO)
 - pin15(CLKINH): NETS(GND_ISO)
@@ -1196,14 +1108,102 @@ C44 (100nF cap0603)
 - pin1(anode, pos, left): NETS(V3V3_ISO)
 - pin2(cathode, neg, right): NETS(GND_ISO)
 
+U7 (SN74LV165ADR)
+- pin1(SH, N_LD): NETS(ISO_LATCH)
+- pin2(CLK): NETS(ISO_SCK)
+- pin3(E): NETS(DVM_D2_4)
+- pin4(F): NETS(DVM_RANGE_OUT_2)
+- pin5(G): NETS(DVM_D2_8)
+- pin6(H): NETS(DVM_RANGE_OUT_4)
+- pin7(N_QH): NOT_CONNECTED
+- pin8(GND): NETS(GND_ISO)
+- pin9(QH): NETS(SR_IN_CHAIN3)
+- pin10(SER): NETS(SR_IN_CHAIN4)
+- pin11(A): NETS(DVM_D3_1)
+- pin12(B): NETS(DVM_FUNC_OUT_29)
+- pin13(C): NETS(DVM_D3_2)
+- pin14(D): NETS(DVM_FUNC_OUT_28)
+- pin15(CLKINH): NETS(GND_ISO)
+- pin16(VCC): NETS(V3V3_ISO)
+
+C41 (100nF cap0603)
+- pin1(anode, pos, left): NETS(V3V3_ISO)
+- pin2(cathode, neg, right): NETS(GND_ISO)
+
+U9 (SN74LV165ADR)
+- pin1(SH, N_LD): NETS(ISO_LATCH)
+- pin2(CLK): NETS(ISO_SCK)
+- pin3(E): NETS(DVM_D3_4)
+- pin4(F): NETS(DVM_POL_NEG)
+- pin5(G): NETS(DVM_D3_8)
+- pin6(H): NETS(DVM_POL_POS)
+- pin7(N_QH): NOT_CONNECTED
+- pin8(GND): NETS(GND_ISO)
+- pin9(QH): NETS(SR_IN_CHAIN2)
+- pin10(SER): NETS(SR_IN_CHAIN3)
+- pin11(A): NETS(DVM_D4_1)
+- pin12(B): NETS(DVM_D0_1)
+- pin13(C): NETS(DVM_D4_2)
+- pin14(D): NETS(DVM_D0_2)
+- pin15(CLKINH): NETS(GND_ISO)
+- pin16(VCC): NETS(V3V3_ISO)
+
+C43 (100nF cap0603)
+- pin1(anode, pos, left): NETS(V3V3_ISO)
+- pin2(cathode, neg, right): NETS(GND_ISO)
+
+U6 (SN74LV165ADR)
+- pin1(SH, N_LD): NETS(ISO_LATCH)
+- pin2(CLK): NETS(ISO_SCK)
+- pin3(E): NETS(DVM_D4_4)
+- pin4(F): NETS(DVM_D0_4)
+- pin5(G): NETS(DVM_D4_8)
+- pin6(H): NETS(DVM_D0_8)
+- pin7(N_QH): NOT_CONNECTED
+- pin8(GND): NETS(GND_ISO)
+- pin9(QH): NETS(SR_IN_CHAIN1)
+- pin10(SER): NETS(SR_IN_CHAIN2)
+- pin11(A): NETS(DVM_D5_1)
+- pin12(B): NETS(DVM_D1_1)
+- pin13(C): NETS(DVM_D5_2)
+- pin14(D): NETS(DVM_D1_2)
+- pin15(CLKINH): NETS(GND_ISO)
+- pin16(VCC): NETS(V3V3_ISO)
+
+C40 (100nF cap0603)
+- pin1(anode, pos, left): NETS(V3V3_ISO)
+- pin2(cathode, neg, right): NETS(GND_ISO)
+
+U8 (SN74LV165ADR)
+- pin1(SH, N_LD): NETS(ISO_LATCH)
+- pin2(CLK): NETS(ISO_SCK)
+- pin3(E): NETS(DVM_D5_4)
+- pin4(F): NETS(DVM_OVERLOAD)
+- pin5(G): NETS(DVM_D1_4)
+- pin6(H): NETS(DVM_D5_8)
+- pin7(N_QH): NOT_CONNECTED
+- pin8(GND): NETS(GND_ISO)
+- pin9(QH): NETS(ISO_MISO)
+- pin10(SER): NETS(SR_IN_CHAIN1)
+- pin11(A): NETS(DVM_DATA_CAN_CHANGE)
+- pin12(B): NETS(DVM_D1_8)
+- pin13(C): NETS(DVM_D6_1)
+- pin14(D): NETS(DVM_PRINT_LEVEL)
+- pin15(CLKINH): NETS(GND_ISO)
+- pin16(VCC): NETS(V3V3_ISO)
+
+C42 (100nF cap0603)
+- pin1(anode, pos, left): NETS(V3V3_ISO)
+- pin2(cathode, neg, right): NETS(GND_ISO)
+
 U11 (SN74LV595ADR)
-- pin1(QB): NETS(CMD_B1)
-- pin2(QC): NETS(CMD_B2)
-- pin3(QD): NETS(CMD_B3)
-- pin4(QE): NETS(CMD_B4)
-- pin5(QF): NETS(CMD_B5)
-- pin6(QG): NETS(CMD_B6)
-- pin7(QH): NETS(CMD_B7)
+- pin1(QB): NETS(CMD_AUTORANGE_INH)
+- pin2(QC): NETS(CMD_INT_CMD_4)
+- pin3(QD): NETS(CMD_INT_CMD_1)
+- pin4(QE): NETS(CMD_FUNC_CMD_42)
+- pin5(QF): NETS(CMD_INT_CMD_2)
+- pin6(QG): NETS(CMD_RANGE_CMD_1)
+- pin7(QH): NETS(CMD_RANGE_CMD_2)
 - pin8(GND): NETS(GND_ISO)
 - pin9(QH_): NETS(SR_OUT_CHAIN)
 - pin10(SRCLR_n): NETS(V3V3_ISO)
@@ -1211,7 +1211,7 @@ U11 (SN74LV595ADR)
 - pin12(RCLK): NETS(ISO_LATCH)
 - pin13(OE_n): NETS(ISO_OE_N)
 - pin14(SER): NETS(ISO_MOSI)
-- pin15(QA): NETS(CMD_B0)
+- pin15(QA): NETS(CMD_SAMPLE_PULSE)
 - pin16(VCC): NETS(V3V3_ISO)
 
 C45 (100nF cap0603)
@@ -1219,12 +1219,12 @@ C45 (100nF cap0603)
 - pin2(cathode, neg, right): NETS(GND_ISO)
 
 U12 (SN74LV595ADR)
-- pin1(QB): NETS(CMD_B9)
-- pin2(QC): NETS(CMD_B10)
-- pin3(QD): NETS(CMD_B11)
-- pin4(QE): NETS(CMD_B12)
-- pin5(QF): NOT_CONNECTED
-- pin6(QG): NOT_CONNECTED
+- pin1(QB): NETS(CMD_RANGE_CMD_4)
+- pin2(QC): NETS(CMD_FUNC_CMD_43)
+- pin3(QD): NOT_CONNECTED
+- pin4(QE): NOT_CONNECTED
+- pin5(QF): NETS(CMD_LOCKOUT_N)
+- pin6(QG): NETS(CMD_RATIO_N)
 - pin7(QH): NOT_CONNECTED
 - pin8(GND): NETS(GND_ISO)
 - pin9(QH_): NOT_CONNECTED
@@ -1233,7 +1233,7 @@ U12 (SN74LV595ADR)
 - pin12(RCLK): NETS(ISO_LATCH)
 - pin13(OE_n): NETS(ISO_OE_N)
 - pin14(SER): NETS(SR_OUT_CHAIN)
-- pin15(QA): NETS(CMD_B8)
+- pin15(QA): NETS(CMD_SAMPLE_CONTACT)
 - pin16(VCC): NETS(V3V3_ISO)
 
 C46 (100nF cap0603)
@@ -1245,19 +1245,19 @@ R20 (10kΩ res0603)
 - pin2(cathode, neg, right): NETS(V3V3_ISO)
 
 U13 (SN74LVC07ADR)
-- pin1(1A): NETS(CMD_B0)
-- pin2(1Y): NETS(DVM_LOCKOUT_N)
-- pin3(2A): NETS(CMD_B1)
-- pin4(2Y): NETS(DVM_SAMPLE_CONTACT)
-- pin5(3A): NETS(CMD_B2)
-- pin6(3Y): NETS(DVM_RATIO_N)
+- pin1(1A): NETS(CMD_FUNC_CMD_42)
+- pin2(1Y): NETS(DVM_FUNC_CMD_42)
+- pin3(2A): NETS(CMD_LOCKOUT_N)
+- pin4(2Y): NETS(DVM_LOCKOUT_N)
+- pin5(3A): NETS(CMD_SAMPLE_CONTACT)
+- pin6(3Y): NETS(DVM_SAMPLE_CONTACT)
 - pin7(GND): NETS(GND_ISO)
-- pin8(4Y): NETS(DVM_FUNC_CMD_42)
-- pin9(4A): NETS(CMD_B3)
+- pin8(4Y): NETS(DVM_RATIO_N)
+- pin9(4A): NETS(CMD_RATIO_N)
 - pin10(5Y): NETS(DVM_FUNC_CMD_43)
-- pin11(5A): NETS(CMD_B4)
-- pin12(6Y): NETS(DVM_INT_CMD_4)
-- pin13(6A): NETS(CMD_B5)
+- pin11(5A): NETS(CMD_FUNC_CMD_43)
+- pin12(6Y): NETS(DVM_INT_CMD_2)
+- pin13(6A): NETS(CMD_INT_CMD_2)
 - pin14(VCC): NETS(V3V3_ISO)
 
 C47 (100nF cap0603)
@@ -1265,19 +1265,19 @@ C47 (100nF cap0603)
 - pin2(cathode, neg, right): NETS(GND_ISO)
 
 U14 (SN74LVC07ADR)
-- pin1(1A): NETS(CMD_B6)
-- pin2(1Y): NETS(DVM_INT_CMD_2)
-- pin3(2A): NETS(CMD_B7)
-- pin4(2Y): NETS(DVM_INT_CMD_1)
-- pin5(3A): NETS(CMD_B8)
-- pin6(3Y): NETS(DVM_AUTORANGE_INH)
+- pin1(1A): NETS(CMD_AUTORANGE_INH)
+- pin2(1Y): NETS(DVM_AUTORANGE_INH)
+- pin3(2A): NETS(CMD_INT_CMD_4)
+- pin4(2Y): NETS(DVM_INT_CMD_4)
+- pin5(3A): NETS(CMD_INT_CMD_1)
+- pin6(3Y): NETS(DVM_INT_CMD_1)
 - pin7(GND): NETS(GND_ISO)
 - pin8(4Y): NETS(DVM_RANGE_CMD_1)
-- pin9(4A): NETS(CMD_B9)
+- pin9(4A): NETS(CMD_RANGE_CMD_1)
 - pin10(5Y): NETS(DVM_RANGE_CMD_2)
-- pin11(5A): NETS(CMD_B10)
+- pin11(5A): NETS(CMD_RANGE_CMD_2)
 - pin12(6Y): NETS(DVM_RANGE_CMD_4)
-- pin13(6A): NETS(CMD_B11)
+- pin13(6A): NETS(CMD_RANGE_CMD_4)
 - pin14(VCC): NETS(V3V3_ISO)
 
 C48 (100nF cap0603)
@@ -1285,37 +1285,37 @@ C48 (100nF cap0603)
 - pin2(cathode, neg, right): NETS(GND_ISO)
 
 RN2 (4D03WGJ0103T5E)
-- pin1: NETS(CMD_B6)
-- pin2: NETS(CMD_B7)
-- pin3: NETS(CMD_B8)
-- pin4: NETS(CMD_B9)
+- pin1: NETS(CMD_AUTORANGE_INH)
+- pin2: NETS(CMD_RANGE_CMD_1)
+- pin3: NETS(CMD_RANGE_CMD_2)
+- pin4: NETS(CMD_RANGE_CMD_4)
 - pin5: NETS(V3V3_ISO)
 - pin6: NETS(V3V3_ISO)
 - pin7: NETS(V3V3_ISO)
 - pin8: NETS(V3V3_ISO)
 
 RN3 (4D03WGJ0103T5E)
-- pin1: NETS(CMD_B10)
-- pin2: NETS(CMD_B11)
-- pin3: NETS(CMD_B0)
-- pin4: NETS(CMD_B1)
+- pin1: NETS(CMD_INT_CMD_2)
+- pin2: NETS(CMD_FUNC_CMD_42)
+- pin3: NETS(CMD_INT_CMD_1)
+- pin4: NETS(CMD_INT_CMD_4)
 - pin5: NETS(V3V3_ISO)
 - pin6: NETS(V3V3_ISO)
 - pin7: NETS(V3V3_ISO)
 - pin8: NETS(V3V3_ISO)
 
 RN4 (4D03WGJ0103T5E)
-- pin1: NETS(CMD_B2)
-- pin2: NETS(CMD_B3)
-- pin3: NETS(CMD_B4)
-- pin4: NETS(CMD_B5)
+- pin1: NETS(CMD_SAMPLE_CONTACT)
+- pin2: NETS(CMD_RATIO_N)
+- pin3: NETS(CMD_LOCKOUT_N)
+- pin4: NETS(CMD_FUNC_CMD_43)
 - pin5: NETS(V3V3_ISO)
 - pin6: NETS(V3V3_ISO)
 - pin7: NETS(V3V3_ISO)
 - pin8: NETS(V3V3_ISO)
 
 R21 (100Ω res0603)
-- pin1(anode, pos, left): NETS(CMD_B12)
+- pin1(anode, pos, left): NETS(CMD_SAMPLE_PULSE)
 - pin2(cathode, neg, right): NETS(DVM_SAMPLE_PULSE)
 
 J2 (DD50P364TXLF)

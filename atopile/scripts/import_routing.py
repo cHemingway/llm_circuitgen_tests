@@ -63,6 +63,16 @@ def read_session(ses: Path) -> dict:
     kept = lock_fixed(board)
     if not pcbnew.ImportSpecctraSES(board, str(ses)):
         sys.exit(f"KiCad could not import {ses}")
+    routing = tracks_of(board)
+    print(f"{ses}: {kept} locked tracks/vias kept; {len(board.GetTracks()) - kept} routed "
+          f"(was {before - kept})")
+    return routing
+
+
+def tracks_of(board) -> dict:
+    """All tracks and vias of a pcbnew board, as plain data."""
+    import pcbnew
+
     mm = pcbnew.ToMM
     segments, vias = [], []
     for t in board.GetTracks():
@@ -79,9 +89,7 @@ def read_session(ses: Path) -> dict:
                 "width": mm(t.GetWidth()), "layer": t.GetLayerName(), "net": t.GetNetname(),
             })
         else:
-            sys.exit(f"unexpected track type {t.GetClass()} in the session")
-    print(f"{ses}: {kept} locked tracks/vias kept; {len(board.GetTracks()) - kept} routed "
-          f"(was {before - kept})")
+            sys.exit(f"unexpected track type {t.GetClass()}")
     return {"segments": segments, "vias": vias}
 
 

@@ -2,19 +2,26 @@
 """
 Route the connections Freerouting left open, with a small grid router.
 
-For every net whose copper is still in more than one piece (KiCad's
-connectivity, with the zones filled in memory), the two closest pieces are
-joined by an A* search on a 0.05 mm grid over F.Cu and B.Cu, with through
+First, signal-net vias and track ends that lead nowhere (Freerouting
+leaves some where it gave up on a connection) are removed. Then, for every
+net whose copper is still in more than one piece (KiCad's connectivity,
+with the zones filled in memory), the two closest pieces are joined by an
+A* search on a 0.05 mm grid over F.Cu and B.Cu, with through
 vias. Clearances follow the net classes plus a margin for the grid:
   * track centre: width/2 + clearance from other nets' copper, the board
     edge and the isolation keep-out strip
   * via: 0.6 mm pad + clearance on both outer layers, 0.25 mm hole to hole,
     never inside an SMD pad
 The search runs in a window around the gap (widened if it fails), so it
-only touches the area of the open connection.
+only touches the area of the open connection. If some connections fail,
+they are tried again first, before the others, and the better result is
+kept. A connection that still fails is routed ignoring other signal nets'
+tracks; the track segments and vias that path collides with are ripped up
+and their nets reconnected in the next round (up to MAX_ROUNDS). Pads, the
+plane via drops and the pre-routed LDO block never move.
 
     python3 scripts/finish_routes.py           # report what it would add
-    python3 scripts/finish_routes.py --write   # add the tracks and vias
+    python3 scripts/finish_routes.py --write   # clean up and add the tracks and vias
 
 Run after scripts/import_routing.py, then check with KiCad's DRC
 (scripts/export_pcb.py does that).
@@ -47,6 +54,7 @@ BARRIER_KEEPOUT = 1.6
 VIA_COST = 1.5  # mm of track a via is worth
 BEND_COST = 0.3  # mm per 45 degrees of turn
 WINDOWS = (3.0, 6.0, 12.0)  # search margins around the gap, mm
+MAX_ROUNDS = 8
 LAYERS = ("F.Cu", "B.Cu")
 
 
@@ -206,6 +214,9 @@ def route(net, src, dst, items, window):
     y0, y1 = min(ys) - window, max(ys) + window
     x0, x1 = max(x0, -BOARD_W / 2), min(x1, BOARD_W / 2)
     y0, y1 = max(y0, -BOARD_H / 2), min(y1, BOARD_H / 2)
+    # grid on absolute multiples of RES: the pads sit on that grid, so a
+    # track can run exactly on a fine-pitch pin's centreline
+    x0, y0 = math.floor(x0 / RES) * RES, math.floor(y0 / RES) * RES
     gx = np.arange(x0, x1 + RES / 2, RES)
     gy = np.arange(y0, y1 + RES / 2, RES)
     X, Y = np.meshgrid(gx, gy)
@@ -305,7 +316,7 @@ def route(net, src, dst, items, window):
     for a, b in zip(path, path[1:]):
         if a[0] != b[0]:
             flush(run, segments, gx, gy, w, net)
-            vias.append({"at": [round(gx[a[2]], 4), round(gy[a[1]], 4)], "size": VIA_D, "drill": VIA_DRILL, "net": net})
+            vias.append({"at": [round(float(gx[a[2]]), 4), round(float(gy[a[1]]), 4)], "size": VIA_D, "drill": VIA_DRILL, "net": net})
             run = [b]
         else:
             run.append(b)
@@ -325,37 +336,69 @@ def flush(run, segments, gx, gy, w, net):
     corners.append(run[-1])
     for a, b in zip(corners, corners[1:]):
         segments.append({
-            "start": [round(gx[a[2]], 4), round(gy[a[1]], 4)],
-            "end": [round(gx[b[2]], 4), round(gy[b[1]], 4)],
+            "start": [round(float(gx[a[2]]), 4), round(float(gy[a[1]]), 4)],
+            "end": [round(float(gx[b[2]]), 4), round(float(gy[b[1]]), 4)],
             "width": w, "layer": LAYERS[a[0]], "net": net,
         })
 
 
-def main() -> int:
-    ap = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
-    ap.add_argument("--write", action="store_true", help="add the tracks and vias to the layout")
-    args = ap.parse_args()
-
+def remove_dangling(board) -> int:
+    """Remove signal-net vias and tracks with an end that leads nowhere,
+    repeatedly, so a whole abandoned stub goes. Plane nets and grouped
+    tracks are left alone. Returns how many items were removed."""
     import pcbnew
 
-    board = pcbnew.LoadBoard(str(LAYOUT))
-    pcbnew.ZONE_FILLER(board).Fill(board.Zones())
-    items = collect(board)
-    pairs = open_pairs(board, items)
-    print(f"{len(pairs)} open connection(s)")
+    pads = {}
+    for fp in board.GetFootprints():
+        for pad in fp.Pads():
+            pads.setdefault(pad.GetNetCode(), []).append(pad)
+    removed = 0
+    while True:
+        by_net = {}
+        for t in board.GetTracks():
+            if t.GetNetname() not in import_routing.PLANE_NETS and t.GetParentGroup() is None:
+                by_net.setdefault(t.GetNetCode(), []).append(t)
+        drop = []
+        for code, ts in by_net.items():
+            net_pads = pads.get(code, [])
+            for t in ts:
+                if t.GetClass() == "PCB_VIA":
+                    n = sum(1 for o in ts if o.GetClass() != "PCB_VIA"
+                            and (t.HitTest(o.GetStart()) or t.HitTest(o.GetEnd())))
+                    n += sum(1 for p in net_pads if p.HitTest(t.GetPosition()))
+                    if n <= 1:
+                        drop.append(t)
+                    continue
+                for end in (t.GetStart(), t.GetEnd()):
+                    if not (any(p.IsOnLayer(t.GetLayer()) and p.HitTest(end) for p in net_pads)
+                            or any(o is not t and (o.GetClass() == "PCB_VIA" or o.GetLayer() == t.GetLayer())
+                                   and o.HitTest(end) for o in ts)):
+                        drop.append(t)
+                        break
+        if not drop:
+            return removed
+        for t in drop:
+            board.Delete(t)
+        removed += len(drop)
+
+
+def route_all(pairs, items):
+    """Route the pairs in order; returns (added tracks/vias, failed nets, log)."""
+    items = list(items)
     added = {"segments": [], "vias": []}
-    failed = 0
+    failed, log = [], []
     for net, a, b in pairs:
+        r = None
         for window in WINDOWS:
             r = route(net, a, b, items, window)
             if r:
                 break
         if not r:
-            print(f"  {net}: no route found")
-            failed += 1
+            log.append(f"  {net}: no route found")
+            failed.append(net)
             continue
         segs, vias, length = r
-        print(f"  {net}: {length:.1f} mm, {len(segs)} segments, {len(vias)} via(s)")
+        log.append(f"  {net}: {length:.1f} mm, {len(segs)} segments, {len(vias)} via(s)")
         added["segments"] += segs
         added["vias"] += vias
         # later routes must clear this one
@@ -364,9 +407,127 @@ def main() -> int:
         for v in vias:
             p = tuple(v["at"])
             items.append(Copper(net, LAYERS, cap=(p, p, VIA_D / 2), hole=(p[0], p[1], VIA_DRILL / 2)))
-    if args.write and (added["segments"] or added["vias"]):
-        import_routing.write_layout(added, replace=False)
-    return 1 if failed else 0
+    return added, failed, log
+
+
+def movable(c, net=None):
+    """A signal track or via that rip-up may remove."""
+    return (c.item is not None and c.item.GetClass() in ("PCB_TRACK", "PCB_VIA") and c.net != net
+            and c.net not in import_routing.PLANE_NETS and c.item.GetParentGroup() is None)
+
+
+def seg_seg(a, b, c, d):
+    """Distance between segments ab and cd (scalar)."""
+    def pt(p, q, r):
+        L = (r[0] - q[0]) ** 2 + (r[1] - q[1]) ** 2
+        t = 0.0 if L == 0 else max(0.0, min(1.0, ((p[0] - q[0]) * (r[0] - q[0]) + (p[1] - q[1]) * (r[1] - q[1])) / L))
+        return math.hypot(p[0] - q[0] - t * (r[0] - q[0]), p[1] - q[1] - t * (r[1] - q[1]))
+
+    def side(o, p, q):
+        return (p[0] - o[0]) * (q[1] - o[1]) - (p[1] - o[1]) * (q[0] - o[0])
+
+    if a != b and c != d and (side(c, d, a) > 0) != (side(c, d, b) > 0) and (side(a, b, c) > 0) != (side(a, b, d) > 0):
+        return 0.0
+    return min(pt(a, c, d), pt(b, c, d), pt(c, a, b), pt(d, a, b))
+
+
+def add_to_board(board, routing):
+    import pcbnew
+
+    for sgm in routing["segments"]:
+        t = pcbnew.PCB_TRACK(board)
+        t.SetStart(pcbnew.VECTOR2I(pcbnew.FromMM(sgm["start"][0]), pcbnew.FromMM(sgm["start"][1])))
+        t.SetEnd(pcbnew.VECTOR2I(pcbnew.FromMM(sgm["end"][0]), pcbnew.FromMM(sgm["end"][1])))
+        t.SetWidth(pcbnew.FromMM(sgm["width"]))
+        t.SetLayer(board.GetLayerID(sgm["layer"]))
+        t.SetNetCode(board.GetNetcodeFromNetname(sgm["net"]))
+        board.Add(t)
+    for v in routing["vias"]:
+        t = pcbnew.PCB_VIA(board)
+        t.SetPosition(pcbnew.VECTOR2I(pcbnew.FromMM(v["at"][0]), pcbnew.FromMM(v["at"][1])))
+        t.SetLayerPair(pcbnew.F_Cu, pcbnew.B_Cu)
+        t.SetWidth(pcbnew.FromMM(v["size"]))
+        t.SetDrill(pcbnew.FromMM(v["drill"]))
+        t.SetNetCode(board.GetNetcodeFromNetname(v["net"]))
+        board.Add(t)
+
+
+def rip_up(board, net, a, b, items):
+    """Route net ignoring movable copper, rip up what that path hits and
+    put the path on the board. Returns the ripped nets, or None."""
+    fixed = [c for c in items if not movable(c, net)]
+    r = None
+    for window in WINDOWS:
+        r = route(net, a, b, fixed, window)
+        if r:
+            break
+    if not r:
+        return None
+    segs, vias, _ = r
+    path = [((tuple(x["start"]), tuple(x["end"])), x["width"] / 2, (x["layer"],)) for x in segs]
+    path += [((tuple(v["at"]), tuple(v["at"])), VIA_D / 2, LAYERS) for v in vias]
+    cls = "Power" if net in POWER_NETS else "Default"
+    ripped = set()
+    for c in items:
+        if not movable(c, net):
+            continue
+        ca, cb, cr = c.cap
+        clr = max(CLEARANCE[cls], CLEARANCE["Power" if c.net in POWER_NETS else "Default"])
+        for (pa, pb), pr, layers in path:
+            if set(layers) & set(c.layers) and seg_seg(pa, pb, ca, cb) < pr + cr + clr:
+                board.Delete(c.item)
+                ripped.add(c.net)
+                break
+    add_to_board(board, {"segments": segs, "vias": vias})
+    return ripped
+
+
+def main() -> int:
+    ap = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
+    ap.add_argument("--write", action="store_true", help="clean up and add the tracks and vias to the layout")
+    args = ap.parse_args()
+
+    import pcbnew
+
+    board = pcbnew.LoadBoard(str(LAYOUT))
+    removed = remove_dangling(board)
+    print(f"removed {removed} dangling vias/tracks")
+    failed = []
+    for rnd in range(1, MAX_ROUNDS + 1):
+        pcbnew.ZONE_FILLER(board).Fill(board.Zones())
+        board.BuildConnectivity()
+        items = collect(board)
+        pairs = open_pairs(board, items)
+        print(f"round {rnd}: {len(pairs)} open connection(s)")
+        if not pairs:
+            break
+        added, failed, log = route_all(pairs, items)
+        if failed:
+            again = [p for p in pairs if p[0] in failed] + [p for p in pairs if p[0] not in failed]
+            added2, failed2, log2 = route_all(again, items)
+            if len(failed2) < len(failed):
+                added, failed, log = added2, failed2, ["  (failed nets routed first)"] + log2
+        print("\n".join(log))
+        add_to_board(board, added)
+        if not failed:
+            continue
+        # rip up for what still fails, on the board as it now stands
+        pcbnew.ZONE_FILLER(board).Fill(board.Zones())
+        board.BuildConnectivity()
+        items = collect(board)
+        for net, a, b in open_pairs(board, items):
+            if net in failed:
+                ripped = rip_up(board, net, a, b, items)
+                print(f"  {net}: " + ("no route even with rip-up" if ripped is None
+                                      else f"routed by ripping up {', '.join(sorted(ripped)) or 'nothing'}"))
+                break  # one rip-up per round; the rest is re-evaluated next round
+    pcbnew.ZONE_FILLER(board).Fill(board.Zones())
+    board.BuildConnectivity()
+    left = open_pairs(board, collect(board))
+    print(f"open connections left: {len(left)}" + (f" ({', '.join(n for n, _, _ in left)})" if left else ""))
+    if args.write:
+        import_routing.write_layout(import_routing.tracks_of(board), replace=True)
+    return 1 if left else 0
 
 
 if __name__ == "__main__":

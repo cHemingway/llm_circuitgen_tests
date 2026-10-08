@@ -1,0 +1,18 @@
+diff --git a/src/main/java/app/freerouting/management/RoutingJobSchedulerActionThread.java b/src/main/java/app/freerouting/management/RoutingJobSchedulerActionThread.java
+index a21a5aa..2136451 100644
+--- a/src/main/java/app/freerouting/management/RoutingJobSchedulerActionThread.java
++++ b/src/main/java/app/freerouting/management/RoutingJobSchedulerActionThread.java
+@@ -91,7 +91,12 @@ public class RoutingJobSchedulerActionThread extends StoppableThread
+                 e.printStackTrace();
+               }
+             }
+-            job.state = RoutingJobState.TIMED_OUT;
++            // only a job that is still running timed out; one that finished
++            // in the grace period keeps COMPLETED, so its output is saved
++            if (job.state == RoutingJobState.RUNNING)
++            {
++              job.state = RoutingJobState.TIMED_OUT;
++            }
+           }
+         }
+       }

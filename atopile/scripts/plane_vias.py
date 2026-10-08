@@ -21,8 +21,9 @@ the first one that keeps:
   * 0.25 mm between drill holes
   * out of the isolation keep-out strip, the board edge and the jackscrew
     head keep-outs (nothing within 4 mm of the jackscrews on top)
-On IC pins it prefers spots under the body, between the pad rows, so the
-pins' escape routes stay free. Exposed pads (2 mm or more each way) get a
+On IC pins it prefers spots under the body, between the pad rows, and no
+via goes in the escape zone of another net's IC pin (within 1.5 mm, on the
+side away from the IC body), so the pins' escape routes stay free. Exposed pads (2 mm or more each way) get a
 grid of vias inside the pad instead.
 
 Run after `ato build` and place_components.py, before scripts/export_dsn.py:
@@ -53,6 +54,8 @@ BOARD_W, BOARD_H, CORNER_R = 78.0, 60.0, 2.0
 EDGE = 0.3 + 0.05  # copper-to-edge
 BARRIER_KEEPOUT = 1.6  # half-width of the keep-out strip (place_components.py)
 JACKSCREW_R = 4.0  # check_layout.py JACKSCREW_KEEPOUT_R
+ESCAPE_R = 1.5  # keep vias out of IC pins' escape zones (mm from the pin)
+ESCAPE_COST = 3.0
 EP_MIN = 2.0  # pads at least this big each way get vias inside
 EP_PITCH = 1.0
 
@@ -157,7 +160,30 @@ def on_board(x, y, jackscrews):
     return all(math.hypot(x - jx, y - jy) >= JACKSCREW_R + r for jx, jy in jackscrews)
 
 
-def drop(pad, fp, obstacles, jackscrews):
+def ic_pins(board):
+    """(x, y, outward unit vector, net) of every pin of a footprint with 6+
+    pads: the pins whose escape routes the via drops should leave free."""
+    out = []
+    for fp in board.GetFootprints():
+        if len(fp.Pads()) < 6:
+            continue
+        fx, fy = mm(fp.GetPosition().x), mm(fp.GetPosition().y)
+        for pad in fp.Pads():
+            px, py = mm(pad.GetPosition().x), mm(pad.GetPosition().y)
+            d = math.hypot(px - fx, py - fy)
+            if d > 0.5:  # not a centre (exposed) pad
+                out.append((px, py, (px - fx) / d, (py - fy) / d, pad.GetNetname()))
+    return out
+
+
+def escape_cost(x, y, net, pins):
+    for px, py, ux, uy, n in pins:
+        if n != net and math.hypot(x - px, y - py) < ESCAPE_R and (x - px) * ux + (y - py) * uy > 0:
+            return ESCAPE_COST
+    return 0.0
+
+
+def drop(pad, fp, obstacles, jackscrews, pins):
     """Best (stub start, via position, stub width) for one pad, or None."""
     pc = obstacles.pcbnew
     net = pad.GetNetname()
@@ -182,6 +208,7 @@ def drop(pad, fp, obstacles, jackscrews):
             cost = t
             if is_ic and math.cos(a - inward) < 0.7:
                 cost += 2.0  # keep IC escape routes free: prefer under the body
+            cost += escape_cost(px + dx * t, py + dy * t, net, pins)
             candidates.append((cost, t, dx, dy))
     for cost, t, dx, dy in sorted(candidates):
         vx, vy = px + dx * t, py + dy * t
@@ -229,6 +256,7 @@ def main() -> int:
     ]
     if len(jackscrews) != 2:
         sys.exit("DD-50 jackscrew pads S1/S2 not found")
+    pins = ic_pins(board)
 
     pads = [
         (fp, pad) for fp in board.GetFootprints() for pad in fp.Pads()
@@ -261,7 +289,7 @@ def main() -> int:
             for x, y in ep_vias(pad, obstacles):
                 vias.append({"at": [x, y], "size": VIA_D, "drill": VIA_DRILL, "net": net})
             continue
-        found = drop(pad, fp, obstacles, jackscrews)
+        found = drop(pad, fp, obstacles, jackscrews, pins)
         if found is None:
             failed.append(f"{fp.GetReference()}.{pad.GetNumber()} ({net})")
             continue

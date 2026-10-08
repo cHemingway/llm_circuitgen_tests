@@ -22,12 +22,31 @@
     "classes": [
       {
         "name": "Default",
-        "clearance": 0.2,
-        "track_width": 0.25,
+        "clearance": 0.15,
+        "track_width": 0.2,
         "via_diameter": 0.6,
         "via_drill": 0.3,
         "diff_pair_width": 0.2,
         "diff_pair_gap": 0.25
+      },
+      {
+        "name": "Power",
+        "clearance": 0.2,
+        "track_width": 0.4,
+        "via_diameter": 0.6,
+        "via_drill": 0.3,
+        "diff_pair_width": 0.2,
+        "diff_pair_gap": 0.25
+      }
+    ],
+    "netclass_patterns": [
+      {
+        "netclass": "Power",
+        "pattern": "VBUS"
+      },
+      {
+        "netclass": "Power",
+        "pattern": "+5V"
       }
     ]
   },

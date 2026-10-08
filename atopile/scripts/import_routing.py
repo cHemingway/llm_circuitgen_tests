@@ -34,6 +34,21 @@ LAYOUT = Path(__file__).resolve().parent.parent / "layouts/default/default.kicad
 ATO_PYTHON = os.environ.get("ATO_PYTHON", str(Path.home() / ".local/share/uv/tools/atopile/bin/python"))
 
 
+PLANE_NETS = ("GND", "GND_ISO", "+3V3", "+5V_ISO")
+
+
+def lock_fixed(board) -> int:
+    """Lock what the autorouter must keep: the plane via drops (every track
+    and via on a plane net) and grouped tracks (the pre-routed LDO block).
+    Signal routing from an earlier run stays movable. Returns the count."""
+    n = 0
+    for t in board.GetTracks():
+        fixed = t.GetNetname() in PLANE_NETS or t.GetParentGroup() is not None
+        t.SetLocked(fixed)
+        n += fixed
+    return n
+
+
 def key(kind, *vals):
     return (kind, *(round(v, 3) if isinstance(v, float) else v for v in vals))
 
@@ -42,12 +57,10 @@ def read_session(ses: Path) -> dict:
     import pcbnew
 
     board = pcbnew.LoadBoard(str(LAYOUT))
-    # The session holds only what Freerouting added; the tracks and vias it
-    # was given were locked (export_dsn.py), so lock them here too, or the
-    # import deletes them.
+    # The session holds the movable routing only. Lock the same tracks as
+    # export_dsn.py did; the import replaces everything else.
     before = len(board.GetTracks())
-    for t in board.GetTracks():
-        t.SetLocked(True)
+    kept = lock_fixed(board)
     if not pcbnew.ImportSpecctraSES(board, str(ses)):
         sys.exit(f"KiCad could not import {ses}")
     mm = pcbnew.ToMM
@@ -67,7 +80,8 @@ def read_session(ses: Path) -> dict:
             })
         else:
             sys.exit(f"unexpected track type {t.GetClass()} in the session")
-    print(f"{ses}: {len(board.GetTracks()) - before} new tracks and vias")
+    print(f"{ses}: {kept} locked tracks/vias kept; {len(board.GetTracks()) - kept} routed "
+          f"(was {before - kept})")
     return {"segments": segments, "vias": vias}
 
 

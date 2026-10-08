@@ -5,9 +5,10 @@ Export the atopile layout as a Specctra DSN for Freerouting.
 In1.Cu and In2.Cu are KiCad "power" layers, so the DSN marks them as
 planes and Freerouting routes no tracks there. scripts/plane_vias.py has
 already joined every SMD pad on the four plane nets (GND, GND_ISO, +3V3,
-+5V_ISO) to its plane, and the tracks and vias already in the layout (those
-via drops and the pre-routed LDO block) are exported locked ("fix"), so
-Freerouting only routes the remaining connections and leaves them alone.
++5V_ISO) to its plane. Those via drops and the pre-routed LDO block are
+exported locked ("fix"), so Freerouting leaves them alone; signal routing
+from an earlier run is exported unlocked, so a second run can rip it up
+and finish what the first left (see import_routing.lock_fixed).
 
     python3 scripts/plane_vias.py --write
     python3 scripts/export_dsn.py build/board.dsn
@@ -21,7 +22,10 @@ Needs KiCad's pcbnew Python module (KiCad 9/10).
 import sys
 from pathlib import Path
 
-LAYOUT = Path(__file__).resolve().parent.parent / "layouts/default/default.kicad_pcb"
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import import_routing  # noqa: E402
+
+LAYOUT = import_routing.LAYOUT
 
 
 def main() -> int:
@@ -30,8 +34,7 @@ def main() -> int:
     import pcbnew
 
     board = pcbnew.LoadBoard(str(LAYOUT))
-    for t in board.GetTracks():
-        t.SetLocked(True)
+    import_routing.lock_fixed(board)
     out = Path(sys.argv[1])
     out.parent.mkdir(parents=True, exist_ok=True)
     if not pcbnew.ExportSpecctraDSN(board, str(out)):

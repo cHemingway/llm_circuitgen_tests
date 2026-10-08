@@ -129,27 +129,39 @@ REMOTE button is pressed, or the FRONT PANEL LOCKOUT bit = 0.
 
 ![placement](docs/placement.png)
 
-* 78 × 60 mm rectangle, 2 layers. It sits flat on the back of the meter and
-  has no mounting holes.
+* 78 × 60 mm rectangle, 4 layers, 1.6 mm. It sits flat on the back of the
+  meter and has no mounting holes.
+* **Stack-up** (JLCPCB's standard 7628 build, nominal values):
+
+  | Layer | Use | Copper | Dielectric below |
+  |---|---|---|---|
+  | F.Cu | signals, all parts except the DD-50 | 35 µm | 0.2 mm 7628 prepreg |
+  | In1.Cu | ground planes: GND (USB half), GND_ISO (DVM half) | 17.5 µm | 1.065 mm core |
+  | In2.Cu | supply planes: +3V3 (USB half), +5V_ISO (DVM half) | 17.5 µm | 0.2 mm 7628 prepreg |
+  | B.Cu | signals, DD-50 | 35 µm | |
+
 * **Bottom face:** Amphenol DD50P364TXLF, a vertical PCB-mount DD-50 plug. It
   mates with SKB and is held by 4-40 jackscrews through its 3.1 mm flange
   holes. The top face is kept clear within 4 mm of each jackscrew for the
   screw heads.
 * **Top face:**
   * the vertical USB-B (SHOU HAN BF 180) and the rest of the components
-  * isolation barrier along the board centreline: a 3.2 mm keep-out with no
-    tracks, vias or pour, crossed only by the six TLP2361s and the SIP DC-DC
-  * GND pour on the USB half and GND_ISO pour on the DVM half, both layers
-* `scripts/place_components.py` produces the initial placement and the zones,
-  using atopile's own `PCB_Transformer`. `scripts/check_layout.py` checks:
+  * isolation barrier along the board centreline: a 3.2 mm keep-out on all
+    four layers with no tracks, vias or copper, crossed only by the six
+    TLP2361s and the SIP DC-DC. The inner planes stop 1.9 mm either side of
+    the centreline, so the planes on the two sides are 3.8 mm apart.
+  * no pours on the outer layers; they are left for signals
+* `scripts/place_components.py` produces the initial placement, the layer
+  stack and the zones, using atopile's own `PCB_Transformer`.
+  `scripts/check_layout.py` checks:
   * every pad is inside the outline
   * no footprints overlap
   * all USB-side pads are north of the barrier and all DVM-side pads south
   * the jackscrew keep-outs are clear
 * The TLV75901 library module arrives pre-routed. The placement script moves
   its parts, tracks and vias as one rigid block so that routing stays valid.
-* `layouts/default/default.kicad_pro` sets JLCPCB 2-layer minimums
-  (0.127 mm track/space, 0.3 mm drill) and a 0.25 mm default track.
+* `layouts/default/default.kicad_pro` sets 0.127 mm track/space, 0.3 mm
+  drill and a 0.25 mm default track, all within JLCPCB's 4-layer minimums.
 * **Not done yet:** routing. Open `layouts/default/default.kicad_pcb` in
   KiCad 10 to route it and fill the zones.
 
@@ -374,6 +386,16 @@ python3 scripts/export_schematic.py   # needs kicad-cli (KiCad 9/10; made with 1
   polygons and zone outlines. A zone outline must not carry a `uuid`, or
   KiCad 10 refuses to load the board, so the placement script passes
   `uuid=None`.
+* atopile has no setting for the layer count, the stack-up or planes. The
+  placement script edits them through atopile's KiCad file model. Its lists
+  are views into the file, so clearing one invalidates the items you just
+  read from it: copy the fields out first. `ato build` keeps the 4-layer
+  stack, the zones and any tracks.
+* atopile 0.15 cannot read a board saved by KiCad 10 (new tokens such as
+  via `tenting`), so KiCad must not save over the layout.
+  `scripts/import_routing.py` and `scripts/plane_vias.py` therefore use
+  KiCad's Python only to read the session or work out the geometry. They
+  write the tracks and vias through atopile's own model.
 
 ## Open items before fabrication
 

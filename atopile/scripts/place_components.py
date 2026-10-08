@@ -11,6 +11,8 @@ Board: 78 x 60 mm, centred on the PCB origin (x right, y down).
   - y < 0 (north): USB side. The vertical USB-B is on the TOP face.
   - y = 0: isolation barrier, crossed only by the six TLP2361s and the
     IB0505LS DC-DC. Nothing else may come within BARRIER_HALF_GAP of it.
+  - 4 layers: F.Cu and B.Cu for signals, In1.Cu ground planes and In2.Cu
+    supply planes (see add_zones), each split at the barrier.
 
 Footprints are matched by their `atopile_address` property, so re-running
 after a design change keeps working.
@@ -150,10 +152,58 @@ def pad_abs(fp, pad) -> tuple[float, float]:
     )
 
 
-ZONE_NAMES = ("pour_GND", "pour_GND_ISO", "isolation_barrier")
+# Zones this script owns. The first two are the old outer-layer pours, listed
+# so that re-running removes them.
+ZONE_NAMES = ("pour_GND", "pour_GND_ISO", "isolation_barrier",
+              "plane_GND", "plane_GND_ISO", "plane_3V3", "plane_5V_ISO")
+COPPER = ["F.Cu", "In1.Cu", "In2.Cu", "B.Cu"]
+
+# 4-layer stack-up: JLCPCB's standard 1.6 mm 7628 build (nominal values from
+# its help centre). In1 and In2 are plane layers (KiCad type "power"), so the
+# Specctra export marks them as planes and Freerouting routes no tracks there.
+#   name -> (type, thickness mm, material, epsilon_r)
+STACKUP = [
+    ("F.Cu", "copper", 0.035, None, None),
+    ("dielectric 1", "prepreg", 0.2, "7628", 4.4),
+    ("In1.Cu", "copper", 0.0175, None, None),
+    ("dielectric 2", "core", 1.065, "FR4", 4.6),
+    ("In2.Cu", "copper", 0.0175, None, None),
+    ("dielectric 3", "prepreg", 0.2, "7628", 4.4),
+    ("B.Cu", "copper", 0.035, None, None),
+]
+INNER_LAYERS = {"In1.Cu": 1, "In2.Cu": 2}  # KiCad 8/9 file layer numbers
 
 
-def _zone(net_number, net_name, name, rect, keepout=False):
+def set_layer_stack(pcb) -> None:
+    """Make the board 4 layers: add In1.Cu/In2.Cu as plane layers and write
+    the copper/dielectric part of the stack-up (mask, paste and silk kept)."""
+    # (copies: the list items are views into the file, so clear() frees them)
+    layers = [(la.number, la.name, la.type, la.alias) for la in pcb.layers]
+    layers = [la for la in layers if la[1] not in INNER_LAYERS]
+    layers += [(n, name, kicad.pcb.E_layer_type.POWER, None) for name, n in INNER_LAYERS.items()]
+    pcb.layers.clear()
+    for number, name, typ, alias in sorted(layers):
+        pcb.layers.append(kicad.pcb.Layer(number=number, name=name, type=typ, alias=alias))
+
+    st = pcb.setup.stackup
+    keep = [
+        (sl.name, sl.type, sl.color, None if sl.thickness is None else sl.thickness.thickness,
+         sl.material, sl.epsilon_r, sl.loss_tangent)
+        for sl in st.layers
+    ]
+    top = [k for k in keep if k[0] in ("F.SilkS", "F.Paste", "F.Mask")]
+    bottom = [k for k in keep if k[0] in ("B.Mask", "B.Paste", "B.SilkS")]
+    mid = [(name, typ, None, t, mat, er, 0.02 if mat else None) for name, typ, t, mat, er in STACKUP]
+    st.layers.clear()
+    for name, typ, color, t, mat, er, tan in top + mid + bottom:
+        st.layers.append(kicad.pcb.StackupLayer(
+            name=name, type=typ, color=color,
+            thickness=None if t is None else kicad.pcb.Thickness(thickness=t, locked=None),
+            material=mat, epsilon_r=er, loss_tangent=tan,
+        ))
+
+
+def _zone(net_number, net_name, name, rect, keepout=False, layers=("F.Cu", "B.Cu")):
     x0, y0, x1, y1 = rect
     pts = [(x0, y0), (x1, y0), (x1, y1), (x0, y1)]
     na = kicad.pcb.E_zone_keepout.NOT_ALLOWED
@@ -161,7 +211,7 @@ def _zone(net_number, net_name, name, rect, keepout=False):
     return kicad.pcb.Zone(
         net=net_number,
         net_name=net_name,
-        layers=["F.Cu", "B.Cu"],
+        layers=list(layers),
         layer=None,
         uuid=kicad.gen_uuid(""),
         name=name,
@@ -210,20 +260,26 @@ def _zone(net_number, net_name, name, rect, keepout=False):
 
 
 def add_zones(pcb) -> None:
-    """GND pour on the USB half, GND_ISO pour on the DVM half (both layers),
-    and a no-copper keep-out strip along the isolation barrier."""
+    """Inner planes, split at the isolation barrier, and a no-copper keep-out
+    strip along the barrier on all four copper layers:
+        In1.Cu: GND (USB half) | GND_ISO (DVM half)
+        In2.Cu: +3V3 (USB half) | +5V_ISO (DVM half)
+    The outer layers are left for signals (no pours)."""
     kicad.filter(pcb, "zones", pcb.zones, lambda z: z.name not in ZONE_NAMES)
     nets = {n.name: n.number for n in pcb.nets}
     e = 0.5  # pull-back from the board edge
     w, h = BOARD_W / 2 - e, BOARD_H / 2 - e
     pour_gap = BARRIER_HALF_GAP - 0.1  # just outside the keep-out strip
+    usb, dvm = (-w, -h, w, -pour_gap), (-w, pour_gap, w, h)
     for z in (
-        _zone(nets["GND"], "GND", "pour_GND", (-w, -h, w, -pour_gap)),
-        _zone(nets["GND_ISO"], "GND_ISO", "pour_GND_ISO", (-w, pour_gap, w, h)),
+        _zone(nets["GND"], "GND", "plane_GND", usb, layers=["In1.Cu"]),
+        _zone(nets["GND_ISO"], "GND_ISO", "plane_GND_ISO", dvm, layers=["In1.Cu"]),
+        _zone(nets["+3V3"], "+3V3", "plane_3V3", usb, layers=["In2.Cu"]),
+        _zone(nets["+5V_ISO"], "+5V_ISO", "plane_5V_ISO", dvm, layers=["In2.Cu"]),
         _zone(
             0, "", "isolation_barrier",
             (-BOARD_W / 2, -BARRIER_HALF_GAP + 0.4, BOARD_W / 2, BARRIER_HALF_GAP - 0.4),
-            keepout=True,
+            keepout=True, layers=COPPER,
         ),
     ):
         kicad.insert(pcb, "zones", pcb.zones, z)
@@ -292,6 +348,7 @@ def main() -> int:
     for addr, (x, y, r, layer) in P.items():
         PCB_Transformer.move_fp(by_addr[addr], kicad.pcb.Xyr(x=x, y=y, r=r), layer)
 
+    set_layer_stack(pcb)
     add_zones(pcb)
 
     kicad.dumps(pcb_file, LAYOUT)

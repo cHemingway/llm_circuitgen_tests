@@ -215,10 +215,11 @@ The result, written into the generated block of `place_components.py`:
 | Crossings among the swappable nets | 839 | 154 | 83 |
 | Crossings, all of the above nets | 1000 | 297 | 112 |
 
-As an independent check, the whole board was autorouted with Freerouting
-2.1 for 40 minutes, two versions side by side on the same machine. (2.1 was
-built from source; 2.5 needs Java 25.) No run finished, and Freerouting
-logged internal errors on all of them, but the trend is clear:
+As an independent check, the whole board (then 2 layers) was autorouted
+with Freerouting 2.1 for 40 minutes, two versions side by side on the same
+machine. (2.1 was built from source; 2.5 needs Java 25.) No run finished,
+and Freerouting logged internal errors on all of them, but the trend is
+clear:
 
 | Freerouting 2.1, 40 min | Run 1: original | Run 1: pin swap | Run 2: pin swap | Run 2: pin swap + moved parts |
 |---|---|---|---|---|
@@ -229,7 +230,10 @@ logged internal errors on all of them, but the trend is clear:
 Pin swapping made the biggest difference. Moving parts helped the router
 early on (33 instead of 40 unrouted after 20 passes), but after 40 minutes
 both pin-swapped boards ended at about 30. The runs were measurements only;
-their routing was not kept.
+their routing was not kept. The outer ground pours went to Freerouting as
+planes, so it treated every ground pad as connected and never routed
+ground; the counts above leave ground out. The board has since gone to 4
+layers and is routed (next section).
 
 ```
 python3 scripts/optimise_placement.py --write   # placement search, about 8 min

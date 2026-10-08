@@ -54,7 +54,9 @@ BARRIER_KEEPOUT = 1.6
 VIA_COST = 1.5  # mm of track a via is worth
 BEND_COST = 0.3  # mm per 45 degrees of turn
 WINDOWS = (3.0, 6.0, 12.0)  # search margins around the gap, mm
-MAX_ROUNDS = 8
+MAX_ROUNDS = 12
+RIP_COST = 20.0  # cost per mm of crossing another net's track when ripping up
+RIP_HISTORY = 2.0  # a net's crossing cost is multiplied by this each time it is ripped up
 LAYERS = ("F.Cu", "B.Cu")
 
 
@@ -203,7 +205,10 @@ def piece_gap(a, b):
 
 
 # ---------------------------------------------------------------- router
-def route(net, src, dst, items, window):
+def route(net, src, dst, items, window, soft=()):
+    """A* route from piece src to piece dst of net. items are hard
+    obstacles; soft is [(Copper, cost per mm)] that may be crossed at a
+    price (used for rip-up). Returns (segments, vias, length) or None."""
     cls = "Power" if net in POWER_NETS else "Default"
     w, clr = WIDTH[cls], CLEARANCE[cls] + GRID_MARGIN
     pa = list(points(src))
@@ -254,6 +259,16 @@ def route(net, src, dst, items, window):
             track_ok[L] &= d >= w / 2 + clr
         if any(L in c.layers for L in LAYERS):
             via_ok &= d >= VIA_D / 2 + clr
+    pen = {L: np.zeros(X.shape) for L in LAYERS}
+    via_pen = np.zeros(X.shape)
+    for c, cost in soft:
+        bx0, by0, bx1, by1 = c.bbox
+        if bx1 < x0 - 1 or bx0 > x1 + 1 or by1 < y0 - 1 or by0 > y1 + 1:
+            continue
+        d = c.dist(X, Y)
+        for L in c.layers:
+            pen[L] += np.where(d < w / 2 + clr, cost, 0.0)
+        via_pen += np.where(d < VIA_D / 2 + clr, cost, 0.0)
     if not any(start[L].any() for L in LAYERS) or not any(goal[L].any() for L in LAYERS):
         return None
 
@@ -291,14 +306,15 @@ def route(net, src, dst, items, window):
             jy, jx = iy + dy, ix + dx
             if 0 <= jy < ny and 0 <= jx < nx and (ok[layer][jy, jx] or goal[LAYERS[layer]][jy, jx]):
                 n2 = (layer, jy, jx, k)
-                g2 = g + RES * math.hypot(dx, dy) + BEND_COST * turn
+                step = RES * math.hypot(dx, dy)
+                g2 = g + step * (1.0 + pen[LAYERS[layer]][jy, jx]) + BEND_COST * turn
                 if g2 < dist.get(n2, math.inf):
                     dist[n2], prev[n2] = g2, node
                     heapq.heappush(heap, (g2 + h(jy, jx), g2, n2))
         if via_ok[iy, ix]:
             n2 = (1 - layer, iy, ix, 8)
             if ok[1 - layer][iy, ix] or goal[LAYERS[1 - layer]][iy, ix]:
-                g2 = g + VIA_COST
+                g2 = g + VIA_COST + via_pen[iy, ix]
                 if g2 < dist.get(n2, math.inf):
                     dist[n2], prev[n2] = g2, node
                     heapq.heappush(heap, (g2 + h(iy, ix), g2, n2))
@@ -452,13 +468,16 @@ def add_to_board(board, routing):
         board.Add(t)
 
 
-def rip_up(board, net, a, b, items):
-    """Route net ignoring movable copper, rip up what that path hits and
-    put the path on the board. Returns the ripped nets, or None."""
+def rip_up(board, net, a, b, items, history):
+    """Route net with other signal nets' tracks as soft obstacles (crossing
+    costs RIP_COST per mm, more for nets ripped up before), rip up what
+    the path hits and put the path on the board. Returns the ripped nets,
+    or None."""
     fixed = [c for c in items if not movable(c, net)]
+    soft = [(c, RIP_COST * RIP_HISTORY ** history.get(c.net, 0)) for c in items if movable(c, net)]
     r = None
     for window in WINDOWS:
-        r = route(net, a, b, fixed, window)
+        r = route(net, a, b, fixed, window, soft)
         if r:
             break
     if not r:
@@ -478,6 +497,8 @@ def rip_up(board, net, a, b, items):
                 board.Delete(c.item)
                 ripped.add(c.net)
                 break
+    for n in ripped:
+        history[n] = history.get(n, 0) + 1
     add_to_board(board, {"segments": segs, "vias": vias})
     return ripped
 
@@ -492,7 +513,7 @@ def main() -> int:
     board = pcbnew.LoadBoard(str(LAYOUT))
     removed = remove_dangling(board)
     print(f"removed {removed} dangling vias/tracks")
-    failed = []
+    failed, history = [], {}
     for rnd in range(1, MAX_ROUNDS + 1):
         pcbnew.ZONE_FILLER(board).Fill(board.Zones())
         board.BuildConnectivity()
@@ -511,16 +532,17 @@ def main() -> int:
         add_to_board(board, added)
         if not failed:
             continue
-        # rip up for what still fails, on the board as it now stands
-        pcbnew.ZONE_FILLER(board).Fill(board.Zones())
-        board.BuildConnectivity()
-        items = collect(board)
-        for net, a, b in open_pairs(board, items):
-            if net in failed:
-                ripped = rip_up(board, net, a, b, items)
-                print(f"  {net}: " + ("no route even with rip-up" if ripped is None
-                                      else f"routed by ripping up {', '.join(sorted(ripped)) or 'nothing'}"))
-                break  # one rip-up per round; the rest is re-evaluated next round
+        # rip up for each net that still fails, on the board as it now stands
+        for target in failed:
+            pcbnew.ZONE_FILLER(board).Fill(board.Zones())
+            board.BuildConnectivity()
+            items = collect(board)
+            for net, a, b in open_pairs(board, items):
+                if net == target:
+                    ripped = rip_up(board, net, a, b, items, history)
+                    print(f"  {net}: " + ("no route even with rip-up" if ripped is None
+                                          else f"routed by ripping up {', '.join(sorted(ripped)) or 'nothing'}"))
+                    break
     pcbnew.ZONE_FILLER(board).Fill(board.Zones())
     board.BuildConnectivity()
     left = open_pairs(board, collect(board))

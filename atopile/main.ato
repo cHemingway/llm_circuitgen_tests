@@ -185,9 +185,12 @@ module App:
     dvm = new SolartronSKB
     dvm.power ~ power_iso
 
-    # --- DVM outputs -> 5x 74HCT165 -> MISO ---
-    # Frame bit k (k = 0 first out after LATCH) is SKB pin k+1 for k < 36;
-    # bits 36..39 are a fixed 1,0,1,0 signature for link checking.
+    # --- DVM outputs -> 5x 74HCT165 -> MISO, MOSI -> 2x 74HCT595 -> DVM ---
+    # All 165 inputs are interchangeable, as are all 595 outputs and the
+    # order of the 165 chain. scripts/pin_swap.py picks the assignment that
+    # untangles the routing to the DD-50 and generates the "pin map" block
+    # at the end of this section. README.md has the resulting frame and
+    # command-word bit maps.
     shift_in = new ShiftIn74HCT165[5]
     for sr in shift_in:
         sr.power ~ power_iso
@@ -195,71 +198,6 @@ module App:
         sr.load_n ~ opto_latch.output
         sr.clock_inhibit.line ~ power_iso.lv
 
-    opto_miso.input ~ shift_in[0].q7
-    shift_in[0].serial_in ~ shift_in[1].q7
-    shift_in[1].serial_in ~ shift_in[2].q7
-    shift_in[2].serial_in ~ shift_in[3].q7
-    shift_in[3].serial_in ~ shift_in[4].q7
-    shift_in[4].serial_in.line ~ power_iso.lv
-    shift_in[0].serial_in.line.suggest_net_name = "SI_CHAIN_1"
-    shift_in[1].serial_in.line.suggest_net_name = "SI_CHAIN_2"
-    shift_in[2].serial_in.line.suggest_net_name = "SI_CHAIN_3"
-    shift_in[3].serial_in.line.suggest_net_name = "SI_CHAIN_4"
-
-    shift_in[0].d[7] ~ dvm.dvm_out[0]
-    shift_in[0].d[6] ~ dvm.dvm_out[1]
-    shift_in[0].d[5] ~ dvm.dvm_out[2]
-    shift_in[0].d[4] ~ dvm.dvm_out[3]
-    shift_in[0].d[3] ~ dvm.dvm_out[4]
-    shift_in[0].d[2] ~ dvm.dvm_out[5]
-    shift_in[0].d[1] ~ dvm.dvm_out[6]
-    shift_in[0].d[0] ~ dvm.dvm_out[7]
-
-    shift_in[1].d[7] ~ dvm.dvm_out[8]
-    shift_in[1].d[6] ~ dvm.dvm_out[9]
-    shift_in[1].d[5] ~ dvm.dvm_out[10]
-    shift_in[1].d[4] ~ dvm.dvm_out[11]
-    shift_in[1].d[3] ~ dvm.dvm_out[12]
-    shift_in[1].d[2] ~ dvm.dvm_out[13]
-    shift_in[1].d[1] ~ dvm.dvm_out[14]
-    shift_in[1].d[0] ~ dvm.dvm_out[15]
-
-    shift_in[2].d[7] ~ dvm.dvm_out[16]
-    shift_in[2].d[6] ~ dvm.dvm_out[17]
-    shift_in[2].d[5] ~ dvm.dvm_out[18]
-    shift_in[2].d[4] ~ dvm.dvm_out[19]
-    shift_in[2].d[3] ~ dvm.dvm_out[20]
-    shift_in[2].d[2] ~ dvm.dvm_out[21]
-    shift_in[2].d[1] ~ dvm.dvm_out[22]
-    shift_in[2].d[0] ~ dvm.dvm_out[23]
-
-    shift_in[3].d[7] ~ dvm.dvm_out[24]
-    shift_in[3].d[6] ~ dvm.dvm_out[25]
-    shift_in[3].d[5] ~ dvm.dvm_out[26]
-    shift_in[3].d[4] ~ dvm.dvm_out[27]
-    shift_in[3].d[3] ~ dvm.dvm_out[28]
-    shift_in[3].d[2] ~ dvm.dvm_out[29]
-    shift_in[3].d[1] ~ dvm.dvm_out[30]
-    shift_in[3].d[0] ~ dvm.dvm_out[31]
-
-    shift_in[4].d[7] ~ dvm.dvm_out[32]
-    shift_in[4].d[6] ~ dvm.dvm_out[33]
-    shift_in[4].d[5] ~ dvm.dvm_out[34]
-    shift_in[4].d[4] ~ dvm.dvm_out[35]
-    shift_in[4].d[3].line ~ power_iso.hv
-    shift_in[4].d[2].line ~ power_iso.lv
-    shift_in[4].d[1].line ~ power_iso.hv
-    shift_in[4].d[0].line ~ power_iso.lv
-
-    # --- DRDY: PRINT level (SKB pin 34) buffered to drive the opto LED ---
-    drdy_buffer = new Buffer74AHCT1G125
-    drdy_buffer.power ~ power_iso
-    drdy_buffer.input ~ dvm.dvm_out[33]
-    drdy_buffer.output ~ opto_drdy.input
-
-    # --- MOSI -> 2x 74HCT595 -> DVM command inputs ---
-    # 16-bit command word, sent MSB first as the last 16 bits of the frame:
-    # bit n (0..7) -> shift_out[0].q[n], bit n (8..15) -> shift_out[1].q[n-8]
     shift_out = new ShiftOut74HCT595[2]
     for sr in shift_out:
         sr.power ~ power_iso
@@ -268,9 +206,11 @@ module App:
         sr.output_enable_n ~ opto_oe_n.output
         sr.reset_n.line ~ power_iso.hv
 
-    shift_out[0].serial_in ~ opto_mosi.output
-    shift_out[1].serial_in ~ shift_out[0].serial_out
-    shift_out[1].serial_in.line.suggest_net_name = "SO_CHAIN_1"
+    # --- DRDY: PRINT level (SKB pin 34) buffered to drive the opto LED ---
+    drdy_buffer = new Buffer74AHCT1G125
+    drdy_buffer.power ~ power_iso
+    drdy_buffer.input ~ dvm.dvm_out[33]
+    drdy_buffer.output ~ opto_drdy.input
 
     # Outputs stay Hi-Z (7075 inputs idle at their own pull-ups) until the
     # MCU has loaded a valid command word and drives OE_N low.
@@ -279,20 +219,6 @@ module App:
     oe_pullup.package = "0402"
     oe_pullup.lcsc_id = "C25744"
     opto_oe_n.output.line ~> oe_pullup ~> power_iso.hv
-
-    dvm.front_panel_lockout ~ shift_out[0].q[0]
-    # q[1] drives the contact-closure SAMPLE MOSFET below
-    dvm.sample_pulse ~ shift_out[0].q[2]
-    dvm.ratio ~ shift_out[0].q[3]
-    dvm.function_cmd[0] ~ shift_out[0].q[4]
-    dvm.function_cmd[1] ~ shift_out[0].q[5]
-    dvm.integration_time[0] ~ shift_out[0].q[6]
-    dvm.integration_time[1] ~ shift_out[0].q[7]
-    dvm.integration_time[2] ~ shift_out[1].q[0]
-    dvm.autorange ~ shift_out[1].q[1]
-    dvm.range_cmd[0] ~ shift_out[1].q[2]
-    dvm.range_cmd[1] ~ shift_out[1].q[3]
-    dvm.range_cmd[2] ~ shift_out[1].q[4]
 
     # --- CONTACT SAMPLE (SKB pin 39): MOSFET closure to pin 37 ---
     sample_fet = new Jiangsu_Changjing_Electronics_Technology_Co___Ltd_2N7002_package
@@ -303,6 +229,84 @@ module App:
 
     sample_fet.D ~ dvm.sample_contact.line
     sample_fet.S ~ power_iso.lv
-    sample_fet.G ~ shift_out[0].q[1].line
-    shift_out[0].q[1].line.suggest_net_name = "SAMPLE_CONTACT_GATE"
     sample_fet.G ~> sample_fet_pulldown ~> power_iso.lv
+
+    # --- BEGIN pin map: generated by scripts/pin_swap.py, do not edit by hand ---
+    # 165 chain, first register drives MISO (frame byte 0 = chain position 0)
+    opto_miso.input ~ shift_in[4].q7
+    shift_in[4].serial_in ~ shift_in[3].q7
+    shift_in[4].serial_in.line.suggest_net_name = "SI_CHAIN_1"
+    shift_in[3].serial_in ~ shift_in[2].q7
+    shift_in[3].serial_in.line.suggest_net_name = "SI_CHAIN_2"
+    shift_in[2].serial_in ~ shift_in[1].q7
+    shift_in[2].serial_in.line.suggest_net_name = "SI_CHAIN_3"
+    shift_in[1].serial_in ~ shift_in[0].q7
+    shift_in[1].serial_in.line.suggest_net_name = "SI_CHAIN_4"
+    shift_in[0].serial_in.line ~ power_iso.lv
+
+    # DVM outputs and the 1-0-1-0 link-check constants on the 165 inputs
+    shift_in[0].d[7] ~ dvm.dvm_out[31]
+    shift_in[0].d[6] ~ dvm.dvm_out[13]
+    shift_in[0].d[5] ~ dvm.dvm_out[30]
+    shift_in[0].d[4] ~ dvm.dvm_out[29]
+    shift_in[0].d[3] ~ dvm.dvm_out[14]
+    shift_in[0].d[2] ~ dvm.dvm_out[32]
+    shift_in[0].d[1] ~ dvm.dvm_out[15]
+    shift_in[0].d[0] ~ dvm.dvm_out[16]
+    shift_in[1].d[7] ~ dvm.dvm_out[10]
+    shift_in[1].d[6] ~ dvm.dvm_out[26]
+    shift_in[1].d[5] ~ dvm.dvm_out[9]
+    shift_in[1].d[4] ~ dvm.dvm_out[25]
+    shift_in[1].d[3] ~ dvm.dvm_out[27]
+    shift_in[1].d[2] ~ dvm.dvm_out[11]
+    shift_in[1].d[1] ~ dvm.dvm_out[28]
+    shift_in[1].d[0] ~ dvm.dvm_out[12]
+    shift_in[2].d[7] ~ dvm.dvm_out[5]
+    shift_in[2].d[6] ~ dvm.dvm_out[22]
+    shift_in[2].d[5] ~ dvm.dvm_out[6]
+    shift_in[2].d[4] ~ dvm.dvm_out[23]
+    shift_in[2].d[3].line ~ power_iso.hv
+    shift_in[2].d[2] ~ dvm.dvm_out[8]
+    shift_in[2].d[1] ~ dvm.dvm_out[24]
+    shift_in[2].d[0] ~ dvm.dvm_out[7]
+    shift_in[3].d[7] ~ dvm.dvm_out[18]
+    shift_in[3].d[6] ~ dvm.dvm_out[2]
+    shift_in[3].d[5] ~ dvm.dvm_out[35]
+    shift_in[3].d[4] ~ dvm.dvm_out[19]
+    shift_in[3].d[3] ~ dvm.dvm_out[21]
+    shift_in[3].d[2] ~ dvm.dvm_out[4]
+    shift_in[3].d[1] ~ dvm.dvm_out[20]
+    shift_in[3].d[0] ~ dvm.dvm_out[3]
+    shift_in[4].d[7] ~ dvm.dvm_out[0]
+    shift_in[4].d[6] ~ dvm.dvm_out[33]
+    shift_in[4].d[5] ~ dvm.dvm_out[1]
+    shift_in[4].d[4] ~ dvm.dvm_out[17]
+    shift_in[4].d[3].line ~ power_iso.lv
+    shift_in[4].d[2].line ~ power_iso.hv
+    shift_in[4].d[1].line ~ power_iso.lv
+    shift_in[4].d[0] ~ dvm.dvm_out[34]
+
+    # 595 chain, first register is fed by MOSI
+    shift_out[1].serial_in ~ opto_mosi.output
+    shift_out[0].serial_in ~ shift_out[1].serial_out
+    shift_out[0].serial_in.line.suggest_net_name = "SO_CHAIN_1"
+
+    # DVM command inputs on the 595 outputs
+    dvm.integration_time[1] ~ shift_out[0].q[0]
+    dvm.range_cmd[1] ~ shift_out[0].q[1]
+    dvm.range_cmd[2] ~ shift_out[0].q[2]
+    dvm.range_cmd[0] ~ shift_out[0].q[3]
+    dvm.autorange ~ shift_out[0].q[4]
+    dvm.integration_time[2] ~ shift_out[0].q[5]
+    # shift_out[0].q[6] unused
+    # shift_out[0].q[7] unused
+    dvm.front_panel_lockout ~ shift_out[1].q[0]
+    sample_fet.G ~ shift_out[1].q[1].line
+    shift_out[1].q[1].line.suggest_net_name = "SAMPLE_CONTACT_GATE"
+    dvm.function_cmd[1] ~ shift_out[1].q[2]
+    dvm.function_cmd[0] ~ shift_out[1].q[3]
+    dvm.integration_time[0] ~ shift_out[1].q[4]
+    dvm.ratio ~ shift_out[1].q[5]
+    dvm.sample_pulse ~ shift_out[1].q[6]
+    # shift_out[1].q[7] unused
+    # --- END pin map ---

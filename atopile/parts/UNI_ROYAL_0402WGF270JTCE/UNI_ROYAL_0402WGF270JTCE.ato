@@ -8,7 +8,7 @@ component UNI_ROYAL_0402WGF270JTCE_package:
 
     # This trait marks this file as auto-generated
     # If you want to manually change it, remove the trait
-    trait is_auto_generated<system="ato_part", source="easyeda:C25100", date="2026-10-06T11:37:04.681827+00:00", checksum="af8389135c854354c2a08b02ea7134048253a28992d027b073471deeb35f1b57">
+    trait is_auto_generated<system="ato_part", source="easyeda:C25100", date="2026-10-07T20:58:41.892938+00:00", checksum="33f121975150a6c22e0c6c2a9b66dfff6ba7627ca4da61b04104442b09bb4a55">
 
     trait is_atomic_part<manufacturer="UNI-ROYAL", partnumber="0402WGF270JTCE", footprint="R0402.kicad_mod", symbol="0402WGF270JTCE.kicad_sym", model="R0402_L1.0-W0.5-H0.4.step">
     trait has_part_picked::by_supplier<supplier_id="lcsc", supplier_partno="C25100", manufacturer="UNI-ROYAL", partno="0402WGF270JTCE">

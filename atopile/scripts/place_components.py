@@ -81,8 +81,11 @@ P: dict[str, tuple[float, float, float, str]] = {
     "mcu.vreg_cout": (10.0, -23.0, 90.0, "F.Cu"),
     "mcu.vreg_avdd_r": (7.5, -25.0, 0.0, "F.Cu"),
     "mcu.vreg_avdd_c": (10.0, -25.0, 0.0, "F.Cu"),
-    "mcu.usb_series_r[0]": (2.6, -23.0, 90.0, "F.Cu"),
-    "mcu.usb_series_r[1]": (1.4, -23.0, 90.0, "F.Cu"),
+    # USB series resistors, MCU side (pad 2) facing the MCU. DP (pin 52) is
+    # west of DM (pin 51), so DP's resistor is the western one: the pair
+    # then runs to the ESD and the USB-B without crossing.
+    "mcu.usb_series_r[0]": (1.4, -23.0, 270.0, "F.Cu"),
+    "mcu.usb_series_r[1]": (2.6, -23.0, 270.0, "F.Cu"),
     "mcu.bulk": (-4.2, -23.0, 90.0, "F.Cu"),
     # decoupling ~2 mm out from the pin tips: the planes feed them through
     # their own vias, and the gap leaves an escape channel for the pins

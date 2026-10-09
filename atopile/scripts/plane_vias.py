@@ -19,12 +19,14 @@ For each pad the script tries via spots around it, nearest first, and takes
 the first one that keeps:
   * 0.2 mm (+ margin) from other nets' copper, for the via and the stub
   * 0.25 mm between drill holes
-  * out of the isolation keep-out strip, the board edge and the jackscrew
-    head keep-outs (nothing within 4 mm of the jackscrews on top)
+  * out of the isolation keep-out strip, the board edge, the jackscrew
+    head keep-outs (nothing within 4 mm of the jackscrews on top) and the
+    NO_VIA_AREAS (the USB pair's channel at the RP2354A)
 On IC pins it prefers spots under the body, between the pad rows, and no
 via goes in the escape zone of another net's IC pin (within 1.5 mm, on the
 side away from the IC body), so the pins' escape routes stay free. Exposed pads (2 mm or more each way) get a
-grid of vias inside the pad instead.
+grid of vias inside the pad instead. An IC pin with no free spot is
+strapped to an adjacent pin of the same net that has one.
 
 Run after `ato build` and place_components.py, before scripts/export_dsn.py:
 
@@ -57,6 +59,11 @@ JACKSCREW_R = 4.0  # check_layout.py JACKSCREW_KEEPOUT_R
 ESCAPE_R = 1.5  # keep vias out of IC pins' escape zones (mm from the pin)
 ESCAPE_COST = 3.0
 EP_MIN = 2.0  # pads at least this big each way get vias inside
+
+# Areas kept free of via drops: (x0, y0, x1, y1) mm, and why
+NO_VIA_AREAS = [
+    ((0.6, -23.0, 5.4, -20.9), "USB DP/DM between RP2354A pins 51/52 and R7/R8"),
+]
 EP_PITCH = 1.0
 
 
@@ -157,6 +164,8 @@ def on_board(x, y, jackscrews):
         return False
     if abs(y) < BARRIER_KEEPOUT + r + 0.1:
         return False
+    if any(x0 - r <= x <= x1 + r and y0 - r <= y <= y1 + r for (x0, y0, x1, y1), _ in NO_VIA_AREAS):
+        return False
     return all(math.hypot(x - jx, y - jy) >= JACKSCREW_R + r for jx, jy in jackscrews)
 
 
@@ -222,6 +231,25 @@ def drop(pad, fp, obstacles, jackscrews, pins):
     return None
 
 
+def strap_to_neighbour(pad, fp, net, dropped, obstacles):
+    """Fallback for a pad with no via spot: a short track to an adjacent
+    pin of the same IC and net that already has a via drop."""
+    pc = obstacles.pcbnew
+    px, py = mm(pad.GetPosition().x), mm(pad.GetPosition().y)
+    size = pad.GetSize(pc.F_Cu)
+    w = min(STUB_W, 0.75 * mm(min(size.x, size.y)))
+    for other in sorted(fp.Pads(), key=lambda o: math.hypot(mm(o.GetPosition().x) - px, mm(o.GetPosition().y) - py)):
+        ox, oy = mm(other.GetPosition().x), mm(other.GetPosition().y)
+        if other.GetNetname() != net or other.GetNumber() + "@" + fp.GetReference() not in dropped:
+            continue
+        if math.hypot(ox - px, oy - py) > 1.0:
+            break
+        if obstacles.clear(net, (px, py), (ox, oy), w / 2, (pc.F_Cu,)):
+            obstacles.add_stub(net, (px, py), (ox, oy), w)
+            return {"start": [px, py], "end": [ox, oy], "width": w, "layer": "F.Cu", "net": net}
+    return None
+
+
 def ep_vias(pad, obstacles):
     """Grid of vias inside a large (exposed) pad."""
     pc = obstacles.pcbnew
@@ -276,6 +304,7 @@ def main() -> int:
         return conn.GetConnectedItems(pad)
 
     segments, vias, skipped, failed = [], [], 0, []
+    dropped, straps = set(), 0  # pads given a via here; pads strapped to a neighbour
     for fp, pad in pads:
         net = pad.GetNetname()
         pid = (fp.GetReference(), pad.GetNumber())
@@ -291,16 +320,23 @@ def main() -> int:
             continue
         found = drop(pad, fp, obstacles, jackscrews, pins)
         if found is None:
-            failed.append(f"{fp.GetReference()}.{pad.GetNumber()} ({net})")
+            strap = strap_to_neighbour(pad, fp, net, dropped, obstacles)
+            if strap is None:
+                failed.append(f"{fp.GetReference()}.{pad.GetNumber()} ({net})")
+            else:
+                segments.append(strap)
+                straps += 1
             continue
         a, b, w = found
         obstacles.add_via(net, *b)
         obstacles.add_stub(net, a, b, w)
         segments.append({"start": list(a), "end": list(b), "width": w, "layer": "F.Cu", "net": net})
         vias.append({"at": list(b), "size": VIA_D, "drill": VIA_DRILL, "net": net})
+        dropped.add(pad.GetNumber() + "@" + fp.GetReference())
 
     print(f"plane-net SMD pads: {len(pads)}; already connected: {skipped}; "
-          f"new vias: {len(vias)} ({len(segments)} stubs); no spot found: {len(failed)}")
+          f"new vias: {len(vias)} ({len(segments) - straps} stubs); strapped to the next pin: {straps}; "
+          f"no spot found: {len(failed)}")
     for f in failed:
         print("   ", f)
     if args.write and (segments or vias):

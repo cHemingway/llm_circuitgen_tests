@@ -145,6 +145,14 @@ def collect(board):
 
 
 # ---------------------------------------------------------------- open connections
+def item_key(item):
+    """Identity of a board item. Pads of identical footprints share UUIDs,
+    so a pad is named by its footprint reference and number instead."""
+    if item.GetClass() == "PAD":
+        return ("pad", item.GetParentFootprint().GetReference(), item.GetNumber())
+    return ("item", item.m_Uuid.AsString())
+
+
 def open_pairs(board, items):
     """For each net in several pieces: the closest pair of items in two pieces."""
     conn = board.GetConnectivity()
@@ -155,7 +163,7 @@ def open_pairs(board, items):
             by_net.setdefault(c.net, []).append(c)
     pairs = []
     for net, cs in by_net.items():
-        uid = {c.item.m_Uuid.AsString(): i for i, c in enumerate(cs)}
+        uid = {item_key(c.item): i for i, c in enumerate(cs)}
         parent = list(range(len(cs)))
 
         def find(i):
@@ -166,7 +174,7 @@ def open_pairs(board, items):
 
         for i, c in enumerate(cs):
             for o in conn.GetConnectedItems(c.item):
-                j = uid.get(o.m_Uuid.AsString())
+                j = uid.get(item_key(o))
                 if j is not None:
                     parent[find(i)] = find(j)
         groups = {}

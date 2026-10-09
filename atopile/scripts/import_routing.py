@@ -14,7 +14,8 @@ Tracks and vias that belong to a group (the pre-routed LDO block) are left
 as they are; session copies of them are skipped.
 
 `--add file.json` (used by scripts/plane_vias.py) adds tracks and vias
-without removing any.
+without removing any. `--clear` removes all routing except the grouped
+(pre-routed LDO) tracks, to start again from an unrouted board.
 
     python3 scripts/export_dsn.py  ->  Freerouting  ->  board.ses
     python3 scripts/import_routing.py board.ses
@@ -147,6 +148,9 @@ def main() -> int:
         return 0
     if len(sys.argv) != 2:
         sys.exit(__doc__)
+    if sys.argv[1] == "--clear":
+        write_layout({"segments": [], "vias": []}, replace=True)
+        return 0
     routing = read_session(Path(sys.argv[1]))
     write_layout(routing, replace=True)
     return 0

@@ -1,5 +1,5 @@
 diff --git a/src/main/java/app/freerouting/management/RoutingJobSchedulerActionThread.java b/src/main/java/app/freerouting/management/RoutingJobSchedulerActionThread.java
-index a21a5aa..2136451 100644
+index a21a5aa..4c897cd 100644
 --- a/src/main/java/app/freerouting/management/RoutingJobSchedulerActionThread.java
 +++ b/src/main/java/app/freerouting/management/RoutingJobSchedulerActionThread.java
 @@ -91,7 +91,12 @@ public class RoutingJobSchedulerActionThread extends StoppableThread
@@ -16,3 +16,14 @@ index a21a5aa..2136451 100644
            }
          }
        }
+@@ -149,6 +154,10 @@ public class RoutingJobSchedulerActionThread extends StoppableThread
+       job.stage = RoutingStage.IDLE;
+     }
+ 
++    // the router ends by restoring its best board into job.board without an
++    // update event, so the saved output may be an older board: save it again
++    setJobOutputToSpecctraSes(job);
++
+     job.finishedAt = Instant.now();
+     if (job.state == RoutingJobState.RUNNING)
+     {

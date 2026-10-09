@@ -21,7 +21,8 @@ the first one that keeps:
   * 0.25 mm between drill holes
   * out of the isolation keep-out strip, the board edge, the jackscrew
     head keep-outs (nothing within 4 mm of the jackscrews on top) and the
-    NO_VIA_AREAS (the USB pair's channel at the RP2354A)
+    NO_VIA_AREAS (the USB pair's channel and the VREG_LX path at the
+    RP2354A)
 On IC pins it prefers spots under the body, between the pad rows, and no
 via goes in the escape zone of another net's IC pin (within 1.5 mm, on the
 side away from the IC body), so the pins' escape routes stay free. Exposed pads (2 mm or more each way) get a
@@ -63,6 +64,7 @@ EP_MIN = 2.0  # pads at least this big each way get vias inside
 # Areas kept free of via drops: (x0, y0, x1, y1) mm, and why
 NO_VIA_AREAS = [
     ((0.6, -23.0, 5.4, -20.9), "USB DP/DM between RP2354A pins 51/52 and R7/R8"),
+    ((5.5, -22.3, 7.1, -20.9), "VREG_LX between RP2354A pin 48 and L1"),
 ]
 EP_PITCH = 1.0
 

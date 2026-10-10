@@ -58,6 +58,42 @@ Statistics cover the Claude Code session from the first prompt to the merge into
 
 A dash means the figure was not recorded.
 
+## Breakdown
+
+The Results figures for each tool, split by the kind of work. Every API call in
+the session is put in one category according to what it was doing:
+
+- **Schematic & research:** reading the manual, choosing parts and looking them
+  up, datasheets and tool documentation, writing the circuit, and netlist and
+  schematic work.
+- **PCB:** footprints, placement, routing, DRC and other board checks, Gerbers,
+  fabrication fixes and PCB prints.
+- **Other:** commits, pushes, README writing, status checks and final
+  summaries.
+- **Not attributable:** calls the session's counters include but the transcript
+  doesn't log, such as the `/compact` summary.
+
+How the figures are measured:
+
+- **Tokens:** summed from each call's logged usage.
+- **Active time:** each call is credited with the time until the next call,
+  including the tool runs it started.
+- **API-price estimate:** per-token prices fitted to the session's cost counter
+  are applied to each category's tokens.
+
+Calls that did both kinds of work are assigned by their main purpose.
+
+### tscircuit
+
+| | Schematic & research | PCB | Other | Not attributable | Total |
+| --- | --- | --- | --- | --- | --- |
+| Active time | 1 h 08 min | 1 h 57 min | 4 min | 1 min | 3 h 11 min |
+| API calls | 171 | 174 | 31 | – | 376 |
+| Total tokens | 61.6 M | 75.2 M | 16.0 M | 3.5 M | 156.3 M |
+| Tokens excl. cache reads | 1.33 M | 0.57 M | 0.74 M | 0.74 M | 3.38 M |
+| Output tokens | 169 k | 178 k | 26 k | 9 k | 382 k |
+| API-price estimate | $24.69 | $21.64 | $9.32 | $3.67 | $59.32 |
+
 ## Review feedback
 
 After the design is finished, each tool's session gets the same review comments,

@@ -1,0 +1,59 @@
+part HT7550-1 {
+    @~footprint    = SOT-89-3;
+    #value         = HT7550-1;
+    @!type         = regulator;
+    #~mpn          = "HT7550-1";
+    #!manufacturer = "UMW";
+    #~lcsc         = "C347189";
+
+    1 : GND<  &TYPE=POWER;
+    2 : VIN<  &TYPE=POWER;
+    3 : VOUT> &TYPE=POWER #SUPPLY=60mA;
+};
+
+---
+
+# HT7550-1
+
+**Source:** UTD Semiconductor (UMW), UMW HT75xx datasheet, Mar. 2025, 15 pages.
+SOT-89-3 package (the "-1" suffix), fixed 5.0 V output.
+
+Low-power, high-voltage CMOS LDO regulator.
+
+## Pins (§4)
+
+| Pin (SOT89-3) | Name | Function |
+|---|---|---|
+| 1 | GND | Ground |
+| 2 | VIN | Input; also the package tab |
+| 3 | VOUT | Output |
+
+## Limiting values (§7)
+
+| Parameter | Value |
+|---|---|
+| Maximum input voltage | 30 V |
+| Power dissipation, SOT-89 | 400 mW |
+| Operating temperature | −40 to 85 °C |
+| Storage temperature | −50 to 125 °C |
+
+## Electrical characteristics, 7550, TOPT = 25 °C (§8.6)
+
+| Parameter | Condition | Min | Typ | Max | Unit |
+|---|---|---|---|---|---|
+| Output voltage | VIN = 7 V, IOUT = 10 mA | 4.85 | 5 | 5.15 | V |
+| Output current | VIN = 7 V | 60 | 100 | | mA |
+| Load regulation | VIN = 7 V, 1 mA ≤ IOUT ≤ 30 mA | | 100 | | mV |
+| Dropout voltage | IOUT = 1 mA | | 100 | | mV |
+| Quiescent current | VIN = 7 V, no load | | 2 | 3 | µA |
+| Line regulation | 6 V ≤ VIN ≤ 30 V, IOUT = 1 mA | | 0.2 | | %/V |
+| Input voltage | | | | 30 | V |
+
+## Application (§9)
+
+Basic circuit: 10 µF from VIN to GND and 10 µF from VOUT to GND.
+
+## Package
+
+SOT-89-3: pins 1–3 along one edge, pin 2 joined to the tab on the opposite
+edge.

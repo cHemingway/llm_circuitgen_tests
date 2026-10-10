@@ -1,0 +1,83 @@
+// Isolated, unregulated 1 W DC/DC module. The datasheet names the pins -Vin,
+// +Vin, -Vout and +Vout; a name may not lead with a sign here, so they are
+// spelled VIN-NEG and so on. VOUT-NEG is the output-side ground reference and
+// shares nothing with VIN-NEG.
+part B0509S-1WR3 {
+    @~footprint    = SIP-4-DCDC-1W;
+    #value         = B0509S-1WR3;
+    @!type         = isolated-dcdc;
+    #~mpn          = "B0509S-1WR3";
+    #!manufacturer = "YLPTEC";
+    #~lcsc         = "C5369463";
+
+    1 : VIN-NEG<  &TYPE=POWER;
+    2 : VIN-POS<  &TYPE=POWER;
+    3 : VOUT-NEG< &TYPE=POWER;
+    4 : VOUT-POS> &TYPE=POWER #SUPPLY=111mA;
+};
+
+---
+
+# B0509S-1WR3
+
+**Source:** YLPTEC (Zhongshan Yichuan Electronic Technology), B_S-1WR3 series
+datasheet, 5 pages. SIP-4 package.
+
+1 W, fixed-input, isolated, unregulated single-output DC/DC module. 5 V nominal
+input, 9 V output.
+
+## Pins
+
+| Pin | Name | Function |
+|---|---|---|
+| 1 | −Vin | Input negative |
+| 2 | +Vin | Input positive |
+| 3 | −Vout | Output negative |
+| 4 | +Vout | Output positive |
+
+The datasheet notes that where a module's marking disagrees with the selection
+table, the marking on the part governs.
+
+## Selection table (B0509S-1WR3)
+
+| Parameter | Value |
+|---|---|
+| Input voltage, nominal (range) | 5 V (4.5 to 5.5 V) |
+| Output voltage | 9 V |
+| Output current, max / min | 111 mA / 12 mA |
+| Ripple and noise, typ / max | 30 / 80 mVp-p |
+| Efficiency at full load, min / typ | 86 / 88 % |
+| Maximum capacitive load | 1000 µF |
+
+## Characteristics
+
+| Parameter | Value |
+|---|---|
+| Isolation voltage | 1500 VDC for 1 minute; 3000 VDC for 1 s |
+| Input current, 5 V input series, full load / no load (typ) | 227 / 5 mA |
+| Input surge voltage, 5 V series, 1 s max | −0.7 to 9 V |
+| Input filter type | Capacitive |
+| Hot plug | Not supported |
+| Output load range | 10 to 100 % |
+| Output voltage accuracy | ±15.0 % max, see tolerance envelope |
+| No-load power | 0.025 W typ |
+| Short-circuit protection | Continuous, self-recovering |
+| Operating ambient temperature | −40 to +85 °C |
+
+## Application
+
+Typical circuit (Figure 1): input capacitor between +Vin and −Vin, output
+capacitor between +Vout and −Vout. Recommended values (Table 1): Cin 4.7 µF for
+3.3/5 V input; Cout 4.7 µF for a 9 V output. Too large a capacitor can cause
+start-up problems.
+
+EMI circuit (Figure 2, Table 2): Cin 4.7 µF/50 V, Lin 4.7 µH, Lout 4.7 µH,
+Cout per Table 1.
+
+Minimum load: the output load must not be below 10 % of rated; if the real load
+is smaller, connect a resistor across the output so that the total is at least
+10 %, with the resistor rated at more than five times its dissipation.
+
+## Package
+
+SIP-4, 11.5 × 6.0 × 10.0 mm, pins on a 2.54 mm grid, recommended hole 1.0 mm.

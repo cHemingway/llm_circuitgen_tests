@@ -1,0 +1,274 @@
+// Commodity passives and indicator LEDs.
+//
+// R-1kR-0603, C-100nF-0603, C-1uF-0603, C-10uF-0805 and LED-0603 are taken
+// unchanged from manta's own part library (examples/blinky/parts.manta); the
+// only additions are the '#lcsc' order code and, where the library left it
+// open, an '#~mpn' naming the LCSC-stocked part that meets the library's
+// declared value, voltage and dielectric. Everything else here is new and was
+// chosen from LCSC.
+//
+// Every part names a package, never a library: solartron7075.fpmap says what
+// KiCad calls each one.
+
+// ---- resistors, Yageo RC0603 -------------------------------------------------
+
+part R-27R-0603 {
+    @~footprint = R-0603;
+    #value      = 27R;
+    #tolerance  = ±1%;
+    #power      = 100mW;
+    @!type      = resistor;
+    #~mpn       = "RC0603FR-0727RL";
+    #~lcsc      = "C137753";
+
+    1 : A &CASUAL;
+    2 : B &CASUAL;
+};
+
+part R-33R-0603 {
+    @~footprint = R-0603;
+    #value      = 33R;
+    #tolerance  = ±1%;
+    #power      = 100mW;
+    @!type      = resistor;
+    #~mpn       = "RC0603FR-0733RL";
+    #~lcsc      = "C108661";
+
+    1 : A &CASUAL;
+    2 : B &CASUAL;
+};
+
+part R-470R-0603 {
+    @~footprint = R-0603;
+    #value      = 470R;
+    #tolerance  = ±1%;
+    #power      = 100mW;
+    @!type      = resistor;
+    #~mpn       = "RC0603FR-07470RL";
+    #~lcsc      = "C114669";
+
+    1 : A &CASUAL;
+    2 : B &CASUAL;
+};
+
+part R-820R-0603 {
+    @~footprint = R-0603;
+    #value      = 820R;
+    #tolerance  = ±1%;
+    #power      = 100mW;
+    @!type      = resistor;
+    #~mpn       = "RC0603FR-07820RL";
+    #~lcsc      = "C114638";
+
+    1 : A &CASUAL;
+    2 : B &CASUAL;
+};
+
+// From manta's library.
+part R-1kR-0603 {
+    @~footprint = R-0603;
+    #value      = 1kR;
+    #tolerance  = ±1%;
+    #power      = 100mW;
+    @!type      = resistor;
+    #~mpn       = "RC0603FR-071KL";
+    #~lcsc      = "C22548";
+
+    1 : A &CASUAL;
+    2 : B &CASUAL;
+};
+
+// From manta's library.
+part R-10kR-0603 {
+    @~footprint = R-0603;
+    #value      = 10kR;
+    #tolerance  = ±1%;
+    #power      = 100mW;
+    @!type      = resistor;
+    #~mpn       = "RC0603FR-0710KL";
+    #~lcsc      = "C98220";
+
+    1 : A &CASUAL;
+    2 : B &CASUAL;
+};
+
+// ---- resistor networks, Uniroyal 4D03 --------------------------------------
+// Four isolated resistors in a convex 0603x4 package. Element n joins pad n to
+// pad 9-n, so the A side of the package is pads 1-4 and the B side pads 8-5.
+// Each element's ends are interchangeable, but the four elements are not, so
+// the pins are named rather than casual.
+
+part RN-10kR-4x0603 {
+    @~footprint = R-ARRAY-4x0603;
+    #value      = "4x 10kR";
+    #tolerance  = ±5%;
+    #power      = 62m5W;
+    @!type      = resistor;
+    #~mpn       = "4D03WGJ0103T5E";
+    #~lcsc      = "C29718";
+
+    [1:4] : A[1:4];
+    [8:5] : B[1:4];
+};
+
+part RN-100kR-4x0603 {
+    @~footprint = R-ARRAY-4x0603;
+    #value      = "4x 100kR";
+    #tolerance  = ±5%;
+    #power      = 62m5W;
+    @!type      = resistor;
+    #~mpn       = "4D03WGJ0104T5E";
+    #~lcsc      = "C1996";
+
+    [1:4] : A[1:4];
+    [8:5] : B[1:4];
+};
+
+// ---- capacitors ------------------------------------------------------------
+
+// From manta's library.
+part C-100nF-0603 {
+    @~footprint = C-0603;
+    #value      = 100nF;
+    #voltage    = 50V;
+    #dielectric = X7R;
+    @!type      = capacitor;
+    #~mpn       = "CC0603KRX7R9BB104";
+    #~lcsc      = "C14663";
+
+    1 : A &CASUAL;
+    2 : B &CASUAL;
+};
+
+// From manta's library.
+part C-1uF-0603 {
+    @~footprint = C-0603;
+    #value      = 1uF;
+    #voltage    = 25V;
+    #dielectric = X7R;
+    @!type      = capacitor;
+    #~mpn       = "CL10B105KA8NNNC";
+    #~lcsc      = "C29936";
+
+    1 : A &CASUAL;
+    2 : B &CASUAL;
+};
+
+// From manta's library.
+part C-10uF-0805 {
+    @~footprint = C-0805;
+    #value      = 10uF;
+    #voltage    = 25V;
+    #dielectric = X5R;
+    @!type      = capacitor;
+    #~mpn       = "CL21A106KAYNNNE";
+    #~lcsc      = "C15850";
+
+    1 : A &CASUAL;
+    2 : B &CASUAL;
+};
+
+part C-4u7F-0402 {
+    @~footprint = C-0402;
+    #value      = 4u7F;
+    #voltage    = 10V;
+    #dielectric = X5R;
+    #tolerance  = ±20%;
+    @!type      = capacitor;
+    #~mpn       = "CL05A475MP5NRNC";
+    #~lcsc      = "C23733";
+
+    1 : A &CASUAL;
+    2 : B &CASUAL;
+};
+
+part C-15pF-0603 {
+    @~footprint = C-0603;
+    #value      = 15pF;
+    #voltage    = 50V;
+    #dielectric = C0G;
+    #tolerance  = ±5%;
+    @!type      = capacitor;
+    #~mpn       = "CL10C150JB8NNNC";
+    #~lcsc      = "C1644";
+
+    1 : A &CASUAL;
+    2 : B &CASUAL;
+};
+
+// ---- LEDs --------------------------------------------------------------------
+// From manta's library. KiCad's LED footprints put the cathode on pad 1, so the
+// pin map does too.
+
+part LED-0603 {
+    @~footprint = LED-0603;
+    #value      = green;
+    @!type      = led;
+    #~current   = 5mA;
+    #vf         = 2V4;
+    #~mpn       = "LTST-C191KGKT";
+    #~lcsc      = "C125098";
+
+    1 : K;
+    2 : A;
+};
+
+---
+
+# Passives and indicator LEDs
+
+Commodity parts, specified by value, package and tolerance; any pin-compatible
+manufacturer's part meeting the stated value is a substitute.
+
+## Resistors, Yageo RC0603
+
+**Source:** Yageo, RC0603 series specification (V.4, 2009), which the MPNs name.
+
+| Parameter | Value |
+|---|---|
+| Power rating | 100 mW at 70 °C, derated linearly to 0 at 155 °C |
+| Maximum working voltage | 50 V |
+| Maximum overload voltage | 100 V |
+| Temperature coefficient | ±100 ppm/°C |
+| Operating temperature | −55 to +155 °C |
+| Package | 1.60 × 0.80 × 0.45 mm, two end terminations |
+
+## Resistor networks, Uniroyal 4D03
+
+**Source:** Uniroyal Electronics, chip resistor network specification,
+file JLC-01-015, edition 1, 2017-06-12. Convex terminal, 4 elements, 8 pads.
+
+| Parameter | Value |
+|---|---|
+| Rated power per element at 70 °C | 1/16 W |
+| Maximum working voltage | 50 V |
+| Maximum overload voltage | 100 V |
+| Dielectric withstanding voltage | 100 V |
+| Tolerance | ±5% (J) |
+| Temperature coefficient | ±200 ppm/°C |
+| Operating temperature | −55 to +155 °C |
+| Body (L × W × T) | 3.20 × 1.60 × 0.50 mm, pitch 0.80 mm |
+
+Element n joins pad n to pad 9−n: 1–8, 2–7, 3–6, 4–5. Pad 1 is at the marked
+end.
+
+## Capacitors
+
+Multilayer ceramic, dielectric and rating as stated on each part. A class II
+(X5R, X7R) capacitor loses capacitance under DC bias; the ratings here are at
+least three times the rail they sit on. The 15 pF parts are C0G, which does not.
+
+## LEDs, Lite-On LTST-C191KGKT
+
+**Source:** Lite-On, LTST-C191KGKT product data sheet, BNS-OD-FC002/A4.
+0603 (1.6 × 0.8 mm), yellow-green.
+
+| Parameter | Value |
+|---|---|
+| DC forward current, max | 30 mA |
+| Reverse voltage, max | 5 V |
+| Power dissipation, max | 75 mW |
+| Forward voltage at 20 mA | 1.9 V min, 2.4 V max |
+| Dominant wavelength at 20 mA | 567.5 to 576.5 nm |
+| Luminous intensity at 20 mA | 18 to 71 mcd |
+| Operating temperature | −55 to +85 °C |

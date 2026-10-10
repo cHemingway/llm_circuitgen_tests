@@ -251,6 +251,7 @@ the meter side.
 | `scripts/make_prints.py` | the print PDF and the Gerber preview |
 | `build.sh` | runs the whole flow |
 | `CONVERSATION.md` | export of the Claude Code session that produced this design, with its time and token totals |
+| `scripts/session_breakdown.py`, `stats/breakdown_calls.csv` | the split of the session statistics by kind of work, and the category of every API call |
 | `output/` | SKiDL netlist, ERC log, BOM, unplaced board straight from SKiDL |
 | `pcb/` | KiCad 10 project: schematic, routed board, ERC and DRC reports, `render/` (schematic PDF/PNG, board renders), `print/` (prints, Gerber preview), `fab/` (Gerbers, drill, BOM, CPL) |
 
@@ -272,6 +273,40 @@ The full run takes about 8 minutes, mostly in Freerouting's optimiser.
 Freerouting is not fully deterministic, so a rebuild gives a board that is
 equivalent but not byte-identical. The committed board is the one checked by
 `pcb/drc_report.txt`.
+
+## Session statistics breakdown
+
+The root README's Breakdown table for SKiDL comes from
+`scripts/session_breakdown.py`, which reads the session's Claude Code
+transcript. The category of each of the 347 API calls is listed in
+`stats/breakdown_calls.csv`. Notes on the method:
+
+* **Span.** The span runs from the first prompt to the request to export the
+  conversation, the same as the Results row. This session has not had the
+  review comments yet.
+* **Categories.** Calls are assigned by hand, from index ranges in the script.
+  The less obvious calls:
+  * Installing KiCad and SKiDL counts as tool research. Freerouting, Java and
+    the 3D models count as PCB.
+  * Checking which footprints fit the chosen parts counts as PCB, and so does
+    the DD-50 footprint.
+  * The BOM and the later LED and passive swaps count as part selection.
+  * Linking the board to the schematic (`link_schematic.py`, the parity DRC)
+    counts as PCB.
+* **Cache rewrite.** "Other" includes a 0.62 M-token prompt-cache write
+  (about $5). The first call after the 6 h pause at the usage limit had to
+  re-cache the whole conversation, and that call was a `git status` check.
+* **Not attributable.** This column holds the automatic compaction (77 s) and
+  1.13 M tokens that the cost counter includes but the transcript does not log
+  per call.
+* **Prices.** The fitted prices are $4.41 per million input tokens, $8.00 for
+  cache writes, $0.200 for cache reads and $20.03 for output.
+  * They reproduce all four of the session's cost snapshots to within 1e-13
+    dollars.
+  * Four snapshots and four prices make the fit exact. So it is checked only
+    by the other three prices coming out as round figures.
+  * The input price is poorly determined, because there are only 5 k uncached
+    input tokens. Its effect on any column is under $0.02.
 
 ## Tool issues
 

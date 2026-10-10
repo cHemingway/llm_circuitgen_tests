@@ -105,6 +105,17 @@ Calls that did both kinds of work are assigned by their main purpose.
 | Output tokens | 217 k | 104 k | 42 k | 16 k | 378 k |
 | API-price estimate | $24.10 | $12.17 | $11.70 | $1.37 | $49.34 |
 
+### SKiDL
+
+| | Schematic & research | PCB | Other | Not attributable | Total |
+| --- | --- | --- | --- | --- | --- |
+| Active time | 1 h 06 min | 1 h 17 min | 5 min | 1 min | 2 h 29 min |
+| API calls | 165 | 158 | 24 | – | 347 |
+| Total tokens | 53.3 M | 61.0 M | 9.0 M | 1.1 M | 124.5 M |
+| Tokens excl. cache reads | 0.74 M | 0.62 M | 0.69 M | 0.01 M | 2.07 M |
+| Output tokens | 238 k | 196 k | 27 k | 9 k | 470 k |
+| API-price estimate | $19.31 | $19.39 | $7.51 | $0.43 | $46.64 |
+
 ## Review feedback
 
 After the design is finished, each tool's session gets the same review comments,

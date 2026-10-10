@@ -51,6 +51,7 @@ undriven input reads 1.
 | `tools/` | Footprint generator, LCSC BOM grouper, netlist verifier |
 | `output/` | Netlist, KiCad netlist, HTML schematic, BOMs, verification report |
 | `build.sh` | The whole build |
+| `CONVERSATION.md` | The design session's log and statistics |
 
 ```sh
 ./build.sh
@@ -178,6 +179,70 @@ than from this text.
   pad 1 (silkscreen dot) is the dotted end and goes to 1V1.
 - **TLP2361 bypass** capacitors within 1 cm of pins 4 and 6.
 - **USB pair** at 90 Ω differential through U2 and R1/R2.
+
+## Notes on the tool (benchmark observations)
+
+Manta 2.0.1, language revision 2.0. Each point below was hit or checked
+during this design.
+
+* **The install is a bare binary.** `~/.local/share/manta` holds only the two
+  JSON schemas. The language specification, the agent skills (house style,
+  idioms, the meaning of each diagnostic) and the only part library live in
+  the source checkout, which had to be found on disk; `manta --help` points
+  to none of them.
+* **"Manta's library" is one example board.** There is no part library as
+  such: the parts are the declarations in `examples/blinky`, which are five
+  resistor values, three capacitors, two LEDs, an AP2112K LDO, a USBLC6 ESD
+  array, an STM32F042, a DIP switch, three board connectors and some cable
+  parts. Nothing can be installed or imported, so the 8 part types used here
+  were copied into `src/` with an `#lcsc` field added. The other 21 were
+  written by hand.
+* **No part import.** Manta cannot take a symbol or footprint from
+  LCSC/EasyEDA or KiCad. Every new part's pin map, arrows and `&TYPE`s were
+  typed from its datasheet, together with the datasheet excerpt the house
+  style puts after `---`. For the RP2354A that is 61 pads, whose QFN-60 map I
+  had to rebuild from the coordinates of the datasheet's pinout figure.
+* **The compiler cannot see a footprint.** A part names a package
+  (`@~footprint = SOIC-16`) and the `.fpmap` translates it to a KiCad name.
+  Nothing checks that the footprint exists or that the part's pin numbers are
+  pads on it; `export -Werror` only insists on a `Library:Footprint` form. A
+  pin on a pad the footprint lacks connects nothing, silently. I checked the
+  pad names of every non-standard footprint here (the QFN-60, Toshiba SO-5,
+  USB-B, SIP-4, crystal, switch, JST, resistor array and SOT-89) against
+  KiCad's library files by hand.
+* **No layout, and no way to state mechanical intent.** Manta stops at the
+  netlist; its exports are netlists, not KiCad schematic or board files. The
+  brief's mechanical requirements (board outline, which face each connector
+  is on, jackscrew fixing, no mounting holes) could only go into comments and
+  free `#` fields (`#mount`, `#hardware` on J1 and J2). `&EDGE` sounds
+  relevant but is display-only: it says which edge of the *schematic sheet* a
+  connector faces.
+* **Isolation is invisible to ERC.** Two `&TYPE=GROUND` nets are allowed, and
+  nothing checks that they stay apart. With one optocoupler's LED cathode moved
+  to the wrong ground, the design still passes `check -Werror` with the
+  project rules. The rules language works per net, per part, per component or
+  per pin pair on one net, so a check that follows connectivity across the
+  board had to be a separate script, `tools/verify_netlist.py`.
+* **Duplicate designators pass silently.** In Manta's own `blinky` example,
+  `AGND = (.{R9~R-0R-0603}.)|2 = GND;` creates two resistors that are both
+  `R9`: two BOM rows and two `R9` components in the KiCad netlist. The example
+  passes `check -Werror` with its rules and no findings. Manta's idioms say to
+  give such a group a range designator (`R%[9:10]`), but the compiler does not
+  enforce it.
+* **A stray character cascades.** `@~footprint = QFN-60-7x7-EP3.4;` gave six
+  `E-SYNTAX` errors at the same column. The first ("expected ';' … found
+  '.'") locates it; the other five are the parser losing its place. Package
+  names cannot contain `.`.
+* **Harness nets have no pins.** Each harness (`USB`, `MCU-USB`, …) appears in
+  `.mantaNets` as a net with no pins and only a `HARNESS` directive, so
+  anything that reads the netlist has to skip them.
+* **The BOM is one row per placement.** `link --bom` lists every designator
+  separately, with every `#` field as a column; the grouped LCSC BOM needed a
+  script, `tools/lcsc_bom.py`.
+* **Rendering needs a browser to check.** `manta render` writes one
+  self-contained HTML file, and its PDF option drives a headless Chromium.
+  None was available here, so the schematic passed `render -Werror` but was
+  never looked at.
 
 ## What has and has not been verified
 

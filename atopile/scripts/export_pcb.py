@@ -7,7 +7,8 @@ in layouts/default/default.kicad_pcb), using kicad-cli:
 
   1. DRC with zone refill            -> fab/drc_report.rpt
   2. Gerbers + Excellon drill        -> fab/gerbers/, fab/<name>_gerbers.zip
-  3. 1:1 prints (top, bottom-as-seen-from-the-meter, assembly)
+  3. 1:1 prints (top, bottom-as-seen-from-the-meter, assembly, the two
+     inner plane layers)
                                      -> fab/solartron_7075_usb_prints.pdf
   4. 3D renders (top, bottom, iso)   -> fab/renders/*.png
 
@@ -35,7 +36,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 LAYOUT = ROOT / "layouts/default/default.kicad_pcb"
-PROJECT_FILE = LAYOUT.with_suffix(".kicad_pro")  # design rules (JLCPCB 2-layer minimums)
+PROJECT_FILE = LAYOUT.with_suffix(".kicad_pro")  # design rules (within JLCPCB 4-layer minimums)
 FAB = ROOT / "fab"
 NAME = "solartron_7075_usb"
 WORK = LAYOUT.with_name(f"{NAME}.kicad_pcb")  # temp copy; same dir keeps ${KIPRJMOD} model paths valid
@@ -43,7 +44,7 @@ PAGE_NOTE = "@@PAGE_NOTE@@"
 TITLE = "Solartron 7075 USB interface"
 
 GERBER_LAYERS = [
-    "F.Cu", "B.Cu", "F.Paste", "B.Paste", "F.SilkS", "B.SilkS", "F.Mask", "B.Mask", "Edge.Cuts",
+    "F.Cu", "In1.Cu", "In2.Cu", "B.Cu", "F.Paste", "B.Paste", "F.SilkS", "B.SilkS", "F.Mask", "B.Mask", "Edge.Cuts",
 ]
 
 # (file stem, layers, extra kicad-cli args, page note)
@@ -52,6 +53,8 @@ PRINTS = [
     ("2_bottom_mirrored", "B.Cu,B.SilkS,B.Fab,Edge.Cuts", ["--mirror"],
      "Bottom, mirrored = as seen from the meter. Hold against SKB to check the DD-50 fit"),
     ("3_assembly_top", "F.Fab,F.SilkS,Edge.Cuts", ["--sp"], "Top assembly drawing"),
+    ("4_in1_ground", "In1.Cu,Edge.Cuts", [], "In1.Cu: GND | GND_ISO planes (top view)"),
+    ("5_in2_supply", "In2.Cu,Edge.Cuts", [], "In2.Cu: +3V3 | +5V_ISO planes (top view)"),
 ]
 
 RENDERS = [

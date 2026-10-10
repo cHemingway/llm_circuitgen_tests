@@ -129,29 +129,41 @@ REMOTE button is pressed, or the FRONT PANEL LOCKOUT bit = 0.
 
 ![placement](docs/placement.png)
 
-* 78 × 60 mm rectangle, 2 layers. It sits flat on the back of the meter and
-  has no mounting holes.
+* 78 × 60 mm rectangle, 4 layers, 1.6 mm. It sits flat on the back of the
+  meter and has no mounting holes.
+* **Stack-up** (JLCPCB's standard 7628 build, nominal values):
+
+  | Layer | Use | Copper | Dielectric below |
+  |---|---|---|---|
+  | F.Cu | signals, all parts except the DD-50 | 35 µm | 0.2 mm 7628 prepreg |
+  | In1.Cu | ground planes: GND (USB half), GND_ISO (DVM half) | 17.5 µm | 1.065 mm core |
+  | In2.Cu | supply planes: +3V3 (USB half), +5V_ISO (DVM half) | 17.5 µm | 0.2 mm 7628 prepreg |
+  | B.Cu | signals, DD-50 | 35 µm | |
+
 * **Bottom face:** Amphenol DD50P364TXLF, a vertical PCB-mount DD-50 plug. It
   mates with SKB and is held by 4-40 jackscrews through its 3.1 mm flange
   holes. The top face is kept clear within 4 mm of each jackscrew for the
   screw heads.
 * **Top face:**
   * the vertical USB-B (SHOU HAN BF 180) and the rest of the components
-  * isolation barrier along the board centreline: a 3.2 mm keep-out with no
-    tracks, vias or pour, crossed only by the six TLP2361s and the SIP DC-DC
-  * GND pour on the USB half and GND_ISO pour on the DVM half, both layers
-* `scripts/place_components.py` produces the initial placement and the zones,
-  using atopile's own `PCB_Transformer`. `scripts/check_layout.py` checks:
+  * isolation barrier along the board centreline: a 3.2 mm keep-out on all
+    four layers with no tracks, vias or copper, crossed only by the six
+    TLP2361s and the SIP DC-DC. The inner planes stop 1.9 mm either side of
+    the centreline, so the planes on the two sides are 3.8 mm apart.
+  * no pours on the outer layers; they are left for signals
+* `scripts/place_components.py` produces the initial placement, the layer
+  stack and the zones, using atopile's own `PCB_Transformer`.
+  `scripts/check_layout.py` checks:
   * every pad is inside the outline
   * no footprints overlap
   * all USB-side pads are north of the barrier and all DVM-side pads south
   * the jackscrew keep-outs are clear
 * The TLV75901 library module arrives pre-routed. The placement script moves
   its parts, tracks and vias as one rigid block so that routing stays valid.
-* `layouts/default/default.kicad_pro` sets JLCPCB 2-layer minimums
-  (0.127 mm track/space, 0.3 mm drill) and a 0.25 mm default track.
-* **Not done yet:** routing. Open `layouts/default/default.kicad_pcb` in
-  KiCad 10 to route it and fill the zones.
+* `layouts/default/default.kicad_pro` sets 0.127 mm track/space, 0.3 mm
+  drill and a 0.25 mm default track, all within JLCPCB's 4-layer minimums.
+* **Routed**, with KiCad's DRC clean (no errors, no unrouted connections):
+  see "Planes and routing" below.
 
 ### Pin swapping and part moves
 
@@ -203,10 +215,11 @@ The result, written into the generated block of `place_components.py`:
 | Crossings among the swappable nets | 839 | 154 | 83 |
 | Crossings, all of the above nets | 1000 | 297 | 112 |
 
-As an independent check, the whole board was autorouted with Freerouting
-2.1 for 40 minutes, two versions side by side on the same machine. (2.1 was
-built from source; 2.5 needs Java 25.) No run finished, and Freerouting
-logged internal errors on all of them, but the trend is clear:
+As an independent check, the whole board (then 2 layers) was autorouted
+with Freerouting 2.1 for 40 minutes, two versions side by side on the same
+machine. (2.1 was built from source; 2.5 needs Java 25.) No run finished,
+and Freerouting logged internal errors on all of them, but the trend is
+clear:
 
 | Freerouting 2.1, 40 min | Run 1: original | Run 1: pin swap | Run 2: pin swap | Run 2: pin swap + moved parts |
 |---|---|---|---|---|
@@ -217,7 +230,10 @@ logged internal errors on all of them, but the trend is clear:
 Pin swapping made the biggest difference. Moving parts helped the router
 early on (33 instead of 40 unrouted after 20 passes), but after 40 minutes
 both pin-swapped boards ended at about 30. The runs were measurements only;
-their routing was not kept.
+their routing was not kept. The outer ground pours went to Freerouting as
+planes, so it treated every ground pad as connected and never routed
+ground; the counts above leave ground out. The board has since gone to 4
+layers and is routed (next section).
 
 ```
 python3 scripts/optimise_placement.py --write   # placement search, about 8 min
@@ -227,29 +243,102 @@ python3 scripts/pin_swap.py --write   # rewrite main.ato's pin map and the READM
 ato build                             # move the nets in the layout; placement is kept
 ```
 
+### Planes and routing
+
+![routed board: F.Cu red, B.Cu blue](docs/routing.png)
+
+The board is 4 layers, with GND/GND_ISO on In1 and +3V3/+5V_ISO on In2
+(see "Board"), so the autorouter has no ground or supply connections left
+to route. It is fully routed:
+* 1863 mm of track: 1438 mm on F.Cu, 425 mm on B.Cu.
+* 198 vias: 149 on the four plane nets (nearly all of them via drops), 49
+  on signals.
+* Default net class 0.2 mm track and 0.15 mm clearance; VBUS and +5V use a
+  0.4 mm Power class.
+
+How it was routed:
+
+1. **Plane via drops** (`scripts/plane_vias.py`). Freerouting barely uses
+   planes: given the planes alone, it placed 58 vias in 40 minutes and left
+   111 connections. So a script joins each of the 147 SMD pads on the four
+   plane nets to its plane, with a short stub and a through via.
+   * Each via keeps 0.2 mm from other nets' copper.
+   * Vias stay out of the barrier keep-out and the jackscrew heads.
+   * Vias stay out of the escape zones of other nets' IC pins, and out of
+     two no-via areas at the RP2354A, on the USB pair and on VREG_LX.
+   * The RP2354A's exposed pad gets 9 vias. Its pin 53 is strapped to pin
+     54, and C22's +3V3 pad is left to the router.
+2. **Freerouting 2.1** on the Specctra export (`scripts/export_dsn.py`),
+   with the via drops and the pre-routed LDO block locked. Two fixes to its
+   command-line mode are in `scripts/freerouting-2.1.0-cli-output.patch`:
+   * A job that finished during the timeout's grace period wrote no
+     session file.
+   * The session file was a mid-pass board, not the best board Freerouting
+     ends with. KiCad then found up to 30 open connections where
+     Freerouting reported 3.
+3. **Import** (`scripts/import_routing.py`). KiCad reads the session, and
+   the tracks go into the layout through atopile's file model, so `ato
+   build` still reads the board.
+4. **Finish** (`scripts/finish_routes.py`). A small grid router (A*,
+   0.05 mm grid, F.Cu/B.Cu and vias, with rip-up and reroute) closes what
+   Freerouting left. Here that was 2 connections: C22's +3V3 pad and one
+   LATCH_ISO branch.
+
+Each Freerouting run below started from the unrouted board, with a 25- or
+40-minute limit. A few stopped earlier, when Freerouting found nothing more
+to improve. The table shows what each change bought:
+
+| Board | Passes | Unrouted after 20 passes | Best unrouted | Change that followed |
+|---|---|---|---|---|
+| 2 layers, outer ground pours | 508 | 33 | 30, ground not counted | 4 layers, inner planes |
+| 4 layers, planes only | 296 | 138 | 111 | plane via drops |
+| + via drops, 0.25/0.2 mm rules | 758 | 27 | 23 | 0.2/0.15 mm default class: 0.25/0.2 mm left no way out of the RP2354A's 0.4 mm-pitch pins |
+| + 0.2/0.15 mm rules | 843 | 5 | 3 | no via drops in IC escape zones (a cap's via sat under pins 27/28) |
+| + escape zones | 999 | 5 | 2 | RP2354A decoupling caps 0.9 mm further out; the 1.2 mm channel could not hold SCK, CLK, MISO and N_RESET |
+| + caps moved | 871 | 4 | 3 | USB series resistors swapped and turned: DP and DM had to cross |
+| + USB resistors | 887 | 6 | 2 | no-via area on the USB pair's channel |
+| + USB no-via area | 943 | 9 | 3 | no-via area on the VREG_LX path |
+| + VREG_LX no-via area (final) | 755 | 4 | 3 | `finish_routes.py`: 2 connections, then 0 |
+
+Freerouting's counts are its own. On the imported board, KiCad found 2 open
+connections, and `finish_routes.py` routed both.
+
+```
+~/.local/share/uv/tools/atopile/bin/python scripts/place_components.py  # placement, stack-up, planes
+python3 scripts/plane_vias.py --write          # via drops (report only without --write)
+python3 scripts/export_dsn.py build/board.dsn
+java -jar freerouting-2.1.0.jar --gui.enabled=false --router.job_timeout=00:25:00 \
+     -de build/board.dsn -do build/board.ses   # 2.1.0 with the patch above; about 20 min
+python3 scripts/import_routing.py build/board.ses
+python3 scripts/finish_routes.py --write       # the last few connections
+python3 scripts/export_pcb.py                  # DRC, gerbers, prints, renders
+```
+
+`python3 scripts/import_routing.py --clear` removes all routing except the
+LDO block, to start again from an unrouted board. The placement script
+leaves tracks where they are, so clear them before moving parts.
+
 ## PCB outputs (gerbers, prints, renders)
 
 `scripts/export_pcb.py` writes `fab/` from the current layout:
 
 | File | Contents |
 |---|---|
-| `fab/solartron_7075_usb_UNROUTED_gerbers.zip` | Gerbers (Cu, mask, paste, silk, Edge.Cuts) + Excellon drill (mm, PTH/NPTH) + drill maps + job file |
+| `fab/solartron_7075_usb_gerbers.zip` | Gerbers (4 copper layers, mask, paste, silk, Edge.Cuts) + Excellon drill (mm, PTH/NPTH) + drill maps + job file |
 | `fab/gerbers/` | the same files, unzipped |
-| `fab/solartron_7075_usb_prints.pdf` | 1:1 prints on A4: (1) top copper + silk, (2) bottom mirrored = as seen from the meter, (3) top assembly |
+| `fab/solartron_7075_usb_prints.pdf` | 1:1 prints on A4: (1) top copper + silk, (2) bottom mirrored = as seen from the meter, (3) top assembly, (4) In1.Cu ground planes, (5) In2.Cu supply planes |
 | `fab/renders/*.png` | KiCad 3D renders: top, bottom, iso |
 | `fab/drc_report.rpt` | KiCad DRC after zone refill |
 
-**The board is not routed yet.** DRC reports 200 unrouted connections, so the
-zip is named `_UNROUTED_`. Use it for fit checks and to preview the board in
-a fab's gerber viewer, not for ordering. Print the PDF at 100 % / actual size.
-Page 2, held against SKB, checks the DD-50 pin 1 and the outline.
+**DRC: no errors and no unrouted connections**, so the zip has no
+`_UNROUTED_` suffix. Review the open items below before ordering. Print the
+PDF at 100 % / actual size. Page 2, held against SKB, checks the DD-50 pin 1
+and the outline.
 
-The other DRC items:
-* 1 starved thermal (U8 pad 4, GND; KiCad lists it three times). This goes
-  away once the pad is routed.
-* 66 silk-over-copper and 171 silk-overlap warnings, from the EasyEDA
-  footprints' silk and the reference designators. These are cosmetic; tidy
-  them after routing.
+The DRC warnings:
+* 62 silk-over-copper and 178 silk-overlap warnings, from the EasyEDA
+  footprints' silk and the reference designators. These are cosmetic but
+  should be tidied.
 * 1 footprint-mismatch warning on J1. The TC2030 footprint comes from the
   `programming-headers` package, not a KiCad library, so this is benign.
 
@@ -374,6 +463,17 @@ python3 scripts/export_schematic.py   # needs kicad-cli (KiCad 9/10; made with 1
   polygons and zone outlines. A zone outline must not carry a `uuid`, or
   KiCad 10 refuses to load the board, so the placement script passes
   `uuid=None`.
+* atopile has no setting for the layer count, the stack-up or planes. The
+  placement script edits them through atopile's KiCad file model. Its lists
+  are views into the file, so clearing one invalidates the items you just
+  read from it: copy the fields out first. `ato build` keeps the 4-layer
+  stack, the zones and any tracks.
+* atopile 0.15 cannot read a board saved by KiCad 10 (new tokens such as
+  via `tenting`), so KiCad must not save over the layout.
+  `scripts/import_routing.py`, `scripts/plane_vias.py` and
+  `scripts/finish_routes.py` therefore use KiCad's Python only to read the
+  session or work out the geometry. They write the tracks and vias through
+  atopile's own model.
 
 ## Open items before fabrication
 
@@ -384,15 +484,16 @@ Two earlier concerns are closed by manual §9, diagram 9.2:
   +5 V. Only about 50 µA flows back.
 
 Layout:
-* Route the board in KiCad, fill the zones and run DRC. Then re-run
-  `scripts/export_pcb.py`; the zip loses its `_UNROUTED_` suffix once DRC
-  finds no unrouted connections. The schematic ERC is clean (see
-  "Schematic").
-* Clean up the silkscreen (see "PCB outputs").
-* Q1 now sits south of the DD-50, so its drain (to SKB 39) and its gate
-  (from a 595) each have to pass between the DD-50 pins. Check this when
-  routing; if it is too tight, the west-end spot in
-  `scripts/optimise_placement.py` scored only slightly worse.
+* Review the autorouted board in KiCad before ordering. The routing passes
+  DRC, but no person has checked it yet. In particular:
+  * VREG_LX and the RP2354A's +1V1 are 0.2 mm tracks; the RP2350
+    datasheet layout keeps the regulator loop short and wide.
+  * The USB pair is routed as two single tracks, not as a 90 Ω
+    differential pair (full speed, 12 Mbit/s, so this is not critical).
+  * Some tracks run between the DD-50 pins (Q1's drain and gate among
+    them).
+* Clean up the silkscreen (see "PCB outputs"). The schematic ERC is clean
+  (see "Schematic").
 * The shift-register row was first placed in reverse order relative to the
   DD-50: the placement script derived the order from the SKB pins and got
   the sign wrong once the DD-50 was on the bottom face. The DVM-side

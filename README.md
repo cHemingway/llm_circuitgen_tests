@@ -94,6 +94,17 @@ Calls that did both kinds of work are assigned by their main purpose.
 | Output tokens | 169 k | 178 k | 26 k | 9 k | 382 k |
 | API-price estimate | $24.69 | $21.64 | $9.32 | $3.67 | $59.32 |
 
+### atopile
+
+| | Schematic & research | PCB | Other | Not attributable | Total |
+| --- | --- | --- | --- | --- | --- |
+| Active time | 1 h 06 min | 31 min | 9 min | 0 min | 1 h 46 min |
+| API calls | 226 | 87 | 57 | – | 370 |
+| Total tokens | 78.2 M | 42.0 M | 24.7 M | 4.6 M | 149.5 M |
+| Tokens excl. cache reads | 0.75 M | 0.32 M | 0.80 M | 0.09 M | 1.97 M |
+| Output tokens | 217 k | 104 k | 42 k | 16 k | 378 k |
+| API-price estimate | $24.10 | $12.17 | $11.70 | $1.37 | $49.34 |
+
 ## Review feedback
 
 After the design is finished, each tool's session gets the same review comments,

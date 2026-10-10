@@ -1,0 +1,358 @@
+// solartron-7075-usb -- an opto-isolated USB interface for the Solartron 7075
+// digital multimeter, plugged straight onto the meter's 50-way D socket.
+//
+// The socket is SKB of the Parallel BCD Interface Unit 70754, whose pinout is
+// the connection table of the service manual, section 9 (pages 9.1-9.9): 36
+// outputs from the meter (6 1/2 decades of staticised BCD, polarity, function,
+// range, the PRINT pulse and level, DATA CAN CHANGE, OVERLOAD), 13 command
+// inputs to it (front panel lockout, contact and pulse SAMPLE, ratio, function,
+// integration time, autorange, range), and pin 37, earth / logic 0.
+//
+// Nothing on the meter side is allowed to share a ground with the USB host.
+// The meter's signals are gathered by five 74HCT165s and driven by two
+// 74HCT595s, all powered from an isolated converter and referenced to pin 37,
+// so only five logic signals cross the barrier, each through its own TLP2361
+// optocoupler: shift clock, data out, latch and output enable towards the
+// meter, and serial data back.
+//
+// Mechanics: the board is a plain rectangle lying flat against the back of
+// the meter. J1, a vertical DD-50 plug, is on the bottom side and mates with
+// the meter's socket; J2, a vertical USB-B receptacle, is on the top side and
+// faces away from the meter. Two 4-40 UNC jackscrews through the board and
+// J1's flange holes into the socket's screwlocks are the only fixing, so the
+// board has no other mounting holes. Everything else is on the top side.
+
+block solartron-7075-usb {
+    @VERSION     = 2.0+;
+    #description = "Opto-isolated USB interface for the Solartron 7075 50-way BCD port";
+    #!>board-rev = A;
+
+    // Two grounds that must never meet. GND is the USB host's; ISO-GND is
+    // the meter's earth and logic 0, SKB pin 37. Only the five optocouplers
+    // and the isolated converter PS1 have pins on both.
+    GND     &TYPE=GROUND;
+    ISO-GND &TYPE=GROUND;
+
+    VBUS   &CLASS=power &PEAK=1A;
+    3V3    &CLASS=power &RAIL;
+    ISO-9V &CLASS=iso-raw;
+    ISO-5V &CLASS=iso-power &RAIL;
+
+    // The core rail arrives through L1, the core regulator's analogue supply
+    // through its RC filter and the converter's input through FB1, so none
+    // has a sourcing pin of its own.
+    1V1       &TYPE=POWER;
+    VREG-AVDD &TYPE=POWER;
+    DCDC-IN   &TYPE=POWER;
+
+    --- USB-B IN
+
+    // The shell is tied straight to the USB ground: it is the host's
+    // potential, and nothing on this side reaches the meter.
+    {J2~USB-B-VERT: &EDGE=RIGHT; #mount = "top side, vertical";
+        .VBUS   = VBUS;
+        .DM     = USB.-;
+        .DP     = USB.+;
+        .GND    = GND;
+        .SHIELD = GND;
+    };
+
+    // Each data line passes through its own pad pair on the ESD array, so
+    // the protection adds no stub, then through the 27R series terminations
+    // the RP2350 needs close to its pins.
+    USB     &HARNESS=usb2;
+    USB-ESD &HARNESS=usb2;
+    MCU-USB &HARNESS=usb2;
+    USB.+ = IO1-A.{U2~USBLC6-2SC6: .GND = GND; .VBUS = VBUS;}.IO1-B
+        = USB-ESD.+ = .{R1~R-27R-0603}. = MCU-USB.+;
+    USB.- = IO2-A.{U2}.IO2-B = USB-ESD.- = .{R2~R-27R-0603}. = MCU-USB.-;
+
+    --- 3V3 REGULATOR
+
+    // The 1uF pair is what the AP2112 asks for; the 10uF is the bulk the
+    // RP2350 minimal design puts on 3V3. VBUS itself carries only the 1uF
+    // here and the 10uF behind FB1, keeping the plug-in load near the 10uF
+    // a USB device may present.
+    VBUS = .{C1~C-1uF-0603: .=GND} == .{C2~C-100nF-0603: .=GND}
+        == VIN.{U3~LDO-3V3: .EN = VBUS; .GND = GND; .NC = ?;}.VOUT
+        = 3V3 = .{C3~C-1uF-0603: .=GND} == .{C4~C-10uF-0805: .=GND};
+
+    --- RP2354A
+
+    // Every pin in pin order. The shift-register link is on SPI0's pins
+    // (GPIO2 SCK, GPIO3 TX, GPIO4 RX, GPIO5 CSn) so either SPI0 or a PIO
+    // state machine can run it; GPIO6 enables the command outputs. The
+    // in-package flash sits on the QSPI pins, which go nowhere else here, so
+    // their tracks stay short.
+    {U1~RP2354A:
+        .IOVDD-1     = 3V3;
+        .GPIO[0:1]   = ?;
+        .GPIO[2]     = MCU-SCLK;
+        .GPIO[3]     = MCU-MOSI;
+        .DVDD-6      = 1V1;
+        .GPIO[4]     = MCU-MISO;
+        .GPIO[5]     = MCU-LATCH;
+        .GPIO[6]     = MCU-OE;
+        .GPIO[7]     = ?;
+        .IOVDD-11    = 3V3;
+        .GPIO[8:15]  = ?;
+        .IOVDD-20    = 3V3;
+        .XIN         = XIN;
+        .XOUT        = .{R4~R-1kR-0603}. = XTAL-OUT;
+        .DVDD-23     = 1V1 = .{C23~C-4u7F-0402: .=GND};
+        .SWCLK       = SWCLK;
+        .SWDIO       = SWDIO;
+        .RUN         = RUN;
+        .GPIO[16:18] = ?;
+        .IOVDD-30    = 3V3;
+        .GPIO[19:24] = ?;
+        .GPIO[25]    = MCU-LED;
+        .IOVDD-38    = 3V3;
+        .DVDD-39     = 1V1;
+        .GPIO[26:29] = ?;
+        .ADC_AVDD    = 3V3 = .{C16~C-100nF-0603: .=GND};
+        .IOVDD-45    = 3V3;
+        .VREG_AVDD   = VREG-AVDD = .{C24~C-4u7F-0402: .=GND} == .{R3~R-33R-0603}. = 3V3;
+        .VREG_PGND   = GND;
+        .VREG_LX     = PLAIN.{L1~L-3u3H-AOTA}.DOT = 1V1 = .{C22~C-4u7F-0402: .=GND};
+        .VREG_VIN    = 3V3 = .{C21~C-4u7F-0402: .=GND};
+        .VREG_FB     = 1V1;
+        .USB_DM      = MCU-USB.-;
+        .USB_DP      = MCU-USB.+;
+        .USB_OTP_VDD = 3V3 = .{C17~C-100nF-0603: .=GND};
+        .QSPI_IOVDD  = 3V3;
+        .QSPI_SD3    = ?;
+        .QSPI_SCLK   = ?;
+        .QSPI_SD0    = ?;
+        .QSPI_SD2    = ?;
+        .QSPI_SD1    = ?;
+        .QSPI_SS     = .{R5~R-1kR-0603}. = .{SW1~SW-TACT-5x5}. = GND;
+        .GND         = GND;
+    };
+
+    // The core regulator's parts are written at its pins above: C21 is CIN,
+    // C22 COUT beside VREG_PGND, C23 the second 4u7 at DVDD pin 23, C24 the
+    // VREG_AVDD filter with R3. L1's dotted end faces the 1V1 output, as in
+    // the RP2350 datasheet's Figure 26; lay this corner out exactly as that
+    // figure shows, all on the top side. C17 serves USB_OTP_VDD and
+    // QSPI_IOVDD together, as on the minimal design.
+    3V3 = ({C%[10:15]~C-100nF-0603: .=GND}.)*6;
+    1V1 = ({C%[18:20]~C-100nF-0603: .=GND}.)*3;
+
+    // 12 MHz: the crystal, load capacitors and 1k drive limiter of the
+    // RP2350 minimal design, which are tuned for this IOVDD.
+    XIN = .{C25~C-15pF-0603: .=GND}
+        == .{Y1~ABM8-272-T3: .GND-2 = GND; .GND-4 = GND;}. = XTAL-OUT
+        = .{C26~C-15pF-0603: .=GND};
+
+    --- BOOT, RESET AND DEBUG
+
+    // BOOTSEL is SW1 on QSPI_SS, above. RUN is held high, as the datasheet
+    // asks of a RUN pin, and SW2 pulls it low through 1k.
+    3V3 = .{R7~R-10kR-0603}. = RUN = .{SW2~SW-TACT-5x5}. = .{R6~R-1kR-0603}. = GND;
+
+    // Raspberry Pi 3-pin debug connector order.
+    {J3~JST-SH-3-SIDE: &EDGE=TOP;
+        .P[1]  = SWCLK;
+        .P[2]  = GND;
+        .P[3]  = SWDIO;
+        .MOUNT = GND;
+    };
+
+    // Firmware status.
+    MCU-LED = .{R8~R-470R-0603}. = A.{D1~LED-0603}.K = GND;
+
+    --- ISOLATED SUPPLY
+
+    // VBUS reaches the 1 W isolated converter through FB1, so its switching
+    // current stays off the RP2354's supply, and C40 is the input capacitor
+    // its datasheet asks for. Its 9 V output is unregulated and rises at
+    // light load, so U4 makes a clean 5 V for the HCT logic, which tolerates
+    // only 4.5 to 5.5 V and must not drive the meter's inputs above their
+    // 5 V limit.
+    VBUS = .{FB1~FB-600R-0603}. = DCDC-IN = .{C40~C-10uF-0805: .=GND}
+        == VIN-POS.{PS1~B0509S-1WR3: .VIN-NEG = GND; .VOUT-NEG = ISO-GND;}.VOUT-POS
+        = ISO-9V = .{C41~C-10uF-0805: .=ISO-GND}
+        == VIN.{U4~HT7550-1: .GND = ISO-GND;}.VOUT
+        = ISO-5V = .{C42~C-10uF-0805: .=ISO-GND} == .{C43~C-100nF-0603: .=ISO-GND};
+
+    // The converter wants at least 10 % of its 111 mA, and the meter-side
+    // logic can idle well below that. R15 and R16 take 4.5 mA from the 9 V
+    // rail, 20 mW each against a 100 mW rating, and D2 takes about 6 mA
+    // through R17 and shows the meter side is powered. With the four
+    // TLP2361 receivers that is at least 11 mA before anything switches.
+    ISO-9V = (.{R%[15:16]~R-1kR-0603}.)+2 = ISO-GND;
+    ISO-5V = .{R17~R-470R-0603}. = A.{D2~LED-0603}.K = ISO-GND;
+
+    --- ISOLATION BARRIER
+
+    // Four channels towards the meter. Each RP2354 pin lights its LED
+    // through 470R: 2.1 to 4.2 mA between the RP2354's 2.62 V VOH floor at
+    // its default 4 mA drive and a full 3.3 V, over a VF of 1.35 to 1.65 V.
+    // That is inside the TLP2361's 2 to 6 mA and clear of its 1.3 mA
+    // threshold. The TLP2361 inverts, so the meter side sees each pin
+    // complemented: firmware drives SCLK, MOSI and LATCH inverted, and
+    // MCU-OE high enables the command outputs. In reset the RP2354's pins
+    // float low, every LED is dark, nSR-OE rises and the commands go
+    // high-impedance, which the meter reads as no command.
+    MCU-SCLK  = .{R10~R-470R-0603}. = A.{U10~TLP2361: .K = GND; .VCC = ISO-5V; .GND = ISO-GND;}.VO = SR-CLK;
+    MCU-MOSI  = .{R11~R-470R-0603}. = A.{U11~TLP2361: .K = GND; .VCC = ISO-5V; .GND = ISO-GND;}.VO = SR-DIN;
+    MCU-LATCH = .{R12~R-470R-0603}. = A.{U12~TLP2361: .K = GND; .VCC = ISO-5V; .GND = ISO-GND;}.VO = SR-LATCH;
+    MCU-OE    = .{R13~R-470R-0603}. = A.{U13~TLP2361: .K = GND; .VCC = ISO-5V; .GND = ISO-GND;}.VO = nSR-OE;
+
+    // The 0.1uF the TLP2361 requires within 1 cm of pins 4 and 6, one each.
+    ISO-5V = ({C%[30:33]~C-100nF-0603: .=ISO-GND}.)*4;
+
+    // One channel back. U20's complementary output lights the LED for a 0
+    // bit and the TLP2361 inverts it again, so MCU-MISO reads true data.
+    // 820R gives 2.7 to 4.6 mA from an HCT output.
+    SR-DOUT-N = .{R14~R-820R-0603}. = A.{U14~TLP2361: .K = ISO-GND; .VCC = 3V3; .GND = GND;}.VO = MCU-MISO;
+    3V3 = .{C34~C-100nF-0603: .=GND};
+
+    --- METER OUTPUTS
+
+    // SKB 1-36 are the meter's outputs, TTL from a 6k source. Each passes a
+    // 10k series resistor into the shift registers, which limits both the
+    // current the meter can push into an unpowered HCT input's clamp diode
+    // when the USB lead is out and the current of a discharge at the
+    // connector. Each also has a 100k pull-up at the connector, so with the
+    // meter unplugged every input reads 1 and the BCD digits read 0xF, which
+    // no reading produces.
+    METER-OUT[1:36] = [36[ B[1:4].{RN%[10:18]~RN-100kR-4x0603: .A[1:4] =* ISO-5V;}
+                == A[1:4].{RN%[1:9]~RN-10kR-4x0603}.B[1:4] ]36] = SR-IN[1:36];
+
+    // Five '165s in a chain, U20 nearest the barrier. A low on SR-LATCH
+    // loads all 40 inputs at once; each SR-CLK rising edge then presents the
+    // next bit at U20, in SKB pin order: bit 1 is pin 1 (1 x 10^6), bit 36
+    // is pin 36 (OVERLOAD). Bits 37-40 check the link: a fixed 1, a fixed 0,
+    // the state of nSR-OE, and the end of the command chain looped back. The
+    // datasheet wants SR-CLK low when SR-LATCH rises, so firmware holds
+    // MCU-SCLK high across the latch pulse.
+    {U20~74HCT165:
+        .PL     = SR-LATCH;
+        .CP     = SR-CLK;
+        .D[4:7] = SR-IN[4:1];
+        .nQ7    = SR-DOUT-N;
+        .GND    = ISO-GND;
+        .Q7     = ?;
+        .DS     = SR-CASCADE[1];
+        .D[0:3] = SR-IN[8:5];
+        .CE     = ISO-GND;
+        .VCC    = ISO-5V;
+    };
+    {U21~74HCT165:
+        .PL     = SR-LATCH;
+        .CP     = SR-CLK;
+        .D[4:7] = SR-IN[12:9];
+        .nQ7    = ?;
+        .GND    = ISO-GND;
+        .Q7     = SR-CASCADE[1];
+        .DS     = SR-CASCADE[2];
+        .D[0:3] = SR-IN[16:13];
+        .CE     = ISO-GND;
+        .VCC    = ISO-5V;
+    };
+    {U22~74HCT165:
+        .PL     = SR-LATCH;
+        .CP     = SR-CLK;
+        .D[4:7] = SR-IN[20:17];
+        .nQ7    = ?;
+        .GND    = ISO-GND;
+        .Q7     = SR-CASCADE[2];
+        .DS     = SR-CASCADE[3];
+        .D[0:3] = SR-IN[24:21];
+        .CE     = ISO-GND;
+        .VCC    = ISO-5V;
+    };
+    {U23~74HCT165:
+        .PL     = SR-LATCH;
+        .CP     = SR-CLK;
+        .D[4:7] = SR-IN[28:25];
+        .nQ7    = ?;
+        .GND    = ISO-GND;
+        .Q7     = SR-CASCADE[3];
+        .DS     = SR-CASCADE[4];
+        .D[0:3] = SR-IN[32:29];
+        .CE     = ISO-GND;
+        .VCC    = ISO-5V;
+    };
+    {U24~74HCT165:
+        .PL     = SR-LATCH;
+        .CP     = SR-CLK;
+        .D[4:7] = SR-IN[36:33];
+        .nQ7    = ?;
+        .GND    = ISO-GND;
+        .Q7     = SR-CASCADE[4];
+        .DS     = ISO-GND;
+        .D[0]   = CMD-LOOP;
+        .D[1]   = nSR-OE;
+        .D[2]   = ISO-GND;
+        .D[3]   = ISO-5V;
+        .CE     = ISO-GND;
+        .VCC    = ISO-5V;
+    };
+    ISO-5V = ({C%[50:54]~C-100nF-0603: .=ISO-GND}.)*5;
+
+    --- METER COMMANDS
+
+    // SKB 38-50 are the meter's command inputs: TTL gates with 4.7k
+    // pull-ups to its 5 V, needing under 0.5 V at up to 5 mA to read 0. A
+    // '595 output meets that directly (0.33 V at 6 mA), so there is no
+    // series resistor. While nSR-OE is high the outputs float and the
+    // pull-ups read every command as 1: no lockout, no contact sample, no
+    // ratio, DC, 10 s, and pin 47 high with range code 111, which the
+    // manual's table reads as autorange. Commands act only once the meter
+    // is in REMOTE, by its own button or by a 0 on pin 38. The pulse SAMPLE
+    // input is AC-coupled, so a 0-1-0 on pin 40 lasting over 10 us takes a
+    // reading.
+    //
+    // The two '595s shift on SR-CLK and update on SR-LATCH's rising edge,
+    // the same edges as the '165s, so one 40-clock transfer reads the meter
+    // and leaves the next command waiting; the latch that follows applies
+    // it. Of the last 16 bits shifted in, the first lands on U31 Q7 (pin 38)
+    // and they run in pin order to U30 Q3 (pin 50); U30 Q2-Q0 are spare.
+    {U30~74HCT595:
+        .Q[0]   = ?;
+        .Q[1]   = ?;
+        .Q[2]   = ?;
+        .Q[3:7] = METER-CMD[50:46];
+        .GND    = ISO-GND;
+        .Q7S    = SR-CMD-CASCADE;
+        .nMR    = ISO-5V;
+        .SHCP   = SR-CLK;
+        .STCP   = SR-LATCH;
+        .nOE    = nSR-OE;
+        .DS     = SR-DIN;
+        .VCC    = ISO-5V;
+    };
+    {U31~74HCT595:
+        .Q[0]   = METER-CMD[45];
+        .Q[1:7] = METER-CMD[44:38];
+        .GND    = ISO-GND;
+        .Q7S    = CMD-LOOP;
+        .nMR    = ISO-5V;
+        .SHCP   = SR-CLK;
+        .STCP   = SR-LATCH;
+        .nOE    = nSR-OE;
+        .DS     = SR-CMD-CASCADE;
+        .VCC    = ISO-5V;
+    };
+    ISO-5V = ({C%[55:56]~C-100nF-0603: .=ISO-GND}.)*2;
+
+    --- 50-WAY D CONNECTOR
+
+    // The 70754's SKB, pin for pin. The levels on the bindings are the
+    // manual's: meter outputs high 2.4 to 6 V from 6k, low under 0.5 V at
+    // 10 mA; meter inputs high 2.4 to 5 V at 100 uA, low under 0.5 V at a
+    // 5 mA sink. Pin 37 is the meter's earth and logic 0. The shell is the
+    // same earth through the meter's chassis, and bonding it here gives the
+    // 49 signal lines a second, shorter return than pin 37 alone.
+    {J1~DSUB-50-PLUG-VERT: &EDGE=LEFT;
+        #mount    = "bottom side, vertical, mates with the meter";
+        #hardware = "2x 4-40 UNC jackscrew through board and flange";
+        .P[1:36]  = METER-OUT[1:36] #VOH=2V4 #VOL=0V5;
+        .P[37]    = ISO-GND;
+        .P[38:50] = METER-CMD[38:50] #VIH=2V4 #VIL=0V5;
+        .SHELL    = ISO-GND;
+    };
+};

@@ -1,0 +1,91 @@
+// SO6 body with five leads: there is no pin 2. The LED is current-driven, so
+// its anode and cathode carry no arrow. The output is an inverter: LED on
+// drives VO low.
+part TLP2361 {
+    @~footprint    = SO-5-6-TOSHIBA;
+    #value         = TLP2361;
+    @!type         = optocoupler;
+    #~mpn          = "TLP2361(TPL,E";
+    #!manufacturer = "Toshiba";
+    #~lcsc         = "C107626";
+
+    1 : A;
+    3 : K;
+    4 : GND< &TYPE=POWER;
+    5 : VO>  #VOH=2V3 #VOL=0V4;
+    6 : VCC< &TYPE=POWER;
+};
+
+---
+
+# TLP2361
+
+**Source:** Toshiba, TLP2361 datasheet, Rev. 5.0, 2015-11-02. SO6 package
+(five leads).
+
+High-speed photocoupler: GaAlAs LED coupled to a high-gain photodetector with a
+totem-pole output. Inverter logic. Internal Faraday shield.
+
+## Pins (§4)
+
+| Pin | Name | Function |
+|---|---|---|
+| 1 | Anode | LED anode |
+| 3 | Cathode | LED cathode |
+| 4 | GND | Output-side ground |
+| 5 | VO | Output |
+| 6 | VCC | Output-side supply |
+
+There is no pin 2.
+
+## Truth table (§6.1)
+
+| Input | LED | Output |
+|---|---|---|
+| H | ON | L |
+| L | OFF | H |
+
+## Absolute maximum ratings (§7)
+
+| Parameter | Value |
+|---|---|
+| Input forward current IF | 10 mA |
+| Input reverse voltage | 5 V |
+| Supply voltage VCC | 6 V |
+| Output voltage VO | 6 V |
+| Output current IO | 10 mA |
+| Operating temperature | −40 to 125 °C |
+| Isolation voltage BVS, AC 60 s | 3750 Vrms |
+
+## Recommended operating conditions (§8)
+
+| Parameter | Min | Typ | Max | Unit |
+|---|---|---|---|---|
+| Input on-state current IF(ON) | 2 | | 6 | mA |
+| Input off-state voltage VF(OFF) | 0 | | 0.8 | V |
+| Supply voltage VCC | 2.7 | 3.3 / 5.0 | 5.5 | V |
+
+## Electrical characteristics (Ta = −40 to 125 °C, VCC = 2.7 to 5.5 V, §9)
+
+| Parameter | Condition | Min | Typ | Max | Unit |
+|---|---|---|---|---|---|
+| Input forward voltage VF | IF = 2 mA, 25 °C | 1.35 | 1.50 | 1.65 | V |
+| VOL | IF = 2 mA, IO = 3.2 mA | | 0.12 | 0.4 | V |
+| VOH | VF = 0.8 V, IO = −3.2 mA, VCC = 3.3 V | 2.3 | 3.15 | | V |
+| VOH | VF = 0.8 V, IO = −3.2 mA, VCC = 5 V | 4.0 | 4.87 | | V |
+| Supply current ICCL, ICCH | | | 0.65 | 1.0 | mA |
+| Threshold input current IFHL | Ta ≤ 105 °C | | 0.5 | 1.3 | mA |
+| Threshold input current IFHL | Ta ≤ 125 °C | | 0.5 | 1.6 | mA |
+| Data rate | NRZ | | 15 | | MBd |
+| Common-mode transient immunity | | ±20 | | | kV/µs |
+
+## Application
+
+A 0.1 µF ceramic bypass capacitor must be connected between pin 6 and pin 4,
+placed within 1 cm of each pin, or the device may not switch properly. Input
+current rise and fall times should be under 0.5 µs.
+
+## Package
+
+SO6 (5-lead), 3.7 × 4.55 mm body, 1.27 mm pitch. Pins 1 and 3 on the input
+side, 4–6 on the output side.

@@ -1,0 +1,65 @@
+// The winding direction matters to the RP2350 core regulator, so the ends are
+// named, not casual: DOT is the end beside the white polarity dot, and the
+// footprint's pad 1 is drawn on that end.
+part L-3u3H-AOTA {
+    @~footprint    = L-2016-AOTA;
+    #value         = 3u3H;
+    @!type         = inductor;
+    #~mpn          = "AOTA-B201610S3R3-101-T";
+    #!manufacturer = "Abracon";
+    #~lcsc         = "C42411119";
+
+    1 : DOT;
+    2 : PLAIN;
+};
+
+// A ferrite bead's ends are interchangeable.
+part FB-600R-0603 {
+    @~footprint    = L-0603;
+    #value         = "600R@100MHz";
+    @!type         = ferrite;
+    #~mpn          = "BLM18KG601SN1D";
+    #!manufacturer = "Murata";
+    #~lcsc         = "C85833";
+
+    1 : A &CASUAL;
+    2 : B &CASUAL;
+};
+
+---
+
+# AOTA-B201610S3R3-101-T
+
+**Source:** Abracon, AOTA-B201610S3R3-101-T mini molded power inductor
+specification, revision A, 9/13/2024. 2.0 × 1.6 × 1.0 mm (0806 / 2016 metric).
+
+| Parameter | Min | Typ | Max | Unit |
+|---|---|---|---|---|
+| Inductance at 1 MHz, 1.0 V | | 3.3 | | µH |
+| Tolerance | | ±20 (M) | | % |
+| Self-resonant frequency | 21 | | | MHz |
+| DC resistance | | 115 | 140 | mΩ |
+| Saturation current, L −30 % (table columns Typ / Max) | | 2.8 | 2.4 | A |
+| Temperature-rise current, ΔT ≈ 40 °C (Typ / Max) | | 2.3 | 2.1 | A |
+| Operating temperature | −40 | | +125 | °C |
+| Operating voltage | | | 20 | V |
+
+Shielded construction. Marking: white ink polarity dot showing winding
+direction. Approved by Raspberry Pi for the RP235x core regulator; the RP2350
+datasheet (§6.3.8.3) requires this polarity-marked part, oriented as in its
+Figure 26, where the dotted end connects to the regulator output and the
+plain end to VREG_LX.
+
+Recommended land pattern: two pads 1.00 × 1.60 mm, 1.00 mm gap.
+
+# BLM18KG601SN1D
+
+**Source:** Murata, Chip Ferrite Bead BLM18 reference specification, Spec. No.
+JENF243A-0003AC-01. 0603 (1.6 × 0.8 mm), no marking.
+
+| Parameter | Value |
+|---|---|
+| Impedance at 100 MHz | 600 Ω ±25 % |
+| Rated current | 1300 mA; 1000 mA (note *1: rating above 1 A is derated with operating temperature) |
+| DC resistance, max | 0.150 Ω initial, 0.165 Ω after testing |
+| Operating temperature | −55 to +125 °C |

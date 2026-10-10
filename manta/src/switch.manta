@@ -1,0 +1,44 @@
+// A four-terminal tactile switch whose terminals are joined in pairs inside
+// the body (A to B, C to D). The footprint names the pairs 1 and 2, two pads
+// each, so the part has two pins and either may face either net.
+part SW-TACT-5x5 {
+    @~footprint    = SW-TS-1187A;
+    #value         = "tact 5.1x5.1";
+    @!type         = switch;
+    #~mpn          = "TS-1187A-B-A-B";
+    #!manufacturer = "XKB";
+    #~lcsc         = "C318884";
+
+    1 : A &CASUAL;
+    2 : B &CASUAL;
+};
+
+---
+
+# TS-1187A-B-A-B
+
+**Source:** XKB Industrial Precision, drawing TS-1187A-X-X-X, revision A0.
+5.1 × 5.1 mm SMD tactile switch. Suffix B-A-B: 160 gf operating force,
+1.5 mm height, brass keystake.
+
+## Terminals
+
+Four terminals A, B, C, D. A and B are joined, C and D are joined; pressing
+the key closes A-B to C-D.
+
+## Specification
+
+| Parameter | Value |
+|---|---|
+| Contact rating | 50 mA, 12 V DC |
+| Contact resistance | 100 mΩ max |
+| Insulation resistance | 100 MΩ min at 500 V DC |
+| Dielectric strength | 250 V AC for 1 minute |
+| Travel | 0.25 mm |
+| Operating temperature | −30 to +85 °C |
+| Storage temperature | −30 to +80 °C |
+
+## PCB layout (top view)
+
+Four pads at 5.0 mm (inner) / 7.0 mm (outer) across, rows 3.0 mm (inner) /
+4.5 mm (outer) apart.

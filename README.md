@@ -4,6 +4,8 @@ A benchmark of "circuit as code" tools for LLM-aided circuit design. Every tool
 gets the same design brief, and each implementation lives in its own top-level
 folder.
 
+Model is Claude Opus 5.5 on Extra thinking level
+
 ## Brief
 
 This repository is a benchmark of various "circuit as code" tools for LLM-aided

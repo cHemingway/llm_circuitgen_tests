@@ -14,7 +14,12 @@ Use the real session records, not memory. In Claude Code the full transcript (in
 - One API call is one assistant `message.id`. Its records are split one per content block and repeat the same usage, so count each id once. Skip API error messages (e.g. a usage-limit notice); they are not calls.
 - The tool-call descriptions and the text in each call say what it was doing.
 - "cost-state" records hold the session totals: tokens per model (input, cache writes, cache reads, output, thinking), API time, tool time and cost. Use the last one before this request.
-If your tool keeps no such record, sum tokens and API calls from the per-response usage, and put "–" for anything you can't measure. Do not estimate.
+If there is no cost-state record (some local runs don't write one), work the figures out from the transcript instead:
+- **Tokens and API calls:** sum them from the per-response usage.
+- **Tool time:** for each tool call, take the time from the record holding its `tool_use` to the record holding its `tool_result`. Add these up over the span, counting overlapping (parallel) calls once. A background task counts only until its call returns. Checked against a session that has the counter, this method reads about 4 % high (61.7 min against 59.5 min), because it includes the overhead around each run.
+- **API-price estimate:** apply the model's published per-token prices for input, cache writes, cache reads and output. Cache writes are priced by cache lifetime, and each response's usage splits them into `cache_creation.ephemeral_5m_input_tokens` and `ephemeral_1h_input_tokens`, so price the two separately. Name the prices and where you found them in `<tool>/README.md`.
+- In the Results row's Notes, say which figures came from the transcript and which from published prices.
+Put "–" for anything you still can't measure. Don't guess any figure.
 
 **Span:** from the first prompt of the conversation up to, not including, this request. If the session has already had the review comments listed under "## Review feedback" in the root README, stop before the first of them and leave them and everything after them out.
 
@@ -44,7 +49,7 @@ For each category compute:
 - **Total tokens:** input + cache writes + cache reads + output.
 - **Tokens excluding cache reads.**
 - **Output tokens.**
-- **API-price estimate:** fit per-token prices (input, cache write, cache read, output) to the session's distinct cost-state snapshots by least squares, check that they reproduce the snapshots, then apply them to each category's tokens. If there are fewer than four distinct snapshots, use the model's published per-token prices instead, but only if they reproduce the snapshots. If there is no cost-state record, put "–".
+- **API-price estimate:** fit per-token prices (input, cache write, cache read, output) to the session's distinct cost-state snapshots by least squares, check that they reproduce the snapshots, then apply them to each category's tokens. If there are fewer than four distinct snapshots, use the model's published per-token prices instead, but only if they reproduce the snapshots; if they don't, put "–" and say why in `<tool>/README.md`. If there is no cost-state record, use the published prices as described in section 1.
 
 Add a **Not attributable** column: the session totals for the span minus the sum of the three categories. It covers calls the counters include but the transcript doesn't log, such as the compaction summary, and the compaction time. The **Total** column must equal the session totals for the span, which are also your Results row.
 
@@ -53,7 +58,7 @@ Keep the per-call categories reproducible: save the script that computes the tab
 ## 4. The root README on main
 
 1. Pull `main` and merge it into your branch, so you start from main's current README.
-2. Under "## Results", add one row for your tool to the table. Use the existing columns, in this order: Tool (linked to the tool's site), Folder, Active time, of which tool time, Total tokens, API calls, API-price estimate, Schematic (a link to the schematic file, or "–"), PCB prints (a link to the prints, or "–"), Notes. In Notes, give the tool version, where the parts came from, anything unusual about the run, and "Statistics run to the conversation export, and exclude the merge into `main` that came after it", and end with "Session log and statistics: [`<tool>/CONVERSATION.md`](<tool>/CONVERSATION.md)".
+2. Under "## Results", add one row for your tool to the table. Use the existing columns, in this order: Tool (linked to the tool's site), Folder, Active time, of which tool time, Total tokens, API calls, API-price estimate, Schematic (a link to the schematic file, or "–"), PCB prints (a link to the prints, or "–"), Notes. In Notes, give the tool version, where the parts came from, anything unusual about the run, where tool time and the price estimate came from if not from the tool's own counters, and "Statistics run to the conversation export, and exclude the merge into `main` that came after it", and end with "Session log and statistics: [`<tool>/CONVERSATION.md`](<tool>/CONVERSATION.md)".
 3. Under "## Breakdown", add your table as "### <tool>" after the existing tables. Use exactly the same rows and columns as the tables already there. Don't add notes under it.
 4. If your tool has no row yet in the "## Review feedback" table, add one with "–" in every figure column.
 5. If your folder isn't listed under "## Layout", add it.

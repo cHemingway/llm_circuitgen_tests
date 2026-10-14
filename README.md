@@ -38,6 +38,10 @@ substituted where needed:
 > the jackscrews on the D-Sub connector, so doesn't need any other mounting
 > holes.
 
+When the design work is finished, the session is asked to export the
+conversation and add its figures to the Results and Breakdown tables below,
+using the prompt in [`EXPORT_PROMPT.md`](EXPORT_PROMPT.md).
+
 ## Results
 
 | Tool | Folder | Active time | of which tool time | Total tokens | API calls | API-price estimate | Schematic | PCB prints | Notes |

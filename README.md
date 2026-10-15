@@ -50,6 +50,7 @@ using the prompt in [`EXPORT_PROMPT.md`](EXPORT_PROMPT.md).
 | [atopile](https://atopile.io) | `atopile/` | 1 h 46 min | 38 min | 149.5 M | 370 | $49.34 | [PDF](atopile/schematic/solartron_7075_usb.pdf) | [PDF](atopile/fab/solartron_7075_usb_prints.pdf) | CLI version (`ato`, 0.15.x). This is the last open CLI line and is effectively end-of-life: [PyPI](https://pypi.org/project/atopile/) lists 0.15.9 (12 Sep 2026) as the latest release, and atopile has moved on to [0.16](https://atopile.io/enterprise). Parts from atopile's library, then LCSC. Session log and statistics: [`atopile/CONVERSATION.md`](atopile/CONVERSATION.md) |
 | [SKiDL](https://github.com/devbisme/skidl) | `skidl/` | 2 h 29 min | 59 min | 124.5 M | 347 | $46.64 | [PDF](skidl/pcb/render/schematic.pdf) | [PDF](skidl/pcb/print/pcb_prints.pdf) | SKiDL 2.3.0 on KiCad 10 (the brief added "use KiCad 10"). SKiDL has no part library of its own, so parts come from KiCad's libraries, then LCSC. Board built with kinet2pcb and routed with Freerouting 2.5. SKiDL's schematic generator mis-connects nets on this design, so the schematic is drawn by a script and checked against the netlist. Statistics run to the conversation export, and exclude the merge into `main` that came after it. Session log and statistics: [`skidl/CONVERSATION.md`](skidl/CONVERSATION.md) |
 | [Manta](https://github.com/Derrick-Derrickson/Manta) | `manta/` | 46 min | – | 62.9 M | 191 | – | [HTML](manta/output/solartron7075.html) | – | Manta 2.0.1 (language revision 2.0). Manta is a schematic and netlist language with no layout, so the result is a checked netlist, a KiCad netlist (with a footprint map and two generated footprints), an LCSC BOM and an HTML schematic. No PCB was made, so there are no prints. Manta's only part library is its `blinky` example; 8 part types came from it, the rest from LCSC. The session transcript kept no cost-state record, so tool time and the price estimate were not recorded; tokens and API calls are summed from the transcript's per-response usage. Statistics run to the conversation export, and exclude the merge into `main` that came after it. Notes on the tool: [`manta/README.md`](manta/README.md#notes-on-the-tool-benchmark-observations). Session log and statistics: [`manta/CONVERSATION.md`](manta/CONVERSATION.md) |
+| [Konnect](https://github.com/mixelpixx/Konnect) | `konnect/` | 3 h 33 min | 56 min | 264.4 M | 520 | $112.18 | [PDF](konnect/fab/schematic.pdf) | [PDF](konnect/fab/pcb_layers.pdf) | Konnect 0.13.0, an MCP server that drives KiCad 10.0.6. Parts come from KiCad's libraries, with LCSC numbers. KiCad has no DD-50, so its symbol and footprint were made in the project library. Konnect's Freerouting export refuses KiCad's roundrect pads, so the SMD footprints were copied with rectangular pads. The board was routed with Freerouting 2.4.1 after a pad-rotation bug in Konnect's DSN export was fixed by hand. The ground pours needed hand-placed stitching vias and a small grid router written in the scratchpad. The run stopped twice at a usage limit (12 h 53 min in all, left out of active time) and was compacted once. Tool time and the price estimate are the tool's own counters. The Breakdown prices use the published Opus 5.5 and Haiku 5.5 prices, which reproduce those counters. Statistics run to the conversation export, and exclude the merge into `main` that came after it. Notes on the tool: [`konnect/README.md`](konnect/README.md#notes-on-the-tool). Session log and statistics: [`konnect/CONVERSATION.md`](konnect/CONVERSATION.md) |
 
 Statistics cover the Claude Code session from the first prompt to the merge into
 `main`.
@@ -122,6 +123,17 @@ Calls that did both kinds of work are assigned by their main purpose.
 | Output tokens | 238 k | 196 k | 27 k | 9 k | 470 k |
 | API-price estimate | $19.31 | $19.39 | $7.51 | $0.43 | $46.64 |
 
+### Konnect
+
+| | Schematic & research | PCB | Other | Not attributable | Total |
+| --- | --- | --- | --- | --- | --- |
+| Active time | 45 min | 2 h 45 min | 2 min | 1 min | 3 h 33 min |
+| API calls | 147 | 364 | 9 | – | 520 |
+| Total tokens | 54.5 M | 197.5 M | 7.3 M | 5.1 M | 264.4 M |
+| Tokens excl. cache reads | 0.83 M | 3.78 M | 0.84 M | 1.06 M | 6.51 M |
+| Output tokens | 235 k | 552 k | 6 k | 17 k | 810 k |
+| API-price estimate | $20.17 | $75.58 | $8.12 | $8.32 | $112.18 |
+
 ## Review feedback
 
 After the design is finished, each tool's session gets the same review comments,
@@ -142,6 +154,7 @@ reply.
 | [atopile](https://atopile.io) | 2 h 28 min | 2 h 03 min | 53.1 M | 141 | $16.94 | Review log and statistics: [`atopile/REVIEW_CONVERSATION.md`](atopile/REVIEW_CONVERSATION.md) |
 | [SKiDL](https://github.com/devbisme/skidl) | – | – | – | – | – | |
 | [Manta](https://github.com/Derrick-Derrickson/Manta) | – | – | – | – | – | |
+| [Konnect](https://github.com/mixelpixx/Konnect) | – | – | – | – | – | |
 
 ## Layout
 
@@ -152,3 +165,4 @@ reply.
 | `atopile/` | [atopile](https://atopile.io) (CLI) implementation; see its README |
 | `skidl/` | [SKiDL](https://github.com/devbisme/skidl) implementation, with a KiCad 10 board; see its README |
 | `manta/` | [Manta](https://github.com/Derrick-Derrickson/Manta) implementation, schematic and netlist only (no board); see its README |
+| `konnect/` | [Konnect](https://github.com/mixelpixx/Konnect) (MCP server for KiCad) implementation, with a KiCad 10 board; see its README |

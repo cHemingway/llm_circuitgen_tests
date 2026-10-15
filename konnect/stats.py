@@ -14,6 +14,7 @@ Usage:
 import csv
 import json
 import os
+import re
 import sys
 from datetime import datetime, timezone
 
@@ -294,6 +295,11 @@ def breakdown_table(cols):
     return "\n".join(out)
 
 
+def short(s):
+    """Shorten the session's scratchpad path, as in CONVERSATION.md."""
+    return re.sub(r"(/private)?/tmp/claude-501/[^/]+/[0-9a-f-]{36}/scratchpad", "$SCRATCH", s)
+
+
 def write_csv(a, path):
     with open(path, "w", newline="") as fh:
         w = csv.writer(fh)
@@ -305,7 +311,7 @@ def write_csv(a, path):
                         utc(c["request"]).strftime("%Y-%m-%d %H:%M:%S"),
                         c["category"], f"{c['active']:.1f}", c["input"], c["cw5"], c["cw1"],
                         c["cr"], c["out"], c["think"], f"{c['price']:.4f}",
-                        " | ".join(c["tools"]), " ".join(c["text"].split())[:160]])
+                        short(" | ".join(c["tools"])), short(" ".join(c["text"].split()))[:160]])
 
 
 def main():

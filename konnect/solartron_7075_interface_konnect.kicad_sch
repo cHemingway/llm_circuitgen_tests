@@ -11584,7 +11584,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "solartron:QFN-60-1EP_7x7mm_P0.4mm_EP3.4x3.4mm_RectPads"
+		(property "Footprint" "Package_DFN_QFN:QFN-60-1EP_7x7mm_P0.4mm_EP3.4x3.4mm"
 			(at 106.68 193.04 0)
 			(hide yes)
 			(effects

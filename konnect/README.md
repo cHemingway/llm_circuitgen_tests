@@ -24,17 +24,52 @@ with file-level tools for libraries and the schematic).
   part's drawing, checked against the DIN 41652 dimensions in Harting's
   catalogue. The project library also has a TLP2361 symbol with an
   inverting output.
-- ERC: 0 errors, 0 warnings. DRC: 0 unconnected items and one cosmetic
-  starved-thermal error on C17 pad 2, which is connected by a track. The
-  remaining items are warnings: footprints that differ from their library
-  copies, silkscreen clipping and clearance, and a missing LCSC footprint
-  field on the parity check.
+- ERC: 0 errors, 0 warnings. DRC: 0 unconnected items and four cosmetic
+  starved-thermal errors. Each is a ground pad with one thermal spoke where
+  KiCad wants two: C17 pad 2 on the USB side, as before, and C24, C30 and
+  C31 pad 2 on the meter side. C30 and C31 also have a track to their
+  '165's pin 15 and a via. The remaining items are warnings: footprints that
+  differ from their library copies, silkscreen clipping and clearance, and a
+  missing LCSC footprint field on the parity check.
+
+## Review 1: pin swapping
+
+The shift-register and resistor-array pins were re-assigned to untangle the
+meter-side routing. The '165 inputs (D0–D7) are equivalent, as are the
+'595 outputs (QA–QH) and the elements of the 100k arrays. The swaps were
+therefore made both within each part and between identical parts.
+
+- Each resistor array feeds one side of one '165. The 36 DVM outputs are
+  taken in D-sub pin order, left to right. So the tracks run D-sub pin →
+  array → '165 pin without crossing, almost all on the top layer.
+- The '595 outputs follow the order of their D-sub pins. QA, the pin on the
+  far side of the chip, takes the outermost signal.
+- U16 D3..D0 keep the 0,0,1,1 signature. The SAMPLE line moved from U18
+  QE/QD to QA/QC. The schematic's serial-link note now carries the full bit
+  map that the firmware needs.
+- The '165 LOAD and clock pins (1 and 2) escape to vias above each chip and
+  join on two bottom-layer buses. Ground "pockets" (a bar and via over each
+  array's ground pads, and vias for '165 pins 8 and 15) were placed before
+  routing, so the input bus routes around them.
+- The meter side was re-routed with Freerouting on top of those fixed
+  pieces. The USB side was re-imported unchanged.
+
+| Meter side | Before | After |
+| --- | --- | --- |
+| 36 '165 input nets | 1,343 mm, 53 vias | 781 mm, 7 vias |
+| 13 '595 output nets | 157 mm, 7 vias | 118 mm, 1 via |
+| 14 other nets (LOAD/SCK/MOSI/MISO, chain, +3V3_ISO) | 874 mm, 51 vias | 793 mm, 47 vias |
+| All meter-side signals | 2,374 mm, 111 vias | 1,692 mm, 55 vias |
+| GND_ISO stitching | 43 vias, 154 mm | 34 vias, 81 mm |
+
+Whole board: 1,660 → 1,275 track segments and 201 → 136 vias.
+`fab/routing_before_after.png` compares the meter-side routing before and after.
 
 | Path | Contents |
 | --- | --- |
 | `solartron_7075_interface_konnect.kicad_sch` / `.kicad_pcb` / `.kicad_pro` | KiCad project |
 | `solartron.kicad_sym`, `solartron.pretty/` | Project symbols and footprints, including rect-pad copies of the stock footprints |
-| `fab/` | Gerbers and drill files, JLCPCB BOM and positions, `schematic.pdf`, `pcb_layers.pdf`, DRC report, render |
+| `fab/` | Gerbers and drill files, JLCPCB BOM and positions, `schematic.pdf`, `pcb_layers.pdf`, DRC report, render, before/after routing comparison |
 | `CONVERSATION.md` | Session log and statistics |
 | `stats.py`, `calls.csv` | Script for the statistics, and every API call with its category |
 
@@ -52,9 +87,14 @@ with file-level tools for libraries and the schematic).
   the scratch copy of the DSN. The session import then refused one part
   because the angles were written as 270 and −90, so those angles were
   normalised.
-- Konnect has no tool to delete or move a via. KiCad's save rewrites the
-  project's design rules and net classes, so the rules were re-applied before
-  each DRC.
+- Konnect has no tool to delete or move a via, or to delete a copper zone,
+  and it deletes tracks one segment at a time. Its SES import also needs a
+  board with no tracks, vias or zones. So re-routing after the pin swaps
+  needed KiCad's own Edit ▸ Global Deletions, run in the GUI by screen
+  control with the user's agreement. The whole board's copper was then
+  re-imported through Konnect: the USB side unchanged, the meter side new.
+- KiCad's save rewrites the project's design rules and net classes, so the
+  rules were re-applied before each DRC.
 - The ground pours needed a lot of manual work: stitching vias, a
   ground-only Freerouting pass, a small grid router written in the
   scratchpad, and hand-placed thermal spokes.

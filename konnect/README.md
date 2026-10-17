@@ -124,6 +124,8 @@ Review 1 and now.
 | `fab/` | Gerbers and drill files, JLCPCB BOM and positions, `schematic.pdf`, `pcb_layers.pdf`, DRC report, render, routing comparisons for reviews 1 and 3 |
 | `CONVERSATION.md` | Session log and statistics |
 | `stats.py`, `calls.csv` | Script for the statistics, and every API call with its category |
+| `REVIEW_CONVERSATION.md` | Review log and statistics |
+| `review_stats.py`, `review_calls.csv` | Script for the review statistics and log, and every review API call with its category |
 
 ## Notes on the tool
 
@@ -165,6 +167,15 @@ It takes everything before the export request (2026-10-15 18:44:30 UTC),
 prints the tables in `CONVERSATION.md` and writes `calls.csv`. The export
 itself ran in a resumed session, `3539381d-…`, whose file starts with a copy
 of the original's later records. The original file is the complete record.
+
+The review that followed ran in the same resumed session. `review_stats.py`
+reads that session's transcript from the first review comment to the review
+export request. It prints the review tables, writes `review_calls.csv` and,
+with `--write-md`, writes `REVIEW_CONVERSATION.md`. The resumed session
+writes no cost-state records, so the review figures come from the
+transcript's per-response usage and tool timings, priced at the published
+Opus 5.5 prices. `REVIEW_CONVERSATION.md` explains how each figure was
+measured.
 
 - **Totals** (tokens, API time, tool time and cost) come from the last
   `cost-state` record before the export request. API calls are the 520

@@ -24,13 +24,12 @@ with file-level tools for libraries and the schematic).
   part's drawing, checked against the DIN 41652 dimensions in Harting's
   catalogue. The project library also has a TLP2361 symbol with an
   inverting output.
-- ERC: 0 errors, 0 warnings. DRC: 0 unconnected items and four cosmetic
-  starved-thermal errors. Each is a ground pad with one thermal spoke where
-  KiCad wants two: C17 pad 2 on the USB side, as before, and C24, C30 and
-  C31 pad 2 on the meter side. C30 and C31 also have a track to their
-  '165's pin 15 and a via. The remaining items are warnings: footprints that
-  differ from their library copies, silkscreen clipping and clearance, and a
-  missing LCSC footprint field on the parity check.
+- ERC: 0 errors, 0 warnings. DRC: 0 unconnected items and one cosmetic
+  error: C17 pad 2 on the USB side, a ground pad with one thermal spoke
+  where KiCad wants two, as in the first layout. The remaining items are
+  warnings: footprints that differ from their library copies, silkscreen
+  clipping, overlap and clearance, and a missing LCSC footprint field on the
+  parity check.
 
 ## Review 1: pin swapping
 
@@ -65,11 +64,64 @@ therefore made both within each part and between identical parts.
 Whole board: 1,660 → 1,275 track segments and 201 → 136 vias.
 `fab/routing_before_after.png` compares the meter-side routing before and after.
 
+## Review 3: moving parts
+
+The meter-side parts were moved, and the pins re-assigned again to suit.
+This includes the swaps between parts offered in reply to review 2. The 36
+DVM input tracks were laid out by a script, in one repeated pattern,
+instead of by the autorouter.
+
+- U16, the '165 with only four DVM inputs, moved from the middle of the row
+  to the right-hand end. The nine '165 input sides that carry DVM lines now
+  sit side by side, 11.08 mm per chip, which is twice the pitch of the
+  D-sub's groups of four pins.
+- Each array sits directly under its four D-sub pins, turned so that its
+  signal pads face the connector. The tracks drop straight into the pads.
+  On the way out, the outer two leave from the ends of the array, and the
+  inner two run between its two rows of pads to the ends. Each '165 side
+  takes two tracks from outside the chip and two from under the chip body.
+- All 36 input tracks are on the top layer except DD-50 pin 36, which sits
+  directly above pin 3. It uses one bottom-layer track and a via.
+- The '165 decoupling caps moved to the top of each chip, between its two
+  sets of input tracks, with a via to a bottom-layer +3V3_ISO spine. C29
+  moved above the regulator to make room for U16. U19 turned round so that
+  PRINT_LEVEL reaches its input directly.
+- Both shift-register chains now run in board order. MOSI enters U18, U18
+  feeds U17, and U17 loops back into U16. The '165 chain runs U16 → U15 →
+  U14 → U12 → U13 → MISO. CMD_RATIO_N moved to U18 QD, next to the other
+  U18 outputs. The serial-link note in the schematic has the new bit map.
+- The script also placed:
+  - the LOAD, SCK and OE buses on the bottom layer under both '595s, with a
+    riser down the left of the D-sub;
+  - SCK down a free channel under U15;
+  - SIPO_CH1 under the '595 bodies;
+  - a +3V3_ISO rail along the top edge and another along the opto row;
+  - SIPO_LOOP down the right-hand side;
+  - the '165 chain and MISO in a channel under the chips.
+- Freerouting routed the rest: MOSI, the '595 outputs and the opto links.
+  The USB side is unchanged.
+
+| Meter side | Review 1 | Review 3 |
+| --- | --- | --- |
+| 36 '165 input nets | 781 mm, 7 vias | 655 mm, 1 via |
+| 13 '595 output nets | 118 mm, 1 via | 96 mm, 0 vias |
+| 14 other nets (LOAD/SCK/MOSI/MISO, chain, +3V3_ISO) | 793 mm, 47 vias | 807 mm, 35 vias |
+| All meter-side signals | 1,692 mm, 55 vias | 1,558 mm, 36 vias |
+| GND_ISO stitching | 34 vias, 81 mm | 27 vias, 65 mm |
+
+Whole board: 1,275 → 958 track segments and 136 → 110 vias. DRC lost
+Review 1's three starved thermals on the meter side (C24, C30 and C31). It
+gained eight silkscreen overlap warnings, where the moved caps' reference
+text overlaps the '165 outlines and C37's overlaps U19. Konnect has no tool
+to move reference text. The positions file was regenerated; the BOM is
+unchanged. `fab/routing_review3.png` compares the meter-side routing after
+Review 1 and now.
+
 | Path | Contents |
 | --- | --- |
 | `solartron_7075_interface_konnect.kicad_sch` / `.kicad_pcb` / `.kicad_pro` | KiCad project |
 | `solartron.kicad_sym`, `solartron.pretty/` | Project symbols and footprints, including rect-pad copies of the stock footprints |
-| `fab/` | Gerbers and drill files, JLCPCB BOM and positions, `schematic.pdf`, `pcb_layers.pdf`, DRC report, render, before/after routing comparison |
+| `fab/` | Gerbers and drill files, JLCPCB BOM and positions, `schematic.pdf`, `pcb_layers.pdf`, DRC report, render, routing comparisons for reviews 1 and 3 |
 | `CONVERSATION.md` | Session log and statistics |
 | `stats.py`, `calls.csv` | Script for the statistics, and every API call with its category |
 
@@ -91,8 +143,12 @@ Whole board: 1,660 → 1,275 track segments and 201 → 136 vias.
   and it deletes tracks one segment at a time. Its SES import also needs a
   board with no tracks, vias or zones. So re-routing after the pin swaps
   needed KiCad's own Edit ▸ Global Deletions, run in the GUI by screen
-  control with the user's agreement. The whole board's copper was then
-  re-imported through Konnect: the USB side unchanged, the meter side new.
+  control with the user's agreement. In Review 3 the same dialog was driven
+  through the menu bar in the background. Each time, the whole board's
+  copper was then re-imported through Konnect: the USB side unchanged, the
+  meter side new.
+- Konnect can move and rotate footprints but not their reference text, so
+  silkscreen overlaps from moved parts stay as DRC warnings.
 - KiCad's save rewrites the project's design rules and net classes, so the
   rules were re-applied before each DRC.
 - The ground pours needed a lot of manual work: stitching vias, a

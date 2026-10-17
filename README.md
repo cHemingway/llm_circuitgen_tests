@@ -158,7 +158,7 @@ fill in its row below, using the prompt in
 | [atopile](https://atopile.io) | 2 h 28 min | 2 h 03 min | 53.1 M | 141 | $16.94 | Review log and statistics: [`atopile/REVIEW_CONVERSATION.md`](atopile/REVIEW_CONVERSATION.md) |
 | [SKiDL](https://github.com/devbisme/skidl) | – | – | – | – | – | |
 | [Manta](https://github.com/Derrick-Derrickson/Manta) | – | – | – | – | – | |
-| [Konnect](https://github.com/mixelpixx/Konnect) | – | – | – | – | – | |
+| [Konnect](https://github.com/mixelpixx/Konnect) | 2 h 35 min | 49 min | 226.6 M | 413 | $86.47 | The resumed session wrote no cost-state counters, so every figure comes from the transcript. Tokens and API calls are summed from the per-response usage. Tool time is each tool call's request-to-result time, which reads about 4 % high. The price uses the published Opus 5.5 prices. Active time leaves out a 26 min wait for the user's answer, two usage-limit stops, and about an hour when the API could not be reached. Review log and statistics: [`konnect/REVIEW_CONVERSATION.md`](konnect/REVIEW_CONVERSATION.md) |
 
 ## Layout
 

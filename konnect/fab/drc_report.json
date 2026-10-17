@@ -15,7 +15,7 @@
             "x": 100.0,
             "y": 144.7
           },
-          "uuid": "d15720b4-8531-407a-af7c-f2bfeec62102",
+          "uuid": "2c154f60-c9ad-4497-a1f3-afd48e285af2",
           "ownership_status": "resolved",
           "item_kind": "zone",
           "layer": "F.Cu",
@@ -36,30 +36,6 @@
             "kind": "footprint",
             "reference": "C17",
             "uuid": "9b38dd00-c360-4620-991c-1a37d20f504d"
-          }
-        }
-      ]
-    },
-    {
-      "severity": "warning",
-      "description": "Via is not connected or connected on only one layer",
-      "rule": "via_dangling",
-      "pos": {
-        "x": 145.3936,
-        "y": 137.3329
-      },
-      "items": [
-        {
-          "description": "Via [/ISO_MOSI] on F.Cu - B.Cu",
-          "pos": {
-            "x": 145.3936,
-            "y": 137.3329
-          },
-          "uuid": "ebbbd1d2-a89c-4177-b5e4-089ad53a7ceb",
-          "ownership_status": "resolved",
-          "item_kind": "via",
-          "owner": {
-            "kind": "board"
           }
         }
       ]
@@ -94,14 +70,14 @@
       "description": "Footprint 'R_Array_Convex_4x0603' does not match copy in library 'Resistor_SMD'",
       "rule": "lib_footprint_mismatch",
       "pos": {
-        "x": 158.75,
+        "x": 151.543,
         "y": 122.6
       },
       "items": [
         {
           "description": "Footprint RN4",
           "pos": {
-            "x": 158.75,
+            "x": 151.543,
             "y": 122.6
           },
           "uuid": "0201f6ee-4588-4717-9581-80795993c35b",
@@ -369,14 +345,14 @@
       "description": "Footprint 'R_Array_Convex_4x0603' does not match copy in library 'Resistor_SMD'",
       "rule": "lib_footprint_mismatch",
       "pos": {
-        "x": 122.5,
+        "x": 123.843,
         "y": 122.6
       },
       "items": [
         {
           "description": "Footprint RN9",
           "pos": {
-            "x": 122.5,
+            "x": 123.843,
             "y": 122.6
           },
           "uuid": "19ebbe1c-6ab9-4804-bc7e-6ae525d6c2f8",
@@ -494,14 +470,14 @@
       "description": "Footprint 'TSSOP-16_4.4x5mm_P0.65mm_RectPads' does not match copy in library 'solartron'",
       "rule": "lib_footprint_mismatch",
       "pos": {
-        "x": 147.0,
+        "x": 137.693,
         "y": 131.0
       },
       "items": [
         {
           "description": "Footprint U14",
           "pos": {
-            "x": 147.0,
+            "x": 137.693,
             "y": 131.0
           },
           "uuid": "22aecf76-c846-4966-a3d5-f72ab10ed1b4",
@@ -519,14 +495,14 @@
       "description": "Footprint 'R_Array_Convex_4x0603' does not match copy in library 'Resistor_SMD'",
       "rule": "lib_footprint_mismatch",
       "pos": {
-        "x": 137.0,
+        "x": 134.923,
         "y": 122.6
       },
       "items": [
         {
           "description": "Footprint RN7",
           "pos": {
-            "x": 137.0,
+            "x": 134.923,
             "y": 122.6
           },
           "uuid": "247d3bf8-9270-4078-bd19-eb15166fcfd8",
@@ -616,31 +592,6 @@
     },
     {
       "severity": "warning",
-      "description": "Footprint 'SW_Push_1P1T_XKB_TS-1187A' does not match copy in library 'Button_Switch_SMD'",
-      "rule": "lib_footprint_mismatch",
-      "pos": {
-        "x": 124.0,
-        "y": 168.0
-      },
-      "items": [
-        {
-          "description": "Footprint SW2",
-          "pos": {
-            "x": 124.0,
-            "y": 168.0
-          },
-          "uuid": "2ba41c32-32a7-45ec-a6f7-7921ede35ea8",
-          "ownership_status": "resolved",
-          "item_kind": "footprint",
-          "layer": "F.Cu",
-          "owner": {
-            "kind": "board"
-          }
-        }
-      ]
-    },
-    {
-      "severity": "warning",
       "description": "Footprint 'L_Murata_DFE201610P_RectPads' does not match copy in library 'solartron'",
       "rule": "lib_footprint_mismatch",
       "pos": {
@@ -655,31 +606,6 @@
             "y": 163.5
           },
           "uuid": "2cfe9a48-ca36-4f15-9b66-937eaeadfb9d",
-          "ownership_status": "resolved",
-          "item_kind": "footprint",
-          "layer": "F.Cu",
-          "owner": {
-            "kind": "board"
-          }
-        }
-      ]
-    },
-    {
-      "severity": "warning",
-      "description": "Footprint 'QFN-60-1EP_7x7mm_P0.4mm_EP3.4x3.4mm' does not match copy in library 'Package_DFN_QFN'",
-      "rule": "lib_footprint_mismatch",
-      "pos": {
-        "x": 138.0,
-        "y": 160.0
-      },
-      "items": [
-        {
-          "description": "Footprint U1",
-          "pos": {
-            "x": 138.0,
-            "y": 160.0
-          },
-          "uuid": "3495530c-eb06-455d-bd3b-50927890e090",
           "ownership_status": "resolved",
           "item_kind": "footprint",
           "layer": "F.Cu",
@@ -769,14 +695,14 @@
       "description": "Footprint 'R_Array_Convex_4x0603' does not match copy in library 'Resistor_SMD'",
       "rule": "lib_footprint_mismatch",
       "pos": {
-        "x": 129.75,
+        "x": 129.382,
         "y": 122.6
       },
       "items": [
         {
           "description": "Footprint RN6",
           "pos": {
-            "x": 129.75,
+            "x": 129.382,
             "y": 122.6
           },
           "uuid": "437f0f12-aa66-44d9-87c4-338a198c5b3a",
@@ -795,14 +721,14 @@
       "rule": "lib_footprint_mismatch",
       "pos": {
         "x": 106.5,
-        "y": 127.5
+        "y": 134.0
       },
       "items": [
         {
           "description": "Footprint C37",
           "pos": {
             "x": 106.5,
-            "y": 127.5
+            "y": 134.0
           },
           "uuid": "45c4a105-fcdd-4be3-9272-13385152dfdc",
           "ownership_status": "resolved",
@@ -830,6 +756,31 @@
             "y": 154.5
           },
           "uuid": "461f282b-f680-485e-891a-c410d904f03f",
+          "ownership_status": "resolved",
+          "item_kind": "footprint",
+          "layer": "F.Cu",
+          "owner": {
+            "kind": "board"
+          }
+        }
+      ]
+    },
+    {
+      "severity": "warning",
+      "description": "Footprint 'SW_Push_1P1T_XKB_TS-1187A' does not match copy in library 'Button_Switch_SMD'",
+      "rule": "lib_footprint_mismatch",
+      "pos": {
+        "x": 148.5,
+        "y": 151.6
+      },
+      "items": [
+        {
+          "description": "Footprint SW1",
+          "pos": {
+            "x": 148.5,
+            "y": 151.6
+          },
+          "uuid": "48e88c0f-b6c7-488b-9caf-82931a2f7315",
           "ownership_status": "resolved",
           "item_kind": "footprint",
           "layer": "F.Cu",
@@ -869,14 +820,14 @@
       "description": "Footprint 'C_0402_1005Metric_RectPads' does not match copy in library 'solartron'",
       "rule": "lib_footprint_mismatch",
       "pos": {
-        "x": 160.86,
+        "x": 151.636,
         "y": 126.9
       },
       "items": [
         {
           "description": "Footprint C33",
           "pos": {
-            "x": 160.86,
+            "x": 151.636,
             "y": 126.9
           },
           "uuid": "53b9bef3-dd26-43a3-a9c6-3599e44ac74c",
@@ -941,6 +892,31 @@
     },
     {
       "severity": "warning",
+      "description": "Footprint 'SW_Push_1P1T_XKB_TS-1187A' does not match copy in library 'Button_Switch_SMD'",
+      "rule": "lib_footprint_mismatch",
+      "pos": {
+        "x": 124.0,
+        "y": 168.0
+      },
+      "items": [
+        {
+          "description": "Footprint SW2",
+          "pos": {
+            "x": 124.0,
+            "y": 168.0
+          },
+          "uuid": "5ab5c9b2-7ffb-42e0-aa0d-da952bc3ed8b",
+          "ownership_status": "resolved",
+          "item_kind": "footprint",
+          "layer": "F.Cu",
+          "owner": {
+            "kind": "board"
+          }
+        }
+      ]
+    },
+    {
+      "severity": "warning",
       "description": "Footprint 'R_0402_1005Metric_RectPads' does not match copy in library 'solartron'",
       "rule": "lib_footprint_mismatch",
       "pos": {
@@ -955,6 +931,31 @@
             "y": 104.0
           },
           "uuid": "6501dd65-38fb-46ce-820c-61e01533e2cf",
+          "ownership_status": "resolved",
+          "item_kind": "footprint",
+          "layer": "F.Cu",
+          "owner": {
+            "kind": "board"
+          }
+        }
+      ]
+    },
+    {
+      "severity": "warning",
+      "description": "Footprint 'SOT-223-3_TabPin2_RectPads' does not match copy in library 'solartron'",
+      "rule": "lib_footprint_mismatch",
+      "pos": {
+        "x": 168.5,
+        "y": 134.0
+      },
+      "items": [
+        {
+          "description": "Footprint U11",
+          "pos": {
+            "x": 168.5,
+            "y": 134.0
+          },
+          "uuid": "676f1c9f-48f4-44c7-9de9-9fed26529633",
           "ownership_status": "resolved",
           "item_kind": "footprint",
           "layer": "F.Cu",
@@ -1216,42 +1217,17 @@
     },
     {
       "severity": "warning",
-      "description": "Footprint 'SW_Push_1P1T_XKB_TS-1187A' does not match copy in library 'Button_Switch_SMD'",
-      "rule": "lib_footprint_mismatch",
-      "pos": {
-        "x": 148.5,
-        "y": 151.6
-      },
-      "items": [
-        {
-          "description": "Footprint SW1",
-          "pos": {
-            "x": 148.5,
-            "y": 151.6
-          },
-          "uuid": "917eb4b7-48d5-4c68-a3d1-6a3e2d8f7b48",
-          "ownership_status": "resolved",
-          "item_kind": "footprint",
-          "layer": "F.Cu",
-          "owner": {
-            "kind": "board"
-          }
-        }
-      ]
-    },
-    {
-      "severity": "warning",
       "description": "Footprint 'R_Array_Convex_4x0603' does not match copy in library 'Resistor_SMD'",
       "rule": "lib_footprint_mismatch",
       "pos": {
-        "x": 144.25,
+        "x": 140.463,
         "y": 122.6
       },
       "items": [
         {
           "description": "Footprint RN2",
           "pos": {
-            "x": 144.25,
+            "x": 140.463,
             "y": 122.6
           },
           "uuid": "941b29e9-1c56-4022-8749-616f66dfff66",
@@ -1269,14 +1245,14 @@
       "description": "Footprint 'R_Array_Convex_4x0603' does not match copy in library 'Resistor_SMD'",
       "rule": "lib_footprint_mismatch",
       "pos": {
-        "x": 166.0,
+        "x": 157.082,
         "y": 122.6
       },
       "items": [
         {
           "description": "Footprint RN5",
           "pos": {
-            "x": 166.0,
+            "x": 157.082,
             "y": 122.6
           },
           "uuid": "98be88cf-4f51-4a86-81bc-abad001777d8",
@@ -1444,14 +1420,14 @@
       "description": "Footprint 'R_Array_Convex_4x0603' does not match copy in library 'Resistor_SMD'",
       "rule": "lib_footprint_mismatch",
       "pos": {
-        "x": 151.5,
+        "x": 146.002,
         "y": 122.6
       },
       "items": [
         {
           "description": "Footprint RN3",
           "pos": {
-            "x": 151.5,
+            "x": 146.002,
             "y": 122.6
           },
           "uuid": "a6755b14-b9bb-4c8d-b030-299b7159049a",
@@ -1566,17 +1542,42 @@
     },
     {
       "severity": "warning",
+      "description": "Footprint 'QFN-60-1EP_7x7mm_P0.4mm_EP3.4x3.4mm' does not match copy in library 'Package_DFN_QFN'",
+      "rule": "lib_footprint_mismatch",
+      "pos": {
+        "x": 138.0,
+        "y": 160.0
+      },
+      "items": [
+        {
+          "description": "Footprint U1",
+          "pos": {
+            "x": 138.0,
+            "y": 160.0
+          },
+          "uuid": "b3e0fc76-4415-4279-b04a-523c390afa03",
+          "ownership_status": "resolved",
+          "item_kind": "footprint",
+          "layer": "F.Cu",
+          "owner": {
+            "kind": "board"
+          }
+        }
+      ]
+    },
+    {
+      "severity": "warning",
       "description": "Footprint 'TSSOP-16_4.4x5mm_P0.65mm_RectPads' does not match copy in library 'solartron'",
       "rule": "lib_footprint_mismatch",
       "pos": {
-        "x": 125.0,
+        "x": 126.613,
         "y": 131.0
       },
       "items": [
         {
           "description": "Footprint U12",
           "pos": {
-            "x": 125.0,
+            "x": 126.613,
             "y": 131.0
           },
           "uuid": "b68541bf-877d-4a1a-a47d-ad486b8182d7",
@@ -1594,14 +1595,14 @@
       "description": "Footprint 'TSSOP-16_4.4x5mm_P0.65mm_RectPads' does not match copy in library 'solartron'",
       "rule": "lib_footprint_mismatch",
       "pos": {
-        "x": 158.0,
+        "x": 148.773,
         "y": 131.0
       },
       "items": [
         {
           "description": "Footprint U15",
           "pos": {
-            "x": 158.0,
+            "x": 148.773,
             "y": 131.0
           },
           "uuid": "b7424212-c1ac-47f0-9f58-1c51cf7f1016",
@@ -1630,31 +1631,6 @@
             "y": 156.0
           },
           "uuid": "c17c11b9-4c11-4ad1-9f5a-dc1f8d4ba821",
-          "ownership_status": "resolved",
-          "item_kind": "footprint",
-          "layer": "F.Cu",
-          "owner": {
-            "kind": "board"
-          }
-        }
-      ]
-    },
-    {
-      "severity": "warning",
-      "description": "Footprint 'USB_B_TE_5787834_Vertical_RectPads' does not match copy in library 'solartron'",
-      "rule": "lib_footprint_mismatch",
-      "pos": {
-        "x": 160.0,
-        "y": 169.0
-      },
-      "items": [
-        {
-          "description": "Footprint J2",
-          "pos": {
-            "x": 160.0,
-            "y": 169.0
-          },
-          "uuid": "c2a0381e-1ffd-473e-ad49-26f7c9ffb5fc",
           "ownership_status": "resolved",
           "item_kind": "footprint",
           "layer": "F.Cu",
@@ -1719,15 +1695,15 @@
       "description": "Footprint 'C_0805_2012Metric_RectPads' does not match copy in library 'solartron'",
       "rule": "lib_footprint_mismatch",
       "pos": {
-        "x": 163.3,
-        "y": 131.5
+        "x": 167.0,
+        "y": 127.6
       },
       "items": [
         {
           "description": "Footprint C29",
           "pos": {
-            "x": 163.3,
-            "y": 131.5
+            "x": 167.0,
+            "y": 127.6
           },
           "uuid": "c908f15b-1a21-4956-970c-03ca20177b7b",
           "ownership_status": "resolved",
@@ -1744,42 +1720,17 @@
       "description": "Footprint 'R_Array_Convex_4x0603' does not match copy in library 'Resistor_SMD'",
       "rule": "lib_footprint_mismatch",
       "pos": {
-        "x": 115.25,
+        "x": 118.303,
         "y": 122.6
       },
       "items": [
         {
           "description": "Footprint RN1",
           "pos": {
-            "x": 115.25,
+            "x": 118.303,
             "y": 122.6
           },
           "uuid": "c913816c-ec52-4e11-b704-8413a648ff20",
-          "ownership_status": "resolved",
-          "item_kind": "footprint",
-          "layer": "F.Cu",
-          "owner": {
-            "kind": "board"
-          }
-        }
-      ]
-    },
-    {
-      "severity": "warning",
-      "description": "Footprint 'SOT-223-3_TabPin2_RectPads' does not match copy in library 'solartron'",
-      "rule": "lib_footprint_mismatch",
-      "pos": {
-        "x": 168.5,
-        "y": 134.0
-      },
-      "items": [
-        {
-          "description": "Footprint U11",
-          "pos": {
-            "x": 168.5,
-            "y": 134.0
-          },
-          "uuid": "cb3add1a-55b9-46a6-b6d7-675640368d23",
           "ownership_status": "resolved",
           "item_kind": "footprint",
           "layer": "F.Cu",
@@ -1819,14 +1770,14 @@
       "description": "Footprint 'C_0402_1005Metric_RectPads' does not match copy in library 'solartron'",
       "rule": "lib_footprint_mismatch",
       "pos": {
-        "x": 116.86,
+        "x": 118.395,
         "y": 126.9
       },
       "items": [
         {
           "description": "Footprint C31",
           "pos": {
-            "x": 116.86,
+            "x": 118.395,
             "y": 126.9
           },
           "uuid": "cd85415c-3926-4c2a-8779-7fc338bcde9e",
@@ -1844,14 +1795,14 @@
       "description": "Footprint 'C_0402_1005Metric_RectPads' does not match copy in library 'solartron'",
       "rule": "lib_footprint_mismatch",
       "pos": {
-        "x": 149.86,
+        "x": 140.556,
         "y": 126.9
       },
       "items": [
         {
           "description": "Footprint C32",
           "pos": {
-            "x": 149.86,
+            "x": 140.556,
             "y": 126.9
           },
           "uuid": "cfbea181-eed6-4de1-80b0-99ea0bf28eef",
@@ -2019,14 +1970,14 @@
       "description": "Footprint 'R_Array_Convex_4x0603' does not match copy in library 'Resistor_SMD'",
       "rule": "lib_footprint_mismatch",
       "pos": {
-        "x": 108.0,
+        "x": 112.763,
         "y": 122.6
       },
       "items": [
         {
           "description": "Footprint RN8",
           "pos": {
-            "x": 108.0,
+            "x": 112.763,
             "y": 122.6
           },
           "uuid": "e14ecd05-12a7-4dfe-95cb-0801dbdfcdde",
@@ -2069,14 +2020,14 @@
       "description": "Footprint 'TSSOP-16_4.4x5mm_P0.65mm_RectPads' does not match copy in library 'solartron'",
       "rule": "lib_footprint_mismatch",
       "pos": {
-        "x": 114.0,
+        "x": 115.533,
         "y": 131.0
       },
       "items": [
         {
           "description": "Footprint U13",
           "pos": {
-            "x": 114.0,
+            "x": 115.533,
             "y": 131.0
           },
           "uuid": "e38e70d3-51a3-4153-afdf-03e5fdebbfd4",
@@ -2169,14 +2120,14 @@
       "description": "Footprint 'C_0402_1005Metric_RectPads' does not match copy in library 'solartron'",
       "rule": "lib_footprint_mismatch",
       "pos": {
-        "x": 138.86,
+        "x": 162.715,
         "y": 126.9
       },
       "items": [
         {
           "description": "Footprint C34",
           "pos": {
-            "x": 138.86,
+            "x": 162.715,
             "y": 126.9
           },
           "uuid": "e813ec4f-90c9-4f9d-9150-9911a317f0b5",
@@ -2244,14 +2195,14 @@
       "description": "Footprint 'C_0402_1005Metric_RectPads' does not match copy in library 'solartron'",
       "rule": "lib_footprint_mismatch",
       "pos": {
-        "x": 127.86,
+        "x": 129.476,
         "y": 126.9
       },
       "items": [
         {
           "description": "Footprint C30",
           "pos": {
-            "x": 127.86,
+            "x": 129.476,
             "y": 126.9
           },
           "uuid": "ee4115a3-d6b2-4ac5-8f87-1b48b9b9c7a4",
@@ -2280,6 +2231,31 @@
             "y": 154.3
           },
           "uuid": "ee5f55c5-43a6-44e0-ac9f-281462176985",
+          "ownership_status": "resolved",
+          "item_kind": "footprint",
+          "layer": "F.Cu",
+          "owner": {
+            "kind": "board"
+          }
+        }
+      ]
+    },
+    {
+      "severity": "warning",
+      "description": "Footprint 'USB_B_TE_5787834_Vertical_RectPads' does not match copy in library 'solartron'",
+      "rule": "lib_footprint_mismatch",
+      "pos": {
+        "x": 160.0,
+        "y": 169.0
+      },
+      "items": [
+        {
+          "description": "Footprint J2",
+          "pos": {
+            "x": 160.0,
+            "y": 169.0
+          },
+          "uuid": "f3eb8fba-e7dc-4173-949a-55d2b400c01b",
           "ownership_status": "resolved",
           "item_kind": "footprint",
           "layer": "F.Cu",
@@ -2344,14 +2320,14 @@
       "description": "Footprint 'TSSOP-16_4.4x5mm_P0.65mm_RectPads' does not match copy in library 'solartron'",
       "rule": "lib_footprint_mismatch",
       "pos": {
-        "x": 136.0,
+        "x": 159.852,
         "y": 131.0
       },
       "items": [
         {
           "description": "Footprint U16",
           "pos": {
-            "x": 136.0,
+            "x": 159.852,
             "y": 131.0
           },
           "uuid": "fda89c36-e278-4ca7-9996-2533517240b5",
@@ -2379,7 +2355,7 @@
             "x": 114.84,
             "y": 118.18
           },
-          "uuid": "2f0409ec-43e4-44ca-b06a-100f85bd2ac1",
+          "uuid": "83b73376-0f2d-49bf-bad1-4316de845a8f",
           "ownership_status": "resolved",
           "item_kind": "footprint",
           "layer": "B.Cu",
@@ -2469,6 +2445,307 @@
       "description": "Silkscreen clearance",
       "rule": "silk_overlap",
       "pos": {
+        "x": 106.5,
+        "y": 132.0
+      },
+      "items": [
+        {
+          "description": "Reference field of U19",
+          "pos": {
+            "x": 106.5,
+            "y": 132.0
+          },
+          "uuid": "0cc76cf0-4afe-41bf-86d7-c440f16fb70f",
+          "ownership_status": "resolved",
+          "item_kind": "property",
+          "layer": "F.SilkS",
+          "owner": {
+            "kind": "footprint",
+            "reference": "U19",
+            "uuid": "282e10cc-bac9-4da5-8cb1-4b07d7d1789a"
+          }
+        },
+        {
+          "description": "Reference field of C37",
+          "pos": {
+            "x": 106.5,
+            "y": 133.0
+          },
+          "uuid": "3fae0300-fdab-4e6f-ae81-70baa844504e",
+          "ownership_status": "resolved",
+          "item_kind": "property",
+          "layer": "F.SilkS",
+          "owner": {
+            "kind": "footprint",
+            "reference": "C37",
+            "uuid": "45c4a105-fcdd-4be3-9272-13385152dfdc"
+          }
+        }
+      ]
+    },
+    {
+      "severity": "warning",
+      "description": "Silkscreen clearance",
+      "rule": "silk_overlap",
+      "pos": {
+        "x": 106.5,
+        "y": 132.0
+      },
+      "items": [
+        {
+          "description": "Reference field of U19",
+          "pos": {
+            "x": 106.5,
+            "y": 132.0
+          },
+          "uuid": "0cc76cf0-4afe-41bf-86d7-c440f16fb70f",
+          "ownership_status": "resolved",
+          "item_kind": "property",
+          "layer": "F.SilkS",
+          "owner": {
+            "kind": "footprint",
+            "reference": "U19",
+            "uuid": "282e10cc-bac9-4da5-8cb1-4b07d7d1789a"
+          }
+        },
+        {
+          "description": "Segment of U19 on F.Silkscreen",
+          "pos": {
+            "x": 105.59,
+            "y": 132.559999
+          },
+          "uuid": "7ee125da-795d-46fa-8302-822fdada340f",
+          "ownership_status": "resolved",
+          "item_kind": "fp_line",
+          "layer": "F.SilkS",
+          "owner": {
+            "kind": "footprint",
+            "reference": "U19",
+            "uuid": "282e10cc-bac9-4da5-8cb1-4b07d7d1789a"
+          }
+        }
+      ]
+    },
+    {
+      "severity": "warning",
+      "description": "Silkscreen clearance",
+      "rule": "silk_overlap",
+      "pos": {
+        "x": 106.5,
+        "y": 132.0
+      },
+      "items": [
+        {
+          "description": "Reference field of U19",
+          "pos": {
+            "x": 106.5,
+            "y": 132.0
+          },
+          "uuid": "0cc76cf0-4afe-41bf-86d7-c440f16fb70f",
+          "ownership_status": "resolved",
+          "item_kind": "property",
+          "layer": "F.SilkS",
+          "owner": {
+            "kind": "footprint",
+            "reference": "U19",
+            "uuid": "282e10cc-bac9-4da5-8cb1-4b07d7d1789a"
+          }
+        },
+        {
+          "description": "Segment of U19 on F.Silkscreen",
+          "pos": {
+            "x": 107.41,
+            "y": 132.559999
+          },
+          "uuid": "a9830f52-da17-4012-95ff-5952fd9215e3",
+          "ownership_status": "resolved",
+          "item_kind": "fp_line",
+          "layer": "F.SilkS",
+          "owner": {
+            "kind": "footprint",
+            "reference": "U19",
+            "uuid": "282e10cc-bac9-4da5-8cb1-4b07d7d1789a"
+          }
+        }
+      ]
+    },
+    {
+      "severity": "warning",
+      "description": "Silkscreen clearance",
+      "rule": "silk_overlap",
+      "pos": {
+        "x": 106.5,
+        "y": 133.0
+      },
+      "items": [
+        {
+          "description": "Reference field of C37",
+          "pos": {
+            "x": 106.5,
+            "y": 133.0
+          },
+          "uuid": "3fae0300-fdab-4e6f-ae81-70baa844504e",
+          "ownership_status": "resolved",
+          "item_kind": "property",
+          "layer": "F.SilkS",
+          "owner": {
+            "kind": "footprint",
+            "reference": "C37",
+            "uuid": "45c4a105-fcdd-4be3-9272-13385152dfdc"
+          }
+        },
+        {
+          "description": "Segment of U19 on F.Silkscreen",
+          "pos": {
+            "x": 105.59,
+            "y": 132.559999
+          },
+          "uuid": "7ee125da-795d-46fa-8302-822fdada340f",
+          "ownership_status": "resolved",
+          "item_kind": "fp_line",
+          "layer": "F.SilkS",
+          "owner": {
+            "kind": "footprint",
+            "reference": "U19",
+            "uuid": "282e10cc-bac9-4da5-8cb1-4b07d7d1789a"
+          }
+        }
+      ]
+    },
+    {
+      "severity": "warning",
+      "description": "Silkscreen clearance",
+      "rule": "silk_overlap",
+      "pos": {
+        "x": 106.5,
+        "y": 133.0
+      },
+      "items": [
+        {
+          "description": "Reference field of C37",
+          "pos": {
+            "x": 106.5,
+            "y": 133.0
+          },
+          "uuid": "3fae0300-fdab-4e6f-ae81-70baa844504e",
+          "ownership_status": "resolved",
+          "item_kind": "property",
+          "layer": "F.SilkS",
+          "owner": {
+            "kind": "footprint",
+            "reference": "C37",
+            "uuid": "45c4a105-fcdd-4be3-9272-13385152dfdc"
+          }
+        },
+        {
+          "description": "Segment of U19 on F.Silkscreen",
+          "pos": {
+            "x": 107.41,
+            "y": 132.509999
+          },
+          "uuid": "6bdbe307-eab7-43af-b9b2-d5ba754ec776",
+          "ownership_status": "resolved",
+          "item_kind": "fp_line",
+          "layer": "F.SilkS",
+          "owner": {
+            "kind": "footprint",
+            "reference": "U19",
+            "uuid": "282e10cc-bac9-4da5-8cb1-4b07d7d1789a"
+          }
+        }
+      ]
+    },
+    {
+      "severity": "warning",
+      "description": "Silkscreen clearance",
+      "rule": "silk_overlap",
+      "pos": {
+        "x": 107.95,
+        "y": 132.509999
+      },
+      "items": [
+        {
+          "description": "Polygon of U19 on F.Silkscreen",
+          "pos": {
+            "x": 107.95,
+            "y": 132.509999
+          },
+          "uuid": "36ea3cb9-b15d-4917-8c22-f80ac929ef2f",
+          "ownership_status": "resolved",
+          "item_kind": "fp_poly",
+          "layer": "F.SilkS",
+          "owner": {
+            "kind": "footprint",
+            "reference": "U19",
+            "uuid": "282e10cc-bac9-4da5-8cb1-4b07d7d1789a"
+          }
+        },
+        {
+          "description": "Reference field of C37",
+          "pos": {
+            "x": 106.5,
+            "y": 133.0
+          },
+          "uuid": "3fae0300-fdab-4e6f-ae81-70baa844504e",
+          "ownership_status": "resolved",
+          "item_kind": "property",
+          "layer": "F.SilkS",
+          "owner": {
+            "kind": "footprint",
+            "reference": "C37",
+            "uuid": "45c4a105-fcdd-4be3-9272-13385152dfdc"
+          }
+        }
+      ]
+    },
+    {
+      "severity": "warning",
+      "description": "Silkscreen clearance",
+      "rule": "silk_overlap",
+      "pos": {
+        "x": 106.5,
+        "y": 133.0
+      },
+      "items": [
+        {
+          "description": "Reference field of C37",
+          "pos": {
+            "x": 106.5,
+            "y": 133.0
+          },
+          "uuid": "3fae0300-fdab-4e6f-ae81-70baa844504e",
+          "ownership_status": "resolved",
+          "item_kind": "property",
+          "layer": "F.SilkS",
+          "owner": {
+            "kind": "footprint",
+            "reference": "C37",
+            "uuid": "45c4a105-fcdd-4be3-9272-13385152dfdc"
+          }
+        },
+        {
+          "description": "Segment of U19 on F.Silkscreen",
+          "pos": {
+            "x": 107.41,
+            "y": 132.559999
+          },
+          "uuid": "a9830f52-da17-4012-95ff-5952fd9215e3",
+          "ownership_status": "resolved",
+          "item_kind": "fp_line",
+          "layer": "F.SilkS",
+          "owner": {
+            "kind": "footprint",
+            "reference": "U19",
+            "uuid": "282e10cc-bac9-4da5-8cb1-4b07d7d1789a"
+          }
+        }
+      ]
+    },
+    {
+      "severity": "warning",
+      "description": "Silkscreen clearance",
+      "rule": "silk_overlap",
+      "pos": {
         "x": 110.5,
         "y": 102.5
       },
@@ -2501,6 +2778,49 @@
             "kind": "footprint",
             "reference": "R18",
             "uuid": "6501dd65-38fb-46ce-820c-61e01533e2cf"
+          }
+        }
+      ]
+    },
+    {
+      "severity": "warning",
+      "description": "Silkscreen clearance",
+      "rule": "silk_overlap",
+      "pos": {
+        "x": 124.0,
+        "y": 104.0
+      },
+      "items": [
+        {
+          "description": "Reference field of Q1",
+          "pos": {
+            "x": 124.0,
+            "y": 104.0
+          },
+          "uuid": "a926f010-cbc4-45a9-865a-ca53792e16fe",
+          "ownership_status": "resolved",
+          "item_kind": "property",
+          "layer": "F.SilkS",
+          "owner": {
+            "kind": "footprint",
+            "reference": "Q1",
+            "uuid": "ac7acced-7268-47c8-aa5d-31a8cdc5f3b7"
+          }
+        },
+        {
+          "description": "Segment of Q1 on F.Silkscreen",
+          "pos": {
+            "x": 124.759999,
+            "y": 103.44
+          },
+          "uuid": "b4be3d75-3e38-4191-96ad-8714edcf00ac",
+          "ownership_status": "resolved",
+          "item_kind": "fp_line",
+          "layer": "F.SilkS",
+          "owner": {
+            "kind": "footprint",
+            "reference": "Q1",
+            "uuid": "ac7acced-7268-47c8-aa5d-31a8cdc5f3b7"
           }
         }
       ]
@@ -2596,40 +2916,40 @@
       "description": "Silkscreen clearance",
       "rule": "silk_overlap",
       "pos": {
-        "x": 124.0,
-        "y": 104.0
+        "x": 113.222999,
+        "y": 128.265
       },
       "items": [
         {
-          "description": "Reference field of Q1",
+          "description": "Segment of U13 on F.Silkscreen",
           "pos": {
-            "x": 124.0,
-            "y": 104.0
+            "x": 113.222999,
+            "y": 128.265
           },
-          "uuid": "a926f010-cbc4-45a9-865a-ca53792e16fe",
-          "ownership_status": "resolved",
-          "item_kind": "property",
-          "layer": "F.SilkS",
-          "owner": {
-            "kind": "footprint",
-            "reference": "Q1",
-            "uuid": "ac7acced-7268-47c8-aa5d-31a8cdc5f3b7"
-          }
-        },
-        {
-          "description": "Segment of Q1 on F.Silkscreen",
-          "pos": {
-            "x": 124.759999,
-            "y": 103.44
-          },
-          "uuid": "b4be3d75-3e38-4191-96ad-8714edcf00ac",
+          "uuid": "46c640cd-d80f-4be4-8671-87e3a7acdf66",
           "ownership_status": "resolved",
           "item_kind": "fp_line",
           "layer": "F.SilkS",
           "owner": {
             "kind": "footprint",
-            "reference": "Q1",
-            "uuid": "ac7acced-7268-47c8-aa5d-31a8cdc5f3b7"
+            "reference": "U13",
+            "uuid": "e38e70d3-51a3-4153-afdf-03e5fdebbfd4"
+          }
+        },
+        {
+          "description": "Reference field of C31",
+          "pos": {
+            "x": 117.395,
+            "y": 126.9
+          },
+          "uuid": "f0c298ce-da49-4cc0-bf27-0c1db0a51175",
+          "ownership_status": "resolved",
+          "item_kind": "property",
+          "layer": "F.SilkS",
+          "owner": {
+            "kind": "footprint",
+            "reference": "C31",
+            "uuid": "cd85415c-3926-4c2a-8779-7fc338bcde9e"
           }
         }
       ]
@@ -2639,40 +2959,40 @@
       "description": "Silkscreen clearance",
       "rule": "silk_overlap",
       "pos": {
-        "x": 106.5,
-        "y": 130.0
+        "x": 150.636,
+        "y": 126.9
       },
       "items": [
         {
-          "description": "Reference field of U19",
+          "description": "Reference field of C33",
           "pos": {
-            "x": 106.5,
-            "y": 130.0
+            "x": 150.636,
+            "y": 126.9
           },
-          "uuid": "0cc76cf0-4afe-41bf-86d7-c440f16fb70f",
+          "uuid": "d3c7cec2-d5aa-49f9-865b-bfc41e5f5260",
           "ownership_status": "resolved",
           "item_kind": "property",
           "layer": "F.SilkS",
           "owner": {
             "kind": "footprint",
-            "reference": "U19",
-            "uuid": "282e10cc-bac9-4da5-8cb1-4b07d7d1789a"
+            "reference": "C33",
+            "uuid": "53b9bef3-dd26-43a3-a9c6-3599e44ac74c"
           }
         },
         {
-          "description": "Segment of U19 on F.Silkscreen",
+          "description": "Segment of U15 on F.Silkscreen",
           "pos": {
-            "x": 105.59,
-            "y": 129.440001
+            "x": 146.462999,
+            "y": 128.265
           },
-          "uuid": "a9830f52-da17-4012-95ff-5952fd9215e3",
+          "uuid": "dbf674b3-52d0-422c-b98b-7c2ee8aea8db",
           "ownership_status": "resolved",
           "item_kind": "fp_line",
           "layer": "F.SilkS",
           "owner": {
             "kind": "footprint",
-            "reference": "U19",
-            "uuid": "282e10cc-bac9-4da5-8cb1-4b07d7d1789a"
+            "reference": "U15",
+            "uuid": "b7424212-c1ac-47f0-9f58-1c51cf7f1016"
           }
         }
       ]
@@ -2682,40 +3002,40 @@
       "description": "Silkscreen clearance",
       "rule": "silk_overlap",
       "pos": {
-        "x": 106.5,
-        "y": 130.0
+        "x": 135.382999,
+        "y": 128.265
       },
       "items": [
         {
-          "description": "Reference field of U19",
+          "description": "Segment of U14 on F.Silkscreen",
           "pos": {
-            "x": 106.5,
-            "y": 130.0
+            "x": 135.382999,
+            "y": 128.265
           },
-          "uuid": "0cc76cf0-4afe-41bf-86d7-c440f16fb70f",
-          "ownership_status": "resolved",
-          "item_kind": "property",
-          "layer": "F.SilkS",
-          "owner": {
-            "kind": "footprint",
-            "reference": "U19",
-            "uuid": "282e10cc-bac9-4da5-8cb1-4b07d7d1789a"
-          }
-        },
-        {
-          "description": "Segment of U19 on F.Silkscreen",
-          "pos": {
-            "x": 107.41,
-            "y": 129.440001
-          },
-          "uuid": "7ee125da-795d-46fa-8302-822fdada340f",
+          "uuid": "98e6d826-55bc-4c76-8743-cd2bd347c93b",
           "ownership_status": "resolved",
           "item_kind": "fp_line",
           "layer": "F.SilkS",
           "owner": {
             "kind": "footprint",
-            "reference": "U19",
-            "uuid": "282e10cc-bac9-4da5-8cb1-4b07d7d1789a"
+            "reference": "U14",
+            "uuid": "22aecf76-c846-4966-a3d5-f72ab10ed1b4"
+          }
+        },
+        {
+          "description": "Reference field of C32",
+          "pos": {
+            "x": 139.556,
+            "y": 126.9
+          },
+          "uuid": "e7e46871-b5cc-4a87-8945-60764e9dd9bb",
+          "ownership_status": "resolved",
+          "item_kind": "property",
+          "layer": "F.SilkS",
+          "owner": {
+            "kind": "footprint",
+            "reference": "C32",
+            "uuid": "cfbea181-eed6-4de1-80b0-99ea0bf28eef"
           }
         }
       ]
@@ -2725,40 +3045,40 @@
       "description": "Silkscreen clearance",
       "rule": "silk_overlap",
       "pos": {
-        "x": 132.508,
-        "y": 161.16
+        "x": 166.739,
+        "y": 126.865
       },
       "items": [
         {
-          "description": "Segment of C16 on F.Silkscreen",
+          "description": "Segment of C29 on F.Silkscreen",
           "pos": {
-            "x": 132.508,
-            "y": 161.16
+            "x": 166.739,
+            "y": 126.865
           },
-          "uuid": "4105e4de-8f4b-48b8-9386-079a28b86b78",
+          "uuid": "3e4e3174-1796-452c-a8c6-0f628bf324a9",
           "ownership_status": "resolved",
           "item_kind": "fp_line",
           "layer": "F.SilkS",
           "owner": {
             "kind": "footprint",
-            "reference": "C16",
-            "uuid": "a9b75072-a946-45ab-80da-93ddb35993e0"
+            "reference": "C29",
+            "uuid": "c908f15b-1a21-4956-970c-03ca20177b7b"
           }
         },
         {
-          "description": "Reference field of R8",
+          "description": "Reference field of C29",
           "pos": {
-            "x": 132.4,
-            "y": 161.3
+            "x": 167.0,
+            "y": 126.6
           },
-          "uuid": "64d25379-44c3-4406-8aa1-1a2bea0fa549",
+          "uuid": "7a531500-1ed4-4222-9064-3d31444e6cf5",
           "ownership_status": "resolved",
           "item_kind": "property",
           "layer": "F.SilkS",
           "owner": {
             "kind": "footprint",
-            "reference": "R8",
-            "uuid": "0d59fb23-00ef-45d2-86ae-5fd138c13043"
+            "reference": "C29",
+            "uuid": "c908f15b-1a21-4956-970c-03ca20177b7b"
           }
         }
       ]
@@ -2768,513 +3088,40 @@
       "description": "Silkscreen clearance",
       "rule": "silk_overlap",
       "pos": {
-        "x": 132.4,
-        "y": 161.3
+        "x": 161.715,
+        "y": 126.9
       },
       "items": [
         {
-          "description": "Reference field of R8",
+          "description": "Reference field of C34",
           "pos": {
-            "x": 132.4,
-            "y": 161.3
+            "x": 161.715,
+            "y": 126.9
           },
-          "uuid": "64d25379-44c3-4406-8aa1-1a2bea0fa549",
+          "uuid": "29f3a643-9e2e-4fc2-8e18-1d34c066dc18",
           "ownership_status": "resolved",
           "item_kind": "property",
           "layer": "F.SilkS",
           "owner": {
             "kind": "footprint",
-            "reference": "R8",
-            "uuid": "0d59fb23-00ef-45d2-86ae-5fd138c13043"
+            "reference": "C34",
+            "uuid": "e813ec4f-90c9-4f9d-9150-9911a317f0b5"
           }
         },
         {
-          "description": "Reference field of C16",
+          "description": "Segment of U16 on F.Silkscreen",
           "pos": {
-            "x": 132.4,
-            "y": 161.8
+            "x": 157.541999,
+            "y": 128.265
           },
-          "uuid": "ee40a5fb-7021-446a-b278-d9f046268b65",
-          "ownership_status": "resolved",
-          "item_kind": "property",
-          "layer": "F.SilkS",
-          "owner": {
-            "kind": "footprint",
-            "reference": "C16",
-            "uuid": "a9b75072-a946-45ab-80da-93ddb35993e0"
-          }
-        }
-      ]
-    },
-    {
-      "severity": "warning",
-      "description": "Silkscreen clearance",
-      "rule": "silk_overlap",
-      "pos": {
-        "x": 132.4,
-        "y": 158.3
-      },
-      "items": [
-        {
-          "description": "Reference field of R3",
-          "pos": {
-            "x": 132.4,
-            "y": 158.3
-          },
-          "uuid": "4c8c9e69-78f4-4a54-981c-8f4594a82f41",
-          "ownership_status": "resolved",
-          "item_kind": "property",
-          "layer": "F.SilkS",
-          "owner": {
-            "kind": "footprint",
-            "reference": "R3",
-            "uuid": "e9d20c5a-68eb-4a5c-8ae1-d500b3be318f"
-          }
-        },
-        {
-          "description": "Segment of C11 on F.Silkscreen",
-          "pos": {
-            "x": 132.392,
-            "y": 157.76
-          },
-          "uuid": "d6f8f817-25e4-4aac-b425-c6872aba67d9",
+          "uuid": "e0576e91-698f-4d45-bc19-ef02930cc3fc",
           "ownership_status": "resolved",
           "item_kind": "fp_line",
           "layer": "F.SilkS",
           "owner": {
             "kind": "footprint",
-            "reference": "C11",
-            "uuid": "99ad6037-7968-42aa-8284-13dad5754aac"
-          }
-        }
-      ]
-    },
-    {
-      "severity": "warning",
-      "description": "Silkscreen clearance",
-      "rule": "silk_overlap",
-      "pos": {
-        "x": 132.246,
-        "y": 161.92
-      },
-      "items": [
-        {
-          "description": "Segment of R8 on F.Silkscreen",
-          "pos": {
-            "x": 132.246,
-            "y": 161.92
-          },
-          "uuid": "c732d5f5-2ade-4ffc-a178-4f1e9c1bb063",
-          "ownership_status": "resolved",
-          "item_kind": "fp_line",
-          "layer": "F.SilkS",
-          "owner": {
-            "kind": "footprint",
-            "reference": "R8",
-            "uuid": "0d59fb23-00ef-45d2-86ae-5fd138c13043"
-          }
-        },
-        {
-          "description": "Reference field of C16",
-          "pos": {
-            "x": 132.4,
-            "y": 161.8
-          },
-          "uuid": "ee40a5fb-7021-446a-b278-d9f046268b65",
-          "ownership_status": "resolved",
-          "item_kind": "property",
-          "layer": "F.SilkS",
-          "owner": {
-            "kind": "footprint",
-            "reference": "C16",
-            "uuid": "a9b75072-a946-45ab-80da-93ddb35993e0"
-          }
-        }
-      ]
-    },
-    {
-      "severity": "warning",
-      "description": "Silkscreen clearance",
-      "rule": "silk_overlap",
-      "pos": {
-        "x": 132.4,
-        "y": 162.8
-      },
-      "items": [
-        {
-          "description": "Reference field of C12",
-          "pos": {
-            "x": 132.4,
-            "y": 162.8
-          },
-          "uuid": "4b5cdefe-5319-4f96-bb7e-89656f17a1d9",
-          "ownership_status": "resolved",
-          "item_kind": "property",
-          "layer": "F.SilkS",
-          "owner": {
-            "kind": "footprint",
-            "reference": "C12",
-            "uuid": "e0939bb9-accf-4d16-b626-ba28ce441b47"
-          }
-        },
-        {
-          "description": "Reference field of C16",
-          "pos": {
-            "x": 132.4,
-            "y": 161.8
-          },
-          "uuid": "ee40a5fb-7021-446a-b278-d9f046268b65",
-          "ownership_status": "resolved",
-          "item_kind": "property",
-          "layer": "F.SilkS",
-          "owner": {
-            "kind": "footprint",
-            "reference": "C16",
-            "uuid": "a9b75072-a946-45ab-80da-93ddb35993e0"
-          }
-        }
-      ]
-    },
-    {
-      "severity": "warning",
-      "description": "Silkscreen clearance",
-      "rule": "silk_overlap",
-      "pos": {
-        "x": 134.265,
-        "y": 168.7
-      },
-      "items": [
-        {
-          "description": "Segment of D2 on F.Silkscreen",
-          "pos": {
-            "x": 134.265,
-            "y": 168.7
-          },
-          "uuid": "5ff6cfdc-4ce1-4891-93a2-b203f9f629af",
-          "ownership_status": "resolved",
-          "item_kind": "fp_line",
-          "layer": "F.SilkS",
-          "owner": {
-            "kind": "footprint",
-            "reference": "D2",
-            "uuid": "c6780e9d-027f-4991-8028-892f821f152e"
-          }
-        },
-        {
-          "description": "Reference field of D2",
-          "pos": {
-            "x": 134.0,
-            "y": 169.5
-          },
-          "uuid": "ae7a77f2-339a-46b9-afe9-d958cd76ee72",
-          "ownership_status": "resolved",
-          "item_kind": "property",
-          "layer": "F.SilkS",
-          "owner": {
-            "kind": "footprint",
-            "reference": "D2",
-            "uuid": "c6780e9d-027f-4991-8028-892f821f152e"
-          }
-        }
-      ]
-    },
-    {
-      "severity": "warning",
-      "description": "Silkscreen clearance",
-      "rule": "silk_overlap",
-      "pos": {
-        "x": 135.8,
-        "y": 165.5
-      },
-      "items": [
-        {
-          "description": "Reference field of C13",
-          "pos": {
-            "x": 135.8,
-            "y": 165.5
-          },
-          "uuid": "479b3931-bbb7-4433-b6f3-5ee2695f25b9",
-          "ownership_status": "resolved",
-          "item_kind": "property",
-          "layer": "F.SilkS",
-          "owner": {
-            "kind": "footprint",
-            "reference": "C13",
-            "uuid": "d95a8edc-dc25-4299-9b10-c3a3593c0e94"
-          }
-        },
-        {
-          "description": "Segment of R9 on F.Silkscreen",
-          "pos": {
-            "x": 135.38,
-            "y": 166.654
-          },
-          "uuid": "5e1e5a12-b7b0-46e6-9c16-fd4a52dd73d3",
-          "ownership_status": "resolved",
-          "item_kind": "fp_line",
-          "layer": "F.SilkS",
-          "owner": {
-            "kind": "footprint",
-            "reference": "R9",
-            "uuid": "e4093e43-bc42-4733-8269-1a2f9806c89d"
-          }
-        }
-      ]
-    },
-    {
-      "severity": "warning",
-      "description": "Silkscreen clearance",
-      "rule": "silk_overlap",
-      "pos": {
-        "x": 132.4,
-        "y": 162.8
-      },
-      "items": [
-        {
-          "description": "Reference field of C12",
-          "pos": {
-            "x": 132.4,
-            "y": 162.8
-          },
-          "uuid": "4b5cdefe-5319-4f96-bb7e-89656f17a1d9",
-          "ownership_status": "resolved",
-          "item_kind": "property",
-          "layer": "F.SilkS",
-          "owner": {
-            "kind": "footprint",
-            "reference": "C12",
-            "uuid": "e0939bb9-accf-4d16-b626-ba28ce441b47"
-          }
-        },
-        {
-          "description": "Segment of R8 on F.Silkscreen",
-          "pos": {
-            "x": 132.246,
-            "y": 162.68
-          },
-          "uuid": "5846a3f1-1665-4ce0-b43f-eedb19538532",
-          "ownership_status": "resolved",
-          "item_kind": "fp_line",
-          "layer": "F.SilkS",
-          "owner": {
-            "kind": "footprint",
-            "reference": "R8",
-            "uuid": "0d59fb23-00ef-45d2-86ae-5fd138c13043"
-          }
-        }
-      ]
-    },
-    {
-      "severity": "warning",
-      "description": "Silkscreen clearance",
-      "rule": "silk_overlap",
-      "pos": {
-        "x": 160.0,
-        "y": 154.5
-      },
-      "items": [
-        {
-          "description": "Reference field of C1",
-          "pos": {
-            "x": 160.0,
-            "y": 154.5
-          },
-          "uuid": "84d97665-1c08-477c-8ea4-a5ec05560e3c",
-          "ownership_status": "resolved",
-          "item_kind": "property",
-          "layer": "F.SilkS",
-          "owner": {
-            "kind": "footprint",
-            "reference": "C1",
-            "uuid": "2083df53-d879-4e49-9e11-f4c14fc5babc"
-          }
-        },
-        {
-          "description": "Segment of C1 on F.Silkscreen",
-          "pos": {
-            "x": 160.265,
-            "y": 154.761
-          },
-          "uuid": "a4f65df4-4177-402c-a1e5-8efc06547534",
-          "ownership_status": "resolved",
-          "item_kind": "fp_line",
-          "layer": "F.SilkS",
-          "owner": {
-            "kind": "footprint",
-            "reference": "C1",
-            "uuid": "2083df53-d879-4e49-9e11-f4c14fc5babc"
-          }
-        }
-      ]
-    },
-    {
-      "severity": "warning",
-      "description": "Silkscreen clearance",
-      "rule": "silk_overlap",
-      "pos": {
-        "x": 165.265,
-        "y": 153.7
-      },
-      "items": [
-        {
-          "description": "Segment of D1 on F.Silkscreen",
-          "pos": {
-            "x": 165.265,
-            "y": 153.7
-          },
-          "uuid": "884c36ce-b46d-4f4f-b8dd-4fde18ca9ecf",
-          "ownership_status": "resolved",
-          "item_kind": "fp_line",
-          "layer": "F.SilkS",
-          "owner": {
-            "kind": "footprint",
-            "reference": "D1",
-            "uuid": "a0fdf54c-5c04-4442-a71d-fbe8db02ec5b"
-          }
-        },
-        {
-          "description": "Reference field of D1",
-          "pos": {
-            "x": 165.0,
-            "y": 154.5
-          },
-          "uuid": "c6a3bfdb-6116-431a-8888-3d4b8176902d",
-          "ownership_status": "resolved",
-          "item_kind": "property",
-          "layer": "F.SilkS",
-          "owner": {
-            "kind": "footprint",
-            "reference": "D1",
-            "uuid": "a0fdf54c-5c04-4442-a71d-fbe8db02ec5b"
-          }
-        }
-      ]
-    },
-    {
-      "severity": "warning",
-      "description": "Silkscreen clearance",
-      "rule": "silk_overlap",
-      "pos": {
-        "x": 156.09,
-        "y": 152.94
-      },
-      "items": [
-        {
-          "description": "Segment of U3 on F.Silkscreen",
-          "pos": {
-            "x": 156.09,
-            "y": 152.94
-          },
-          "uuid": "a0f3831c-c4da-4343-aa18-4844cadf46d4",
-          "ownership_status": "resolved",
-          "item_kind": "fp_line",
-          "layer": "F.SilkS",
-          "owner": {
-            "kind": "footprint",
-            "reference": "U3",
-            "uuid": "461f282b-f680-485e-891a-c410d904f03f"
-          }
-        },
-        {
-          "description": "Reference field of U3",
-          "pos": {
-            "x": 157.0,
-            "y": 153.5
-          },
-          "uuid": "e60c3dd8-7584-40aa-aee4-a25e8aa77e5e",
-          "ownership_status": "resolved",
-          "item_kind": "property",
-          "layer": "F.SilkS",
-          "owner": {
-            "kind": "footprint",
-            "reference": "U3",
-            "uuid": "461f282b-f680-485e-891a-c410d904f03f"
-          }
-        }
-      ]
-    },
-    {
-      "severity": "warning",
-      "description": "Silkscreen clearance",
-      "rule": "silk_overlap",
-      "pos": {
-        "x": 157.91,
-        "y": 152.94
-      },
-      "items": [
-        {
-          "description": "Segment of U3 on F.Silkscreen",
-          "pos": {
-            "x": 157.91,
-            "y": 152.94
-          },
-          "uuid": "791f38aa-c4bd-4cfa-812f-aaa028eb64f0",
-          "ownership_status": "resolved",
-          "item_kind": "fp_line",
-          "layer": "F.SilkS",
-          "owner": {
-            "kind": "footprint",
-            "reference": "U3",
-            "uuid": "461f282b-f680-485e-891a-c410d904f03f"
-          }
-        },
-        {
-          "description": "Reference field of U3",
-          "pos": {
-            "x": 157.0,
-            "y": 153.5
-          },
-          "uuid": "e60c3dd8-7584-40aa-aee4-a25e8aa77e5e",
-          "ownership_status": "resolved",
-          "item_kind": "property",
-          "layer": "F.SilkS",
-          "owner": {
-            "kind": "footprint",
-            "reference": "U3",
-            "uuid": "461f282b-f680-485e-891a-c410d904f03f"
-          }
-        }
-      ]
-    },
-    {
-      "severity": "warning",
-      "description": "Silkscreen clearance",
-      "rule": "silk_overlap",
-      "pos": {
-        "x": 161.0,
-        "y": 146.5
-      },
-      "items": [
-        {
-          "description": "Reference field of C27",
-          "pos": {
-            "x": 161.0,
-            "y": 146.5
-          },
-          "uuid": "55fb55c9-0a50-4e1a-a81f-e4fbbbc19b90",
-          "ownership_status": "resolved",
-          "item_kind": "property",
-          "layer": "F.SilkS",
-          "owner": {
-            "kind": "footprint",
-            "reference": "C27",
-            "uuid": "5a777acd-b427-4db6-a5ea-715640e46ecc"
-          }
-        },
-        {
-          "description": "Segment of C27 on F.Silkscreen",
-          "pos": {
-            "x": 161.265,
-            "y": 146.761
-          },
-          "uuid": "5d564be8-1cca-4601-be40-ddccf0ac63a5",
-          "ownership_status": "resolved",
-          "item_kind": "fp_line",
-          "layer": "F.SilkS",
-          "owner": {
-            "kind": "footprint",
-            "reference": "C27",
-            "uuid": "5a777acd-b427-4db6-a5ea-715640e46ecc"
+            "reference": "U16",
+            "uuid": "fda89c36-e278-4ca7-9996-2533517240b5"
           }
         }
       ]
@@ -3327,49 +3174,6 @@
       "description": "Silkscreen clearance",
       "rule": "silk_overlap",
       "pos": {
-        "x": 147.5,
-        "y": 103.5
-      },
-      "items": [
-        {
-          "description": "Reference field of C35",
-          "pos": {
-            "x": 147.5,
-            "y": 103.5
-          },
-          "uuid": "268e7111-fffb-4f46-848f-73fd584731dc",
-          "ownership_status": "resolved",
-          "item_kind": "property",
-          "layer": "F.SilkS",
-          "owner": {
-            "kind": "footprint",
-            "reference": "C35",
-            "uuid": "e173b854-6776-46b0-8ec7-e5666d13b200"
-          }
-        },
-        {
-          "description": "Segment of U17 on F.Silkscreen",
-          "pos": {
-            "x": 147.265,
-            "y": 107.310001
-          },
-          "uuid": "4121313a-086d-4e2e-bb04-ccf685828d85",
-          "ownership_status": "resolved",
-          "item_kind": "fp_line",
-          "layer": "F.SilkS",
-          "owner": {
-            "kind": "footprint",
-            "reference": "U17",
-            "uuid": "122c13e7-cd4f-4da9-b188-123eaa720275"
-          }
-        }
-      ]
-    },
-    {
-      "severity": "warning",
-      "description": "Silkscreen clearance",
-      "rule": "silk_overlap",
-      "pos": {
         "x": 128.265,
         "y": 107.310001
       },
@@ -3404,6 +3208,135 @@
             "kind": "footprint",
             "reference": "C36",
             "uuid": "f86ca992-383c-4d38-b4f2-a5a8363c37b7"
+          }
+        }
+      ]
+    },
+    {
+      "severity": "warning",
+      "description": "Silkscreen clearance",
+      "rule": "silk_overlap",
+      "pos": {
+        "x": 128.476,
+        "y": 126.9
+      },
+      "items": [
+        {
+          "description": "Reference field of C30",
+          "pos": {
+            "x": 128.476,
+            "y": 126.9
+          },
+          "uuid": "4dd94cdd-0dd1-471b-bf98-fd87c4dd61d9",
+          "ownership_status": "resolved",
+          "item_kind": "property",
+          "layer": "F.SilkS",
+          "owner": {
+            "kind": "footprint",
+            "reference": "C30",
+            "uuid": "ee4115a3-d6b2-4ac5-8f87-1b48b9b9c7a4"
+          }
+        },
+        {
+          "description": "Segment of U12 on F.Silkscreen",
+          "pos": {
+            "x": 124.302999,
+            "y": 128.265
+          },
+          "uuid": "a4aa9fcd-a584-4630-91a4-3cb6def691e0",
+          "ownership_status": "resolved",
+          "item_kind": "fp_line",
+          "layer": "F.SilkS",
+          "owner": {
+            "kind": "footprint",
+            "reference": "U12",
+            "uuid": "b68541bf-877d-4a1a-a47d-ad486b8182d7"
+          }
+        }
+      ]
+    },
+    {
+      "severity": "warning",
+      "description": "Silkscreen clearance",
+      "rule": "silk_overlap",
+      "pos": {
+        "x": 158.0,
+        "y": 146.81
+      },
+      "items": [
+        {
+          "description": "Reference field of PS1",
+          "pos": {
+            "x": 158.0,
+            "y": 146.81
+          },
+          "uuid": "2b12b750-8652-46b4-86d7-a9e05b88ce0d",
+          "ownership_status": "resolved",
+          "item_kind": "property",
+          "layer": "F.SilkS",
+          "owner": {
+            "kind": "footprint",
+            "reference": "PS1",
+            "uuid": "247f0dfe-21b8-49f6-be89-54c34726bb3e"
+          }
+        },
+        {
+          "description": "Segment of PS1 on F.Silkscreen",
+          "pos": {
+            "x": 159.25,
+            "y": 147.88
+          },
+          "uuid": "de75daf3-4b8b-49dd-a076-a0ff184e092b",
+          "ownership_status": "resolved",
+          "item_kind": "fp_line",
+          "layer": "F.SilkS",
+          "owner": {
+            "kind": "footprint",
+            "reference": "PS1",
+            "uuid": "247f0dfe-21b8-49f6-be89-54c34726bb3e"
+          }
+        }
+      ]
+    },
+    {
+      "severity": "warning",
+      "description": "Silkscreen clearance",
+      "rule": "silk_overlap",
+      "pos": {
+        "x": 161.0,
+        "y": 146.5
+      },
+      "items": [
+        {
+          "description": "Reference field of C27",
+          "pos": {
+            "x": 161.0,
+            "y": 146.5
+          },
+          "uuid": "55fb55c9-0a50-4e1a-a81f-e4fbbbc19b90",
+          "ownership_status": "resolved",
+          "item_kind": "property",
+          "layer": "F.SilkS",
+          "owner": {
+            "kind": "footprint",
+            "reference": "C27",
+            "uuid": "5a777acd-b427-4db6-a5ea-715640e46ecc"
+          }
+        },
+        {
+          "description": "Segment of C27 on F.Silkscreen",
+          "pos": {
+            "x": 161.265,
+            "y": 146.761
+          },
+          "uuid": "5d564be8-1cca-4601-be40-ddccf0ac63a5",
+          "ownership_status": "resolved",
+          "item_kind": "fp_line",
+          "layer": "F.SilkS",
+          "owner": {
+            "kind": "footprint",
+            "reference": "C27",
+            "uuid": "5a777acd-b427-4db6-a5ea-715640e46ecc"
           }
         }
       ]
@@ -3456,40 +3389,83 @@
       "description": "Silkscreen clearance",
       "rule": "silk_overlap",
       "pos": {
-        "x": 162.565,
-        "y": 131.761
+        "x": 147.5,
+        "y": 103.5
       },
       "items": [
         {
-          "description": "Segment of C29 on F.Silkscreen",
+          "description": "Reference field of C35",
           "pos": {
-            "x": 162.565,
-            "y": 131.761
+            "x": 147.5,
+            "y": 103.5
           },
-          "uuid": "3e4e3174-1796-452c-a8c6-0f628bf324a9",
-          "ownership_status": "resolved",
-          "item_kind": "fp_line",
-          "layer": "F.SilkS",
-          "owner": {
-            "kind": "footprint",
-            "reference": "C29",
-            "uuid": "c908f15b-1a21-4956-970c-03ca20177b7b"
-          }
-        },
-        {
-          "description": "Reference field of C29",
-          "pos": {
-            "x": 162.3,
-            "y": 131.5
-          },
-          "uuid": "7a531500-1ed4-4222-9064-3d31444e6cf5",
+          "uuid": "268e7111-fffb-4f46-848f-73fd584731dc",
           "ownership_status": "resolved",
           "item_kind": "property",
           "layer": "F.SilkS",
           "owner": {
             "kind": "footprint",
-            "reference": "C29",
-            "uuid": "c908f15b-1a21-4956-970c-03ca20177b7b"
+            "reference": "C35",
+            "uuid": "e173b854-6776-46b0-8ec7-e5666d13b200"
+          }
+        },
+        {
+          "description": "Segment of U17 on F.Silkscreen",
+          "pos": {
+            "x": 147.265,
+            "y": 107.310001
+          },
+          "uuid": "4121313a-086d-4e2e-bb04-ccf685828d85",
+          "ownership_status": "resolved",
+          "item_kind": "fp_line",
+          "layer": "F.SilkS",
+          "owner": {
+            "kind": "footprint",
+            "reference": "U17",
+            "uuid": "122c13e7-cd4f-4da9-b188-123eaa720275"
+          }
+        }
+      ]
+    },
+    {
+      "severity": "warning",
+      "description": "Silkscreen clearance",
+      "rule": "silk_overlap",
+      "pos": {
+        "x": 144.5,
+        "y": 162.3
+      },
+      "items": [
+        {
+          "description": "Reference field of R6",
+          "pos": {
+            "x": 144.5,
+            "y": 162.3
+          },
+          "uuid": "6433bd47-ef31-4551-b3d7-2d6bc5de217f",
+          "ownership_status": "resolved",
+          "item_kind": "property",
+          "layer": "F.SilkS",
+          "owner": {
+            "kind": "footprint",
+            "reference": "R6",
+            "uuid": "04be33af-6b8e-4f1c-beca-0bf045ca6cf0"
+          }
+        },
+        {
+          "description": "Reference field of L1",
+          "pos": {
+            "x": 144.5,
+            "y": 162.5
+          },
+          "uuid": "be8e307f-601d-4fc5-bd94-09173ee49029",
+          "ownership_status": "resolved",
+          "item_kind": "property",
+          "layer": "F.SilkS",
+          "owner": {
+            "kind": "footprint",
+            "reference": "L1",
+            "uuid": "2cfe9a48-ca36-4f15-9b66-937eaeadfb9d"
           }
         }
       ]
@@ -3576,49 +3552,6 @@
             "kind": "footprint",
             "reference": "C19",
             "uuid": "18166ff3-ab22-42d1-bb92-f69477c79b8e"
-          }
-        }
-      ]
-    },
-    {
-      "severity": "warning",
-      "description": "Silkscreen clearance",
-      "rule": "silk_overlap",
-      "pos": {
-        "x": 144.5,
-        "y": 162.3
-      },
-      "items": [
-        {
-          "description": "Reference field of R6",
-          "pos": {
-            "x": 144.5,
-            "y": 162.3
-          },
-          "uuid": "6433bd47-ef31-4551-b3d7-2d6bc5de217f",
-          "ownership_status": "resolved",
-          "item_kind": "property",
-          "layer": "F.SilkS",
-          "owner": {
-            "kind": "footprint",
-            "reference": "R6",
-            "uuid": "04be33af-6b8e-4f1c-beca-0bf045ca6cf0"
-          }
-        },
-        {
-          "description": "Reference field of L1",
-          "pos": {
-            "x": 144.5,
-            "y": 162.5
-          },
-          "uuid": "be8e307f-601d-4fc5-bd94-09173ee49029",
-          "ownership_status": "resolved",
-          "item_kind": "property",
-          "layer": "F.SilkS",
-          "owner": {
-            "kind": "footprint",
-            "reference": "L1",
-            "uuid": "2cfe9a48-ca36-4f15-9b66-937eaeadfb9d"
           }
         }
       ]
@@ -3757,49 +3690,6 @@
       "description": "Silkscreen clearance",
       "rule": "silk_overlap",
       "pos": {
-        "x": 152.665,
-        "y": 154.761
-      },
-      "items": [
-        {
-          "description": "Segment of C2 on F.Silkscreen",
-          "pos": {
-            "x": 152.665,
-            "y": 154.761
-          },
-          "uuid": "810a0495-28c2-4003-ab42-df7bc43b168a",
-          "ownership_status": "resolved",
-          "item_kind": "fp_line",
-          "layer": "F.SilkS",
-          "owner": {
-            "kind": "footprint",
-            "reference": "C2",
-            "uuid": "68c39378-bfc6-4449-bb36-9ea4346b1c8c"
-          }
-        },
-        {
-          "description": "Reference field of C2",
-          "pos": {
-            "x": 152.4,
-            "y": 154.5
-          },
-          "uuid": "f2d37303-a4f8-4c9f-8126-7c6ac6923dc6",
-          "ownership_status": "resolved",
-          "item_kind": "property",
-          "layer": "F.SilkS",
-          "owner": {
-            "kind": "footprint",
-            "reference": "C2",
-            "uuid": "68c39378-bfc6-4449-bb36-9ea4346b1c8c"
-          }
-        }
-      ]
-    },
-    {
-      "severity": "warning",
-      "description": "Silkscreen clearance",
-      "rule": "silk_overlap",
-      "pos": {
         "x": 143.5,
         "y": 164.8
       },
@@ -3834,6 +3724,307 @@
             "kind": "footprint",
             "reference": "L1",
             "uuid": "2cfe9a48-ca36-4f15-9b66-937eaeadfb9d"
+          }
+        }
+      ]
+    },
+    {
+      "severity": "warning",
+      "description": "Silkscreen clearance",
+      "rule": "silk_overlap",
+      "pos": {
+        "x": 165.265,
+        "y": 153.7
+      },
+      "items": [
+        {
+          "description": "Segment of D1 on F.Silkscreen",
+          "pos": {
+            "x": 165.265,
+            "y": 153.7
+          },
+          "uuid": "884c36ce-b46d-4f4f-b8dd-4fde18ca9ecf",
+          "ownership_status": "resolved",
+          "item_kind": "fp_line",
+          "layer": "F.SilkS",
+          "owner": {
+            "kind": "footprint",
+            "reference": "D1",
+            "uuid": "a0fdf54c-5c04-4442-a71d-fbe8db02ec5b"
+          }
+        },
+        {
+          "description": "Reference field of D1",
+          "pos": {
+            "x": 165.0,
+            "y": 154.5
+          },
+          "uuid": "c6a3bfdb-6116-431a-8888-3d4b8176902d",
+          "ownership_status": "resolved",
+          "item_kind": "property",
+          "layer": "F.SilkS",
+          "owner": {
+            "kind": "footprint",
+            "reference": "D1",
+            "uuid": "a0fdf54c-5c04-4442-a71d-fbe8db02ec5b"
+          }
+        }
+      ]
+    },
+    {
+      "severity": "warning",
+      "description": "Silkscreen clearance",
+      "rule": "silk_overlap",
+      "pos": {
+        "x": 156.09,
+        "y": 152.94
+      },
+      "items": [
+        {
+          "description": "Segment of U3 on F.Silkscreen",
+          "pos": {
+            "x": 156.09,
+            "y": 152.94
+          },
+          "uuid": "a0f3831c-c4da-4343-aa18-4844cadf46d4",
+          "ownership_status": "resolved",
+          "item_kind": "fp_line",
+          "layer": "F.SilkS",
+          "owner": {
+            "kind": "footprint",
+            "reference": "U3",
+            "uuid": "461f282b-f680-485e-891a-c410d904f03f"
+          }
+        },
+        {
+          "description": "Reference field of U3",
+          "pos": {
+            "x": 157.0,
+            "y": 153.5
+          },
+          "uuid": "e60c3dd8-7584-40aa-aee4-a25e8aa77e5e",
+          "ownership_status": "resolved",
+          "item_kind": "property",
+          "layer": "F.SilkS",
+          "owner": {
+            "kind": "footprint",
+            "reference": "U3",
+            "uuid": "461f282b-f680-485e-891a-c410d904f03f"
+          }
+        }
+      ]
+    },
+    {
+      "severity": "warning",
+      "description": "Silkscreen clearance",
+      "rule": "silk_overlap",
+      "pos": {
+        "x": 157.91,
+        "y": 152.94
+      },
+      "items": [
+        {
+          "description": "Segment of U3 on F.Silkscreen",
+          "pos": {
+            "x": 157.91,
+            "y": 152.94
+          },
+          "uuid": "791f38aa-c4bd-4cfa-812f-aaa028eb64f0",
+          "ownership_status": "resolved",
+          "item_kind": "fp_line",
+          "layer": "F.SilkS",
+          "owner": {
+            "kind": "footprint",
+            "reference": "U3",
+            "uuid": "461f282b-f680-485e-891a-c410d904f03f"
+          }
+        },
+        {
+          "description": "Reference field of U3",
+          "pos": {
+            "x": 157.0,
+            "y": 153.5
+          },
+          "uuid": "e60c3dd8-7584-40aa-aee4-a25e8aa77e5e",
+          "ownership_status": "resolved",
+          "item_kind": "property",
+          "layer": "F.SilkS",
+          "owner": {
+            "kind": "footprint",
+            "reference": "U3",
+            "uuid": "461f282b-f680-485e-891a-c410d904f03f"
+          }
+        }
+      ]
+    },
+    {
+      "severity": "warning",
+      "description": "Silkscreen clearance",
+      "rule": "silk_overlap",
+      "pos": {
+        "x": 160.0,
+        "y": 154.5
+      },
+      "items": [
+        {
+          "description": "Reference field of C1",
+          "pos": {
+            "x": 160.0,
+            "y": 154.5
+          },
+          "uuid": "84d97665-1c08-477c-8ea4-a5ec05560e3c",
+          "ownership_status": "resolved",
+          "item_kind": "property",
+          "layer": "F.SilkS",
+          "owner": {
+            "kind": "footprint",
+            "reference": "C1",
+            "uuid": "2083df53-d879-4e49-9e11-f4c14fc5babc"
+          }
+        },
+        {
+          "description": "Segment of C1 on F.Silkscreen",
+          "pos": {
+            "x": 160.265,
+            "y": 154.761
+          },
+          "uuid": "a4f65df4-4177-402c-a1e5-8efc06547534",
+          "ownership_status": "resolved",
+          "item_kind": "fp_line",
+          "layer": "F.SilkS",
+          "owner": {
+            "kind": "footprint",
+            "reference": "C1",
+            "uuid": "2083df53-d879-4e49-9e11-f4c14fc5babc"
+          }
+        }
+      ]
+    },
+    {
+      "severity": "warning",
+      "description": "Silkscreen clearance",
+      "rule": "silk_overlap",
+      "pos": {
+        "x": 132.508,
+        "y": 161.16
+      },
+      "items": [
+        {
+          "description": "Segment of C16 on F.Silkscreen",
+          "pos": {
+            "x": 132.508,
+            "y": 161.16
+          },
+          "uuid": "4105e4de-8f4b-48b8-9386-079a28b86b78",
+          "ownership_status": "resolved",
+          "item_kind": "fp_line",
+          "layer": "F.SilkS",
+          "owner": {
+            "kind": "footprint",
+            "reference": "C16",
+            "uuid": "a9b75072-a946-45ab-80da-93ddb35993e0"
+          }
+        },
+        {
+          "description": "Reference field of R8",
+          "pos": {
+            "x": 132.4,
+            "y": 161.3
+          },
+          "uuid": "64d25379-44c3-4406-8aa1-1a2bea0fa549",
+          "ownership_status": "resolved",
+          "item_kind": "property",
+          "layer": "F.SilkS",
+          "owner": {
+            "kind": "footprint",
+            "reference": "R8",
+            "uuid": "0d59fb23-00ef-45d2-86ae-5fd138c13043"
+          }
+        }
+      ]
+    },
+    {
+      "severity": "warning",
+      "description": "Silkscreen clearance",
+      "rule": "silk_overlap",
+      "pos": {
+        "x": 132.4,
+        "y": 161.3
+      },
+      "items": [
+        {
+          "description": "Reference field of R8",
+          "pos": {
+            "x": 132.4,
+            "y": 161.3
+          },
+          "uuid": "64d25379-44c3-4406-8aa1-1a2bea0fa549",
+          "ownership_status": "resolved",
+          "item_kind": "property",
+          "layer": "F.SilkS",
+          "owner": {
+            "kind": "footprint",
+            "reference": "R8",
+            "uuid": "0d59fb23-00ef-45d2-86ae-5fd138c13043"
+          }
+        },
+        {
+          "description": "Reference field of C16",
+          "pos": {
+            "x": 132.4,
+            "y": 161.8
+          },
+          "uuid": "ee40a5fb-7021-446a-b278-d9f046268b65",
+          "ownership_status": "resolved",
+          "item_kind": "property",
+          "layer": "F.SilkS",
+          "owner": {
+            "kind": "footprint",
+            "reference": "C16",
+            "uuid": "a9b75072-a946-45ab-80da-93ddb35993e0"
+          }
+        }
+      ]
+    },
+    {
+      "severity": "warning",
+      "description": "Silkscreen clearance",
+      "rule": "silk_overlap",
+      "pos": {
+        "x": 132.4,
+        "y": 158.3
+      },
+      "items": [
+        {
+          "description": "Reference field of R3",
+          "pos": {
+            "x": 132.4,
+            "y": 158.3
+          },
+          "uuid": "4c8c9e69-78f4-4a54-981c-8f4594a82f41",
+          "ownership_status": "resolved",
+          "item_kind": "property",
+          "layer": "F.SilkS",
+          "owner": {
+            "kind": "footprint",
+            "reference": "R3",
+            "uuid": "e9d20c5a-68eb-4a5c-8ae1-d500b3be318f"
+          }
+        },
+        {
+          "description": "Segment of C11 on F.Silkscreen",
+          "pos": {
+            "x": 132.392,
+            "y": 157.76
+          },
+          "uuid": "d6f8f817-25e4-4aac-b425-c6872aba67d9",
+          "ownership_status": "resolved",
+          "item_kind": "fp_line",
+          "layer": "F.SilkS",
+          "owner": {
+            "kind": "footprint",
+            "reference": "C11",
+            "uuid": "99ad6037-7968-42aa-8284-13dad5754aac"
           }
         }
       ]
@@ -3886,40 +4077,40 @@
       "description": "Silkscreen clearance",
       "rule": "silk_overlap",
       "pos": {
-        "x": 158.0,
-        "y": 146.81
+        "x": 139.6,
+        "y": 165.5
       },
       "items": [
         {
-          "description": "Reference field of PS1",
+          "description": "Reference field of C14",
           "pos": {
-            "x": 158.0,
-            "y": 146.81
+            "x": 139.6,
+            "y": 165.5
           },
-          "uuid": "2b12b750-8652-46b4-86d7-a9e05b88ce0d",
+          "uuid": "c21e0c7b-a8c8-4faa-b551-c357191f49ea",
           "ownership_status": "resolved",
           "item_kind": "property",
           "layer": "F.SilkS",
           "owner": {
             "kind": "footprint",
-            "reference": "PS1",
-            "uuid": "247f0dfe-21b8-49f6-be89-54c34726bb3e"
+            "reference": "C14",
+            "uuid": "d0d42bc1-aaf8-42d1-9185-c8baaafd0cdc"
           }
         },
         {
-          "description": "Segment of PS1 on F.Silkscreen",
+          "description": "Segment of C17 on F.Silkscreen",
           "pos": {
-            "x": 159.25,
-            "y": 147.88
+            "x": 138.96,
+            "y": 165.608
           },
-          "uuid": "de75daf3-4b8b-49dd-a076-a0ff184e092b",
+          "uuid": "dcd5027b-d9f2-4163-bff2-67f7ed01b07a",
           "ownership_status": "resolved",
           "item_kind": "fp_line",
           "layer": "F.SilkS",
           "owner": {
             "kind": "footprint",
-            "reference": "PS1",
-            "uuid": "247f0dfe-21b8-49f6-be89-54c34726bb3e"
+            "reference": "C17",
+            "uuid": "9b38dd00-c360-4620-991c-1a37d20f504d"
           }
         }
       ]
@@ -3972,40 +4163,339 @@
       "description": "Silkscreen clearance",
       "rule": "silk_overlap",
       "pos": {
-        "x": 139.6,
-        "y": 165.5
+        "x": 132.246,
+        "y": 161.92
       },
       "items": [
         {
-          "description": "Reference field of C14",
+          "description": "Segment of R8 on F.Silkscreen",
           "pos": {
-            "x": 139.6,
-            "y": 165.5
+            "x": 132.246,
+            "y": 161.92
           },
-          "uuid": "c21e0c7b-a8c8-4faa-b551-c357191f49ea",
-          "ownership_status": "resolved",
-          "item_kind": "property",
-          "layer": "F.SilkS",
-          "owner": {
-            "kind": "footprint",
-            "reference": "C14",
-            "uuid": "d0d42bc1-aaf8-42d1-9185-c8baaafd0cdc"
-          }
-        },
-        {
-          "description": "Segment of C17 on F.Silkscreen",
-          "pos": {
-            "x": 138.96,
-            "y": 165.608
-          },
-          "uuid": "dcd5027b-d9f2-4163-bff2-67f7ed01b07a",
+          "uuid": "c732d5f5-2ade-4ffc-a178-4f1e9c1bb063",
           "ownership_status": "resolved",
           "item_kind": "fp_line",
           "layer": "F.SilkS",
           "owner": {
             "kind": "footprint",
-            "reference": "C17",
-            "uuid": "9b38dd00-c360-4620-991c-1a37d20f504d"
+            "reference": "R8",
+            "uuid": "0d59fb23-00ef-45d2-86ae-5fd138c13043"
+          }
+        },
+        {
+          "description": "Reference field of C16",
+          "pos": {
+            "x": 132.4,
+            "y": 161.8
+          },
+          "uuid": "ee40a5fb-7021-446a-b278-d9f046268b65",
+          "ownership_status": "resolved",
+          "item_kind": "property",
+          "layer": "F.SilkS",
+          "owner": {
+            "kind": "footprint",
+            "reference": "C16",
+            "uuid": "a9b75072-a946-45ab-80da-93ddb35993e0"
+          }
+        }
+      ]
+    },
+    {
+      "severity": "warning",
+      "description": "Silkscreen clearance",
+      "rule": "silk_overlap",
+      "pos": {
+        "x": 132.4,
+        "y": 162.8
+      },
+      "items": [
+        {
+          "description": "Reference field of C12",
+          "pos": {
+            "x": 132.4,
+            "y": 162.8
+          },
+          "uuid": "4b5cdefe-5319-4f96-bb7e-89656f17a1d9",
+          "ownership_status": "resolved",
+          "item_kind": "property",
+          "layer": "F.SilkS",
+          "owner": {
+            "kind": "footprint",
+            "reference": "C12",
+            "uuid": "e0939bb9-accf-4d16-b626-ba28ce441b47"
+          }
+        },
+        {
+          "description": "Reference field of C16",
+          "pos": {
+            "x": 132.4,
+            "y": 161.8
+          },
+          "uuid": "ee40a5fb-7021-446a-b278-d9f046268b65",
+          "ownership_status": "resolved",
+          "item_kind": "property",
+          "layer": "F.SilkS",
+          "owner": {
+            "kind": "footprint",
+            "reference": "C16",
+            "uuid": "a9b75072-a946-45ab-80da-93ddb35993e0"
+          }
+        }
+      ]
+    },
+    {
+      "severity": "warning",
+      "description": "Silkscreen clearance",
+      "rule": "silk_overlap",
+      "pos": {
+        "x": 134.265,
+        "y": 168.7
+      },
+      "items": [
+        {
+          "description": "Segment of D2 on F.Silkscreen",
+          "pos": {
+            "x": 134.265,
+            "y": 168.7
+          },
+          "uuid": "5ff6cfdc-4ce1-4891-93a2-b203f9f629af",
+          "ownership_status": "resolved",
+          "item_kind": "fp_line",
+          "layer": "F.SilkS",
+          "owner": {
+            "kind": "footprint",
+            "reference": "D2",
+            "uuid": "c6780e9d-027f-4991-8028-892f821f152e"
+          }
+        },
+        {
+          "description": "Reference field of D2",
+          "pos": {
+            "x": 134.0,
+            "y": 169.5
+          },
+          "uuid": "ae7a77f2-339a-46b9-afe9-d958cd76ee72",
+          "ownership_status": "resolved",
+          "item_kind": "property",
+          "layer": "F.SilkS",
+          "owner": {
+            "kind": "footprint",
+            "reference": "D2",
+            "uuid": "c6780e9d-027f-4991-8028-892f821f152e"
+          }
+        }
+      ]
+    },
+    {
+      "severity": "warning",
+      "description": "Silkscreen clearance",
+      "rule": "silk_overlap",
+      "pos": {
+        "x": 132.4,
+        "y": 162.8
+      },
+      "items": [
+        {
+          "description": "Reference field of C12",
+          "pos": {
+            "x": 132.4,
+            "y": 162.8
+          },
+          "uuid": "4b5cdefe-5319-4f96-bb7e-89656f17a1d9",
+          "ownership_status": "resolved",
+          "item_kind": "property",
+          "layer": "F.SilkS",
+          "owner": {
+            "kind": "footprint",
+            "reference": "C12",
+            "uuid": "e0939bb9-accf-4d16-b626-ba28ce441b47"
+          }
+        },
+        {
+          "description": "Segment of R8 on F.Silkscreen",
+          "pos": {
+            "x": 132.246,
+            "y": 162.68
+          },
+          "uuid": "5846a3f1-1665-4ce0-b43f-eedb19538532",
+          "ownership_status": "resolved",
+          "item_kind": "fp_line",
+          "layer": "F.SilkS",
+          "owner": {
+            "kind": "footprint",
+            "reference": "R8",
+            "uuid": "0d59fb23-00ef-45d2-86ae-5fd138c13043"
+          }
+        }
+      ]
+    },
+    {
+      "severity": "warning",
+      "description": "Silkscreen clearance",
+      "rule": "silk_overlap",
+      "pos": {
+        "x": 135.8,
+        "y": 165.5
+      },
+      "items": [
+        {
+          "description": "Reference field of C13",
+          "pos": {
+            "x": 135.8,
+            "y": 165.5
+          },
+          "uuid": "479b3931-bbb7-4433-b6f3-5ee2695f25b9",
+          "ownership_status": "resolved",
+          "item_kind": "property",
+          "layer": "F.SilkS",
+          "owner": {
+            "kind": "footprint",
+            "reference": "C13",
+            "uuid": "d95a8edc-dc25-4299-9b10-c3a3593c0e94"
+          }
+        },
+        {
+          "description": "Segment of R9 on F.Silkscreen",
+          "pos": {
+            "x": 135.38,
+            "y": 166.654
+          },
+          "uuid": "5e1e5a12-b7b0-46e6-9c16-fd4a52dd73d3",
+          "ownership_status": "resolved",
+          "item_kind": "fp_line",
+          "layer": "F.SilkS",
+          "owner": {
+            "kind": "footprint",
+            "reference": "R9",
+            "uuid": "e4093e43-bc42-4733-8269-1a2f9806c89d"
+          }
+        }
+      ]
+    },
+    {
+      "severity": "warning",
+      "description": "Silkscreen clearance",
+      "rule": "silk_overlap",
+      "pos": {
+        "x": 152.665,
+        "y": 154.761
+      },
+      "items": [
+        {
+          "description": "Segment of C2 on F.Silkscreen",
+          "pos": {
+            "x": 152.665,
+            "y": 154.761
+          },
+          "uuid": "810a0495-28c2-4003-ab42-df7bc43b168a",
+          "ownership_status": "resolved",
+          "item_kind": "fp_line",
+          "layer": "F.SilkS",
+          "owner": {
+            "kind": "footprint",
+            "reference": "C2",
+            "uuid": "68c39378-bfc6-4449-bb36-9ea4346b1c8c"
+          }
+        },
+        {
+          "description": "Reference field of C2",
+          "pos": {
+            "x": 152.4,
+            "y": 154.5
+          },
+          "uuid": "f2d37303-a4f8-4c9f-8126-7c6ac6923dc6",
+          "ownership_status": "resolved",
+          "item_kind": "property",
+          "layer": "F.SilkS",
+          "owner": {
+            "kind": "footprint",
+            "reference": "C2",
+            "uuid": "68c39378-bfc6-4449-bb36-9ea4346b1c8c"
+          }
+        }
+      ]
+    },
+    {
+      "severity": "warning",
+      "description": "Silkscreen clipped by solder mask",
+      "rule": "silk_over_copper",
+      "pos": {
+        "x": 106.5,
+        "y": 132.0
+      },
+      "items": [
+        {
+          "description": "Reference field of U19",
+          "pos": {
+            "x": 106.5,
+            "y": 132.0
+          },
+          "uuid": "0cc76cf0-4afe-41bf-86d7-c440f16fb70f",
+          "ownership_status": "resolved",
+          "item_kind": "property",
+          "layer": "F.SilkS",
+          "owner": {
+            "kind": "footprint",
+            "reference": "U19",
+            "uuid": "282e10cc-bac9-4da5-8cb1-4b07d7d1789a"
+          }
+        },
+        {
+          "description": "Pad 1 [unconnected-(U19-NC-Pad1)] of U19 on F.Cu",
+          "pos": {
+            "x": 107.6375,
+            "y": 131.95
+          },
+          "uuid": "661a52cf-910d-492e-8bbb-2970554e24ed",
+          "ownership_status": "resolved",
+          "item_kind": "pad",
+          "owner": {
+            "kind": "footprint",
+            "reference": "U19",
+            "uuid": "282e10cc-bac9-4da5-8cb1-4b07d7d1789a"
+          }
+        }
+      ]
+    },
+    {
+      "severity": "warning",
+      "description": "Silkscreen clipped by solder mask",
+      "rule": "silk_over_copper",
+      "pos": {
+        "x": 106.5,
+        "y": 132.0
+      },
+      "items": [
+        {
+          "description": "Reference field of U19",
+          "pos": {
+            "x": 106.5,
+            "y": 132.0
+          },
+          "uuid": "0cc76cf0-4afe-41bf-86d7-c440f16fb70f",
+          "ownership_status": "resolved",
+          "item_kind": "property",
+          "layer": "F.SilkS",
+          "owner": {
+            "kind": "footprint",
+            "reference": "U19",
+            "uuid": "282e10cc-bac9-4da5-8cb1-4b07d7d1789a"
+          }
+        },
+        {
+          "description": "Pad 5 [+3V3_ISO] of U19 on F.Cu",
+          "pos": {
+            "x": 105.3625,
+            "y": 131.95
+          },
+          "uuid": "8268f0a9-5f7a-40e2-bb4b-6414e73701d3",
+          "ownership_status": "resolved",
+          "item_kind": "pad",
+          "owner": {
+            "kind": "footprint",
+            "reference": "U19",
+            "uuid": "282e10cc-bac9-4da5-8cb1-4b07d7d1789a"
           }
         }
       ]
@@ -4057,39 +4547,39 @@
       "description": "Silkscreen clipped by solder mask",
       "rule": "silk_over_copper",
       "pos": {
-        "x": 106.5,
-        "y": 130.0
+        "x": 167.0,
+        "y": 126.6
       },
       "items": [
         {
-          "description": "Reference field of U19",
+          "description": "Reference field of C29",
           "pos": {
-            "x": 106.5,
-            "y": 130.0
+            "x": 167.0,
+            "y": 126.6
           },
-          "uuid": "0cc76cf0-4afe-41bf-86d7-c440f16fb70f",
+          "uuid": "7a531500-1ed4-4222-9064-3d31444e6cf5",
           "ownership_status": "resolved",
           "item_kind": "property",
           "layer": "F.SilkS",
           "owner": {
             "kind": "footprint",
-            "reference": "U19",
-            "uuid": "282e10cc-bac9-4da5-8cb1-4b07d7d1789a"
+            "reference": "C29",
+            "uuid": "c908f15b-1a21-4956-970c-03ca20177b7b"
           }
         },
         {
-          "description": "Pad 1 [unconnected-(U19-NC-Pad1)] of U19 on F.Cu",
+          "description": "Pad 1 [+3V3_ISO] of C29 on F.Cu",
           "pos": {
-            "x": 105.3625,
-            "y": 130.05
+            "x": 166.05,
+            "y": 127.6
           },
-          "uuid": "661a52cf-910d-492e-8bbb-2970554e24ed",
+          "uuid": "ec027892-bcd7-46ea-929e-d01a658ab2d6",
           "ownership_status": "resolved",
           "item_kind": "pad",
           "owner": {
             "kind": "footprint",
-            "reference": "U19",
-            "uuid": "282e10cc-bac9-4da5-8cb1-4b07d7d1789a"
+            "reference": "C29",
+            "uuid": "c908f15b-1a21-4956-970c-03ca20177b7b"
           }
         }
       ]
@@ -4099,39 +4589,165 @@
       "description": "Silkscreen clipped by solder mask",
       "rule": "silk_over_copper",
       "pos": {
-        "x": 106.5,
-        "y": 130.0
+        "x": 167.0,
+        "y": 126.6
       },
       "items": [
         {
-          "description": "Reference field of U19",
+          "description": "Reference field of C29",
           "pos": {
-            "x": 106.5,
-            "y": 130.0
+            "x": 167.0,
+            "y": 126.6
           },
-          "uuid": "0cc76cf0-4afe-41bf-86d7-c440f16fb70f",
+          "uuid": "7a531500-1ed4-4222-9064-3d31444e6cf5",
           "ownership_status": "resolved",
           "item_kind": "property",
           "layer": "F.SilkS",
           "owner": {
             "kind": "footprint",
-            "reference": "U19",
-            "uuid": "282e10cc-bac9-4da5-8cb1-4b07d7d1789a"
+            "reference": "C29",
+            "uuid": "c908f15b-1a21-4956-970c-03ca20177b7b"
           }
         },
         {
-          "description": "Pad 5 [+3V3_ISO] of U19 on F.Cu",
+          "description": "Pad 2 [GND_ISO] of C29 on F.Cu",
           "pos": {
-            "x": 107.6375,
-            "y": 130.05
+            "x": 167.95,
+            "y": 127.6
           },
-          "uuid": "8268f0a9-5f7a-40e2-bb4b-6414e73701d3",
+          "uuid": "4df614cd-3abf-40a3-b5c2-7b5ec4394e3a",
           "ownership_status": "resolved",
           "item_kind": "pad",
           "owner": {
             "kind": "footprint",
-            "reference": "U19",
-            "uuid": "282e10cc-bac9-4da5-8cb1-4b07d7d1789a"
+            "reference": "C29",
+            "uuid": "c908f15b-1a21-4956-970c-03ca20177b7b"
+          }
+        }
+      ]
+    },
+    {
+      "severity": "warning",
+      "description": "Silkscreen clipped by solder mask",
+      "rule": "silk_over_copper",
+      "pos": {
+        "x": 170.3,
+        "y": 127.0
+      },
+      "items": [
+        {
+          "description": "Reference field of D3",
+          "pos": {
+            "x": 170.3,
+            "y": 127.0
+          },
+          "uuid": "eab90091-09de-4526-9373-4b6d2d0f8c9c",
+          "ownership_status": "resolved",
+          "item_kind": "property",
+          "layer": "F.SilkS",
+          "owner": {
+            "kind": "footprint",
+            "reference": "D3",
+            "uuid": "fbbd9b0c-58df-4b2f-ac6d-008fc020eedd"
+          }
+        },
+        {
+          "description": "Pad 1 [GND_ISO] of D3 on F.Cu",
+          "pos": {
+            "x": 171.3,
+            "y": 127.7875
+          },
+          "uuid": "4e11bd84-a9da-4e03-82dc-32a5b5226c7d",
+          "ownership_status": "resolved",
+          "item_kind": "pad",
+          "owner": {
+            "kind": "footprint",
+            "reference": "D3",
+            "uuid": "fbbd9b0c-58df-4b2f-ac6d-008fc020eedd"
+          }
+        }
+      ]
+    },
+    {
+      "severity": "warning",
+      "description": "Silkscreen clipped by solder mask",
+      "rule": "silk_over_copper",
+      "pos": {
+        "x": 170.3,
+        "y": 127.0
+      },
+      "items": [
+        {
+          "description": "Reference field of D3",
+          "pos": {
+            "x": 170.3,
+            "y": 127.0
+          },
+          "uuid": "eab90091-09de-4526-9373-4b6d2d0f8c9c",
+          "ownership_status": "resolved",
+          "item_kind": "property",
+          "layer": "F.SilkS",
+          "owner": {
+            "kind": "footprint",
+            "reference": "D3",
+            "uuid": "fbbd9b0c-58df-4b2f-ac6d-008fc020eedd"
+          }
+        },
+        {
+          "description": "Pad 2 [Net-(D3-A)] of D3 on F.Cu",
+          "pos": {
+            "x": 171.3,
+            "y": 126.2125
+          },
+          "uuid": "0f6a3547-6e29-433e-8e4b-12d54922f3bb",
+          "ownership_status": "resolved",
+          "item_kind": "pad",
+          "owner": {
+            "kind": "footprint",
+            "reference": "D3",
+            "uuid": "fbbd9b0c-58df-4b2f-ac6d-008fc020eedd"
+          }
+        }
+      ]
+    },
+    {
+      "severity": "warning",
+      "description": "Silkscreen clipped by solder mask",
+      "rule": "silk_over_copper",
+      "pos": {
+        "x": 128.5,
+        "y": 103.5
+      },
+      "items": [
+        {
+          "description": "Reference field of C36",
+          "pos": {
+            "x": 128.5,
+            "y": 103.5
+          },
+          "uuid": "98d8de51-60c4-47ac-a91b-15f9c4544486",
+          "ownership_status": "resolved",
+          "item_kind": "property",
+          "layer": "F.SilkS",
+          "owner": {
+            "kind": "footprint",
+            "reference": "C36",
+            "uuid": "f86ca992-383c-4d38-b4f2-a5a8363c37b7"
+          }
+        },
+        {
+          "description": "Pad 16 [+3V3_ISO] of U18 on F.Cu",
+          "pos": {
+            "x": 128.725,
+            "y": 102.1375
+          },
+          "uuid": "a169e785-4f12-4c75-937b-e3485a13263a",
+          "ownership_status": "resolved",
+          "item_kind": "pad",
+          "owner": {
+            "kind": "footprint",
+            "reference": "U18",
+            "uuid": "8494026f-efe0-4b09-99f1-d03be8bcb08c"
           }
         }
       ]
@@ -4225,39 +4841,39 @@
       "description": "Silkscreen clipped by solder mask",
       "rule": "silk_over_copper",
       "pos": {
-        "x": 132.4,
-        "y": 161.3
+        "x": 162.3,
+        "y": 136.0
       },
       "items": [
         {
-          "description": "Reference field of R8",
+          "description": "Reference field of C28",
           "pos": {
-            "x": 132.4,
-            "y": 161.3
+            "x": 162.3,
+            "y": 136.0
           },
-          "uuid": "64d25379-44c3-4406-8aa1-1a2bea0fa549",
+          "uuid": "98eb6bdb-55b3-48f9-92b6-5c094835c934",
           "ownership_status": "resolved",
           "item_kind": "property",
           "layer": "F.SilkS",
           "owner": {
             "kind": "footprint",
-            "reference": "R8",
-            "uuid": "0d59fb23-00ef-45d2-86ae-5fd138c13043"
+            "reference": "C28",
+            "uuid": "562f102d-8477-4c31-8ce8-4970a72a51a2"
           }
         },
         {
-          "description": "Pad 2 [GND] of C16 on F.Cu",
+          "description": "Pad 1 [+5V_ISO] of C28 on F.Cu",
           "pos": {
-            "x": 131.92,
-            "y": 160.8
+            "x": 161.35,
+            "y": 137.0
           },
-          "uuid": "8b8deba3-557a-4ada-875d-ad8033120a4b",
+          "uuid": "10e43ff4-8ce0-4dac-b127-b0d1776f636c",
           "ownership_status": "resolved",
           "item_kind": "pad",
           "owner": {
             "kind": "footprint",
-            "reference": "C16",
-            "uuid": "a9b75072-a946-45ab-80da-93ddb35993e0"
+            "reference": "C28",
+            "uuid": "562f102d-8477-4c31-8ce8-4970a72a51a2"
           }
         }
       ]
@@ -4267,543 +4883,711 @@
       "description": "Silkscreen clipped by solder mask",
       "rule": "silk_over_copper",
       "pos": {
-        "x": 128.5,
-        "y": 158.8
+        "x": 161.0,
+        "y": 146.5
       },
       "items": [
         {
-          "description": "Reference field of Y1",
-          "pos": {
-            "x": 128.5,
-            "y": 158.8
-          },
-          "uuid": "b5998200-4041-41fd-9399-dcb572d1312b",
-          "ownership_status": "resolved",
-          "item_kind": "property",
-          "layer": "F.SilkS",
-          "owner": {
-            "kind": "footprint",
-            "reference": "Y1",
-            "uuid": "a646b41f-d15f-44c0-9ff0-0459dd9d05f7"
-          }
-        },
-        {
-          "description": "Pad 4 [GND] of Y1 on F.Cu",
-          "pos": {
-            "x": 127.4,
-            "y": 158.95
-          },
-          "uuid": "8142cbfe-d7c2-4fb2-a774-8cd4faad8790",
-          "ownership_status": "resolved",
-          "item_kind": "pad",
-          "owner": {
-            "kind": "footprint",
-            "reference": "Y1",
-            "uuid": "a646b41f-d15f-44c0-9ff0-0459dd9d05f7"
-          }
-        }
-      ]
-    },
-    {
-      "severity": "warning",
-      "description": "Silkscreen clipped by solder mask",
-      "rule": "silk_over_copper",
-      "pos": {
-        "x": 132.4,
-        "y": 158.3
-      },
-      "items": [
-        {
-          "description": "Reference field of R3",
-          "pos": {
-            "x": 132.4,
-            "y": 158.3
-          },
-          "uuid": "4c8c9e69-78f4-4a54-981c-8f4594a82f41",
-          "ownership_status": "resolved",
-          "item_kind": "property",
-          "layer": "F.SilkS",
-          "owner": {
-            "kind": "footprint",
-            "reference": "R3",
-            "uuid": "e9d20c5a-68eb-4a5c-8ae1-d500b3be318f"
-          }
-        },
-        {
-          "description": "Pad 1 [+3V3] of C11 on F.Cu",
-          "pos": {
-            "x": 132.02,
-            "y": 157.4
-          },
-          "uuid": "e7df11c9-2efe-4c9a-aa52-9180a6ac3e95",
-          "ownership_status": "resolved",
-          "item_kind": "pad",
-          "owner": {
-            "kind": "footprint",
-            "reference": "C11",
-            "uuid": "99ad6037-7968-42aa-8284-13dad5754aac"
-          }
-        }
-      ]
-    },
-    {
-      "severity": "warning",
-      "description": "Silkscreen clipped by solder mask",
-      "rule": "silk_over_copper",
-      "pos": {
-        "x": 132.4,
-        "y": 161.3
-      },
-      "items": [
-        {
-          "description": "Reference field of R8",
-          "pos": {
-            "x": 132.4,
-            "y": 161.3
-          },
-          "uuid": "64d25379-44c3-4406-8aa1-1a2bea0fa549",
-          "ownership_status": "resolved",
-          "item_kind": "property",
-          "layer": "F.SilkS",
-          "owner": {
-            "kind": "footprint",
-            "reference": "R8",
-            "uuid": "0d59fb23-00ef-45d2-86ae-5fd138c13043"
-          }
-        },
-        {
-          "description": "Pad 1 [/+1V1] of C16 on F.Cu",
-          "pos": {
-            "x": 132.88,
-            "y": 160.8
-          },
-          "uuid": "63de8f3b-7c94-4efd-95e0-a73f2a87137b",
-          "ownership_status": "resolved",
-          "item_kind": "pad",
-          "owner": {
-            "kind": "footprint",
-            "reference": "C16",
-            "uuid": "a9b75072-a946-45ab-80da-93ddb35993e0"
-          }
-        }
-      ]
-    },
-    {
-      "severity": "warning",
-      "description": "Silkscreen clipped by solder mask",
-      "rule": "silk_over_copper",
-      "pos": {
-        "x": 132.4,
-        "y": 158.3
-      },
-      "items": [
-        {
-          "description": "Reference field of R3",
-          "pos": {
-            "x": 132.4,
-            "y": 158.3
-          },
-          "uuid": "4c8c9e69-78f4-4a54-981c-8f4594a82f41",
-          "ownership_status": "resolved",
-          "item_kind": "property",
-          "layer": "F.SilkS",
-          "owner": {
-            "kind": "footprint",
-            "reference": "R3",
-            "uuid": "e9d20c5a-68eb-4a5c-8ae1-d500b3be318f"
-          }
-        },
-        {
-          "description": "Pad 2 [GND] of C11 on F.Cu",
-          "pos": {
-            "x": 132.98,
-            "y": 157.4
-          },
-          "uuid": "4981b8e9-9b24-4fba-9832-2e6f8133b81a",
-          "ownership_status": "resolved",
-          "item_kind": "pad",
-          "owner": {
-            "kind": "footprint",
-            "reference": "C11",
-            "uuid": "99ad6037-7968-42aa-8284-13dad5754aac"
-          }
-        }
-      ]
-    },
-    {
-      "severity": "warning",
-      "description": "Silkscreen clipped by solder mask",
-      "rule": "silk_over_copper",
-      "pos": {
-        "x": 128.5,
-        "y": 158.8
-      },
-      "items": [
-        {
-          "description": "Reference field of Y1",
-          "pos": {
-            "x": 128.5,
-            "y": 158.8
-          },
-          "uuid": "b5998200-4041-41fd-9399-dcb572d1312b",
-          "ownership_status": "resolved",
-          "item_kind": "property",
-          "layer": "F.SilkS",
-          "owner": {
-            "kind": "footprint",
-            "reference": "Y1",
-            "uuid": "a646b41f-d15f-44c0-9ff0-0459dd9d05f7"
-          }
-        },
-        {
-          "description": "Pad 3 [/XTAL_OUT] of Y1 on F.Cu",
-          "pos": {
-            "x": 129.599999,
-            "y": 158.95
-          },
-          "uuid": "71094ebe-a123-462a-bc57-381070cfac2f",
-          "ownership_status": "resolved",
-          "item_kind": "pad",
-          "owner": {
-            "kind": "footprint",
-            "reference": "Y1",
-            "uuid": "a646b41f-d15f-44c0-9ff0-0459dd9d05f7"
-          }
-        }
-      ]
-    },
-    {
-      "severity": "warning",
-      "description": "Silkscreen clipped by solder mask",
-      "rule": "silk_over_copper",
-      "pos": {
-        "x": 132.4,
-        "y": 161.8
-      },
-      "items": [
-        {
-          "description": "Reference field of C16",
-          "pos": {
-            "x": 132.4,
-            "y": 161.8
-          },
-          "uuid": "ee40a5fb-7021-446a-b278-d9f046268b65",
-          "ownership_status": "resolved",
-          "item_kind": "property",
-          "layer": "F.SilkS",
-          "owner": {
-            "kind": "footprint",
-            "reference": "C16",
-            "uuid": "a9b75072-a946-45ab-80da-93ddb35993e0"
-          }
-        },
-        {
-          "description": "Pad 2 [Net-(U1-RUN)] of R8 on F.Cu",
-          "pos": {
-            "x": 132.909999,
-            "y": 162.3
-          },
-          "uuid": "63633475-c3eb-4f9a-9cd4-1cef650e42fe",
-          "ownership_status": "resolved",
-          "item_kind": "pad",
-          "owner": {
-            "kind": "footprint",
-            "reference": "R8",
-            "uuid": "0d59fb23-00ef-45d2-86ae-5fd138c13043"
-          }
-        }
-      ]
-    },
-    {
-      "severity": "warning",
-      "description": "Silkscreen clipped by solder mask",
-      "rule": "silk_over_copper",
-      "pos": {
-        "x": 132.4,
-        "y": 162.8
-      },
-      "items": [
-        {
-          "description": "Reference field of C12",
-          "pos": {
-            "x": 132.4,
-            "y": 162.8
-          },
-          "uuid": "4b5cdefe-5319-4f96-bb7e-89656f17a1d9",
-          "ownership_status": "resolved",
-          "item_kind": "property",
-          "layer": "F.SilkS",
-          "owner": {
-            "kind": "footprint",
-            "reference": "C12",
-            "uuid": "e0939bb9-accf-4d16-b626-ba28ce441b47"
-          }
-        },
-        {
-          "description": "Pad 2 [Net-(U1-RUN)] of R8 on F.Cu",
-          "pos": {
-            "x": 132.909999,
-            "y": 162.3
-          },
-          "uuid": "63633475-c3eb-4f9a-9cd4-1cef650e42fe",
-          "ownership_status": "resolved",
-          "item_kind": "pad",
-          "owner": {
-            "kind": "footprint",
-            "reference": "R8",
-            "uuid": "0d59fb23-00ef-45d2-86ae-5fd138c13043"
-          }
-        }
-      ]
-    },
-    {
-      "severity": "warning",
-      "description": "Silkscreen clipped by solder mask",
-      "rule": "silk_over_copper",
-      "pos": {
-        "x": 134.0,
-        "y": 169.5
-      },
-      "items": [
-        {
-          "description": "Reference field of D2",
-          "pos": {
-            "x": 134.0,
-            "y": 169.5
-          },
-          "uuid": "ae7a77f2-339a-46b9-afe9-d958cd76ee72",
-          "ownership_status": "resolved",
-          "item_kind": "property",
-          "layer": "F.SilkS",
-          "owner": {
-            "kind": "footprint",
-            "reference": "D2",
-            "uuid": "c6780e9d-027f-4991-8028-892f821f152e"
-          }
-        },
-        {
-          "description": "Pad 1 [GND] of D2 on F.Cu",
-          "pos": {
-            "x": 135.0,
-            "y": 170.2875
-          },
-          "uuid": "31c094cf-30fb-4170-920f-919be42ba9b9",
-          "ownership_status": "resolved",
-          "item_kind": "pad",
-          "owner": {
-            "kind": "footprint",
-            "reference": "D2",
-            "uuid": "c6780e9d-027f-4991-8028-892f821f152e"
-          }
-        }
-      ]
-    },
-    {
-      "severity": "warning",
-      "description": "Silkscreen clipped by solder mask",
-      "rule": "silk_over_copper",
-      "pos": {
-        "x": 134.0,
-        "y": 169.5
-      },
-      "items": [
-        {
-          "description": "Reference field of D2",
-          "pos": {
-            "x": 134.0,
-            "y": 169.5
-          },
-          "uuid": "ae7a77f2-339a-46b9-afe9-d958cd76ee72",
-          "ownership_status": "resolved",
-          "item_kind": "property",
-          "layer": "F.SilkS",
-          "owner": {
-            "kind": "footprint",
-            "reference": "D2",
-            "uuid": "c6780e9d-027f-4991-8028-892f821f152e"
-          }
-        },
-        {
-          "description": "Pad 2 [Net-(D2-A)] of D2 on F.Cu",
-          "pos": {
-            "x": 135.0,
-            "y": 168.7125
-          },
-          "uuid": "7183bde4-4932-4dda-98e0-3b07db1d96d9",
-          "ownership_status": "resolved",
-          "item_kind": "pad",
-          "owner": {
-            "kind": "footprint",
-            "reference": "D2",
-            "uuid": "c6780e9d-027f-4991-8028-892f821f152e"
-          }
-        }
-      ]
-    },
-    {
-      "severity": "warning",
-      "description": "Silkscreen clipped by solder mask",
-      "rule": "silk_over_copper",
-      "pos": {
-        "x": 132.4,
-        "y": 161.8
-      },
-      "items": [
-        {
-          "description": "Reference field of C16",
-          "pos": {
-            "x": 132.4,
-            "y": 161.8
-          },
-          "uuid": "ee40a5fb-7021-446a-b278-d9f046268b65",
-          "ownership_status": "resolved",
-          "item_kind": "property",
-          "layer": "F.SilkS",
-          "owner": {
-            "kind": "footprint",
-            "reference": "C16",
-            "uuid": "a9b75072-a946-45ab-80da-93ddb35993e0"
-          }
-        },
-        {
-          "description": "Pad 1 [+3V3] of R8 on F.Cu",
-          "pos": {
-            "x": 131.89,
-            "y": 162.3
-          },
-          "uuid": "e5082085-dc22-483c-add7-8c5c0cd7790d",
-          "ownership_status": "resolved",
-          "item_kind": "pad",
-          "owner": {
-            "kind": "footprint",
-            "reference": "R8",
-            "uuid": "0d59fb23-00ef-45d2-86ae-5fd138c13043"
-          }
-        }
-      ]
-    },
-    {
-      "severity": "warning",
-      "description": "Silkscreen clipped by solder mask",
-      "rule": "silk_over_copper",
-      "pos": {
-        "x": 132.4,
-        "y": 162.8
-      },
-      "items": [
-        {
-          "description": "Reference field of C12",
-          "pos": {
-            "x": 132.4,
-            "y": 162.8
-          },
-          "uuid": "4b5cdefe-5319-4f96-bb7e-89656f17a1d9",
-          "ownership_status": "resolved",
-          "item_kind": "property",
-          "layer": "F.SilkS",
-          "owner": {
-            "kind": "footprint",
-            "reference": "C12",
-            "uuid": "e0939bb9-accf-4d16-b626-ba28ce441b47"
-          }
-        },
-        {
-          "description": "Pad 1 [+3V3] of R8 on F.Cu",
-          "pos": {
-            "x": 131.89,
-            "y": 162.3
-          },
-          "uuid": "e5082085-dc22-483c-add7-8c5c0cd7790d",
-          "ownership_status": "resolved",
-          "item_kind": "pad",
-          "owner": {
-            "kind": "footprint",
-            "reference": "R8",
-            "uuid": "0d59fb23-00ef-45d2-86ae-5fd138c13043"
-          }
-        }
-      ]
-    },
-    {
-      "severity": "warning",
-      "description": "Silkscreen clipped by solder mask",
-      "rule": "silk_over_copper",
-      "pos": {
-        "x": 135.8,
-        "y": 165.5
-      },
-      "items": [
-        {
-          "description": "Reference field of C13",
-          "pos": {
-            "x": 135.8,
-            "y": 165.5
-          },
-          "uuid": "479b3931-bbb7-4433-b6f3-5ee2695f25b9",
-          "ownership_status": "resolved",
-          "item_kind": "property",
-          "layer": "F.SilkS",
-          "owner": {
-            "kind": "footprint",
-            "reference": "C13",
-            "uuid": "d95a8edc-dc25-4299-9b10-c3a3593c0e94"
-          }
-        },
-        {
-          "description": "Pad 2 [Net-(D2-A)] of R9 on F.Cu",
-          "pos": {
-            "x": 135.0,
-            "y": 165.990001
-          },
-          "uuid": "05eceed4-65c7-4179-9c4d-a8b0d0819e8e",
-          "ownership_status": "resolved",
-          "item_kind": "pad",
-          "owner": {
-            "kind": "footprint",
-            "reference": "R9",
-            "uuid": "e4093e43-bc42-4733-8269-1a2f9806c89d"
-          }
-        }
-      ]
-    },
-    {
-      "severity": "warning",
-      "description": "Silkscreen clipped by solder mask",
-      "rule": "silk_over_copper",
-      "pos": {
-        "x": 160.0,
-        "y": 154.5
-      },
-      "items": [
-        {
-          "description": "Reference field of C1",
-          "pos": {
-            "x": 160.0,
-            "y": 154.5
-          },
-          "uuid": "84d97665-1c08-477c-8ea4-a5ec05560e3c",
-          "ownership_status": "resolved",
-          "item_kind": "property",
-          "layer": "F.SilkS",
-          "owner": {
-            "kind": "footprint",
-            "reference": "C1",
-            "uuid": "2083df53-d879-4e49-9e11-f4c14fc5babc"
-          }
-        },
-        {
-          "description": "Pad 1 [VBUS] of C1 on F.Cu",
+          "description": "Reference field of C27",
           "pos": {
             "x": 161.0,
-            "y": 155.45
+            "y": 146.5
           },
-          "uuid": "7ea5fd2e-431a-4062-8d83-3c6343571c80",
+          "uuid": "55fb55c9-0a50-4e1a-a81f-e4fbbbc19b90",
+          "ownership_status": "resolved",
+          "item_kind": "property",
+          "layer": "F.SilkS",
+          "owner": {
+            "kind": "footprint",
+            "reference": "C27",
+            "uuid": "5a777acd-b427-4db6-a5ea-715640e46ecc"
+          }
+        },
+        {
+          "description": "Pad 2 [GND] of C27 on F.Cu",
+          "pos": {
+            "x": 162.0,
+            "y": 145.55
+          },
+          "uuid": "030e62b5-3e9f-4e5a-b136-c6952686c13e",
           "ownership_status": "resolved",
           "item_kind": "pad",
           "owner": {
             "kind": "footprint",
-            "reference": "C1",
-            "uuid": "2083df53-d879-4e49-9e11-f4c14fc5babc"
+            "reference": "C27",
+            "uuid": "5a777acd-b427-4db6-a5ea-715640e46ecc"
+          }
+        }
+      ]
+    },
+    {
+      "severity": "warning",
+      "description": "Silkscreen clipped by solder mask",
+      "rule": "silk_over_copper",
+      "pos": {
+        "x": 162.3,
+        "y": 136.0
+      },
+      "items": [
+        {
+          "description": "Reference field of C28",
+          "pos": {
+            "x": 162.3,
+            "y": 136.0
+          },
+          "uuid": "98eb6bdb-55b3-48f9-92b6-5c094835c934",
+          "ownership_status": "resolved",
+          "item_kind": "property",
+          "layer": "F.SilkS",
+          "owner": {
+            "kind": "footprint",
+            "reference": "C28",
+            "uuid": "562f102d-8477-4c31-8ce8-4970a72a51a2"
+          }
+        },
+        {
+          "description": "Pad 2 [GND_ISO] of C28 on F.Cu",
+          "pos": {
+            "x": 163.25,
+            "y": 137.0
+          },
+          "uuid": "3e2af0df-ff99-4bd1-8dca-d45c0c1b7aa0",
+          "ownership_status": "resolved",
+          "item_kind": "pad",
+          "owner": {
+            "kind": "footprint",
+            "reference": "C28",
+            "uuid": "562f102d-8477-4c31-8ce8-4970a72a51a2"
+          }
+        }
+      ]
+    },
+    {
+      "severity": "warning",
+      "description": "Silkscreen clipped by solder mask",
+      "rule": "silk_over_copper",
+      "pos": {
+        "x": 147.5,
+        "y": 103.5
+      },
+      "items": [
+        {
+          "description": "Reference field of C35",
+          "pos": {
+            "x": 147.5,
+            "y": 103.5
+          },
+          "uuid": "268e7111-fffb-4f46-848f-73fd584731dc",
+          "ownership_status": "resolved",
+          "item_kind": "property",
+          "layer": "F.SilkS",
+          "owner": {
+            "kind": "footprint",
+            "reference": "C35",
+            "uuid": "e173b854-6776-46b0-8ec7-e5666d13b200"
+          }
+        },
+        {
+          "description": "Pad 16 [+3V3_ISO] of U17 on F.Cu",
+          "pos": {
+            "x": 147.725,
+            "y": 102.1375
+          },
+          "uuid": "bd6c2f14-4aec-4110-8879-2c698d2d5ad6",
+          "ownership_status": "resolved",
+          "item_kind": "pad",
+          "owner": {
+            "kind": "footprint",
+            "reference": "U17",
+            "uuid": "122c13e7-cd4f-4da9-b188-123eaa720275"
+          }
+        }
+      ]
+    },
+    {
+      "severity": "warning",
+      "description": "Silkscreen clipped by solder mask",
+      "rule": "silk_over_copper",
+      "pos": {
+        "x": 143.5,
+        "y": 156.3
+      },
+      "items": [
+        {
+          "description": "Reference field of C19",
+          "pos": {
+            "x": 143.5,
+            "y": 156.3
+          },
+          "uuid": "a8629802-fb96-40a2-b8f5-e39afc003f2c",
+          "ownership_status": "resolved",
+          "item_kind": "property",
+          "layer": "F.SilkS",
+          "owner": {
+            "kind": "footprint",
+            "reference": "C19",
+            "uuid": "18166ff3-ab22-42d1-bb92-f69477c79b8e"
+          }
+        },
+        {
+          "description": "Pad 2 [Net-(U1-~{QSPI_SS})] of R7 on F.Cu",
+          "pos": {
+            "x": 144.009999,
+            "y": 156.0
+          },
+          "uuid": "44b3072f-157d-43ee-9056-df80aa628adb",
+          "ownership_status": "resolved",
+          "item_kind": "pad",
+          "owner": {
+            "kind": "footprint",
+            "reference": "R7",
+            "uuid": "c17c11b9-4c11-4ad1-9f5a-dc1f8d4ba821"
+          }
+        }
+      ]
+    },
+    {
+      "severity": "warning",
+      "description": "Silkscreen clipped by solder mask",
+      "rule": "silk_over_copper",
+      "pos": {
+        "x": 143.5,
+        "y": 157.6
+      },
+      "items": [
+        {
+          "description": "Reference field of C18",
+          "pos": {
+            "x": 143.5,
+            "y": 157.6
+          },
+          "uuid": "0107a21d-4b0b-464e-a62a-38295e1c92d7",
+          "ownership_status": "resolved",
+          "item_kind": "property",
+          "layer": "F.SilkS",
+          "owner": {
+            "kind": "footprint",
+            "reference": "C18",
+            "uuid": "d172db55-e97f-4e9b-9ad8-dd4d6ee8b6be"
+          }
+        },
+        {
+          "description": "Pad 2 [GND] of C19 on F.Cu",
+          "pos": {
+            "x": 143.98,
+            "y": 157.3
+          },
+          "uuid": "2ed2047d-67b3-492b-80fb-d00b10bf3c63",
+          "ownership_status": "resolved",
+          "item_kind": "pad",
+          "owner": {
+            "kind": "footprint",
+            "reference": "C19",
+            "uuid": "18166ff3-ab22-42d1-bb92-f69477c79b8e"
+          }
+        }
+      ]
+    },
+    {
+      "severity": "warning",
+      "description": "Silkscreen clipped by solder mask",
+      "rule": "silk_over_copper",
+      "pos": {
+        "x": 143.5,
+        "y": 155.0
+      },
+      "items": [
+        {
+          "description": "Reference field of R7",
+          "pos": {
+            "x": 143.5,
+            "y": 155.0
+          },
+          "uuid": "2a664189-ecaf-44c0-8c82-144fff0bc7d5",
+          "ownership_status": "resolved",
+          "item_kind": "property",
+          "layer": "F.SilkS",
+          "owner": {
+            "kind": "footprint",
+            "reference": "R7",
+            "uuid": "c17c11b9-4c11-4ad1-9f5a-dc1f8d4ba821"
+          }
+        },
+        {
+          "description": "Pad 2 [GND] of C9 on F.Cu",
+          "pos": {
+            "x": 142.78,
+            "y": 154.5
+          },
+          "uuid": "224775b4-735c-46ed-a9d5-8b5283e1adeb",
+          "ownership_status": "resolved",
+          "item_kind": "pad",
+          "owner": {
+            "kind": "footprint",
+            "reference": "C9",
+            "uuid": "077b58f9-fa6d-44b0-bfb5-3622bb8e1157"
+          }
+        }
+      ]
+    },
+    {
+      "severity": "warning",
+      "description": "Silkscreen clipped by solder mask",
+      "rule": "silk_over_copper",
+      "pos": {
+        "x": 143.5,
+        "y": 156.3
+      },
+      "items": [
+        {
+          "description": "Reference field of C19",
+          "pos": {
+            "x": 143.5,
+            "y": 156.3
+          },
+          "uuid": "a8629802-fb96-40a2-b8f5-e39afc003f2c",
+          "ownership_status": "resolved",
+          "item_kind": "property",
+          "layer": "F.SilkS",
+          "owner": {
+            "kind": "footprint",
+            "reference": "C19",
+            "uuid": "18166ff3-ab22-42d1-bb92-f69477c79b8e"
+          }
+        },
+        {
+          "description": "Pad 1 [Net-(R7-Pad1)] of R7 on F.Cu",
+          "pos": {
+            "x": 142.99,
+            "y": 156.0
+          },
+          "uuid": "8f48d2be-50af-4f29-9734-eee74af65b95",
+          "ownership_status": "resolved",
+          "item_kind": "pad",
+          "owner": {
+            "kind": "footprint",
+            "reference": "R7",
+            "uuid": "c17c11b9-4c11-4ad1-9f5a-dc1f8d4ba821"
+          }
+        }
+      ]
+    },
+    {
+      "severity": "warning",
+      "description": "Silkscreen clipped by solder mask",
+      "rule": "silk_over_copper",
+      "pos": {
+        "x": 144.5,
+        "y": 161.0
+      },
+      "items": [
+        {
+          "description": "Reference field of R5",
+          "pos": {
+            "x": 144.5,
+            "y": 161.0
+          },
+          "uuid": "d215ed95-7dc7-4fd5-bc63-8a6c381dc0e0",
+          "ownership_status": "resolved",
+          "item_kind": "property",
+          "layer": "F.SilkS",
+          "owner": {
+            "kind": "footprint",
+            "reference": "R5",
+            "uuid": "ed313774-7dd7-41f3-abe2-e1e7292d3e0c"
+          }
+        },
+        {
+          "description": "Pad 2 [/USB_DM] of R6 on F.Cu",
+          "pos": {
+            "x": 143.990001,
+            "y": 161.3
+          },
+          "uuid": "07f1bbec-e964-4514-a086-ff0f0358edd9",
+          "ownership_status": "resolved",
+          "item_kind": "pad",
+          "owner": {
+            "kind": "footprint",
+            "reference": "R6",
+            "uuid": "04be33af-6b8e-4f1c-beca-0bf045ca6cf0"
+          }
+        }
+      ]
+    },
+    {
+      "severity": "warning",
+      "description": "Silkscreen clipped by solder mask",
+      "rule": "silk_over_copper",
+      "pos": {
+        "x": 143.5,
+        "y": 157.6
+      },
+      "items": [
+        {
+          "description": "Reference field of C18",
+          "pos": {
+            "x": 143.5,
+            "y": 157.6
+          },
+          "uuid": "0107a21d-4b0b-464e-a62a-38295e1c92d7",
+          "ownership_status": "resolved",
+          "item_kind": "property",
+          "layer": "F.SilkS",
+          "owner": {
+            "kind": "footprint",
+            "reference": "C18",
+            "uuid": "d172db55-e97f-4e9b-9ad8-dd4d6ee8b6be"
+          }
+        },
+        {
+          "description": "Pad 1 [+3V3] of C19 on F.Cu",
+          "pos": {
+            "x": 143.02,
+            "y": 157.3
+          },
+          "uuid": "42481f37-2991-4ba8-889e-729583865591",
+          "ownership_status": "resolved",
+          "item_kind": "pad",
+          "owner": {
+            "kind": "footprint",
+            "reference": "C19",
+            "uuid": "18166ff3-ab22-42d1-bb92-f69477c79b8e"
+          }
+        }
+      ]
+    },
+    {
+      "severity": "warning",
+      "description": "Silkscreen clipped by solder mask",
+      "rule": "silk_over_copper",
+      "pos": {
+        "x": 144.5,
+        "y": 162.3
+      },
+      "items": [
+        {
+          "description": "Reference field of R6",
+          "pos": {
+            "x": 144.5,
+            "y": 162.3
+          },
+          "uuid": "6433bd47-ef31-4551-b3d7-2d6bc5de217f",
+          "ownership_status": "resolved",
+          "item_kind": "property",
+          "layer": "F.SilkS",
+          "owner": {
+            "kind": "footprint",
+            "reference": "R6",
+            "uuid": "04be33af-6b8e-4f1c-beca-0bf045ca6cf0"
+          }
+        },
+        {
+          "description": "Pad 2 [/+1V1] of L1 on F.Cu",
+          "pos": {
+            "x": 145.225,
+            "y": 163.5
+          },
+          "uuid": "7c14fb6a-0f96-4901-9cc2-7236836f7e69",
+          "ownership_status": "resolved",
+          "item_kind": "pad",
+          "owner": {
+            "kind": "footprint",
+            "reference": "L1",
+            "uuid": "2cfe9a48-ca36-4f15-9b66-937eaeadfb9d"
+          }
+        }
+      ]
+    },
+    {
+      "severity": "warning",
+      "description": "Silkscreen clipped by solder mask",
+      "rule": "silk_over_copper",
+      "pos": {
+        "x": 144.5,
+        "y": 162.5
+      },
+      "items": [
+        {
+          "description": "Reference field of L1",
+          "pos": {
+            "x": 144.5,
+            "y": 162.5
+          },
+          "uuid": "be8e307f-601d-4fc5-bd94-09173ee49029",
+          "ownership_status": "resolved",
+          "item_kind": "property",
+          "layer": "F.SilkS",
+          "owner": {
+            "kind": "footprint",
+            "reference": "L1",
+            "uuid": "2cfe9a48-ca36-4f15-9b66-937eaeadfb9d"
+          }
+        },
+        {
+          "description": "Pad 2 [/+1V1] of L1 on F.Cu",
+          "pos": {
+            "x": 145.225,
+            "y": 163.5
+          },
+          "uuid": "7c14fb6a-0f96-4901-9cc2-7236836f7e69",
+          "ownership_status": "resolved",
+          "item_kind": "pad",
+          "owner": {
+            "kind": "footprint",
+            "reference": "L1",
+            "uuid": "2cfe9a48-ca36-4f15-9b66-937eaeadfb9d"
+          }
+        }
+      ]
+    },
+    {
+      "severity": "warning",
+      "description": "Silkscreen clipped by solder mask",
+      "rule": "silk_over_copper",
+      "pos": {
+        "x": 144.5,
+        "y": 162.3
+      },
+      "items": [
+        {
+          "description": "Reference field of R6",
+          "pos": {
+            "x": 144.5,
+            "y": 162.3
+          },
+          "uuid": "6433bd47-ef31-4551-b3d7-2d6bc5de217f",
+          "ownership_status": "resolved",
+          "item_kind": "property",
+          "layer": "F.SilkS",
+          "owner": {
+            "kind": "footprint",
+            "reference": "R6",
+            "uuid": "04be33af-6b8e-4f1c-beca-0bf045ca6cf0"
+          }
+        },
+        {
+          "description": "Pad 1 [/VREG_LX] of L1 on F.Cu",
+          "pos": {
+            "x": 143.775,
+            "y": 163.5
+          },
+          "uuid": "cfc6b052-a11d-4863-86df-30f89777bd0c",
+          "ownership_status": "resolved",
+          "item_kind": "pad",
+          "owner": {
+            "kind": "footprint",
+            "reference": "L1",
+            "uuid": "2cfe9a48-ca36-4f15-9b66-937eaeadfb9d"
+          }
+        }
+      ]
+    },
+    {
+      "severity": "warning",
+      "description": "Silkscreen clipped by solder mask",
+      "rule": "silk_over_copper",
+      "pos": {
+        "x": 144.5,
+        "y": 162.5
+      },
+      "items": [
+        {
+          "description": "Reference field of L1",
+          "pos": {
+            "x": 144.5,
+            "y": 162.5
+          },
+          "uuid": "be8e307f-601d-4fc5-bd94-09173ee49029",
+          "ownership_status": "resolved",
+          "item_kind": "property",
+          "layer": "F.SilkS",
+          "owner": {
+            "kind": "footprint",
+            "reference": "L1",
+            "uuid": "2cfe9a48-ca36-4f15-9b66-937eaeadfb9d"
+          }
+        },
+        {
+          "description": "Pad 1 [/VREG_LX] of L1 on F.Cu",
+          "pos": {
+            "x": 143.775,
+            "y": 163.5
+          },
+          "uuid": "cfc6b052-a11d-4863-86df-30f89777bd0c",
+          "ownership_status": "resolved",
+          "item_kind": "pad",
+          "owner": {
+            "kind": "footprint",
+            "reference": "L1",
+            "uuid": "2cfe9a48-ca36-4f15-9b66-937eaeadfb9d"
+          }
+        }
+      ]
+    },
+    {
+      "severity": "warning",
+      "description": "Silkscreen clipped by solder mask",
+      "rule": "silk_over_copper",
+      "pos": {
+        "x": 144.5,
+        "y": 161.0
+      },
+      "items": [
+        {
+          "description": "Reference field of R5",
+          "pos": {
+            "x": 144.5,
+            "y": 161.0
+          },
+          "uuid": "d215ed95-7dc7-4fd5-bc63-8a6c381dc0e0",
+          "ownership_status": "resolved",
+          "item_kind": "property",
+          "layer": "F.SilkS",
+          "owner": {
+            "kind": "footprint",
+            "reference": "R5",
+            "uuid": "ed313774-7dd7-41f3-abe2-e1e7292d3e0c"
+          }
+        },
+        {
+          "description": "Pad 1 [/USB_CONN_DM] of R6 on F.Cu",
+          "pos": {
+            "x": 145.01,
+            "y": 161.3
+          },
+          "uuid": "535dd231-0d0b-4834-9411-99718d9b99af",
+          "ownership_status": "resolved",
+          "item_kind": "pad",
+          "owner": {
+            "kind": "footprint",
+            "reference": "R6",
+            "uuid": "04be33af-6b8e-4f1c-beca-0bf045ca6cf0"
+          }
+        }
+      ]
+    },
+    {
+      "severity": "warning",
+      "description": "Silkscreen clipped by solder mask",
+      "rule": "silk_over_copper",
+      "pos": {
+        "x": 151.0,
+        "y": 160.0
+      },
+      "items": [
+        {
+          "description": "Reference field of U2",
+          "pos": {
+            "x": 151.0,
+            "y": 160.0
+          },
+          "uuid": "27db18dc-136a-4974-98e3-bfcd44c71452",
+          "ownership_status": "resolved",
+          "item_kind": "property",
+          "layer": "F.SilkS",
+          "owner": {
+            "kind": "footprint",
+            "reference": "U2",
+            "uuid": "3748d938-3c04-4fad-b217-00d5db02f5e8"
+          }
+        },
+        {
+          "description": "Pad 1 [/USB_CONN_DP] of U2 on F.Cu",
+          "pos": {
+            "x": 149.8625,
+            "y": 160.05
+          },
+          "uuid": "6810b774-a985-4c62-bff1-6302820f78e4",
+          "ownership_status": "resolved",
+          "item_kind": "pad",
+          "owner": {
+            "kind": "footprint",
+            "reference": "U2",
+            "uuid": "3748d938-3c04-4fad-b217-00d5db02f5e8"
+          }
+        }
+      ]
+    },
+    {
+      "severity": "warning",
+      "description": "Silkscreen clipped by solder mask",
+      "rule": "silk_over_copper",
+      "pos": {
+        "x": 151.0,
+        "y": 160.0
+      },
+      "items": [
+        {
+          "description": "Reference field of U2",
+          "pos": {
+            "x": 151.0,
+            "y": 160.0
+          },
+          "uuid": "27db18dc-136a-4974-98e3-bfcd44c71452",
+          "ownership_status": "resolved",
+          "item_kind": "property",
+          "layer": "F.SilkS",
+          "owner": {
+            "kind": "footprint",
+            "reference": "U2",
+            "uuid": "3748d938-3c04-4fad-b217-00d5db02f5e8"
+          }
+        },
+        {
+          "description": "Pad 6 [/USB_CONN_DP] of U2 on F.Cu",
+          "pos": {
+            "x": 152.1375,
+            "y": 160.05
+          },
+          "uuid": "ffb30461-991b-4a1a-9826-eaeb6ac6a764",
+          "ownership_status": "resolved",
+          "item_kind": "pad",
+          "owner": {
+            "kind": "footprint",
+            "reference": "U2",
+            "uuid": "3748d938-3c04-4fad-b217-00d5db02f5e8"
+          }
+        }
+      ]
+    },
+    {
+      "severity": "warning",
+      "description": "Silkscreen clipped by solder mask",
+      "rule": "silk_over_copper",
+      "pos": {
+        "x": 143.5,
+        "y": 164.8
+      },
+      "items": [
+        {
+          "description": "Reference field of C6",
+          "pos": {
+            "x": 143.5,
+            "y": 164.8
+          },
+          "uuid": "a07cb783-b54e-451d-93f7-d0271c46209f",
+          "ownership_status": "resolved",
+          "item_kind": "property",
+          "layer": "F.SilkS",
+          "owner": {
+            "kind": "footprint",
+            "reference": "C6",
+            "uuid": "83f5c7d9-61e8-427b-97f8-be6bb115eb45"
+          }
+        },
+        {
+          "description": "Pad 1 [/VREG_LX] of L1 on F.Cu",
+          "pos": {
+            "x": 143.775,
+            "y": 163.5
+          },
+          "uuid": "cfc6b052-a11d-4863-86df-30f89777bd0c",
+          "ownership_status": "resolved",
+          "item_kind": "pad",
+          "owner": {
+            "kind": "footprint",
+            "reference": "L1",
+            "uuid": "2cfe9a48-ca36-4f15-9b66-937eaeadfb9d"
           }
         }
       ]
@@ -4840,6 +5624,48 @@
             "y": 155.2875
           },
           "uuid": "64a6fb0b-f535-4163-8d9d-b0b64e5e7ce2",
+          "ownership_status": "resolved",
+          "item_kind": "pad",
+          "owner": {
+            "kind": "footprint",
+            "reference": "D1",
+            "uuid": "a0fdf54c-5c04-4442-a71d-fbe8db02ec5b"
+          }
+        }
+      ]
+    },
+    {
+      "severity": "warning",
+      "description": "Silkscreen clipped by solder mask",
+      "rule": "silk_over_copper",
+      "pos": {
+        "x": 165.0,
+        "y": 154.5
+      },
+      "items": [
+        {
+          "description": "Reference field of D1",
+          "pos": {
+            "x": 165.0,
+            "y": 154.5
+          },
+          "uuid": "c6a3bfdb-6116-431a-8888-3d4b8176902d",
+          "ownership_status": "resolved",
+          "item_kind": "property",
+          "layer": "F.SilkS",
+          "owner": {
+            "kind": "footprint",
+            "reference": "D1",
+            "uuid": "a0fdf54c-5c04-4442-a71d-fbe8db02ec5b"
+          }
+        },
+        {
+          "description": "Pad 2 [Net-(D1-A)] of D1 on F.Cu",
+          "pos": {
+            "x": 166.0,
+            "y": 153.7125
+          },
+          "uuid": "c227c303-68e0-4cd2-86d8-cdf651c9cc3a",
           "ownership_status": "resolved",
           "item_kind": "pad",
           "owner": {
@@ -5023,81 +5849,39 @@
       "description": "Silkscreen clipped by solder mask",
       "rule": "silk_over_copper",
       "pos": {
-        "x": 161.0,
-        "y": 146.5
-      },
-      "items": [
-        {
-          "description": "Reference field of C27",
-          "pos": {
-            "x": 161.0,
-            "y": 146.5
-          },
-          "uuid": "55fb55c9-0a50-4e1a-a81f-e4fbbbc19b90",
-          "ownership_status": "resolved",
-          "item_kind": "property",
-          "layer": "F.SilkS",
-          "owner": {
-            "kind": "footprint",
-            "reference": "C27",
-            "uuid": "5a777acd-b427-4db6-a5ea-715640e46ecc"
-          }
-        },
-        {
-          "description": "Pad 2 [GND] of C27 on F.Cu",
-          "pos": {
-            "x": 162.0,
-            "y": 145.55
-          },
-          "uuid": "030e62b5-3e9f-4e5a-b136-c6952686c13e",
-          "ownership_status": "resolved",
-          "item_kind": "pad",
-          "owner": {
-            "kind": "footprint",
-            "reference": "C27",
-            "uuid": "5a777acd-b427-4db6-a5ea-715640e46ecc"
-          }
-        }
-      ]
-    },
-    {
-      "severity": "warning",
-      "description": "Silkscreen clipped by solder mask",
-      "rule": "silk_over_copper",
-      "pos": {
-        "x": 165.0,
+        "x": 160.0,
         "y": 154.5
       },
       "items": [
         {
-          "description": "Reference field of D1",
+          "description": "Reference field of C1",
           "pos": {
-            "x": 165.0,
+            "x": 160.0,
             "y": 154.5
           },
-          "uuid": "c6a3bfdb-6116-431a-8888-3d4b8176902d",
+          "uuid": "84d97665-1c08-477c-8ea4-a5ec05560e3c",
           "ownership_status": "resolved",
           "item_kind": "property",
           "layer": "F.SilkS",
           "owner": {
             "kind": "footprint",
-            "reference": "D1",
-            "uuid": "a0fdf54c-5c04-4442-a71d-fbe8db02ec5b"
+            "reference": "C1",
+            "uuid": "2083df53-d879-4e49-9e11-f4c14fc5babc"
           }
         },
         {
-          "description": "Pad 2 [Net-(D1-A)] of D1 on F.Cu",
+          "description": "Pad 1 [VBUS] of C1 on F.Cu",
           "pos": {
-            "x": 166.0,
-            "y": 153.7125
+            "x": 161.0,
+            "y": 155.45
           },
-          "uuid": "c227c303-68e0-4cd2-86d8-cdf651c9cc3a",
+          "uuid": "7ea5fd2e-431a-4062-8d83-3c6343571c80",
           "ownership_status": "resolved",
           "item_kind": "pad",
           "owner": {
             "kind": "footprint",
-            "reference": "D1",
-            "uuid": "a0fdf54c-5c04-4442-a71d-fbe8db02ec5b"
+            "reference": "C1",
+            "uuid": "2083df53-d879-4e49-9e11-f4c14fc5babc"
           }
         }
       ]
@@ -5107,39 +5891,39 @@
       "description": "Silkscreen clipped by solder mask",
       "rule": "silk_over_copper",
       "pos": {
-        "x": 170.3,
-        "y": 127.0
+        "x": 160.0,
+        "y": 170.0
       },
       "items": [
         {
-          "description": "Reference field of D3",
+          "description": "Reference field of J2",
           "pos": {
-            "x": 170.3,
-            "y": 127.0
+            "x": 160.0,
+            "y": 170.0
           },
-          "uuid": "eab90091-09de-4526-9373-4b6d2d0f8c9c",
+          "uuid": "e1df726d-ceb7-4f80-a829-d330da259a3b",
           "ownership_status": "resolved",
           "item_kind": "property",
           "layer": "F.SilkS",
           "owner": {
             "kind": "footprint",
-            "reference": "D3",
-            "uuid": "fbbd9b0c-58df-4b2f-ac6d-008fc020eedd"
+            "reference": "J2",
+            "uuid": "f3eb8fba-e7dc-4173-949a-55d2b400c01b"
           }
         },
         {
-          "description": "Pad 1 [GND_ISO] of D3 on F.Cu",
+          "description": "PTH pad 1 [VBUS] of J2",
           "pos": {
-            "x": 171.3,
-            "y": 127.7875
+            "x": 160.0,
+            "y": 169.0
           },
-          "uuid": "4e11bd84-a9da-4e03-82dc-32a5b5226c7d",
+          "uuid": "f9b2a8f8-8bdc-40f0-a326-88d8dde838ba",
           "ownership_status": "resolved",
           "item_kind": "pad",
           "owner": {
             "kind": "footprint",
-            "reference": "D3",
-            "uuid": "fbbd9b0c-58df-4b2f-ac6d-008fc020eedd"
+            "reference": "J2",
+            "uuid": "f3eb8fba-e7dc-4173-949a-55d2b400c01b"
           }
         }
       ]
@@ -5149,81 +5933,39 @@
       "description": "Silkscreen clipped by solder mask",
       "rule": "silk_over_copper",
       "pos": {
-        "x": 170.3,
-        "y": 127.0
+        "x": 132.4,
+        "y": 161.3
       },
       "items": [
         {
-          "description": "Reference field of D3",
+          "description": "Reference field of R8",
           "pos": {
-            "x": 170.3,
-            "y": 127.0
+            "x": 132.4,
+            "y": 161.3
           },
-          "uuid": "eab90091-09de-4526-9373-4b6d2d0f8c9c",
+          "uuid": "64d25379-44c3-4406-8aa1-1a2bea0fa549",
           "ownership_status": "resolved",
           "item_kind": "property",
           "layer": "F.SilkS",
           "owner": {
             "kind": "footprint",
-            "reference": "D3",
-            "uuid": "fbbd9b0c-58df-4b2f-ac6d-008fc020eedd"
+            "reference": "R8",
+            "uuid": "0d59fb23-00ef-45d2-86ae-5fd138c13043"
           }
         },
         {
-          "description": "Pad 2 [Net-(D3-A)] of D3 on F.Cu",
+          "description": "Pad 2 [GND] of C16 on F.Cu",
           "pos": {
-            "x": 171.3,
-            "y": 126.2125
+            "x": 131.92,
+            "y": 160.8
           },
-          "uuid": "0f6a3547-6e29-433e-8e4b-12d54922f3bb",
+          "uuid": "8b8deba3-557a-4ada-875d-ad8033120a4b",
           "ownership_status": "resolved",
           "item_kind": "pad",
           "owner": {
             "kind": "footprint",
-            "reference": "D3",
-            "uuid": "fbbd9b0c-58df-4b2f-ac6d-008fc020eedd"
-          }
-        }
-      ]
-    },
-    {
-      "severity": "warning",
-      "description": "Silkscreen clipped by solder mask",
-      "rule": "silk_over_copper",
-      "pos": {
-        "x": 147.5,
-        "y": 103.5
-      },
-      "items": [
-        {
-          "description": "Reference field of C35",
-          "pos": {
-            "x": 147.5,
-            "y": 103.5
-          },
-          "uuid": "268e7111-fffb-4f46-848f-73fd584731dc",
-          "ownership_status": "resolved",
-          "item_kind": "property",
-          "layer": "F.SilkS",
-          "owner": {
-            "kind": "footprint",
-            "reference": "C35",
-            "uuid": "e173b854-6776-46b0-8ec7-e5666d13b200"
-          }
-        },
-        {
-          "description": "Pad 16 [+3V3_ISO] of U17 on F.Cu",
-          "pos": {
-            "x": 147.725,
-            "y": 102.1375
-          },
-          "uuid": "bd6c2f14-4aec-4110-8879-2c698d2d5ad6",
-          "ownership_status": "resolved",
-          "item_kind": "pad",
-          "owner": {
-            "kind": "footprint",
-            "reference": "U17",
-            "uuid": "122c13e7-cd4f-4da9-b188-123eaa720275"
+            "reference": "C16",
+            "uuid": "a9b75072-a946-45ab-80da-93ddb35993e0"
           }
         }
       ]
@@ -5234,38 +5976,38 @@
       "rule": "silk_over_copper",
       "pos": {
         "x": 128.5,
-        "y": 103.5
+        "y": 158.8
       },
       "items": [
         {
-          "description": "Reference field of C36",
+          "description": "Reference field of Y1",
           "pos": {
             "x": 128.5,
-            "y": 103.5
+            "y": 158.8
           },
-          "uuid": "98d8de51-60c4-47ac-a91b-15f9c4544486",
+          "uuid": "b5998200-4041-41fd-9399-dcb572d1312b",
           "ownership_status": "resolved",
           "item_kind": "property",
           "layer": "F.SilkS",
           "owner": {
             "kind": "footprint",
-            "reference": "C36",
-            "uuid": "f86ca992-383c-4d38-b4f2-a5a8363c37b7"
+            "reference": "Y1",
+            "uuid": "a646b41f-d15f-44c0-9ff0-0459dd9d05f7"
           }
         },
         {
-          "description": "Pad 16 [+3V3_ISO] of U18 on F.Cu",
+          "description": "Pad 4 [GND] of Y1 on F.Cu",
           "pos": {
-            "x": 128.725,
-            "y": 102.1375
+            "x": 127.4,
+            "y": 158.95
           },
-          "uuid": "a169e785-4f12-4c75-937b-e3485a13263a",
+          "uuid": "8142cbfe-d7c2-4fb2-a774-8cd4faad8790",
           "ownership_status": "resolved",
           "item_kind": "pad",
           "owner": {
             "kind": "footprint",
-            "reference": "U18",
-            "uuid": "8494026f-efe0-4b09-99f1-d03be8bcb08c"
+            "reference": "Y1",
+            "uuid": "a646b41f-d15f-44c0-9ff0-0459dd9d05f7"
           }
         }
       ]
@@ -5275,39 +6017,39 @@
       "description": "Silkscreen clipped by solder mask",
       "rule": "silk_over_copper",
       "pos": {
-        "x": 162.3,
-        "y": 136.0
+        "x": 128.5,
+        "y": 158.8
       },
       "items": [
         {
-          "description": "Reference field of C28",
+          "description": "Reference field of Y1",
           "pos": {
-            "x": 162.3,
-            "y": 136.0
+            "x": 128.5,
+            "y": 158.8
           },
-          "uuid": "98eb6bdb-55b3-48f9-92b6-5c094835c934",
+          "uuid": "b5998200-4041-41fd-9399-dcb572d1312b",
           "ownership_status": "resolved",
           "item_kind": "property",
           "layer": "F.SilkS",
           "owner": {
             "kind": "footprint",
-            "reference": "C28",
-            "uuid": "562f102d-8477-4c31-8ce8-4970a72a51a2"
+            "reference": "Y1",
+            "uuid": "a646b41f-d15f-44c0-9ff0-0459dd9d05f7"
           }
         },
         {
-          "description": "Pad 1 [+5V_ISO] of C28 on F.Cu",
+          "description": "Pad 3 [/XTAL_OUT] of Y1 on F.Cu",
           "pos": {
-            "x": 161.35,
-            "y": 137.0
+            "x": 129.599999,
+            "y": 158.95
           },
-          "uuid": "10e43ff4-8ce0-4dac-b127-b0d1776f636c",
+          "uuid": "71094ebe-a123-462a-bc57-381070cfac2f",
           "ownership_status": "resolved",
           "item_kind": "pad",
           "owner": {
             "kind": "footprint",
-            "reference": "C28",
-            "uuid": "562f102d-8477-4c31-8ce8-4970a72a51a2"
+            "reference": "Y1",
+            "uuid": "a646b41f-d15f-44c0-9ff0-0459dd9d05f7"
           }
         }
       ]
@@ -5317,39 +6059,39 @@
       "description": "Silkscreen clipped by solder mask",
       "rule": "silk_over_copper",
       "pos": {
-        "x": 162.3,
-        "y": 136.0
+        "x": 132.4,
+        "y": 158.3
       },
       "items": [
         {
-          "description": "Reference field of C28",
+          "description": "Reference field of R3",
           "pos": {
-            "x": 162.3,
-            "y": 136.0
+            "x": 132.4,
+            "y": 158.3
           },
-          "uuid": "98eb6bdb-55b3-48f9-92b6-5c094835c934",
+          "uuid": "4c8c9e69-78f4-4a54-981c-8f4594a82f41",
           "ownership_status": "resolved",
           "item_kind": "property",
           "layer": "F.SilkS",
           "owner": {
             "kind": "footprint",
-            "reference": "C28",
-            "uuid": "562f102d-8477-4c31-8ce8-4970a72a51a2"
+            "reference": "R3",
+            "uuid": "e9d20c5a-68eb-4a5c-8ae1-d500b3be318f"
           }
         },
         {
-          "description": "Pad 2 [GND_ISO] of C28 on F.Cu",
+          "description": "Pad 1 [+3V3] of C11 on F.Cu",
           "pos": {
-            "x": 163.25,
-            "y": 137.0
+            "x": 132.02,
+            "y": 157.4
           },
-          "uuid": "3e2af0df-ff99-4bd1-8dca-d45c0c1b7aa0",
+          "uuid": "e7df11c9-2efe-4c9a-aa52-9180a6ac3e95",
           "ownership_status": "resolved",
           "item_kind": "pad",
           "owner": {
             "kind": "footprint",
-            "reference": "C28",
-            "uuid": "562f102d-8477-4c31-8ce8-4970a72a51a2"
+            "reference": "C11",
+            "uuid": "99ad6037-7968-42aa-8284-13dad5754aac"
           }
         }
       ]
@@ -5359,459 +6101,39 @@
       "description": "Silkscreen clipped by solder mask",
       "rule": "silk_over_copper",
       "pos": {
-        "x": 162.3,
-        "y": 131.5
+        "x": 132.4,
+        "y": 161.3
       },
       "items": [
         {
-          "description": "Reference field of C29",
+          "description": "Reference field of R8",
           "pos": {
-            "x": 162.3,
-            "y": 131.5
-          },
-          "uuid": "7a531500-1ed4-4222-9064-3d31444e6cf5",
-          "ownership_status": "resolved",
-          "item_kind": "property",
-          "layer": "F.SilkS",
-          "owner": {
-            "kind": "footprint",
-            "reference": "C29",
-            "uuid": "c908f15b-1a21-4956-970c-03ca20177b7b"
-          }
-        },
-        {
-          "description": "Pad 1 [+3V3_ISO] of C29 on F.Cu",
-          "pos": {
-            "x": 163.3,
-            "y": 132.45
-          },
-          "uuid": "ec027892-bcd7-46ea-929e-d01a658ab2d6",
-          "ownership_status": "resolved",
-          "item_kind": "pad",
-          "owner": {
-            "kind": "footprint",
-            "reference": "C29",
-            "uuid": "c908f15b-1a21-4956-970c-03ca20177b7b"
-          }
-        }
-      ]
-    },
-    {
-      "severity": "warning",
-      "description": "Silkscreen clipped by solder mask",
-      "rule": "silk_over_copper",
-      "pos": {
-        "x": 162.3,
-        "y": 131.5
-      },
-      "items": [
-        {
-          "description": "Reference field of C29",
-          "pos": {
-            "x": 162.3,
-            "y": 131.5
-          },
-          "uuid": "7a531500-1ed4-4222-9064-3d31444e6cf5",
-          "ownership_status": "resolved",
-          "item_kind": "property",
-          "layer": "F.SilkS",
-          "owner": {
-            "kind": "footprint",
-            "reference": "C29",
-            "uuid": "c908f15b-1a21-4956-970c-03ca20177b7b"
-          }
-        },
-        {
-          "description": "Pad 2 [GND_ISO] of C29 on F.Cu",
-          "pos": {
-            "x": 163.3,
-            "y": 130.55
-          },
-          "uuid": "4df614cd-3abf-40a3-b5c2-7b5ec4394e3a",
-          "ownership_status": "resolved",
-          "item_kind": "pad",
-          "owner": {
-            "kind": "footprint",
-            "reference": "C29",
-            "uuid": "c908f15b-1a21-4956-970c-03ca20177b7b"
-          }
-        }
-      ]
-    },
-    {
-      "severity": "warning",
-      "description": "Silkscreen clipped by solder mask",
-      "rule": "silk_over_copper",
-      "pos": {
-        "x": 143.5,
-        "y": 156.3
-      },
-      "items": [
-        {
-          "description": "Reference field of C19",
-          "pos": {
-            "x": 143.5,
-            "y": 156.3
-          },
-          "uuid": "a8629802-fb96-40a2-b8f5-e39afc003f2c",
-          "ownership_status": "resolved",
-          "item_kind": "property",
-          "layer": "F.SilkS",
-          "owner": {
-            "kind": "footprint",
-            "reference": "C19",
-            "uuid": "18166ff3-ab22-42d1-bb92-f69477c79b8e"
-          }
-        },
-        {
-          "description": "Pad 2 [Net-(U1-~{QSPI_SS})] of R7 on F.Cu",
-          "pos": {
-            "x": 144.009999,
-            "y": 156.0
-          },
-          "uuid": "44b3072f-157d-43ee-9056-df80aa628adb",
-          "ownership_status": "resolved",
-          "item_kind": "pad",
-          "owner": {
-            "kind": "footprint",
-            "reference": "R7",
-            "uuid": "c17c11b9-4c11-4ad1-9f5a-dc1f8d4ba821"
-          }
-        }
-      ]
-    },
-    {
-      "severity": "warning",
-      "description": "Silkscreen clipped by solder mask",
-      "rule": "silk_over_copper",
-      "pos": {
-        "x": 143.5,
-        "y": 157.6
-      },
-      "items": [
-        {
-          "description": "Reference field of C18",
-          "pos": {
-            "x": 143.5,
-            "y": 157.6
-          },
-          "uuid": "0107a21d-4b0b-464e-a62a-38295e1c92d7",
-          "ownership_status": "resolved",
-          "item_kind": "property",
-          "layer": "F.SilkS",
-          "owner": {
-            "kind": "footprint",
-            "reference": "C18",
-            "uuid": "d172db55-e97f-4e9b-9ad8-dd4d6ee8b6be"
-          }
-        },
-        {
-          "description": "Pad 2 [GND] of C19 on F.Cu",
-          "pos": {
-            "x": 143.98,
-            "y": 157.3
-          },
-          "uuid": "2ed2047d-67b3-492b-80fb-d00b10bf3c63",
-          "ownership_status": "resolved",
-          "item_kind": "pad",
-          "owner": {
-            "kind": "footprint",
-            "reference": "C19",
-            "uuid": "18166ff3-ab22-42d1-bb92-f69477c79b8e"
-          }
-        }
-      ]
-    },
-    {
-      "severity": "warning",
-      "description": "Silkscreen clipped by solder mask",
-      "rule": "silk_over_copper",
-      "pos": {
-        "x": 143.5,
-        "y": 155.0
-      },
-      "items": [
-        {
-          "description": "Reference field of R7",
-          "pos": {
-            "x": 143.5,
-            "y": 155.0
-          },
-          "uuid": "2a664189-ecaf-44c0-8c82-144fff0bc7d5",
-          "ownership_status": "resolved",
-          "item_kind": "property",
-          "layer": "F.SilkS",
-          "owner": {
-            "kind": "footprint",
-            "reference": "R7",
-            "uuid": "c17c11b9-4c11-4ad1-9f5a-dc1f8d4ba821"
-          }
-        },
-        {
-          "description": "Pad 2 [GND] of C9 on F.Cu",
-          "pos": {
-            "x": 142.78,
-            "y": 154.5
-          },
-          "uuid": "224775b4-735c-46ed-a9d5-8b5283e1adeb",
-          "ownership_status": "resolved",
-          "item_kind": "pad",
-          "owner": {
-            "kind": "footprint",
-            "reference": "C9",
-            "uuid": "077b58f9-fa6d-44b0-bfb5-3622bb8e1157"
-          }
-        }
-      ]
-    },
-    {
-      "severity": "warning",
-      "description": "Silkscreen clipped by solder mask",
-      "rule": "silk_over_copper",
-      "pos": {
-        "x": 143.5,
-        "y": 156.3
-      },
-      "items": [
-        {
-          "description": "Reference field of C19",
-          "pos": {
-            "x": 143.5,
-            "y": 156.3
-          },
-          "uuid": "a8629802-fb96-40a2-b8f5-e39afc003f2c",
-          "ownership_status": "resolved",
-          "item_kind": "property",
-          "layer": "F.SilkS",
-          "owner": {
-            "kind": "footprint",
-            "reference": "C19",
-            "uuid": "18166ff3-ab22-42d1-bb92-f69477c79b8e"
-          }
-        },
-        {
-          "description": "Pad 1 [Net-(R7-Pad1)] of R7 on F.Cu",
-          "pos": {
-            "x": 142.99,
-            "y": 156.0
-          },
-          "uuid": "8f48d2be-50af-4f29-9734-eee74af65b95",
-          "ownership_status": "resolved",
-          "item_kind": "pad",
-          "owner": {
-            "kind": "footprint",
-            "reference": "R7",
-            "uuid": "c17c11b9-4c11-4ad1-9f5a-dc1f8d4ba821"
-          }
-        }
-      ]
-    },
-    {
-      "severity": "warning",
-      "description": "Silkscreen clipped by solder mask",
-      "rule": "silk_over_copper",
-      "pos": {
-        "x": 143.5,
-        "y": 157.6
-      },
-      "items": [
-        {
-          "description": "Reference field of C18",
-          "pos": {
-            "x": 143.5,
-            "y": 157.6
-          },
-          "uuid": "0107a21d-4b0b-464e-a62a-38295e1c92d7",
-          "ownership_status": "resolved",
-          "item_kind": "property",
-          "layer": "F.SilkS",
-          "owner": {
-            "kind": "footprint",
-            "reference": "C18",
-            "uuid": "d172db55-e97f-4e9b-9ad8-dd4d6ee8b6be"
-          }
-        },
-        {
-          "description": "Pad 1 [+3V3] of C19 on F.Cu",
-          "pos": {
-            "x": 143.02,
-            "y": 157.3
-          },
-          "uuid": "42481f37-2991-4ba8-889e-729583865591",
-          "ownership_status": "resolved",
-          "item_kind": "pad",
-          "owner": {
-            "kind": "footprint",
-            "reference": "C19",
-            "uuid": "18166ff3-ab22-42d1-bb92-f69477c79b8e"
-          }
-        }
-      ]
-    },
-    {
-      "severity": "warning",
-      "description": "Silkscreen clipped by solder mask",
-      "rule": "silk_over_copper",
-      "pos": {
-        "x": 144.5,
-        "y": 162.3
-      },
-      "items": [
-        {
-          "description": "Reference field of R6",
-          "pos": {
-            "x": 144.5,
-            "y": 162.3
-          },
-          "uuid": "6433bd47-ef31-4551-b3d7-2d6bc5de217f",
-          "ownership_status": "resolved",
-          "item_kind": "property",
-          "layer": "F.SilkS",
-          "owner": {
-            "kind": "footprint",
-            "reference": "R6",
-            "uuid": "04be33af-6b8e-4f1c-beca-0bf045ca6cf0"
-          }
-        },
-        {
-          "description": "Pad 2 [/+1V1] of L1 on F.Cu",
-          "pos": {
-            "x": 145.225,
-            "y": 163.5
-          },
-          "uuid": "7c14fb6a-0f96-4901-9cc2-7236836f7e69",
-          "ownership_status": "resolved",
-          "item_kind": "pad",
-          "owner": {
-            "kind": "footprint",
-            "reference": "L1",
-            "uuid": "2cfe9a48-ca36-4f15-9b66-937eaeadfb9d"
-          }
-        }
-      ]
-    },
-    {
-      "severity": "warning",
-      "description": "Silkscreen clipped by solder mask",
-      "rule": "silk_over_copper",
-      "pos": {
-        "x": 144.5,
-        "y": 162.5
-      },
-      "items": [
-        {
-          "description": "Reference field of L1",
-          "pos": {
-            "x": 144.5,
-            "y": 162.5
-          },
-          "uuid": "be8e307f-601d-4fc5-bd94-09173ee49029",
-          "ownership_status": "resolved",
-          "item_kind": "property",
-          "layer": "F.SilkS",
-          "owner": {
-            "kind": "footprint",
-            "reference": "L1",
-            "uuid": "2cfe9a48-ca36-4f15-9b66-937eaeadfb9d"
-          }
-        },
-        {
-          "description": "Pad 2 [/+1V1] of L1 on F.Cu",
-          "pos": {
-            "x": 145.225,
-            "y": 163.5
-          },
-          "uuid": "7c14fb6a-0f96-4901-9cc2-7236836f7e69",
-          "ownership_status": "resolved",
-          "item_kind": "pad",
-          "owner": {
-            "kind": "footprint",
-            "reference": "L1",
-            "uuid": "2cfe9a48-ca36-4f15-9b66-937eaeadfb9d"
-          }
-        }
-      ]
-    },
-    {
-      "severity": "warning",
-      "description": "Silkscreen clipped by solder mask",
-      "rule": "silk_over_copper",
-      "pos": {
-        "x": 144.5,
-        "y": 162.3
-      },
-      "items": [
-        {
-          "description": "Reference field of R6",
-          "pos": {
-            "x": 144.5,
-            "y": 162.3
-          },
-          "uuid": "6433bd47-ef31-4551-b3d7-2d6bc5de217f",
-          "ownership_status": "resolved",
-          "item_kind": "property",
-          "layer": "F.SilkS",
-          "owner": {
-            "kind": "footprint",
-            "reference": "R6",
-            "uuid": "04be33af-6b8e-4f1c-beca-0bf045ca6cf0"
-          }
-        },
-        {
-          "description": "Pad 1 [/VREG_LX] of L1 on F.Cu",
-          "pos": {
-            "x": 143.775,
-            "y": 163.5
-          },
-          "uuid": "cfc6b052-a11d-4863-86df-30f89777bd0c",
-          "ownership_status": "resolved",
-          "item_kind": "pad",
-          "owner": {
-            "kind": "footprint",
-            "reference": "L1",
-            "uuid": "2cfe9a48-ca36-4f15-9b66-937eaeadfb9d"
-          }
-        }
-      ]
-    },
-    {
-      "severity": "warning",
-      "description": "Silkscreen clipped by solder mask",
-      "rule": "silk_over_copper",
-      "pos": {
-        "x": 144.5,
-        "y": 161.0
-      },
-      "items": [
-        {
-          "description": "Reference field of R5",
-          "pos": {
-            "x": 144.5,
-            "y": 161.0
-          },
-          "uuid": "d215ed95-7dc7-4fd5-bc63-8a6c381dc0e0",
-          "ownership_status": "resolved",
-          "item_kind": "property",
-          "layer": "F.SilkS",
-          "owner": {
-            "kind": "footprint",
-            "reference": "R5",
-            "uuid": "ed313774-7dd7-41f3-abe2-e1e7292d3e0c"
-          }
-        },
-        {
-          "description": "Pad 1 [/USB_CONN_DM] of R6 on F.Cu",
-          "pos": {
-            "x": 145.01,
+            "x": 132.4,
             "y": 161.3
           },
-          "uuid": "535dd231-0d0b-4834-9411-99718d9b99af",
+          "uuid": "64d25379-44c3-4406-8aa1-1a2bea0fa549",
+          "ownership_status": "resolved",
+          "item_kind": "property",
+          "layer": "F.SilkS",
+          "owner": {
+            "kind": "footprint",
+            "reference": "R8",
+            "uuid": "0d59fb23-00ef-45d2-86ae-5fd138c13043"
+          }
+        },
+        {
+          "description": "Pad 1 [/+1V1] of C16 on F.Cu",
+          "pos": {
+            "x": 132.88,
+            "y": 160.8
+          },
+          "uuid": "63de8f3b-7c94-4efd-95e0-a73f2a87137b",
           "ownership_status": "resolved",
           "item_kind": "pad",
           "owner": {
             "kind": "footprint",
-            "reference": "R6",
-            "uuid": "04be33af-6b8e-4f1c-beca-0bf045ca6cf0"
+            "reference": "C16",
+            "uuid": "a9b75072-a946-45ab-80da-93ddb35993e0"
           }
         }
       ]
@@ -5821,291 +6143,39 @@
       "description": "Silkscreen clipped by solder mask",
       "rule": "silk_over_copper",
       "pos": {
-        "x": 151.0,
-        "y": 160.0
+        "x": 132.4,
+        "y": 158.3
       },
       "items": [
         {
-          "description": "Reference field of U2",
+          "description": "Reference field of R3",
           "pos": {
-            "x": 151.0,
-            "y": 160.0
+            "x": 132.4,
+            "y": 158.3
           },
-          "uuid": "27db18dc-136a-4974-98e3-bfcd44c71452",
+          "uuid": "4c8c9e69-78f4-4a54-981c-8f4594a82f41",
           "ownership_status": "resolved",
           "item_kind": "property",
           "layer": "F.SilkS",
           "owner": {
             "kind": "footprint",
-            "reference": "U2",
-            "uuid": "3748d938-3c04-4fad-b217-00d5db02f5e8"
+            "reference": "R3",
+            "uuid": "e9d20c5a-68eb-4a5c-8ae1-d500b3be318f"
           }
         },
         {
-          "description": "Pad 1 [/USB_CONN_DP] of U2 on F.Cu",
+          "description": "Pad 2 [GND] of C11 on F.Cu",
           "pos": {
-            "x": 149.8625,
-            "y": 160.05
+            "x": 132.98,
+            "y": 157.4
           },
-          "uuid": "6810b774-a985-4c62-bff1-6302820f78e4",
+          "uuid": "4981b8e9-9b24-4fba-9832-2e6f8133b81a",
           "ownership_status": "resolved",
           "item_kind": "pad",
           "owner": {
             "kind": "footprint",
-            "reference": "U2",
-            "uuid": "3748d938-3c04-4fad-b217-00d5db02f5e8"
-          }
-        }
-      ]
-    },
-    {
-      "severity": "warning",
-      "description": "Silkscreen clipped by solder mask",
-      "rule": "silk_over_copper",
-      "pos": {
-        "x": 151.0,
-        "y": 160.0
-      },
-      "items": [
-        {
-          "description": "Reference field of U2",
-          "pos": {
-            "x": 151.0,
-            "y": 160.0
-          },
-          "uuid": "27db18dc-136a-4974-98e3-bfcd44c71452",
-          "ownership_status": "resolved",
-          "item_kind": "property",
-          "layer": "F.SilkS",
-          "owner": {
-            "kind": "footprint",
-            "reference": "U2",
-            "uuid": "3748d938-3c04-4fad-b217-00d5db02f5e8"
-          }
-        },
-        {
-          "description": "Pad 6 [/USB_CONN_DP] of U2 on F.Cu",
-          "pos": {
-            "x": 152.1375,
-            "y": 160.05
-          },
-          "uuid": "ffb30461-991b-4a1a-9826-eaeb6ac6a764",
-          "ownership_status": "resolved",
-          "item_kind": "pad",
-          "owner": {
-            "kind": "footprint",
-            "reference": "U2",
-            "uuid": "3748d938-3c04-4fad-b217-00d5db02f5e8"
-          }
-        }
-      ]
-    },
-    {
-      "severity": "warning",
-      "description": "Silkscreen clipped by solder mask",
-      "rule": "silk_over_copper",
-      "pos": {
-        "x": 152.4,
-        "y": 154.5
-      },
-      "items": [
-        {
-          "description": "Reference field of C2",
-          "pos": {
-            "x": 152.4,
-            "y": 154.5
-          },
-          "uuid": "f2d37303-a4f8-4c9f-8126-7c6ac6923dc6",
-          "ownership_status": "resolved",
-          "item_kind": "property",
-          "layer": "F.SilkS",
-          "owner": {
-            "kind": "footprint",
-            "reference": "C2",
-            "uuid": "68c39378-bfc6-4449-bb36-9ea4346b1c8c"
-          }
-        },
-        {
-          "description": "Pad 1 [+3V3] of C2 on F.Cu",
-          "pos": {
-            "x": 153.4,
-            "y": 155.45
-          },
-          "uuid": "7dead9d6-3ecd-4af4-93a0-da8ddaf34bec",
-          "ownership_status": "resolved",
-          "item_kind": "pad",
-          "owner": {
-            "kind": "footprint",
-            "reference": "C2",
-            "uuid": "68c39378-bfc6-4449-bb36-9ea4346b1c8c"
-          }
-        }
-      ]
-    },
-    {
-      "severity": "warning",
-      "description": "Silkscreen clipped by solder mask",
-      "rule": "silk_over_copper",
-      "pos": {
-        "x": 152.4,
-        "y": 154.5
-      },
-      "items": [
-        {
-          "description": "Reference field of C2",
-          "pos": {
-            "x": 152.4,
-            "y": 154.5
-          },
-          "uuid": "f2d37303-a4f8-4c9f-8126-7c6ac6923dc6",
-          "ownership_status": "resolved",
-          "item_kind": "property",
-          "layer": "F.SilkS",
-          "owner": {
-            "kind": "footprint",
-            "reference": "C2",
-            "uuid": "68c39378-bfc6-4449-bb36-9ea4346b1c8c"
-          }
-        },
-        {
-          "description": "Pad 2 [Net-(R7-Pad1)] of SW1 on F.Cu",
-          "pos": {
-            "x": 151.5,
-            "y": 153.475
-          },
-          "uuid": "e351eff8-9e0c-4c95-8305-771784b7b227",
-          "ownership_status": "resolved",
-          "item_kind": "pad",
-          "owner": {
-            "kind": "footprint",
-            "reference": "SW1",
-            "uuid": "917eb4b7-48d5-4c68-a3d1-6a3e2d8f7b48"
-          }
-        }
-      ]
-    },
-    {
-      "severity": "warning",
-      "description": "Silkscreen clipped by solder mask",
-      "rule": "silk_over_copper",
-      "pos": {
-        "x": 152.4,
-        "y": 154.5
-      },
-      "items": [
-        {
-          "description": "Reference field of C2",
-          "pos": {
-            "x": 152.4,
-            "y": 154.5
-          },
-          "uuid": "f2d37303-a4f8-4c9f-8126-7c6ac6923dc6",
-          "ownership_status": "resolved",
-          "item_kind": "property",
-          "layer": "F.SilkS",
-          "owner": {
-            "kind": "footprint",
-            "reference": "C2",
-            "uuid": "68c39378-bfc6-4449-bb36-9ea4346b1c8c"
-          }
-        },
-        {
-          "description": "Pad 2 [GND] of C2 on F.Cu",
-          "pos": {
-            "x": 153.4,
-            "y": 153.55
-          },
-          "uuid": "76439fd1-1092-4b63-8bb0-cae0dd43a2f2",
-          "ownership_status": "resolved",
-          "item_kind": "pad",
-          "owner": {
-            "kind": "footprint",
-            "reference": "C2",
-            "uuid": "68c39378-bfc6-4449-bb36-9ea4346b1c8c"
-          }
-        }
-      ]
-    },
-    {
-      "severity": "warning",
-      "description": "Silkscreen clipped by solder mask",
-      "rule": "silk_over_copper",
-      "pos": {
-        "x": 144.5,
-        "y": 162.5
-      },
-      "items": [
-        {
-          "description": "Reference field of L1",
-          "pos": {
-            "x": 144.5,
-            "y": 162.5
-          },
-          "uuid": "be8e307f-601d-4fc5-bd94-09173ee49029",
-          "ownership_status": "resolved",
-          "item_kind": "property",
-          "layer": "F.SilkS",
-          "owner": {
-            "kind": "footprint",
-            "reference": "L1",
-            "uuid": "2cfe9a48-ca36-4f15-9b66-937eaeadfb9d"
-          }
-        },
-        {
-          "description": "Pad 1 [/VREG_LX] of L1 on F.Cu",
-          "pos": {
-            "x": 143.775,
-            "y": 163.5
-          },
-          "uuid": "cfc6b052-a11d-4863-86df-30f89777bd0c",
-          "ownership_status": "resolved",
-          "item_kind": "pad",
-          "owner": {
-            "kind": "footprint",
-            "reference": "L1",
-            "uuid": "2cfe9a48-ca36-4f15-9b66-937eaeadfb9d"
-          }
-        }
-      ]
-    },
-    {
-      "severity": "warning",
-      "description": "Silkscreen clipped by solder mask",
-      "rule": "silk_over_copper",
-      "pos": {
-        "x": 143.5,
-        "y": 164.8
-      },
-      "items": [
-        {
-          "description": "Reference field of C6",
-          "pos": {
-            "x": 143.5,
-            "y": 164.8
-          },
-          "uuid": "a07cb783-b54e-451d-93f7-d0271c46209f",
-          "ownership_status": "resolved",
-          "item_kind": "property",
-          "layer": "F.SilkS",
-          "owner": {
-            "kind": "footprint",
-            "reference": "C6",
-            "uuid": "83f5c7d9-61e8-427b-97f8-be6bb115eb45"
-          }
-        },
-        {
-          "description": "Pad 1 [/VREG_LX] of L1 on F.Cu",
-          "pos": {
-            "x": 143.775,
-            "y": 163.5
-          },
-          "uuid": "cfc6b052-a11d-4863-86df-30f89777bd0c",
-          "ownership_status": "resolved",
-          "item_kind": "pad",
-          "owner": {
-            "kind": "footprint",
-            "reference": "L1",
-            "uuid": "2cfe9a48-ca36-4f15-9b66-937eaeadfb9d"
+            "reference": "C11",
+            "uuid": "99ad6037-7968-42aa-8284-13dad5754aac"
           }
         }
       ]
@@ -6148,132 +6218,6 @@
             "kind": "footprint",
             "reference": "C6",
             "uuid": "83f5c7d9-61e8-427b-97f8-be6bb115eb45"
-          }
-        }
-      ]
-    },
-    {
-      "severity": "warning",
-      "description": "Silkscreen clipped by solder mask",
-      "rule": "silk_over_copper",
-      "pos": {
-        "x": 160.0,
-        "y": 170.0
-      },
-      "items": [
-        {
-          "description": "Reference field of J2",
-          "pos": {
-            "x": 160.0,
-            "y": 170.0
-          },
-          "uuid": "7e890edf-a2e6-445b-a758-c6e3f23df0e8",
-          "ownership_status": "resolved",
-          "item_kind": "property",
-          "layer": "F.SilkS",
-          "owner": {
-            "kind": "footprint",
-            "reference": "J2",
-            "uuid": "c2a0381e-1ffd-473e-ad49-26f7c9ffb5fc"
-          }
-        },
-        {
-          "description": "PTH pad 1 [VBUS] of J2",
-          "pos": {
-            "x": 160.0,
-            "y": 169.0
-          },
-          "uuid": "683c3d3f-643b-451f-b229-32486f4f4310",
-          "ownership_status": "resolved",
-          "item_kind": "pad",
-          "owner": {
-            "kind": "footprint",
-            "reference": "J2",
-            "uuid": "c2a0381e-1ffd-473e-ad49-26f7c9ffb5fc"
-          }
-        }
-      ]
-    },
-    {
-      "severity": "warning",
-      "description": "Silkscreen clipped by solder mask",
-      "rule": "silk_over_copper",
-      "pos": {
-        "x": 158.0,
-        "y": 146.81
-      },
-      "items": [
-        {
-          "description": "Reference field of PS1",
-          "pos": {
-            "x": 158.0,
-            "y": 146.81
-          },
-          "uuid": "2b12b750-8652-46b4-86d7-a9e05b88ce0d",
-          "ownership_status": "resolved",
-          "item_kind": "property",
-          "layer": "F.SilkS",
-          "owner": {
-            "kind": "footprint",
-            "reference": "PS1",
-            "uuid": "247f0dfe-21b8-49f6-be89-54c34726bb3e"
-          }
-        },
-        {
-          "description": "PTH pad 1 [GND] of PS1",
-          "pos": {
-            "x": 158.0,
-            "y": 145.81
-          },
-          "uuid": "15820f7d-1573-4126-b20e-895bef081989",
-          "ownership_status": "resolved",
-          "item_kind": "pad",
-          "owner": {
-            "kind": "footprint",
-            "reference": "PS1",
-            "uuid": "247f0dfe-21b8-49f6-be89-54c34726bb3e"
-          }
-        }
-      ]
-    },
-    {
-      "severity": "warning",
-      "description": "Silkscreen clipped by solder mask",
-      "rule": "silk_over_copper",
-      "pos": {
-        "x": 144.5,
-        "y": 161.0
-      },
-      "items": [
-        {
-          "description": "Reference field of R5",
-          "pos": {
-            "x": 144.5,
-            "y": 161.0
-          },
-          "uuid": "d215ed95-7dc7-4fd5-bc63-8a6c381dc0e0",
-          "ownership_status": "resolved",
-          "item_kind": "property",
-          "layer": "F.SilkS",
-          "owner": {
-            "kind": "footprint",
-            "reference": "R5",
-            "uuid": "ed313774-7dd7-41f3-abe2-e1e7292d3e0c"
-          }
-        },
-        {
-          "description": "Pad 2 [/USB_DM] of R6 on F.Cu",
-          "pos": {
-            "x": 143.990001,
-            "y": 161.3
-          },
-          "uuid": "07f1bbec-e964-4514-a086-ff0f0358edd9",
-          "ownership_status": "resolved",
-          "item_kind": "pad",
-          "owner": {
-            "kind": "footprint",
-            "reference": "R6",
-            "uuid": "04be33af-6b8e-4f1c-beca-0bf045ca6cf0"
           }
         }
       ]
@@ -6367,6 +6311,468 @@
       "description": "Silkscreen clipped by solder mask",
       "rule": "silk_over_copper",
       "pos": {
+        "x": 132.4,
+        "y": 161.8
+      },
+      "items": [
+        {
+          "description": "Reference field of C16",
+          "pos": {
+            "x": 132.4,
+            "y": 161.8
+          },
+          "uuid": "ee40a5fb-7021-446a-b278-d9f046268b65",
+          "ownership_status": "resolved",
+          "item_kind": "property",
+          "layer": "F.SilkS",
+          "owner": {
+            "kind": "footprint",
+            "reference": "C16",
+            "uuid": "a9b75072-a946-45ab-80da-93ddb35993e0"
+          }
+        },
+        {
+          "description": "Pad 2 [Net-(U1-RUN)] of R8 on F.Cu",
+          "pos": {
+            "x": 132.909999,
+            "y": 162.3
+          },
+          "uuid": "63633475-c3eb-4f9a-9cd4-1cef650e42fe",
+          "ownership_status": "resolved",
+          "item_kind": "pad",
+          "owner": {
+            "kind": "footprint",
+            "reference": "R8",
+            "uuid": "0d59fb23-00ef-45d2-86ae-5fd138c13043"
+          }
+        }
+      ]
+    },
+    {
+      "severity": "warning",
+      "description": "Silkscreen clipped by solder mask",
+      "rule": "silk_over_copper",
+      "pos": {
+        "x": 132.4,
+        "y": 161.8
+      },
+      "items": [
+        {
+          "description": "Reference field of C16",
+          "pos": {
+            "x": 132.4,
+            "y": 161.8
+          },
+          "uuid": "ee40a5fb-7021-446a-b278-d9f046268b65",
+          "ownership_status": "resolved",
+          "item_kind": "property",
+          "layer": "F.SilkS",
+          "owner": {
+            "kind": "footprint",
+            "reference": "C16",
+            "uuid": "a9b75072-a946-45ab-80da-93ddb35993e0"
+          }
+        },
+        {
+          "description": "Pad 1 [+3V3] of R8 on F.Cu",
+          "pos": {
+            "x": 131.89,
+            "y": 162.3
+          },
+          "uuid": "e5082085-dc22-483c-add7-8c5c0cd7790d",
+          "ownership_status": "resolved",
+          "item_kind": "pad",
+          "owner": {
+            "kind": "footprint",
+            "reference": "R8",
+            "uuid": "0d59fb23-00ef-45d2-86ae-5fd138c13043"
+          }
+        }
+      ]
+    },
+    {
+      "severity": "warning",
+      "description": "Silkscreen clipped by solder mask",
+      "rule": "silk_over_copper",
+      "pos": {
+        "x": 132.4,
+        "y": 162.8
+      },
+      "items": [
+        {
+          "description": "Reference field of C12",
+          "pos": {
+            "x": 132.4,
+            "y": 162.8
+          },
+          "uuid": "4b5cdefe-5319-4f96-bb7e-89656f17a1d9",
+          "ownership_status": "resolved",
+          "item_kind": "property",
+          "layer": "F.SilkS",
+          "owner": {
+            "kind": "footprint",
+            "reference": "C12",
+            "uuid": "e0939bb9-accf-4d16-b626-ba28ce441b47"
+          }
+        },
+        {
+          "description": "Pad 1 [+3V3] of R8 on F.Cu",
+          "pos": {
+            "x": 131.89,
+            "y": 162.3
+          },
+          "uuid": "e5082085-dc22-483c-add7-8c5c0cd7790d",
+          "ownership_status": "resolved",
+          "item_kind": "pad",
+          "owner": {
+            "kind": "footprint",
+            "reference": "R8",
+            "uuid": "0d59fb23-00ef-45d2-86ae-5fd138c13043"
+          }
+        }
+      ]
+    },
+    {
+      "severity": "warning",
+      "description": "Silkscreen clipped by solder mask",
+      "rule": "silk_over_copper",
+      "pos": {
+        "x": 132.4,
+        "y": 162.8
+      },
+      "items": [
+        {
+          "description": "Reference field of C12",
+          "pos": {
+            "x": 132.4,
+            "y": 162.8
+          },
+          "uuid": "4b5cdefe-5319-4f96-bb7e-89656f17a1d9",
+          "ownership_status": "resolved",
+          "item_kind": "property",
+          "layer": "F.SilkS",
+          "owner": {
+            "kind": "footprint",
+            "reference": "C12",
+            "uuid": "e0939bb9-accf-4d16-b626-ba28ce441b47"
+          }
+        },
+        {
+          "description": "Pad 2 [Net-(U1-RUN)] of R8 on F.Cu",
+          "pos": {
+            "x": 132.909999,
+            "y": 162.3
+          },
+          "uuid": "63633475-c3eb-4f9a-9cd4-1cef650e42fe",
+          "ownership_status": "resolved",
+          "item_kind": "pad",
+          "owner": {
+            "kind": "footprint",
+            "reference": "R8",
+            "uuid": "0d59fb23-00ef-45d2-86ae-5fd138c13043"
+          }
+        }
+      ]
+    },
+    {
+      "severity": "warning",
+      "description": "Silkscreen clipped by solder mask",
+      "rule": "silk_over_copper",
+      "pos": {
+        "x": 134.0,
+        "y": 169.5
+      },
+      "items": [
+        {
+          "description": "Reference field of D2",
+          "pos": {
+            "x": 134.0,
+            "y": 169.5
+          },
+          "uuid": "ae7a77f2-339a-46b9-afe9-d958cd76ee72",
+          "ownership_status": "resolved",
+          "item_kind": "property",
+          "layer": "F.SilkS",
+          "owner": {
+            "kind": "footprint",
+            "reference": "D2",
+            "uuid": "c6780e9d-027f-4991-8028-892f821f152e"
+          }
+        },
+        {
+          "description": "Pad 1 [GND] of D2 on F.Cu",
+          "pos": {
+            "x": 135.0,
+            "y": 170.2875
+          },
+          "uuid": "31c094cf-30fb-4170-920f-919be42ba9b9",
+          "ownership_status": "resolved",
+          "item_kind": "pad",
+          "owner": {
+            "kind": "footprint",
+            "reference": "D2",
+            "uuid": "c6780e9d-027f-4991-8028-892f821f152e"
+          }
+        }
+      ]
+    },
+    {
+      "severity": "warning",
+      "description": "Silkscreen clipped by solder mask",
+      "rule": "silk_over_copper",
+      "pos": {
+        "x": 134.0,
+        "y": 169.5
+      },
+      "items": [
+        {
+          "description": "Reference field of D2",
+          "pos": {
+            "x": 134.0,
+            "y": 169.5
+          },
+          "uuid": "ae7a77f2-339a-46b9-afe9-d958cd76ee72",
+          "ownership_status": "resolved",
+          "item_kind": "property",
+          "layer": "F.SilkS",
+          "owner": {
+            "kind": "footprint",
+            "reference": "D2",
+            "uuid": "c6780e9d-027f-4991-8028-892f821f152e"
+          }
+        },
+        {
+          "description": "Pad 2 [Net-(D2-A)] of D2 on F.Cu",
+          "pos": {
+            "x": 135.0,
+            "y": 168.7125
+          },
+          "uuid": "7183bde4-4932-4dda-98e0-3b07db1d96d9",
+          "ownership_status": "resolved",
+          "item_kind": "pad",
+          "owner": {
+            "kind": "footprint",
+            "reference": "D2",
+            "uuid": "c6780e9d-027f-4991-8028-892f821f152e"
+          }
+        }
+      ]
+    },
+    {
+      "severity": "warning",
+      "description": "Silkscreen clipped by solder mask",
+      "rule": "silk_over_copper",
+      "pos": {
+        "x": 135.8,
+        "y": 165.5
+      },
+      "items": [
+        {
+          "description": "Reference field of C13",
+          "pos": {
+            "x": 135.8,
+            "y": 165.5
+          },
+          "uuid": "479b3931-bbb7-4433-b6f3-5ee2695f25b9",
+          "ownership_status": "resolved",
+          "item_kind": "property",
+          "layer": "F.SilkS",
+          "owner": {
+            "kind": "footprint",
+            "reference": "C13",
+            "uuid": "d95a8edc-dc25-4299-9b10-c3a3593c0e94"
+          }
+        },
+        {
+          "description": "Pad 2 [Net-(D2-A)] of R9 on F.Cu",
+          "pos": {
+            "x": 135.0,
+            "y": 165.990001
+          },
+          "uuid": "05eceed4-65c7-4179-9c4d-a8b0d0819e8e",
+          "ownership_status": "resolved",
+          "item_kind": "pad",
+          "owner": {
+            "kind": "footprint",
+            "reference": "R9",
+            "uuid": "e4093e43-bc42-4733-8269-1a2f9806c89d"
+          }
+        }
+      ]
+    },
+    {
+      "severity": "warning",
+      "description": "Silkscreen clipped by solder mask",
+      "rule": "silk_over_copper",
+      "pos": {
+        "x": 158.0,
+        "y": 146.81
+      },
+      "items": [
+        {
+          "description": "Reference field of PS1",
+          "pos": {
+            "x": 158.0,
+            "y": 146.81
+          },
+          "uuid": "2b12b750-8652-46b4-86d7-a9e05b88ce0d",
+          "ownership_status": "resolved",
+          "item_kind": "property",
+          "layer": "F.SilkS",
+          "owner": {
+            "kind": "footprint",
+            "reference": "PS1",
+            "uuid": "247f0dfe-21b8-49f6-be89-54c34726bb3e"
+          }
+        },
+        {
+          "description": "PTH pad 1 [GND] of PS1",
+          "pos": {
+            "x": 158.0,
+            "y": 145.81
+          },
+          "uuid": "15820f7d-1573-4126-b20e-895bef081989",
+          "ownership_status": "resolved",
+          "item_kind": "pad",
+          "owner": {
+            "kind": "footprint",
+            "reference": "PS1",
+            "uuid": "247f0dfe-21b8-49f6-be89-54c34726bb3e"
+          }
+        }
+      ]
+    },
+    {
+      "severity": "warning",
+      "description": "Silkscreen clipped by solder mask",
+      "rule": "silk_over_copper",
+      "pos": {
+        "x": 152.4,
+        "y": 154.5
+      },
+      "items": [
+        {
+          "description": "Reference field of C2",
+          "pos": {
+            "x": 152.4,
+            "y": 154.5
+          },
+          "uuid": "f2d37303-a4f8-4c9f-8126-7c6ac6923dc6",
+          "ownership_status": "resolved",
+          "item_kind": "property",
+          "layer": "F.SilkS",
+          "owner": {
+            "kind": "footprint",
+            "reference": "C2",
+            "uuid": "68c39378-bfc6-4449-bb36-9ea4346b1c8c"
+          }
+        },
+        {
+          "description": "Pad 1 [+3V3] of C2 on F.Cu",
+          "pos": {
+            "x": 153.4,
+            "y": 155.45
+          },
+          "uuid": "7dead9d6-3ecd-4af4-93a0-da8ddaf34bec",
+          "ownership_status": "resolved",
+          "item_kind": "pad",
+          "owner": {
+            "kind": "footprint",
+            "reference": "C2",
+            "uuid": "68c39378-bfc6-4449-bb36-9ea4346b1c8c"
+          }
+        }
+      ]
+    },
+    {
+      "severity": "warning",
+      "description": "Silkscreen clipped by solder mask",
+      "rule": "silk_over_copper",
+      "pos": {
+        "x": 152.4,
+        "y": 154.5
+      },
+      "items": [
+        {
+          "description": "Reference field of C2",
+          "pos": {
+            "x": 152.4,
+            "y": 154.5
+          },
+          "uuid": "f2d37303-a4f8-4c9f-8126-7c6ac6923dc6",
+          "ownership_status": "resolved",
+          "item_kind": "property",
+          "layer": "F.SilkS",
+          "owner": {
+            "kind": "footprint",
+            "reference": "C2",
+            "uuid": "68c39378-bfc6-4449-bb36-9ea4346b1c8c"
+          }
+        },
+        {
+          "description": "Pad 2 [Net-(R7-Pad1)] of SW1 on F.Cu",
+          "pos": {
+            "x": 151.5,
+            "y": 153.475
+          },
+          "uuid": "e895653f-b56b-436f-8cd5-44365b0c431a",
+          "ownership_status": "resolved",
+          "item_kind": "pad",
+          "owner": {
+            "kind": "footprint",
+            "reference": "SW1",
+            "uuid": "48e88c0f-b6c7-488b-9caf-82931a2f7315"
+          }
+        }
+      ]
+    },
+    {
+      "severity": "warning",
+      "description": "Silkscreen clipped by solder mask",
+      "rule": "silk_over_copper",
+      "pos": {
+        "x": 152.4,
+        "y": 154.5
+      },
+      "items": [
+        {
+          "description": "Reference field of C2",
+          "pos": {
+            "x": 152.4,
+            "y": 154.5
+          },
+          "uuid": "f2d37303-a4f8-4c9f-8126-7c6ac6923dc6",
+          "ownership_status": "resolved",
+          "item_kind": "property",
+          "layer": "F.SilkS",
+          "owner": {
+            "kind": "footprint",
+            "reference": "C2",
+            "uuid": "68c39378-bfc6-4449-bb36-9ea4346b1c8c"
+          }
+        },
+        {
+          "description": "Pad 2 [GND] of C2 on F.Cu",
+          "pos": {
+            "x": 153.4,
+            "y": 153.55
+          },
+          "uuid": "76439fd1-1092-4b63-8bb0-cae0dd43a2f2",
+          "ownership_status": "resolved",
+          "item_kind": "pad",
+          "owner": {
+            "kind": "footprint",
+            "reference": "C2",
+            "uuid": "68c39378-bfc6-4449-bb36-9ea4346b1c8c"
+          }
+        }
+      ]
+    },
+    {
+      "severity": "warning",
+      "description": "Silkscreen clipped by solder mask",
+      "rule": "silk_over_copper",
+      "pos": {
         "x": 114.84,
         "y": 119.18
       },
@@ -6377,14 +6783,14 @@
             "x": 114.84,
             "y": 119.18
           },
-          "uuid": "57de958f-2211-406c-a883-f1b8fb1faf6b",
+          "uuid": "899fbe51-eaf9-4270-b99d-e6aad90f7c1a",
           "ownership_status": "resolved",
           "item_kind": "property",
           "layer": "B.SilkS",
           "owner": {
             "kind": "footprint",
             "reference": "J1",
-            "uuid": "2f0409ec-43e4-44ca-b06a-100f85bd2ac1"
+            "uuid": "83b73376-0f2d-49bf-bad1-4316de845a8f"
           }
         },
         {
@@ -6393,13 +6799,13 @@
             "x": 114.84,
             "y": 118.18
           },
-          "uuid": "eb005d12-f8be-4bfd-aa91-4a0c6f950b63",
+          "uuid": "6e594b52-ca96-4cee-ac58-59dbd57d3988",
           "ownership_status": "resolved",
           "item_kind": "pad",
           "owner": {
             "kind": "footprint",
             "reference": "J1",
-            "uuid": "2f0409ec-43e4-44ca-b06a-100f85bd2ac1"
+            "uuid": "83b73376-0f2d-49bf-bad1-4316de845a8f"
           }
         }
       ]
@@ -7087,15 +7493,15 @@
       "description": "Missing symbol field 'LCSC' in footprint",
       "rule": "footprint_symbol_field_mismatch",
       "pos": {
-        "x": 163.3,
-        "y": 131.5
+        "x": 167.0,
+        "y": 127.6
       },
       "items": [
         {
           "description": "Footprint C29",
           "pos": {
-            "x": 163.3,
-            "y": 131.5
+            "x": 167.0,
+            "y": 127.6
           },
           "uuid": "c908f15b-1a21-4956-970c-03ca20177b7b",
           "ownership_status": "resolved",
@@ -7112,14 +7518,14 @@
       "description": "Missing symbol field 'LCSC' in footprint",
       "rule": "footprint_symbol_field_mismatch",
       "pos": {
-        "x": 127.86,
+        "x": 129.476,
         "y": 126.9
       },
       "items": [
         {
           "description": "Footprint C30",
           "pos": {
-            "x": 127.86,
+            "x": 129.476,
             "y": 126.9
           },
           "uuid": "ee4115a3-d6b2-4ac5-8f87-1b48b9b9c7a4",
@@ -7137,14 +7543,14 @@
       "description": "Missing symbol field 'LCSC' in footprint",
       "rule": "footprint_symbol_field_mismatch",
       "pos": {
-        "x": 116.86,
+        "x": 118.395,
         "y": 126.9
       },
       "items": [
         {
           "description": "Footprint C31",
           "pos": {
-            "x": 116.86,
+            "x": 118.395,
             "y": 126.9
           },
           "uuid": "cd85415c-3926-4c2a-8779-7fc338bcde9e",
@@ -7162,14 +7568,14 @@
       "description": "Missing symbol field 'LCSC' in footprint",
       "rule": "footprint_symbol_field_mismatch",
       "pos": {
-        "x": 149.86,
+        "x": 140.556,
         "y": 126.9
       },
       "items": [
         {
           "description": "Footprint C32",
           "pos": {
-            "x": 149.86,
+            "x": 140.556,
             "y": 126.9
           },
           "uuid": "cfbea181-eed6-4de1-80b0-99ea0bf28eef",
@@ -7187,14 +7593,14 @@
       "description": "Missing symbol field 'LCSC' in footprint",
       "rule": "footprint_symbol_field_mismatch",
       "pos": {
-        "x": 160.86,
+        "x": 151.636,
         "y": 126.9
       },
       "items": [
         {
           "description": "Footprint C33",
           "pos": {
-            "x": 160.86,
+            "x": 151.636,
             "y": 126.9
           },
           "uuid": "53b9bef3-dd26-43a3-a9c6-3599e44ac74c",
@@ -7212,14 +7618,14 @@
       "description": "Missing symbol field 'LCSC' in footprint",
       "rule": "footprint_symbol_field_mismatch",
       "pos": {
-        "x": 138.86,
+        "x": 162.715,
         "y": 126.9
       },
       "items": [
         {
           "description": "Footprint C34",
           "pos": {
-            "x": 138.86,
+            "x": 162.715,
             "y": 126.9
           },
           "uuid": "e813ec4f-90c9-4f9d-9150-9911a317f0b5",
@@ -7288,14 +7694,14 @@
       "rule": "footprint_symbol_field_mismatch",
       "pos": {
         "x": 106.5,
-        "y": 127.5
+        "y": 134.0
       },
       "items": [
         {
           "description": "Footprint C37",
           "pos": {
             "x": 106.5,
-            "y": 127.5
+            "y": 134.0
           },
           "uuid": "45c4a105-fcdd-4be3-9272-13385152dfdc",
           "ownership_status": "resolved",
@@ -7397,7 +7803,7 @@
             "x": 114.84,
             "y": 118.18
           },
-          "uuid": "2f0409ec-43e4-44ca-b06a-100f85bd2ac1",
+          "uuid": "83b73376-0f2d-49bf-bad1-4316de845a8f",
           "ownership_status": "resolved",
           "item_kind": "footprint",
           "layer": "B.Cu",
@@ -7422,7 +7828,7 @@
             "x": 160.0,
             "y": 169.0
           },
-          "uuid": "c2a0381e-1ffd-473e-ad49-26f7c9ffb5fc",
+          "uuid": "f3eb8fba-e7dc-4173-949a-55d2b400c01b",
           "ownership_status": "resolved",
           "item_kind": "footprint",
           "layer": "F.Cu",
@@ -7987,14 +8393,14 @@
       "description": "Missing symbol field 'LCSC' in footprint",
       "rule": "footprint_symbol_field_mismatch",
       "pos": {
-        "x": 115.25,
+        "x": 118.303,
         "y": 122.6
       },
       "items": [
         {
           "description": "Footprint RN1",
           "pos": {
-            "x": 115.25,
+            "x": 118.303,
             "y": 122.6
           },
           "uuid": "c913816c-ec52-4e11-b704-8413a648ff20",
@@ -8012,14 +8418,14 @@
       "description": "Missing symbol field 'LCSC' in footprint",
       "rule": "footprint_symbol_field_mismatch",
       "pos": {
-        "x": 144.25,
+        "x": 140.463,
         "y": 122.6
       },
       "items": [
         {
           "description": "Footprint RN2",
           "pos": {
-            "x": 144.25,
+            "x": 140.463,
             "y": 122.6
           },
           "uuid": "941b29e9-1c56-4022-8749-616f66dfff66",
@@ -8037,14 +8443,14 @@
       "description": "Missing symbol field 'LCSC' in footprint",
       "rule": "footprint_symbol_field_mismatch",
       "pos": {
-        "x": 151.5,
+        "x": 146.002,
         "y": 122.6
       },
       "items": [
         {
           "description": "Footprint RN3",
           "pos": {
-            "x": 151.5,
+            "x": 146.002,
             "y": 122.6
           },
           "uuid": "a6755b14-b9bb-4c8d-b030-299b7159049a",
@@ -8062,14 +8468,14 @@
       "description": "Missing symbol field 'LCSC' in footprint",
       "rule": "footprint_symbol_field_mismatch",
       "pos": {
-        "x": 158.75,
+        "x": 151.543,
         "y": 122.6
       },
       "items": [
         {
           "description": "Footprint RN4",
           "pos": {
-            "x": 158.75,
+            "x": 151.543,
             "y": 122.6
           },
           "uuid": "0201f6ee-4588-4717-9581-80795993c35b",
@@ -8087,14 +8493,14 @@
       "description": "Missing symbol field 'LCSC' in footprint",
       "rule": "footprint_symbol_field_mismatch",
       "pos": {
-        "x": 166.0,
+        "x": 157.082,
         "y": 122.6
       },
       "items": [
         {
           "description": "Footprint RN5",
           "pos": {
-            "x": 166.0,
+            "x": 157.082,
             "y": 122.6
           },
           "uuid": "98be88cf-4f51-4a86-81bc-abad001777d8",
@@ -8112,14 +8518,14 @@
       "description": "Missing symbol field 'LCSC' in footprint",
       "rule": "footprint_symbol_field_mismatch",
       "pos": {
-        "x": 129.75,
+        "x": 129.382,
         "y": 122.6
       },
       "items": [
         {
           "description": "Footprint RN6",
           "pos": {
-            "x": 129.75,
+            "x": 129.382,
             "y": 122.6
           },
           "uuid": "437f0f12-aa66-44d9-87c4-338a198c5b3a",
@@ -8137,14 +8543,14 @@
       "description": "Missing symbol field 'LCSC' in footprint",
       "rule": "footprint_symbol_field_mismatch",
       "pos": {
-        "x": 137.0,
+        "x": 134.923,
         "y": 122.6
       },
       "items": [
         {
           "description": "Footprint RN7",
           "pos": {
-            "x": 137.0,
+            "x": 134.923,
             "y": 122.6
           },
           "uuid": "247d3bf8-9270-4078-bd19-eb15166fcfd8",
@@ -8162,14 +8568,14 @@
       "description": "Missing symbol field 'LCSC' in footprint",
       "rule": "footprint_symbol_field_mismatch",
       "pos": {
-        "x": 108.0,
+        "x": 112.763,
         "y": 122.6
       },
       "items": [
         {
           "description": "Footprint RN8",
           "pos": {
-            "x": 108.0,
+            "x": 112.763,
             "y": 122.6
           },
           "uuid": "e14ecd05-12a7-4dfe-95cb-0801dbdfcdde",
@@ -8187,14 +8593,14 @@
       "description": "Missing symbol field 'LCSC' in footprint",
       "rule": "footprint_symbol_field_mismatch",
       "pos": {
-        "x": 122.5,
+        "x": 123.843,
         "y": 122.6
       },
       "items": [
         {
           "description": "Footprint RN9",
           "pos": {
-            "x": 122.5,
+            "x": 123.843,
             "y": 122.6
           },
           "uuid": "19ebbe1c-6ab9-4804-bc7e-6ae525d6c2f8",
@@ -8222,7 +8628,7 @@
             "x": 148.5,
             "y": 151.6
           },
-          "uuid": "917eb4b7-48d5-4c68-a3d1-6a3e2d8f7b48",
+          "uuid": "48e88c0f-b6c7-488b-9caf-82931a2f7315",
           "ownership_status": "resolved",
           "item_kind": "footprint",
           "layer": "F.Cu",
@@ -8247,7 +8653,7 @@
             "x": 124.0,
             "y": 168.0
           },
-          "uuid": "2ba41c32-32a7-45ec-a6f7-7921ede35ea8",
+          "uuid": "5ab5c9b2-7ffb-42e0-aa0d-da952bc3ed8b",
           "ownership_status": "resolved",
           "item_kind": "footprint",
           "layer": "F.Cu",
@@ -8272,7 +8678,7 @@
             "x": 138.0,
             "y": 160.0
           },
-          "uuid": "3495530c-eb06-455d-bd3b-50927890e090",
+          "uuid": "b3e0fc76-4415-4279-b04a-523c390afa03",
           "ownership_status": "resolved",
           "item_kind": "footprint",
           "layer": "F.Cu",
@@ -8497,7 +8903,7 @@
             "x": 168.5,
             "y": 134.0
           },
-          "uuid": "cb3add1a-55b9-46a6-b6d7-675640368d23",
+          "uuid": "676f1c9f-48f4-44c7-9de9-9fed26529633",
           "ownership_status": "resolved",
           "item_kind": "footprint",
           "layer": "F.Cu",
@@ -8512,14 +8918,14 @@
       "description": "Missing symbol field 'LCSC' in footprint",
       "rule": "footprint_symbol_field_mismatch",
       "pos": {
-        "x": 125.0,
+        "x": 126.613,
         "y": 131.0
       },
       "items": [
         {
           "description": "Footprint U12",
           "pos": {
-            "x": 125.0,
+            "x": 126.613,
             "y": 131.0
           },
           "uuid": "b68541bf-877d-4a1a-a47d-ad486b8182d7",
@@ -8537,14 +8943,14 @@
       "description": "Missing symbol field 'LCSC' in footprint",
       "rule": "footprint_symbol_field_mismatch",
       "pos": {
-        "x": 114.0,
+        "x": 115.533,
         "y": 131.0
       },
       "items": [
         {
           "description": "Footprint U13",
           "pos": {
-            "x": 114.0,
+            "x": 115.533,
             "y": 131.0
           },
           "uuid": "e38e70d3-51a3-4153-afdf-03e5fdebbfd4",
@@ -8562,14 +8968,14 @@
       "description": "Missing symbol field 'LCSC' in footprint",
       "rule": "footprint_symbol_field_mismatch",
       "pos": {
-        "x": 147.0,
+        "x": 137.693,
         "y": 131.0
       },
       "items": [
         {
           "description": "Footprint U14",
           "pos": {
-            "x": 147.0,
+            "x": 137.693,
             "y": 131.0
           },
           "uuid": "22aecf76-c846-4966-a3d5-f72ab10ed1b4",
@@ -8587,14 +8993,14 @@
       "description": "Missing symbol field 'LCSC' in footprint",
       "rule": "footprint_symbol_field_mismatch",
       "pos": {
-        "x": 158.0,
+        "x": 148.773,
         "y": 131.0
       },
       "items": [
         {
           "description": "Footprint U15",
           "pos": {
-            "x": 158.0,
+            "x": 148.773,
             "y": 131.0
           },
           "uuid": "b7424212-c1ac-47f0-9f58-1c51cf7f1016",
@@ -8612,14 +9018,14 @@
       "description": "Missing symbol field 'LCSC' in footprint",
       "rule": "footprint_symbol_field_mismatch",
       "pos": {
-        "x": 136.0,
+        "x": 159.852,
         "y": 131.0
       },
       "items": [
         {
           "description": "Footprint U16",
           "pos": {
-            "x": 136.0,
+            "x": 159.852,
             "y": 131.0
           },
           "uuid": "fda89c36-e278-4ca7-9996-2533517240b5",

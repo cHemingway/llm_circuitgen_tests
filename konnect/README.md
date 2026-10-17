@@ -25,18 +25,107 @@ with file-level tools for libraries and the schematic).
   catalogue. The project library also has a TLP2361 symbol with an
   inverting output.
 - ERC: 0 errors, 0 warnings. DRC: 0 unconnected items and one cosmetic
-  starved-thermal error on C17 pad 2, which is connected by a track. The
-  remaining items are warnings: footprints that differ from their library
-  copies, silkscreen clipping and clearance, and a missing LCSC footprint
-  field on the parity check.
+  error: C17 pad 2 on the USB side, a ground pad with one thermal spoke
+  where KiCad wants two, as in the first layout. The remaining items are
+  warnings: footprints that differ from their library copies, silkscreen
+  clipping, overlap and clearance, and a missing LCSC footprint field on the
+  parity check.
+
+## Review 1: pin swapping
+
+The shift-register and resistor-array pins were re-assigned to untangle the
+meter-side routing. The '165 inputs (D0–D7) are equivalent, as are the
+'595 outputs (QA–QH) and the elements of the 100k arrays. The swaps were
+therefore made both within each part and between identical parts.
+
+- Each resistor array feeds one side of one '165. The 36 DVM outputs are
+  taken in D-sub pin order, left to right. So the tracks run D-sub pin →
+  array → '165 pin without crossing, almost all on the top layer.
+- The '595 outputs follow the order of their D-sub pins. QA, the pin on the
+  far side of the chip, takes the outermost signal.
+- U16 D3..D0 keep the 0,0,1,1 signature. The SAMPLE line moved from U18
+  QE/QD to QA/QC. The schematic's serial-link note now carries the full bit
+  map that the firmware needs.
+- The '165 LOAD and clock pins (1 and 2) escape to vias above each chip and
+  join on two bottom-layer buses. Ground "pockets" (a bar and via over each
+  array's ground pads, and vias for '165 pins 8 and 15) were placed before
+  routing, so the input bus routes around them.
+- The meter side was re-routed with Freerouting on top of those fixed
+  pieces. The USB side was re-imported unchanged.
+
+| Meter side | Before | After |
+| --- | --- | --- |
+| 36 '165 input nets | 1,343 mm, 53 vias | 781 mm, 7 vias |
+| 13 '595 output nets | 157 mm, 7 vias | 118 mm, 1 via |
+| 14 other nets (LOAD/SCK/MOSI/MISO, chain, +3V3_ISO) | 874 mm, 51 vias | 793 mm, 47 vias |
+| All meter-side signals | 2,374 mm, 111 vias | 1,692 mm, 55 vias |
+| GND_ISO stitching | 43 vias, 154 mm | 34 vias, 81 mm |
+
+Whole board: 1,660 → 1,275 track segments and 201 → 136 vias.
+`fab/routing_before_after.png` compares the meter-side routing before and after.
+
+## Review 3: moving parts
+
+The meter-side parts were moved, and the pins re-assigned again to suit.
+This includes the swaps between parts offered in reply to review 2. The 36
+DVM input tracks were laid out by a script, in one repeated pattern,
+instead of by the autorouter.
+
+- U16, the '165 with only four DVM inputs, moved from the middle of the row
+  to the right-hand end. The nine '165 input sides that carry DVM lines now
+  sit side by side, 11.08 mm per chip, which is twice the pitch of the
+  D-sub's groups of four pins.
+- Each array sits directly under its four D-sub pins, turned so that its
+  signal pads face the connector. The tracks drop straight into the pads.
+  On the way out, the outer two leave from the ends of the array, and the
+  inner two run between its two rows of pads to the ends. Each '165 side
+  takes two tracks from outside the chip and two from under the chip body.
+- All 36 input tracks are on the top layer except DD-50 pin 36, which sits
+  directly above pin 3. It uses one bottom-layer track and a via.
+- The '165 decoupling caps moved to the top of each chip, between its two
+  sets of input tracks, with a via to a bottom-layer +3V3_ISO spine. C29
+  moved above the regulator to make room for U16. U19 turned round so that
+  PRINT_LEVEL reaches its input directly.
+- Both shift-register chains now run in board order. MOSI enters U18, U18
+  feeds U17, and U17 loops back into U16. The '165 chain runs U16 → U15 →
+  U14 → U12 → U13 → MISO. CMD_RATIO_N moved to U18 QD, next to the other
+  U18 outputs. The serial-link note in the schematic has the new bit map.
+- The script also placed:
+  - the LOAD, SCK and OE buses on the bottom layer under both '595s, with a
+    riser down the left of the D-sub;
+  - SCK down a free channel under U15;
+  - SIPO_CH1 under the '595 bodies;
+  - a +3V3_ISO rail along the top edge and another along the opto row;
+  - SIPO_LOOP down the right-hand side;
+  - the '165 chain and MISO in a channel under the chips.
+- Freerouting routed the rest: MOSI, the '595 outputs and the opto links.
+  The USB side is unchanged.
+
+| Meter side | Review 1 | Review 3 |
+| --- | --- | --- |
+| 36 '165 input nets | 781 mm, 7 vias | 655 mm, 1 via |
+| 13 '595 output nets | 118 mm, 1 via | 96 mm, 0 vias |
+| 14 other nets (LOAD/SCK/MOSI/MISO, chain, +3V3_ISO) | 793 mm, 47 vias | 807 mm, 35 vias |
+| All meter-side signals | 1,692 mm, 55 vias | 1,558 mm, 36 vias |
+| GND_ISO stitching | 34 vias, 81 mm | 27 vias, 65 mm |
+
+Whole board: 1,275 → 958 track segments and 136 → 110 vias. DRC lost
+Review 1's three starved thermals on the meter side (C24, C30 and C31). It
+gained eight silkscreen overlap warnings, where the moved caps' reference
+text overlaps the '165 outlines and C37's overlaps U19. Konnect has no tool
+to move reference text. The positions file was regenerated; the BOM is
+unchanged. `fab/routing_review3.png` compares the meter-side routing after
+Review 1 and now.
 
 | Path | Contents |
 | --- | --- |
 | `solartron_7075_interface_konnect.kicad_sch` / `.kicad_pcb` / `.kicad_pro` | KiCad project |
 | `solartron.kicad_sym`, `solartron.pretty/` | Project symbols and footprints, including rect-pad copies of the stock footprints |
-| `fab/` | Gerbers and drill files, JLCPCB BOM and positions, `schematic.pdf`, `pcb_layers.pdf`, DRC report, render |
+| `fab/` | Gerbers and drill files, JLCPCB BOM and positions, `schematic.pdf`, `pcb_layers.pdf`, DRC report, render, routing comparisons for reviews 1 and 3 |
 | `CONVERSATION.md` | Session log and statistics |
 | `stats.py`, `calls.csv` | Script for the statistics, and every API call with its category |
+| `REVIEW_CONVERSATION.md` | Review log and statistics |
+| `review_stats.py`, `review_calls.csv` | Script for the review statistics and log, and every review API call with its category |
 
 ## Notes on the tool
 
@@ -52,9 +141,18 @@ with file-level tools for libraries and the schematic).
   the scratch copy of the DSN. The session import then refused one part
   because the angles were written as 270 and −90, so those angles were
   normalised.
-- Konnect has no tool to delete or move a via. KiCad's save rewrites the
-  project's design rules and net classes, so the rules were re-applied before
-  each DRC.
+- Konnect has no tool to delete or move a via, or to delete a copper zone,
+  and it deletes tracks one segment at a time. Its SES import also needs a
+  board with no tracks, vias or zones. So re-routing after the pin swaps
+  needed KiCad's own Edit ▸ Global Deletions, run in the GUI by screen
+  control with the user's agreement. In Review 3 the same dialog was driven
+  through the menu bar in the background. Each time, the whole board's
+  copper was then re-imported through Konnect: the USB side unchanged, the
+  meter side new.
+- Konnect can move and rotate footprints but not their reference text, so
+  silkscreen overlaps from moved parts stay as DRC warnings.
+- KiCad's save rewrites the project's design rules and net classes, so the
+  rules were re-applied before each DRC.
 - The ground pours needed a lot of manual work: stitching vias, a
   ground-only Freerouting pass, a small grid router written in the
   scratchpad, and hand-placed thermal spokes.
@@ -69,6 +167,15 @@ It takes everything before the export request (2026-10-15 18:44:30 UTC),
 prints the tables in `CONVERSATION.md` and writes `calls.csv`. The export
 itself ran in a resumed session, `3539381d-…`, whose file starts with a copy
 of the original's later records. The original file is the complete record.
+
+The review that followed ran in the same resumed session. `review_stats.py`
+reads that session's transcript from the first review comment to the review
+export request. It prints the review tables, writes `review_calls.csv` and,
+with `--write-md`, writes `REVIEW_CONVERSATION.md`. The resumed session
+writes no cost-state records, so the review figures come from the
+transcript's per-response usage and tool timings, priced at the published
+Opus 5.5 prices. `REVIEW_CONVERSATION.md` explains how each figure was
+measured.
 
 - **Totals** (tokens, API time, tool time and cost) come from the last
   `cost-state` record before the export request. API calls are the 520

@@ -1,2 +1,14 @@
 # KiCad lock files, written while a file is open in KiCad
 ~*.lck
+# KiCad's automatic project backups and autosaves
+*-backups/
+_autosave-*
+\#auto_saved_files\#
+*.bak
+*-bak
+fp-info-cache
+# KiCad's per-user view settings (open panels, column widths), rewritten on every save
+*.kicad_prl
+# Routing-only footprint variants, swapped in for the Specctra export and back out
+# again afterwards (see README, "Notes on the tool")
+solartron.pretty/*Route.kicad_mod

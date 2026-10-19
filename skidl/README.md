@@ -307,7 +307,9 @@ the meter side.
 | `scripts/make_prints.py` | the print PDF and the Gerber preview |
 | `build.sh` | runs the whole flow |
 | `CONVERSATION.md` | export of the Claude Code session that produced this design, with its time and token totals |
-| `scripts/session_breakdown.py`, `stats/breakdown_calls.csv` | the split of the session statistics by kind of work, and the category of every API call |
+| `REVIEW_CONVERSATION.md` | the review part of the same session (pin swaps and moved registers), with its statistics |
+| `scripts/session_breakdown.py`, `stats/breakdown_calls.csv` | the split of the design session's statistics by kind of work, and the category of every API call |
+| `scripts/review_breakdown.py`, `stats/review_breakdown_calls.csv` | the same for the review |
 | `output/` | SKiDL netlist, ERC log, BOM, unplaced board straight from SKiDL |
 | `pcb/` | KiCad 10 project: schematic, routed board, ERC and DRC reports, `render/` (schematic PDF/PNG, board renders), `print/` (prints, Gerber preview), `fab/` (Gerbers, drill, BOM, CPL) |
 
@@ -363,6 +365,9 @@ transcript. The category of each of the 347 API calls is listed in
     by the other three prices coming out as round figures.
   * The input price is poorly determined, because there are only 5 k uncached
     input tokens. Its effect on any column is under $0.02.
+  * Snapshots written later in the session (nine in all) refit the input price
+    to $3.90. Re-running the script then gives $7.52 for "Other" instead of
+    the published $7.51.
 
 ## Tool issues
 

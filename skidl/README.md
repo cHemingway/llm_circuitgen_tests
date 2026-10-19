@@ -130,27 +130,28 @@ up to about 2 MHz.
 
 | Byte | Register | bit7 … bit0 |
 |---|---|---|
-| 0 | U10 | RANGE 4 (30), RANGE 2 (31), PRINT PULSE (33), RANGE 1 (32), POL− (27), FUNC A (28), FUNC B (29), POL+ (26) |
-| 1 | U11 | 8 × 10² (14), 1 × 10² (17), 2 × 10² (16), 4 × 10² (15), 4 × 10³ (11), 2 × 10³ (12), 8 × 10³ (10), 1 × 10³ (13) |
-| 2 | U12 | 1 × 10⁴ (9), 8 × 10⁴ (6), 4 × 10⁴ (7), 2 × 10⁴ (8), 2 × 10⁵ (4), 4 × 10⁵ (3), 8 × 10⁵ (2), 1 × 10⁵ (5) |
-| 3 | U13 | 8 × 10⁰ (22), 1 × 10⁰ (25), 2 × 10⁰ (24), 4 × 10⁰ (23), 4 × 10¹ (19), 2 × 10¹ (20), 8 × 10¹ (18), 1 × 10¹ (21) |
-| 4 | U14 | PRINT LEVEL (34), 1 × 10⁶ (1), **0**, **0**, **1**, **1**, OVERLOAD (36), DATA CAN CHANGE (35) |
+| 0 | U10 | 2 × 10² (16), PRINT PULSE (33), RANGE 1 (32), 1 × 10² (17), 2 × 10³ (12), RANGE 4 (30), 4 × 10² (15), 8 × 10² (14) |
+| 1 | U11 | FUNC B (29), POL− (27), RANGE 2 (31), FUNC A (28), 1 × 10⁴ (9), 4 × 10³ (11), POL+ (26), 8 × 10³ (10) |
+| 2 | U12 | 4 × 10⁴ (7), 2 × 10⁴ (8), 4 × 10⁰ (23), 1 × 10⁰ (25), DATA CAN CHANGE (35), 8 × 10⁴ (6), 8 × 10⁰ (22), 1 × 10¹ (21) |
+| 3 | U13 | 4 × 10⁵ (3), 2 × 10¹ (20), 2 × 10⁵ (4), 4 × 10¹ (19), PRINT LEVEL (34), 8 × 10⁵ (2), 8 × 10¹ (18), 1 × 10⁶ (1) |
+| 4 | U14 | 1 × 10⁵ (5), 1 × 10³ (13), OVERLOAD (36), 2 × 10⁰ (24), **1**, **0**, **1**, **0** |
 
-Bits 5–2 of byte 4 are wired to a fixed `0011` pattern on the meter side.
+Bits 3–0 of byte 4 are wired to a fixed `1010` pattern on the meter side.
 If they read back as anything else, the link is broken or the isolated side is
 unpowered: an unpowered side reads as all ones.
 
-The bits don't follow the connector order, because the pins on each register
-and resistor array were assigned for short, uncrossed routes (see
-[Routing review](#routing-review)). Firmware should decode them with these
-tables, which are also printed on the schematic.
+The bits don't follow the connector order, and a decade's four bits can be
+split across registers. Each signal uses whichever array channel and register
+input is nearest its connector pin (see [Routing review](#routing-review)).
+Firmware should decode them with these tables, which are also printed on the
+schematic.
 
 **MOSI, bytes 3 and 4 (the last two sent):**
 
 | Byte | Register | bit7 (QH) … bit0 (QA) |
 |---|---|---|
-| 3 | U16 | RANGE 1 (48), PULSE SAMPLE (40), RANGE 2 (49), RANGE 4 (50), CONTACT SAMPLE (39, via Q1, 1 = close), –, –, REMOTE LED D4 |
-| 4 | U15 | FRONT PANEL LOCKOUT (38, 0 = lockout/remote), RATIO (41, 0 = ratio), FUNC (42), FUNC (43), INTEG 4 (44), INTEG 2 (45), INTEG 1 (46), AUTORANGE inhibit (47) |
+| 3 | U16 | –, –, FRONT PANEL LOCKOUT (38, 0 = lockout/remote), FUNC (43), PULSE SAMPLE (40), FUNC (42), RATIO (41, 0 = ratio), CONTACT SAMPLE (39, via Q1, 1 = close) |
+| 4 | U15 | REMOTE LED D4, RANGE 4 (50), RANGE 2 (49), RANGE 1 (48), INTEG 2 (45), AUTORANGE inhibit (47), INTEG 1 (46), INTEG 4 (44) |
 
 Bytes 0–2 on MOSI are don't-care: they fall out of the end of the 595 chain.
 
@@ -225,39 +226,52 @@ Typical remote measurement:
 
 ## Routing review
 
-After review, the meter-side pins were reassigned to tidy the routing. Every
-signal stays on the same part, and no part moved. Within each part:
+After review, the meter-side wiring was tidied in two rounds. J1, the
+resistor arrays, the optocouplers and everything on the host side stayed
+where they were.
 
-* **74HCT165s:** the D inputs were reassigned. On U14 this includes the four
-  link-check inputs.
-* **Resistor arrays:** the channels were reassigned. Pins 1–4 still face J1.
-* **74HC595s:** the outputs were reassigned. On U16 this includes the two
-  spare outputs.
+1. **Pin swaps within parts** (`scripts/optimise_pins.py`). Every signal
+   stayed on its original register and array. Only the pin it used there
+   changed: the 74HCT165 D inputs, the array channels and the 74HC595
+   outputs.
+2. **Pin swaps between parts, and moved registers**
+   (`scripts/optimise_layout.py`):
+   * Any meter output may now use any array channel and any 74HCT165 input,
+     so each signal takes the one nearest its connector pin. The four spare
+     inputs become the link-check bits.
+   * Any command input may use any 74HC595 output.
+   * All seven registers are turned 180°, so their clock, latch and supply
+     pins face away from J1 and the arrays. Their decoupling capacitors moved
+     with the supply pins.
+   * The 74HCT165s are reordered along the bottom row into chain order (U13,
+     U12, U11, U10 from left to right), which puts U10 next to the MISO
+     optocoupler. U15 and U16 swapped places.
 
-`scripts/optimise_pins.py` found the assignment. It reads the pad positions
-from the board and uses simulated annealing to minimise the crossings of the
-straight pad-to-pad lines, plus their length. The result is the `ARRAYS`,
-`REGS_165` and `REGS_595` tables in `solartron_7075_interface.py`. Then the
-board was re-routed with Freerouting. `scripts/routing_metrics.py` measures
-both boards:
+Both scripts read the pad positions from the board. They use simulated
+annealing to minimise the crossings of the straight pad-to-pad lines, plus
+their length. The second round also counts the clock, latch, /OE, MOSI and
+chain nets, so moving a register is weighed against its control wiring. The
+result is in the `ARRAYS`, `REGS_165` and `REGS_595` tables in
+`solartron_7075_interface.py` and the `BOTTOM_ROW` and `TOP_ROW` tables in
+`scripts/layout_pcb.py`. Each round was re-routed with Freerouting.
+`scripts/routing_metrics.py` measures the boards (original → round 1 → round
+2):
 
-| Nets | Straight-line crossings | Track length | Vias |
+| Nets | Straight-line crossings | Track length (mm) | Vias |
 |---|---|---|---|
-| J1 → resistor arrays (36) | 148 → 102 | 513 → 481 mm | 21 → 18 |
-| Resistor arrays → 74HCT165s (36) | 64 → 0 | 441 → 351 mm | 72 → 70 |
-| 74HC595s → J1 (13) | 36 → 8 | 265 → 205 mm | 11 → 11 |
-| Whole board | | 2428 → 2227 mm | 262 → 260 |
+| J1 → resistor arrays (36) | 148 → 102 → **10** | 513 → 481 → **255** | 21 → 18 → **6** |
+| Resistor arrays → 74HCT165s (36) | 64 → 0 → **0** | 441 → 351 → **372** | 72 → 70 → **72** |
+| 74HC595s → J1 (13) | 36 → 8 → **1** | 265 → 205 → **137** | 11 → 11 → **7** |
+| Clock, latch, /OE, MOSI, chains (10) | | 563 → 558 → **494** | 16 → 21 → **20** |
+| Whole board | | 2428 → 2227 → **1868** | 262 → 260 → **243** |
 
-DRC, ERC and the schematic-parity check are still clean.
+DRC, ERC and the schematic-parity check are clean after each round.
 
-What pin swaps within parts can't fix:
-
-* **J1 to the arrays.** Most of the remaining crossings come from which
-  signals share an array. Each array takes one group of four connector pins,
-  and the DD-50's staggered rows interleave those groups.
-* **The arrays to the registers.** These links still drop to the bottom layer,
-  at two vias each. The SCLK and LATCH lines and the decoupling capacitors run
-  along the top of the register row and block a top-layer route.
+The array-to-register links still drop to the bottom layer, at two vias
+each, because of the 74HCT165 pinout. Its D inputs are rows 3–6 of each pin
+column, behind Q7, DS, GND and ~Q7. Reaching them from above on the top layer
+would need eight tracks between the pin columns, and they don't fit. On the
+bottom layer the links are short, straight and parallel.
 
 ## Gerbers and prints
 
@@ -289,7 +303,7 @@ the meter side.
 | `scripts/gen_schematic.py` | draws the single-page schematic from the netlist and checks it (`--check`) |
 | `scripts/link_schematic.py` | links the routed board to the schematic (symbol paths, net names) |
 | `scripts/make_bom.py`, `scripts/jlc_cpl.py` | BOM and placement files |
-| `scripts/optimise_pins.py`, `scripts/routing_metrics.py` | meter-side pin-swap search, and the routing figures used to compare boards |
+| `scripts/optimise_pins.py`, `scripts/optimise_layout.py`, `scripts/routing_metrics.py` | meter-side pin-swap and register-placement searches, and the routing figures used to compare boards |
 | `scripts/make_prints.py` | the print PDF and the Gerber preview |
 | `build.sh` | runs the whole flow |
 | `CONVERSATION.md` | export of the Claude Code session that produced this design, with its time and token totals |

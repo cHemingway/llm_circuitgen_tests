@@ -5,7 +5,9 @@ Usage: routing_metrics.py [board.kicad_pcb]
 
 Groups the 2-pad signal nets between J1, the resistor arrays and the shift
 registers, and reports per group: straight-line (ratsnest) length, ratsnest
-crossings, routed track length and via count. Also prints board totals.
+crossings, routed track length and via count. The registers' clock, latch,
+/OE, MOSI and chain nets are reported too (straight-line length is their
+minimum spanning tree). Also prints board totals.
 """
 
 import itertools
@@ -18,6 +20,7 @@ import pcbnew
 HERE = pathlib.Path(__file__).resolve().parent.parent
 BOARD = pathlib.Path(sys.argv[1]) if len(sys.argv) > 1 else HERE / "pcb" / "solartron_7075_interface.kicad_pcb"
 to_mm = pcbnew.ToMM
+CONTROL = {"ISO_SCLK", "ISO_LATCH", "ISO_OE_N", "ISO_MOSI", "ISO_MISO_K", "SR595_CHAIN"}
 
 
 def groups(board):
@@ -29,8 +32,11 @@ def groups(board):
             if n:
                 q = p.GetPosition()
                 pads.setdefault(n, []).append((f.GetReference(), p.GetNumber(), to_mm(q.x), to_mm(q.y)))
-    out = {"J1 -> arrays": {}, "arrays -> 74HCT165": {}, "74HC595 -> J1": {}}
+    out = {"J1 -> arrays": {}, "arrays -> 74HCT165": {}, "74HC595 -> J1": {}, "control + chains": {}}
     for n, pl in pads.items():
+        if n.lstrip("/") in CONTROL or n.lstrip("/").startswith("SR165_CHAIN"):
+            out["control + chains"][n] = pl
+            continue
         refs = {r for r, *_ in pl}
         if len(pl) != 2:
             continue
@@ -41,6 +47,15 @@ def groups(board):
         elif "J1" in refs and refs & {"U15", "U16", "Q1"}:
             out["74HC595 -> J1"][n] = pl
     return out
+
+
+def mst_length(pts):
+    left, tree, total = list(pts[1:]), [pts[0]], 0.0
+    while left:
+        d, k = min((min(math.dist(p, q) for q in tree), k) for k, p in enumerate(left))
+        total += d
+        tree.append(left.pop(k))
+    return total
 
 
 def crossings(segs):
@@ -67,6 +82,11 @@ def main():
     print(f"{'group':22s} {'nets':>4s} {'airwire mm':>10s} {'crossings':>9s} {'track mm':>9s} {'vias':>5s}")
     allsegs = []
     for g, nets in groups(board).items():
+        if g == "control + chains":
+            air = sum(mst_length([(x, y) for *_, x, y in pl]) for pl in nets.values())
+            print(f"{g:22s} {len(nets):4d} {air:10.1f} {'':>9s} "
+                  f"{sum(tracks.get(n, 0) for n in nets):9.1f} {sum(vias.get(n, 0) for n in nets):5d}")
+            continue
         segs = [((pl[0][2], pl[0][3]), (pl[1][2], pl[1][3])) for pl in nets.values()]
         allsegs += segs
         air = sum(math.dist(a, b) for a, b in segs)

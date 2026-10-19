@@ -22,7 +22,6 @@ HERE = pathlib.Path(__file__).resolve().parent.parent
 SRC = pathlib.Path(sys.argv[1] if len(sys.argv) > 1 else
                    "/root/.claude/projects/-home-user-llm-circuitgen-tests/"
                    "b9887086-5cdc-5f4c-8ea0-af5f1f17c5ba.jsonl")
-MODEL = "claude-opus-5-5"
 # Results-row active time (README): measured from the transcript turns, 149.3 min
 RESULTS_ACTIVE_MIN = None  # recomputed below from the same turn boundaries
 
@@ -49,6 +48,11 @@ RANGES = [
 ]
 
 
+def main_model(usage):
+    """The session's main model: the modelUsage entry with the most output."""
+    return max(usage.values(), key=lambda m: m["outputTokens"])
+
+
 def ts(r):
     return dt.datetime.fromisoformat(r["timestamp"].replace("Z", "+00:00"))
 
@@ -67,14 +71,14 @@ def main():
     snaps = {}
     for r in rows:  # all distinct cost snapshots of the session, for the price fit
         if r.get("type") == "cost-state":
-            m = r["modelUsage"][MODEL]
+            m = main_model(r["modelUsage"])
             snaps[(m["inputTokens"], m["cacheCreationInputTokens"], m["cacheReadInputTokens"],
                    m["outputTokens"])] = r["totalCostUSD"]
     cut = next(i for i, r in enumerate(rows) if r.get("type") == "queue-operation"
                and r.get("operation") == "enqueue" and "Export this conversation" in str(r.get("content")))
     rows = rows[:cut]
     results = [r for r in rows if r.get("type") == "cost-state"][-1]
-    rm = results["modelUsage"][MODEL]
+    rm = main_model(results["modelUsage"])
     res_tok = np.array([rm["inputTokens"], rm["cacheCreationInputTokens"],
                         rm["cacheReadInputTokens"], rm["outputTokens"]], float)
 

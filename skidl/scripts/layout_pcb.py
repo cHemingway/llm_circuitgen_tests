@@ -196,36 +196,53 @@ def j1_ok(f):
 
 place("J1", jx, jy, 0, bottom=True, cond=j1_ok)
 
-# --- Bottom strip: 4 x 74HCT165 fed by row 1 and row 2 of J1 ---------------
-# (ref, x) ; each register gets two resistor arrays directly above it.
-SR_Y = 36.6
-RN_Y = 28.6
-bottom_regs = [("U13", 17.0, ("RN7", "RN8")),   # pins 18-25  10^1, 10^0
-               ("U12", 29.0, ("RN5", "RN6")),   # pins 2-9    10^5, 10^4
-               ("U10", 41.0, ("RN1", "RN2")),   # pins 26-33  status
-               ("U11", 53.0, ("RN3", "RN4"))]   # pins 10-17  10^3, 10^2
-for ref, x, (rn_a, rn_b) in bottom_regs:
-    # pin 1 top-left: D4..D7 (pins 3-6) on the left column, D0..D3 on the right
-    place(ref, x, SR_Y, 0, cond=lambda f: px(f, 1).x < px(f, 16).x and px(f, 1).y < px(f, 8).y)
+# --- Meter-side registers -------------------------------------------------
+# Which register sits in which slot, and which way round, comes from
+# scripts/optimise_layout.py (with the pin assignment in the SKiDL design).
+# Turned 180 degrees, a register has its clock/latch and supply pins on the
+# side away from J1 and the resistor arrays, so the array links stay clear.
+SR_Y = 36.6          # bottom row: 4 x 74HCT165
+RN_Y = 28.6          # two resistor arrays above each bottom slot
+TOP_Y = 9.0          # top row: U14 (74HCT165) and the two 74HC595s
+BOTTOM_SLOTS = [(17.0, ("RN7", "RN8")), (29.0, ("RN5", "RN6")),
+                (41.0, ("RN1", "RN2")), (53.0, ("RN3", "RN4"))]
+BOTTOM_ROW = [("U13", True), ("U12", True), ("U11", True), ("U10", True)]  # left to right
+TOP_SLOTS = [13.5, 31.0, 45.0]
+TOP_ROW = [("U14", True), ("U16", True), ("U15", True)]
+DECOUPLING = {"U10": "C26", "U11": "C27", "U12": "C28", "U13": "C29",
+              "U14": "C30", "U15": "C31", "U16": "C32"}
+
+
+def place_so16(ref, x, y, turned):
+    """Pin 1 top-left, or bottom-right when turned 180 degrees."""
+    if turned:
+        cond = lambda f: px(f, 1).x > px(f, 16).x and px(f, 1).y > px(f, 8).y  # noqa: E731
+    else:
+        cond = lambda f: px(f, 1).x < px(f, 16).x and px(f, 1).y < px(f, 8).y  # noqa: E731
+    place(ref, x, y, 0, cond=cond)
+
+
+for (x, (rn_a, rn_b)), (ref, turned) in zip(BOTTOM_SLOTS, BOTTOM_ROW):
+    place_so16(ref, x, SR_Y, turned)
     # Rn.1-4 (connector side) on top, Rn.5-8 (register side) below
     for rn, dx in ((rn_a, +2.6), (rn_b, -2.6)):
         place(rn, x + dx, RN_Y, 0, cond=lambda f: px(f, 1).y < px(f, 8).y)
+    # Decoupling beside VCC (pin 16): top right, or bottom left when turned
+    if turned:
+        at(DECOUPLING[ref], x - 5.6, SR_Y + 4.4, "h", (ref, 16))
+    else:
+        at(DECOUPLING[ref], x + 5.6, SR_Y - 4.4, "h", (ref, 16))
 
-# Decoupling for the bottom-strip registers: right of VCC (pin 16)
-for ref, x, _ in bottom_regs:
-    cap = {"U10": "C26", "U11": "C27", "U12": "C28", "U13": "C29"}[ref]
-    at(cap, x + 5.6, SR_Y - 4.4, "h", (ref, 16))
-
-# --- Top strip: U14 (status 165) + 2 x 74HC595 driving row 3 ---------------
-TOP_Y = 9.0
-place("U14", 13.5, TOP_Y, 0, cond=lambda f: px(f, 1).x < px(f, 16).x and px(f, 1).y < px(f, 8).y)
-place("RN9", 15.5, 16.6, 0, cond=lambda f: px(f, 1).y > px(f, 8).y)
-at("C30", 13.5 + 5.6, TOP_Y - 4.4, "h", ("U14", 16))
-
-place("U15", 31.0, TOP_Y, 0, cond=lambda f: px(f, 1).x < px(f, 16).x and px(f, 1).y < px(f, 8).y)
-place("U16", 45.0, TOP_Y, 0, cond=lambda f: px(f, 1).x < px(f, 16).x and px(f, 1).y < px(f, 8).y)
-at("C31", 31.0 + 5.6, TOP_Y - 4.4, "h", ("U15", 16))
-at("C32", 45.0 + 5.6, TOP_Y - 4.4, "h", ("U16", 16))
+for x, (ref, turned) in zip(TOP_SLOTS, TOP_ROW):
+    place_so16(ref, x, TOP_Y, turned)
+    if ref == "U14":  # its resistor array sits between it and J1 row 3
+        place("RN9", x + 2.0, 16.6, 0, cond=lambda f: px(f, 1).y > px(f, 8).y)
+    # Decoupling at VCC: top right, or just below the bottom-left pin when turned
+    # (clear of Q1/R12 between the first two slots)
+    if turned:
+        at(DECOUPLING[ref], x - 2.5, TOP_Y + 7.3, "v", (ref, 16))
+    else:
+        at(DECOUPLING[ref], x + 5.6, TOP_Y - 4.4, "h", (ref, 16))
 
 # CONTACT SAMPLE MOSFET + gate pull-down, REMOTE LED
 place("Q1", 24.0, 15.0, 0)

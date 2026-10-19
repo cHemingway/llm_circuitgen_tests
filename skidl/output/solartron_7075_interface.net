@@ -2,12 +2,12 @@
   (version "D")
   (design
     (source "solartron_7075_interface.py")
-    (date "10/07/2026 02:59 AM")
+    (date "10/19/2026 12:30 PM")
     (tool "SKiDL (2.3.0)")
     (sheet
       (number 1)
-      (name "/opto_U7/")
-      (tstamps "/236ecb4d-8310-53ed-9ed4-d7df6c9d2f2d/")
+      (name "/opto_U5/")
+      (tstamps "/8d9ee159-9b07-51f2-95ac-2dc66fa08467/")
       (title_block
         (title)
         (company)
@@ -43,8 +43,8 @@
           (value ""))))
     (sheet
       (number 2)
-      (name "/opto_U5/")
-      (tstamps "/8d9ee159-9b07-51f2-95ac-2dc66fa08467/")
+      (name "/sr_in/")
+      (tstamps "/a2a23899-ca95-5d0b-b789-b7d214893621/")
       (title_block
         (title)
         (company)
@@ -117,8 +117,8 @@
           (value ""))))
     (sheet
       (number 4)
-      (name "/iso_pwr/")
-      (tstamps "/9b867fd0-0184-58ed-9a8b-e8a849348ccd/")
+      (name "/mcu/")
+      (tstamps "/ad3342b0-03e3-5e36-8315-3fae0a0761fa/")
       (title_block
         (title)
         (company)
@@ -154,154 +154,6 @@
           (value ""))))
     (sheet
       (number 5)
-      (name "/usb/")
-      (tstamps "/2500deb9-bb4c-5b15-b8e0-5232ce6d6f19/")
-      (title_block
-        (title)
-        (company)
-        (rev)
-        (date)
-        (source "solartron_7075_interface.py")
-        (comment
-          (number "1")
-          (value ""))
-        (comment
-          (number "2")
-          (value ""))
-        (comment
-          (number "3")
-          (value ""))
-        (comment
-          (number "4")
-          (value ""))
-        (comment
-          (number "5")
-          (value ""))
-        (comment
-          (number "6")
-          (value ""))
-        (comment
-          (number "7")
-          (value ""))
-        (comment
-          (number "8")
-          (value ""))
-        (comment
-          (number "9")
-          (value ""))))
-    (sheet
-      (number 6)
-      (name "/opto_U9/")
-      (tstamps "/c6523693-d11a-5a7b-b566-693bc328f470/")
-      (title_block
-        (title)
-        (company)
-        (rev)
-        (date)
-        (source "solartron_7075_interface.py")
-        (comment
-          (number "1")
-          (value ""))
-        (comment
-          (number "2")
-          (value ""))
-        (comment
-          (number "3")
-          (value ""))
-        (comment
-          (number "4")
-          (value ""))
-        (comment
-          (number "5")
-          (value ""))
-        (comment
-          (number "6")
-          (value ""))
-        (comment
-          (number "7")
-          (value ""))
-        (comment
-          (number "8")
-          (value ""))
-        (comment
-          (number "9")
-          (value ""))))
-    (sheet
-      (number 7)
-      (name "/sr_in/")
-      (tstamps "/a2a23899-ca95-5d0b-b789-b7d214893621/")
-      (title_block
-        (title)
-        (company)
-        (rev)
-        (date)
-        (source "solartron_7075_interface.py")
-        (comment
-          (number "1")
-          (value ""))
-        (comment
-          (number "2")
-          (value ""))
-        (comment
-          (number "3")
-          (value ""))
-        (comment
-          (number "4")
-          (value ""))
-        (comment
-          (number "5")
-          (value ""))
-        (comment
-          (number "6")
-          (value ""))
-        (comment
-          (number "7")
-          (value ""))
-        (comment
-          (number "8")
-          (value ""))
-        (comment
-          (number "9")
-          (value ""))))
-    (sheet
-      (number 8)
-      (name "/sr_out/")
-      (tstamps "/59ee197e-28f7-5b7a-9b84-f25c8a83ec50/")
-      (title_block
-        (title)
-        (company)
-        (rev)
-        (date)
-        (source "solartron_7075_interface.py")
-        (comment
-          (number "1")
-          (value ""))
-        (comment
-          (number "2")
-          (value ""))
-        (comment
-          (number "3")
-          (value ""))
-        (comment
-          (number "4")
-          (value ""))
-        (comment
-          (number "5")
-          (value ""))
-        (comment
-          (number "6")
-          (value ""))
-        (comment
-          (number "7")
-          (value ""))
-        (comment
-          (number "8")
-          (value ""))
-        (comment
-          (number "9")
-          (value ""))))
-    (sheet
-      (number 9)
       (name "/opto_U6/")
       (tstamps "/4db410a7-35e4-52d1-8275-e2e02d739150/")
       (title_block
@@ -338,9 +190,157 @@
           (number "9")
           (value ""))))
     (sheet
+      (number 6)
+      (name "/iso_pwr/")
+      (tstamps "/9b867fd0-0184-58ed-9a8b-e8a849348ccd/")
+      (title_block
+        (title)
+        (company)
+        (rev)
+        (date)
+        (source "solartron_7075_interface.py")
+        (comment
+          (number "1")
+          (value ""))
+        (comment
+          (number "2")
+          (value ""))
+        (comment
+          (number "3")
+          (value ""))
+        (comment
+          (number "4")
+          (value ""))
+        (comment
+          (number "5")
+          (value ""))
+        (comment
+          (number "6")
+          (value ""))
+        (comment
+          (number "7")
+          (value ""))
+        (comment
+          (number "8")
+          (value ""))
+        (comment
+          (number "9")
+          (value ""))))
+    (sheet
+      (number 7)
+      (name "/sr_out/")
+      (tstamps "/59ee197e-28f7-5b7a-9b84-f25c8a83ec50/")
+      (title_block
+        (title)
+        (company)
+        (rev)
+        (date)
+        (source "solartron_7075_interface.py")
+        (comment
+          (number "1")
+          (value ""))
+        (comment
+          (number "2")
+          (value ""))
+        (comment
+          (number "3")
+          (value ""))
+        (comment
+          (number "4")
+          (value ""))
+        (comment
+          (number "5")
+          (value ""))
+        (comment
+          (number "6")
+          (value ""))
+        (comment
+          (number "7")
+          (value ""))
+        (comment
+          (number "8")
+          (value ""))
+        (comment
+          (number "9")
+          (value ""))))
+    (sheet
+      (number 8)
+      (name "/opto_U7/")
+      (tstamps "/236ecb4d-8310-53ed-9ed4-d7df6c9d2f2d/")
+      (title_block
+        (title)
+        (company)
+        (rev)
+        (date)
+        (source "solartron_7075_interface.py")
+        (comment
+          (number "1")
+          (value ""))
+        (comment
+          (number "2")
+          (value ""))
+        (comment
+          (number "3")
+          (value ""))
+        (comment
+          (number "4")
+          (value ""))
+        (comment
+          (number "5")
+          (value ""))
+        (comment
+          (number "6")
+          (value ""))
+        (comment
+          (number "7")
+          (value ""))
+        (comment
+          (number "8")
+          (value ""))
+        (comment
+          (number "9")
+          (value ""))))
+    (sheet
+      (number 9)
+      (name "/opto_U9/")
+      (tstamps "/c6523693-d11a-5a7b-b566-693bc328f470/")
+      (title_block
+        (title)
+        (company)
+        (rev)
+        (date)
+        (source "solartron_7075_interface.py")
+        (comment
+          (number "1")
+          (value ""))
+        (comment
+          (number "2")
+          (value ""))
+        (comment
+          (number "3")
+          (value ""))
+        (comment
+          (number "4")
+          (value ""))
+        (comment
+          (number "5")
+          (value ""))
+        (comment
+          (number "6")
+          (value ""))
+        (comment
+          (number "7")
+          (value ""))
+        (comment
+          (number "8")
+          (value ""))
+        (comment
+          (number "9")
+          (value ""))))
+    (sheet
       (number 10)
-      (name "/mcu/")
-      (tstamps "/ad3342b0-03e3-5e36-8315-3fae0a0761fa/")
+      (name "/usb/")
+      (tstamps "/2500deb9-bb4c-5b15-b8e0-5232ce6d6f19/")
       (title_block
         (title)
         (company)
@@ -1730,7 +1730,7 @@
         (field
           (name "SKiDL Tag") "J1")
         (field
-          (name "SKiDL Line") "solartron_7075_interface.py:560"))
+          (name "SKiDL Line") "solartron_7075_interface.py:563"))
       (libsource
         (lib "Solartron7075")
         (part "DD50_Pins_MountingHoles"))
@@ -1880,7 +1880,7 @@
         (field
           (name "SKiDL Tag") "Q1")
         (field
-          (name "SKiDL Line") "solartron_7075_interface.py:540"))
+          (name "SKiDL Line") "solartron_7075_interface.py:541"))
       (libsource
         (lib "Transistor_FET")
         (part "2N7002"))
@@ -2450,7 +2450,7 @@
         (field
           (name "SKiDL Tag") "RN1")
         (field
-          (name "SKiDL Line") "solartron_7075_interface.py:466"))
+          (name "SKiDL Line") "solartron_7075_interface.py:483"))
       (libsource
         (lib "Device")
         (part "R_Pack04"))
@@ -2480,7 +2480,7 @@
         (field
           (name "SKiDL Tag") "RN2")
         (field
-          (name "SKiDL Line") "solartron_7075_interface.py:466"))
+          (name "SKiDL Line") "solartron_7075_interface.py:483"))
       (libsource
         (lib "Device")
         (part "R_Pack04"))
@@ -2510,7 +2510,7 @@
         (field
           (name "SKiDL Tag") "RN3")
         (field
-          (name "SKiDL Line") "solartron_7075_interface.py:466"))
+          (name "SKiDL Line") "solartron_7075_interface.py:483"))
       (libsource
         (lib "Device")
         (part "R_Pack04"))
@@ -2540,7 +2540,7 @@
         (field
           (name "SKiDL Tag") "RN4")
         (field
-          (name "SKiDL Line") "solartron_7075_interface.py:466"))
+          (name "SKiDL Line") "solartron_7075_interface.py:483"))
       (libsource
         (lib "Device")
         (part "R_Pack04"))
@@ -2570,7 +2570,7 @@
         (field
           (name "SKiDL Tag") "RN5")
         (field
-          (name "SKiDL Line") "solartron_7075_interface.py:466"))
+          (name "SKiDL Line") "solartron_7075_interface.py:483"))
       (libsource
         (lib "Device")
         (part "R_Pack04"))
@@ -2600,7 +2600,7 @@
         (field
           (name "SKiDL Tag") "RN6")
         (field
-          (name "SKiDL Line") "solartron_7075_interface.py:466"))
+          (name "SKiDL Line") "solartron_7075_interface.py:483"))
       (libsource
         (lib "Device")
         (part "R_Pack04"))
@@ -2630,7 +2630,7 @@
         (field
           (name "SKiDL Tag") "RN7")
         (field
-          (name "SKiDL Line") "solartron_7075_interface.py:466"))
+          (name "SKiDL Line") "solartron_7075_interface.py:483"))
       (libsource
         (lib "Device")
         (part "R_Pack04"))
@@ -2660,7 +2660,7 @@
         (field
           (name "SKiDL Tag") "RN8")
         (field
-          (name "SKiDL Line") "solartron_7075_interface.py:466"))
+          (name "SKiDL Line") "solartron_7075_interface.py:483"))
       (libsource
         (lib "Device")
         (part "R_Pack04"))
@@ -2690,7 +2690,7 @@
         (field
           (name "SKiDL Tag") "RN9")
         (field
-          (name "SKiDL Line") "solartron_7075_interface.py:466"))
+          (name "SKiDL Line") "solartron_7075_interface.py:483"))
       (libsource
         (lib "Device")
         (part "R_Pack04"))
@@ -2810,7 +2810,7 @@
         (field
           (name "SKiDL Tag") "U10")
         (field
-          (name "SKiDL Line") "solartron_7075_interface.py:475"))
+          (name "SKiDL Line") "solartron_7075_interface.py:492"))
       (libsource
         (lib "74xx")
         (part "74HC165"))
@@ -2840,7 +2840,7 @@
         (field
           (name "SKiDL Tag") "U11")
         (field
-          (name "SKiDL Line") "solartron_7075_interface.py:475"))
+          (name "SKiDL Line") "solartron_7075_interface.py:492"))
       (libsource
         (lib "74xx")
         (part "74HC165"))
@@ -2870,7 +2870,7 @@
         (field
           (name "SKiDL Tag") "U12")
         (field
-          (name "SKiDL Line") "solartron_7075_interface.py:475"))
+          (name "SKiDL Line") "solartron_7075_interface.py:492"))
       (libsource
         (lib "74xx")
         (part "74HC165"))
@@ -2900,7 +2900,7 @@
         (field
           (name "SKiDL Tag") "U13")
         (field
-          (name "SKiDL Line") "solartron_7075_interface.py:475"))
+          (name "SKiDL Line") "solartron_7075_interface.py:492"))
       (libsource
         (lib "74xx")
         (part "74HC165"))
@@ -2930,7 +2930,7 @@
         (field
           (name "SKiDL Tag") "U14")
         (field
-          (name "SKiDL Line") "solartron_7075_interface.py:475"))
+          (name "SKiDL Line") "solartron_7075_interface.py:492"))
       (libsource
         (lib "74xx")
         (part "74HC165"))
@@ -2960,7 +2960,7 @@
         (field
           (name "SKiDL Tag") "U15")
         (field
-          (name "SKiDL Line") "solartron_7075_interface.py:505"))
+          (name "SKiDL Line") "solartron_7075_interface.py:521"))
       (libsource
         (lib "74xx")
         (part "74HC595"))
@@ -2990,7 +2990,7 @@
         (field
           (name "SKiDL Tag") "U16")
         (field
-          (name "SKiDL Line") "solartron_7075_interface.py:506"))
+          (name "SKiDL Line") "solartron_7075_interface.py:522"))
       (libsource
         (lib "74xx")
         (part "74HC595"))
@@ -3484,7 +3484,7 @@
         (pintype "PASSIVE"))
       (node
         (ref "U15")
-        (pin "7")
+        (pin "2")
         (pintype "TRISTATE")))
     (net
       (code 5)
@@ -3495,20 +3495,20 @@
         (pin "25")
         (pintype "PASSIVE"))
       (node
-        (ref "RN8")
-        (pin "4")
+        (ref "RN5")
+        (pin "1")
         (pintype "PASSIVE")))
     (net
       (code 6)
       (name "BCD_1E0_1_R")
       (class "Default")
       (node
-        (ref "RN8")
-        (pin "5")
+        (ref "RN5")
+        (pin "8")
         (pintype "PASSIVE"))
       (node
-        (ref "U13")
-        (pin "11")
+        (ref "U12")
+        (pin "3")
         (pintype "INPUT")))
     (net
       (code 7)
@@ -3519,7 +3519,7 @@
         (pin "24")
         (pintype "PASSIVE"))
       (node
-        (ref "RN8")
+        (ref "RN9")
         (pin "3")
         (pintype "PASSIVE")))
     (net
@@ -3527,12 +3527,12 @@
       (name "BCD_1E0_2_R")
       (class "Default")
       (node
-        (ref "RN8")
+        (ref "RN9")
         (pin "6")
         (pintype "PASSIVE"))
       (node
-        (ref "U13")
-        (pin "12")
+        (ref "U14")
+        (pin "3")
         (pintype "INPUT")))
     (net
       (code 9)
@@ -3543,20 +3543,20 @@
         (pin "23")
         (pintype "PASSIVE"))
       (node
-        (ref "RN8")
-        (pin "2")
+        (ref "RN5")
+        (pin "4")
         (pintype "PASSIVE")))
     (net
       (code 10)
       (name "BCD_1E0_4_R")
       (class "Default")
       (node
-        (ref "RN8")
-        (pin "7")
+        (ref "RN5")
+        (pin "5")
         (pintype "PASSIVE"))
       (node
-        (ref "U13")
-        (pin "13")
+        (ref "U12")
+        (pin "4")
         (pintype "INPUT")))
     (net
       (code 11)
@@ -3567,20 +3567,20 @@
         (pin "22")
         (pintype "PASSIVE"))
       (node
-        (ref "RN8")
-        (pin "1")
+        (ref "RN6")
+        (pin "2")
         (pintype "PASSIVE")))
     (net
       (code 12)
       (name "BCD_1E0_8_R")
       (class "Default")
       (node
-        (ref "RN8")
-        (pin "8")
+        (ref "RN6")
+        (pin "7")
         (pintype "PASSIVE"))
       (node
-        (ref "U13")
-        (pin "14")
+        (ref "U12")
+        (pin "12")
         (pintype "INPUT")))
     (net
       (code 13)
@@ -3591,20 +3591,20 @@
         (pin "21")
         (pintype "PASSIVE"))
       (node
-        (ref "RN7")
-        (pin "4")
+        (ref "RN6")
+        (pin "3")
         (pintype "PASSIVE")))
     (net
       (code 14)
       (name "BCD_1E1_1_R")
       (class "Default")
       (node
-        (ref "RN7")
-        (pin "5")
+        (ref "RN6")
+        (pin "6")
         (pintype "PASSIVE"))
       (node
-        (ref "U13")
-        (pin "3")
+        (ref "U12")
+        (pin "11")
         (pintype "INPUT")))
     (net
       (code 15)
@@ -3616,7 +3616,7 @@
         (pintype "PASSIVE"))
       (node
         (ref "RN7")
-        (pin "3")
+        (pin "2")
         (pintype "PASSIVE")))
     (net
       (code 16)
@@ -3624,11 +3624,11 @@
       (class "Default")
       (node
         (ref "RN7")
-        (pin "6")
+        (pin "7")
         (pintype "PASSIVE"))
       (node
         (ref "U13")
-        (pin "4")
+        (pin "5")
         (pintype "INPUT")))
     (net
       (code 17)
@@ -3640,7 +3640,7 @@
         (pintype "PASSIVE"))
       (node
         (ref "RN7")
-        (pin "2")
+        (pin "4")
         (pintype "PASSIVE")))
     (net
       (code 18)
@@ -3648,11 +3648,11 @@
       (class "Default")
       (node
         (ref "RN7")
-        (pin "7")
+        (pin "5")
         (pintype "PASSIVE"))
       (node
         (ref "U13")
-        (pin "5")
+        (pin "3")
         (pintype "INPUT")))
     (net
       (code 19)
@@ -3663,20 +3663,20 @@
         (pin "18")
         (pintype "PASSIVE"))
       (node
-        (ref "RN7")
-        (pin "1")
+        (ref "RN8")
+        (pin "2")
         (pintype "PASSIVE")))
     (net
       (code 20)
       (name "BCD_1E1_8_R")
       (class "Default")
       (node
-        (ref "RN7")
-        (pin "8")
+        (ref "RN8")
+        (pin "7")
         (pintype "PASSIVE"))
       (node
         (ref "U13")
-        (pin "6")
+        (pin "12")
         (pintype "INPUT")))
     (net
       (code 21)
@@ -3687,20 +3687,20 @@
         (pin "17")
         (pintype "PASSIVE"))
       (node
-        (ref "RN4")
-        (pin "4")
+        (ref "RN3")
+        (pin "1")
         (pintype "PASSIVE")))
     (net
       (code 22)
       (name "BCD_1E2_1_R")
       (class "Default")
       (node
-        (ref "RN4")
-        (pin "5")
+        (ref "RN3")
+        (pin "8")
         (pintype "PASSIVE"))
       (node
-        (ref "U11")
-        (pin "11")
+        (ref "U10")
+        (pin "3")
         (pintype "INPUT")))
     (net
       (code 23)
@@ -3711,7 +3711,7 @@
         (pin "16")
         (pintype "PASSIVE"))
       (node
-        (ref "RN4")
+        (ref "RN3")
         (pin "3")
         (pintype "PASSIVE")))
     (net
@@ -3719,12 +3719,12 @@
       (name "BCD_1E2_2_R")
       (class "Default")
       (node
-        (ref "RN4")
+        (ref "RN3")
         (pin "6")
         (pintype "PASSIVE"))
       (node
-        (ref "U11")
-        (pin "12")
+        (ref "U10")
+        (pin "6")
         (pintype "INPUT")))
     (net
       (code 25)
@@ -3736,7 +3736,7 @@
         (pintype "PASSIVE"))
       (node
         (ref "RN4")
-        (pin "2")
+        (pin "1")
         (pintype "PASSIVE")))
     (net
       (code 26)
@@ -3744,11 +3744,11 @@
       (class "Default")
       (node
         (ref "RN4")
-        (pin "7")
+        (pin "8")
         (pintype "PASSIVE"))
       (node
-        (ref "U11")
-        (pin "13")
+        (ref "U10")
+        (pin "12")
         (pintype "INPUT")))
     (net
       (code 27)
@@ -3760,7 +3760,7 @@
         (pintype "PASSIVE"))
       (node
         (ref "RN4")
-        (pin "1")
+        (pin "2")
         (pintype "PASSIVE")))
     (net
       (code 28)
@@ -3768,11 +3768,11 @@
       (class "Default")
       (node
         (ref "RN4")
-        (pin "8")
+        (pin "7")
         (pintype "PASSIVE"))
       (node
-        (ref "U11")
-        (pin "14")
+        (ref "U10")
+        (pin "11")
         (pintype "INPUT")))
     (net
       (code 29)
@@ -3783,7 +3783,7 @@
         (pin "13")
         (pintype "PASSIVE"))
       (node
-        (ref "RN3")
+        (ref "RN9")
         (pin "4")
         (pintype "PASSIVE")))
     (net
@@ -3791,12 +3791,12 @@
       (name "BCD_1E3_1_R")
       (class "Default")
       (node
-        (ref "RN3")
+        (ref "RN9")
         (pin "5")
         (pintype "PASSIVE"))
       (node
-        (ref "U11")
-        (pin "3")
+        (ref "U14")
+        (pin "5")
         (pintype "INPUT")))
     (net
       (code 31)
@@ -3807,20 +3807,20 @@
         (pin "12")
         (pintype "PASSIVE"))
       (node
-        (ref "RN3")
-        (pin "3")
+        (ref "RN4")
+        (pin "4")
         (pintype "PASSIVE")))
     (net
       (code 32)
       (name "BCD_1E3_2_R")
       (class "Default")
       (node
-        (ref "RN3")
-        (pin "6")
+        (ref "RN4")
+        (pin "5")
         (pintype "PASSIVE"))
       (node
-        (ref "U11")
-        (pin "4")
+        (ref "U10")
+        (pin "14")
         (pintype "INPUT")))
     (net
       (code 33)
@@ -3831,20 +3831,20 @@
         (pin "11")
         (pintype "PASSIVE"))
       (node
-        (ref "RN3")
-        (pin "2")
+        (ref "RN2")
+        (pin "1")
         (pintype "PASSIVE")))
     (net
       (code 34)
       (name "BCD_1E3_4_R")
       (class "Default")
       (node
-        (ref "RN3")
-        (pin "7")
+        (ref "RN2")
+        (pin "8")
         (pintype "PASSIVE"))
       (node
         (ref "U11")
-        (pin "5")
+        (pin "13")
         (pintype "INPUT")))
     (net
       (code 35)
@@ -3855,20 +3855,20 @@
         (pin "10")
         (pintype "PASSIVE"))
       (node
-        (ref "RN3")
-        (pin "1")
+        (ref "RN2")
+        (pin "2")
         (pintype "PASSIVE")))
     (net
       (code 36)
       (name "BCD_1E3_8_R")
       (class "Default")
       (node
-        (ref "RN3")
-        (pin "8")
+        (ref "RN2")
+        (pin "7")
         (pintype "PASSIVE"))
       (node
         (ref "U11")
-        (pin "6")
+        (pin "11")
         (pintype "INPUT")))
     (net
       (code 37)
@@ -3879,7 +3879,7 @@
         (pin "9")
         (pintype "PASSIVE"))
       (node
-        (ref "RN6")
+        (ref "RN2")
         (pin "4")
         (pintype "PASSIVE")))
     (net
@@ -3887,12 +3887,12 @@
       (name "BCD_1E4_1_R")
       (class "Default")
       (node
-        (ref "RN6")
+        (ref "RN2")
         (pin "5")
         (pintype "PASSIVE"))
       (node
-        (ref "U12")
-        (pin "11")
+        (ref "U11")
+        (pin "14")
         (pintype "INPUT")))
     (net
       (code 39)
@@ -3903,20 +3903,20 @@
         (pin "8")
         (pintype "PASSIVE"))
       (node
-        (ref "RN6")
-        (pin "3")
+        (ref "RN5")
+        (pin "2")
         (pintype "PASSIVE")))
     (net
       (code 40)
       (name "BCD_1E4_2_R")
       (class "Default")
       (node
-        (ref "RN6")
-        (pin "6")
+        (ref "RN5")
+        (pin "7")
         (pintype "PASSIVE"))
       (node
         (ref "U12")
-        (pin "12")
+        (pin "5")
         (pintype "INPUT")))
     (net
       (code 41)
@@ -3927,20 +3927,20 @@
         (pin "7")
         (pintype "PASSIVE"))
       (node
-        (ref "RN6")
-        (pin "2")
+        (ref "RN5")
+        (pin "3")
         (pintype "PASSIVE")))
     (net
       (code 42)
       (name "BCD_1E4_4_R")
       (class "Default")
       (node
-        (ref "RN6")
-        (pin "7")
+        (ref "RN5")
+        (pin "6")
         (pintype "PASSIVE"))
       (node
         (ref "U12")
-        (pin "13")
+        (pin "6")
         (pintype "INPUT")))
     (net
       (code 43)
@@ -3964,7 +3964,7 @@
         (pintype "PASSIVE"))
       (node
         (ref "U12")
-        (pin "14")
+        (pin "13")
         (pintype "INPUT")))
     (net
       (code 45)
@@ -3975,20 +3975,20 @@
         (pin "5")
         (pintype "PASSIVE"))
       (node
-        (ref "RN5")
-        (pin "4")
+        (ref "RN9")
+        (pin "1")
         (pintype "PASSIVE")))
     (net
       (code 46)
       (name "BCD_1E5_1_R")
       (class "Default")
       (node
-        (ref "RN5")
-        (pin "5")
+        (ref "RN9")
+        (pin "8")
         (pintype "PASSIVE"))
       (node
-        (ref "U12")
-        (pin "3")
+        (ref "U14")
+        (pin "6")
         (pintype "INPUT")))
     (net
       (code 47)
@@ -3999,19 +3999,19 @@
         (pin "4")
         (pintype "PASSIVE"))
       (node
-        (ref "RN5")
-        (pin "3")
+        (ref "RN7")
+        (pin "1")
         (pintype "PASSIVE")))
     (net
       (code 48)
       (name "BCD_1E5_2_R")
       (class "Default")
       (node
-        (ref "RN5")
-        (pin "6")
+        (ref "RN7")
+        (pin "8")
         (pintype "PASSIVE"))
       (node
-        (ref "U12")
+        (ref "U13")
         (pin "4")
         (pintype "INPUT")))
     (net
@@ -4023,20 +4023,20 @@
         (pin "3")
         (pintype "PASSIVE"))
       (node
-        (ref "RN5")
-        (pin "2")
+        (ref "RN7")
+        (pin "3")
         (pintype "PASSIVE")))
     (net
       (code 50)
       (name "BCD_1E5_4_R")
       (class "Default")
       (node
-        (ref "RN5")
-        (pin "7")
+        (ref "RN7")
+        (pin "6")
         (pintype "PASSIVE"))
       (node
-        (ref "U12")
-        (pin "5")
+        (ref "U13")
+        (pin "6")
         (pintype "INPUT")))
     (net
       (code 51)
@@ -4047,7 +4047,7 @@
         (pin "2")
         (pintype "PASSIVE"))
       (node
-        (ref "RN5")
+        (ref "RN8")
         (pin "1")
         (pintype "PASSIVE")))
     (net
@@ -4055,12 +4055,12 @@
       (name "BCD_1E5_8_R")
       (class "Default")
       (node
-        (ref "RN5")
+        (ref "RN8")
         (pin "8")
         (pintype "PASSIVE"))
       (node
-        (ref "U12")
-        (pin "6")
+        (ref "U13")
+        (pin "13")
         (pintype "INPUT")))
     (net
       (code 53)
@@ -4071,20 +4071,20 @@
         (pin "1")
         (pintype "PASSIVE"))
       (node
-        (ref "RN9")
-        (pin "4")
+        (ref "RN8")
+        (pin "3")
         (pintype "PASSIVE")))
     (net
       (code 54)
       (name "BCD_1E6_1_R")
       (class "Default")
       (node
-        (ref "RN9")
-        (pin "5")
+        (ref "RN8")
+        (pin "6")
         (pintype "PASSIVE"))
       (node
-        (ref "U14")
-        (pin "3")
+        (ref "U13")
+        (pin "11")
         (pintype "INPUT")))
     (net
       (code 55)
@@ -4107,20 +4107,20 @@
         (pin "35")
         (pintype "PASSIVE"))
       (node
-        (ref "RN9")
-        (pin "2")
+        (ref "RN6")
+        (pin "4")
         (pintype "PASSIVE")))
     (net
       (code 57)
       (name "DATA_CAN_CHANGE_R")
       (class "Default")
       (node
-        (ref "RN9")
-        (pin "7")
+        (ref "RN6")
+        (pin "5")
         (pintype "PASSIVE"))
       (node
-        (ref "U14")
-        (pin "5")
+        (ref "U12")
+        (pin "14")
         (pintype "INPUT")))
     (net
       (code 58)
@@ -4131,7 +4131,7 @@
         (pin "42")
         (pintype "PASSIVE"))
       (node
-        (ref "U15")
+        (ref "U16")
         (pin "2")
         (pintype "TRISTATE")))
     (net
@@ -4143,8 +4143,8 @@
         (pin "43")
         (pintype "PASSIVE"))
       (node
-        (ref "U15")
-        (pin "3")
+        (ref "U16")
+        (pin "4")
         (pintype "TRISTATE")))
     (net
       (code 60)
@@ -4156,7 +4156,7 @@
         (pintype "PASSIVE"))
       (node
         (ref "RN1")
-        (pin "3")
+        (pin "4")
         (pintype "PASSIVE")))
     (net
       (code 61)
@@ -4164,11 +4164,11 @@
       (class "Default")
       (node
         (ref "RN1")
-        (pin "6")
+        (pin "5")
         (pintype "PASSIVE"))
       (node
-        (ref "U10")
-        (pin "4")
+        (ref "U11")
+        (pin "3")
         (pintype "INPUT")))
     (net
       (code 62)
@@ -4180,7 +4180,7 @@
         (pintype "PASSIVE"))
       (node
         (ref "RN1")
-        (pin "4")
+        (pin "2")
         (pintype "PASSIVE")))
     (net
       (code 63)
@@ -4188,11 +4188,11 @@
       (class "Default")
       (node
         (ref "RN1")
-        (pin "5")
+        (pin "7")
         (pintype "PASSIVE"))
       (node
-        (ref "U10")
-        (pin "3")
+        (ref "U11")
+        (pin "6")
         (pintype "INPUT")))
     (net
       (code 64)
@@ -4360,7 +4360,7 @@
         (pintype "PASSIVE"))
       (node
         (ref "U15")
-        (pin "4")
+        (pin "1")
         (pintype "TRISTATE")))
     (net
       (code 66)
@@ -4372,7 +4372,7 @@
         (pintype "PASSIVE"))
       (node
         (ref "U15")
-        (pin "5")
+        (pin "3")
         (pintype "TRISTATE")))
     (net
       (code 67)
@@ -4384,7 +4384,7 @@
         (pintype "PASSIVE"))
       (node
         (ref "U15")
-        (pin "6")
+        (pin "15")
         (pintype "TRISTATE")))
     (net
       (code 68)
@@ -4851,8 +4851,8 @@
         (pin "1")
         (pintype "PASSIVE"))
       (node
-        (ref "U16")
-        (pin "5")
+        (ref "U15")
+        (pin "7")
         (pintype "TRISTATE")))
     (net
       (code 79)
@@ -4899,8 +4899,8 @@
         (pin "38")
         (pintype "PASSIVE"))
       (node
-        (ref "U15")
-        (pin "15")
+        (ref "U16")
+        (pin "5")
         (pintype "TRISTATE")))
     (net
       (code 83)
@@ -4996,7 +4996,7 @@
         (pintype "PASSIVE"))
       (node
         (ref "RN9")
-        (pin "3")
+        (pin "2")
         (pintype "PASSIVE")))
     (net
       (code 91)
@@ -5004,7 +5004,7 @@
       (class "Default")
       (node
         (ref "RN9")
-        (pin "6")
+        (pin "7")
         (pintype "PASSIVE"))
       (node
         (ref "U14")
@@ -5020,7 +5020,7 @@
         (pintype "PASSIVE"))
       (node
         (ref "RN1")
-        (pin "2")
+        (pin "3")
         (pintype "PASSIVE")))
     (net
       (code 93)
@@ -5028,10 +5028,10 @@
       (class "Default")
       (node
         (ref "RN1")
-        (pin "7")
+        (pin "6")
         (pintype "PASSIVE"))
       (node
-        (ref "U10")
+        (ref "U11")
         (pin "5")
         (pintype "INPUT")))
     (net
@@ -5043,20 +5043,20 @@
         (pin "26")
         (pintype "PASSIVE"))
       (node
-        (ref "RN1")
-        (pin "1")
+        (ref "RN2")
+        (pin "3")
         (pintype "PASSIVE")))
     (net
       (code 95)
       (name "POL_POS_R")
       (class "Default")
       (node
-        (ref "RN1")
-        (pin "8")
+        (ref "RN2")
+        (pin "6")
         (pintype "PASSIVE"))
       (node
-        (ref "U10")
-        (pin "6")
+        (ref "U11")
+        (pin "12")
         (pintype "INPUT")))
     (net
       (code 96)
@@ -5067,20 +5067,20 @@
         (pin "34")
         (pintype "PASSIVE"))
       (node
-        (ref "RN9")
-        (pin "1")
+        (ref "RN8")
+        (pin "4")
         (pintype "PASSIVE")))
     (net
       (code 97)
       (name "PRINT_LEVEL_R")
       (class "Default")
       (node
-        (ref "RN9")
-        (pin "8")
+        (ref "RN8")
+        (pin "5")
         (pintype "PASSIVE"))
       (node
-        (ref "U14")
-        (pin "6")
+        (ref "U13")
+        (pin "14")
         (pintype "INPUT")))
     (net
       (code 98)
@@ -5091,20 +5091,20 @@
         (pin "33")
         (pintype "PASSIVE"))
       (node
-        (ref "RN2")
-        (pin "4")
+        (ref "RN3")
+        (pin "2")
         (pintype "PASSIVE")))
     (net
       (code 99)
       (name "PRINT_PULSE_R")
       (class "Default")
       (node
-        (ref "RN2")
-        (pin "5")
+        (ref "RN3")
+        (pin "7")
         (pintype "PASSIVE"))
       (node
         (ref "U10")
-        (pin "11")
+        (pin "5")
         (pintype "INPUT")))
     (net
       (code 100)
@@ -5127,8 +5127,8 @@
         (pin "48")
         (pintype "PASSIVE"))
       (node
-        (ref "U16")
-        (pin "15")
+        (ref "U15")
+        (pin "4")
         (pintype "TRISTATE")))
     (net
       (code 102)
@@ -5139,8 +5139,8 @@
         (pin "49")
         (pintype "PASSIVE"))
       (node
-        (ref "U16")
-        (pin "1")
+        (ref "U15")
+        (pin "5")
         (pintype "TRISTATE")))
     (net
       (code 103)
@@ -5151,8 +5151,8 @@
         (pin "50")
         (pintype "PASSIVE"))
       (node
-        (ref "U16")
-        (pin "2")
+        (ref "U15")
+        (pin "6")
         (pintype "TRISTATE")))
     (net
       (code 104)
@@ -5163,20 +5163,20 @@
         (pin "32")
         (pintype "PASSIVE"))
       (node
-        (ref "RN2")
-        (pin "3")
+        (ref "RN3")
+        (pin "4")
         (pintype "PASSIVE")))
     (net
       (code 105)
       (name "RANGE_OUT_1_R")
       (class "Default")
       (node
-        (ref "RN2")
-        (pin "6")
+        (ref "RN3")
+        (pin "5")
         (pintype "PASSIVE"))
       (node
         (ref "U10")
-        (pin "12")
+        (pin "4")
         (pintype "INPUT")))
     (net
       (code 106)
@@ -5187,20 +5187,20 @@
         (pin "31")
         (pintype "PASSIVE"))
       (node
-        (ref "RN2")
-        (pin "2")
+        (ref "RN1")
+        (pin "1")
         (pintype "PASSIVE")))
     (net
       (code 107)
       (name "RANGE_OUT_2_R")
       (class "Default")
       (node
-        (ref "RN2")
-        (pin "7")
+        (ref "RN1")
+        (pin "8")
         (pintype "PASSIVE"))
       (node
-        (ref "U10")
-        (pin "13")
+        (ref "U11")
+        (pin "4")
         (pintype "INPUT")))
     (net
       (code 108)
@@ -5211,20 +5211,20 @@
         (pin "30")
         (pintype "PASSIVE"))
       (node
-        (ref "RN2")
-        (pin "1")
+        (ref "RN4")
+        (pin "3")
         (pintype "PASSIVE")))
     (net
       (code 109)
       (name "RANGE_OUT_4_R")
       (class "Default")
       (node
-        (ref "RN2")
-        (pin "8")
+        (ref "RN4")
+        (pin "6")
         (pintype "PASSIVE"))
       (node
         (ref "U10")
-        (pin "14")
+        (pin "13")
         (pintype "INPUT")))
     (net
       (code 110)
@@ -5235,7 +5235,7 @@
         (pin "41")
         (pintype "PASSIVE"))
       (node
-        (ref "U15")
+        (ref "U16")
         (pin "1")
         (pintype "TRISTATE")))
     (net
@@ -5280,7 +5280,7 @@
         (pintype "PASSIVE"))
       (node
         (ref "U16")
-        (pin "4")
+        (pin "15")
         (pintype "TRISTATE")))
     (net
       (code 114)

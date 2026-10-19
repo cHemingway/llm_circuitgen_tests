@@ -130,22 +130,28 @@ up to about 2 MHz.
 
 | Byte | Register | bit7 … bit0 |
 |---|---|---|
-| 0 | U10 | POL+ (26), POL− (27), FUNC A (28), FUNC B (29), RANGE 4 (30), RANGE 2 (31), RANGE 1 (32), PRINT PULSE (33) |
-| 1 | U11 | 10³ digit 8 4 2 1 (pins 10–13), 10² digit 8 4 2 1 (14–17) |
-| 2 | U12 | 10⁵ digit (2–5), 10⁴ digit (6–9) |
-| 3 | U13 | 10¹ digit (18–21), 10⁰ digit (22–25) |
-| 4 | U14 | PRINT LEVEL (34), DATA CAN CHANGE (35), OVERLOAD (36), 1 × 10⁶ (1), **1 0 1 0** |
+| 0 | U10 | 2 × 10² (16), PRINT PULSE (33), RANGE 1 (32), 1 × 10² (17), 2 × 10³ (12), RANGE 4 (30), 4 × 10² (15), 8 × 10² (14) |
+| 1 | U11 | FUNC B (29), POL− (27), RANGE 2 (31), FUNC A (28), 1 × 10⁴ (9), 4 × 10³ (11), POL+ (26), 8 × 10³ (10) |
+| 2 | U12 | 4 × 10⁴ (7), 2 × 10⁴ (8), 4 × 10⁰ (23), 1 × 10⁰ (25), DATA CAN CHANGE (35), 8 × 10⁴ (6), 8 × 10⁰ (22), 1 × 10¹ (21) |
+| 3 | U13 | 4 × 10⁵ (3), 2 × 10¹ (20), 2 × 10⁵ (4), 4 × 10¹ (19), PRINT LEVEL (34), 8 × 10⁵ (2), 8 × 10¹ (18), 1 × 10⁶ (1) |
+| 4 | U14 | 1 × 10⁵ (5), 1 × 10³ (13), OVERLOAD (36), 2 × 10⁰ (24), **1**, **0**, **1**, **0** |
 
-The low nibble of byte 4 is wired to a fixed `1010` pattern on the meter side.
-If it reads back as anything else, the link is broken or the isolated side is
+Bits 3–0 of byte 4 are wired to a fixed `1010` pattern on the meter side.
+If they read back as anything else, the link is broken or the isolated side is
 unpowered: an unpowered side reads as all ones.
+
+The bits don't follow the connector order, and a decade's four bits can be
+split across registers. Each signal uses whichever array channel and register
+input is nearest its connector pin (see [Routing review](#routing-review)).
+Firmware should decode them with these tables, which are also printed on the
+schematic.
 
 **MOSI, bytes 3 and 4 (the last two sent):**
 
 | Byte | Register | bit7 (QH) … bit0 (QA) |
 |---|---|---|
-| 3 | U16 | –, –, REMOTE LED D4, CONTACT SAMPLE (39, via Q1, 1 = close), PULSE SAMPLE (40), RANGE 4 (50), RANGE 2 (49), RANGE 1 (48) |
-| 4 | U15 | AUTORANGE inhibit (47), INTEG 4 (44), INTEG 2 (45), INTEG 1 (46), FUNC (43), FUNC (42), RATIO (41, 0 = ratio), FRONT PANEL LOCKOUT (38, 0 = lockout/remote) |
+| 3 | U16 | –, –, FRONT PANEL LOCKOUT (38, 0 = lockout/remote), FUNC (43), PULSE SAMPLE (40), FUNC (42), RATIO (41, 0 = ratio), CONTACT SAMPLE (39, via Q1, 1 = close) |
+| 4 | U15 | REMOTE LED D4, RANGE 4 (50), RANGE 2 (49), RANGE 1 (48), INTEG 2 (45), AUTORANGE inhibit (47), INTEG 1 (46), INTEG 4 (44) |
 
 Bytes 0–2 on MOSI are don't-care: they fall out of the end of the 595 chain.
 
@@ -218,6 +224,55 @@ Typical remote measurement:
   and keep USB noise away from the meter. It is not a safety barrier. The
   TLP2361s are rated 3.75 kV<sub>rms</sub> and the B0509S 1.5 kV DC.
 
+## Routing review
+
+After review, the meter-side wiring was tidied in two rounds. J1, the
+resistor arrays, the optocouplers and everything on the host side stayed
+where they were.
+
+1. **Pin swaps within parts** (`scripts/optimise_pins.py`). Every signal
+   stayed on its original register and array. Only the pin it used there
+   changed: the 74HCT165 D inputs, the array channels and the 74HC595
+   outputs.
+2. **Pin swaps between parts, and moved registers**
+   (`scripts/optimise_layout.py`):
+   * Any meter output may now use any array channel and any 74HCT165 input,
+     so each signal takes the one nearest its connector pin. The four spare
+     inputs become the link-check bits.
+   * Any command input may use any 74HC595 output.
+   * All seven registers are turned 180°, so their clock, latch and supply
+     pins face away from J1 and the arrays. Their decoupling capacitors moved
+     with the supply pins.
+   * The 74HCT165s are reordered along the bottom row into chain order (U13,
+     U12, U11, U10 from left to right), which puts U10 next to the MISO
+     optocoupler. U15 and U16 swapped places.
+
+Both scripts read the pad positions from the board. They use simulated
+annealing to minimise the crossings of the straight pad-to-pad lines, plus
+their length. The second round also counts the clock, latch, /OE, MOSI and
+chain nets, so moving a register is weighed against its control wiring. The
+result is in the `ARRAYS`, `REGS_165` and `REGS_595` tables in
+`solartron_7075_interface.py` and the `BOTTOM_ROW` and `TOP_ROW` tables in
+`scripts/layout_pcb.py`. Each round was re-routed with Freerouting.
+`scripts/routing_metrics.py` measures the boards (original → round 1 → round
+2):
+
+| Nets | Straight-line crossings | Track length (mm) | Vias |
+|---|---|---|---|
+| J1 → resistor arrays (36) | 148 → 102 → **10** | 513 → 481 → **255** | 21 → 18 → **6** |
+| Resistor arrays → 74HCT165s (36) | 64 → 0 → **0** | 441 → 351 → **372** | 72 → 70 → **72** |
+| 74HC595s → J1 (13) | 36 → 8 → **1** | 265 → 205 → **137** | 11 → 11 → **7** |
+| Clock, latch, /OE, MOSI, chains (10) | | 563 → 558 → **494** | 16 → 21 → **20** |
+| Whole board | | 2428 → 2227 → **1868** | 262 → 260 → **243** |
+
+DRC, ERC and the schematic-parity check are clean after each round.
+
+The array-to-register links still drop to the bottom layer, at two vias
+each, because of the 74HCT165 pinout. Its D inputs are rows 3–6 of each pin
+column, behind Q7, DS, GND and ~Q7. Reaching them from above on the top layer
+would need eight tracks between the pin columns, and they don't fit. On the
+bottom layer the links are short, straight and parallel.
+
 ## Gerbers and prints
 
 | File | Contents |
@@ -248,10 +303,13 @@ the meter side.
 | `scripts/gen_schematic.py` | draws the single-page schematic from the netlist and checks it (`--check`) |
 | `scripts/link_schematic.py` | links the routed board to the schematic (symbol paths, net names) |
 | `scripts/make_bom.py`, `scripts/jlc_cpl.py` | BOM and placement files |
+| `scripts/optimise_pins.py`, `scripts/optimise_layout.py`, `scripts/routing_metrics.py` | meter-side pin-swap and register-placement searches, and the routing figures used to compare boards |
 | `scripts/make_prints.py` | the print PDF and the Gerber preview |
 | `build.sh` | runs the whole flow |
 | `CONVERSATION.md` | export of the Claude Code session that produced this design, with its time and token totals |
-| `scripts/session_breakdown.py`, `stats/breakdown_calls.csv` | the split of the session statistics by kind of work, and the category of every API call |
+| `REVIEW_CONVERSATION.md` | the review part of the same session (pin swaps and moved registers), with its statistics |
+| `scripts/session_breakdown.py`, `stats/breakdown_calls.csv` | the split of the design session's statistics by kind of work, and the category of every API call |
+| `scripts/review_breakdown.py`, `stats/review_breakdown_calls.csv` | the same for the review |
 | `output/` | SKiDL netlist, ERC log, BOM, unplaced board straight from SKiDL |
 | `pcb/` | KiCad 10 project: schematic, routed board, ERC and DRC reports, `render/` (schematic PDF/PNG, board renders), `print/` (prints, Gerber preview), `fab/` (Gerbers, drill, BOM, CPL) |
 
@@ -307,6 +365,9 @@ transcript. The category of each of the 347 API calls is listed in
     by the other three prices coming out as round figures.
   * The input price is poorly determined, because there are only 5 k uncached
     input tokens. Its effect on any column is under $0.02.
+  * Snapshots written later in the session (nine in all) refit the input price
+    to $3.90. Re-running the script then gives $7.52 for "Other" instead of
+    the published $7.51.
 
 ## Tool issues
 

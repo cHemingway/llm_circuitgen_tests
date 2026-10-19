@@ -431,47 +431,64 @@ def isolated_power():
     iso_5v & r & Net("LED_ISO_PWR_A") & led["A,K"] & iso_gnd
 
 
+# Meter-side pin assignment, chosen by scripts/optimise_layout.py together with
+# the register placement in scripts/layout_pcb.py: any meter output may use any
+# array channel and any 74HCT165 input, and any command input any 74HC595
+# output, so each signal takes whichever is nearest its connector pin. The four
+# spare 74HCT165 inputs are tied to fixed check bits.
+ARRAYS = [  # RN1..RN9 in creation order: signals on channels 1-4 (Rn.1-4 to J1)
+    ["RANGE_OUT_2", "FUNC_OUT_B", "POL_NEG", "FUNC_OUT_A"],
+    ["BCD_1E3_4", "BCD_1E3_8", "POL_POS", "BCD_1E4_1"],
+    ["BCD_1E2_1", "PRINT_PULSE", "BCD_1E2_2", "RANGE_OUT_1"],
+    ["BCD_1E2_4", "BCD_1E2_8", "RANGE_OUT_4", "BCD_1E3_2"],
+    ["BCD_1E0_1", "BCD_1E4_2", "BCD_1E4_4", "BCD_1E0_4"],
+    ["BCD_1E4_8", "BCD_1E0_8", "BCD_1E1_1", "DATA_CAN_CHANGE"],
+    ["BCD_1E5_2", "BCD_1E1_2", "BCD_1E5_4", "BCD_1E1_4"],
+    ["BCD_1E5_8", "BCD_1E1_8", "BCD_1E6_1", "PRINT_LEVEL"],
+    ["BCD_1E5_1", "OVERLOAD", "BCD_1E0_2", "BCD_1E3_1"],
+]
+REGS_165 = [  # U10..U14 in chain order: inputs D7..D0 (1 / 0 = fixed check bit)
+    ["BCD_1E2_2", "PRINT_PULSE", "RANGE_OUT_1", "BCD_1E2_1",
+     "BCD_1E3_2", "RANGE_OUT_4", "BCD_1E2_4", "BCD_1E2_8"],
+    ["FUNC_OUT_B", "POL_NEG", "RANGE_OUT_2", "FUNC_OUT_A",
+     "BCD_1E4_1", "BCD_1E3_4", "POL_POS", "BCD_1E3_8"],
+    ["BCD_1E4_4", "BCD_1E4_2", "BCD_1E0_4", "BCD_1E0_1",
+     "DATA_CAN_CHANGE", "BCD_1E4_8", "BCD_1E0_8", "BCD_1E1_1"],
+    ["BCD_1E5_4", "BCD_1E1_2", "BCD_1E5_2", "BCD_1E1_4",
+     "PRINT_LEVEL", "BCD_1E5_8", "BCD_1E1_8", "BCD_1E6_1"],
+    ["BCD_1E5_1", "BCD_1E3_1", "OVERLOAD", "BCD_1E0_2", 1, 0, 1, 0],
+]
+REGS_595 = {  # outputs QA..QH (None = unused)
+    "U15": ["INTEG_4", "INTEG_1", "AUTORANGE_INH", "INTEG_2",
+            "RANGE_CMD_1", "RANGE_CMD_2", "RANGE_CMD_4", "LED_REMOTE"],
+    "U16": ["SAMPLE_CONTACT_DRV", "RATIO_N", "FUNC_CMD_42", "SAMPLE_PULSE",
+            "FUNC_CMD_43", "LOCKOUT_N", None, None],
+}
+
+
 @subcircuit
 def input_shift_registers():
     """5 x 74HCT165 capturing the 36 meter outputs (plus 4 fixed check bits).
 
-    Each register serves a group of physically adjacent connector pins (keeps
-    the routing around the DD-50 short). Bit order on MISO after a LATCH pulse,
-    MSB of each byte first (byte0 = U10, whose Q7 drives the MISO opto):
-      byte0 U10: POL_POS POL_NEG FUNC_OUT_A FUNC_OUT_B RANGE_OUT_4 RANGE_OUT_2 RANGE_OUT_1 PRINT_PULSE
-      byte1 U11: 10^3 digit (8 4 2 1), 10^2 digit (8 4 2 1)
-      byte2 U12: 10^5 digit, 10^4 digit
-      byte3 U13: 10^1 digit, 10^0 digit
-      byte4 U14: PRINT_LEVEL DATA_CAN_CHANGE OVERLOAD BCD_1E6_1  1 0 1 0 (fixed check pattern)
+    After a LATCH pulse, MISO carries 5 bytes, MSB (D7) of each byte first;
+    byte0 = U10, whose Q7 drives the MISO opto. Bit maps: REGS_165 above.
+    U14's D3..D0 are tied to 1 0 1 0 as a link check.
     """
     one, zero = iso_5v, iso_gnd
 
-    def digits(hi, lo):
-        return [f"BCD_1E{hi}_{w}" for w in (8, 4, 2, 1)] + [f"BCD_1E{lo}_{w}" for w in (8, 4, 2, 1)]
-
-    bytes_ = [
-        ["POL_POS", "POL_NEG", "FUNC_OUT_A", "FUNC_OUT_B",
-         "RANGE_OUT_4", "RANGE_OUT_2", "RANGE_OUT_1", "PRINT_PULSE"],
-        digits(3, 2),
-        digits(5, 4),
-        digits(1, 0),
-        ["PRINT_LEVEL", "DATA_CAN_CHANGE", "OVERLOAD", "BCD_1E6_1", one, zero, one, zero],
-    ]
-
     # Series resistors (4-element arrays) between the connector and the 165 inputs:
     # ESD current limiting and limits back-feeding when only one side is powered.
-    signals = [s for b in bytes_ for s in b if isinstance(s, str)]
     filtered = {}
-    for i in range(0, len(signals), 4):
+    for chans in ARRAYS:
         rn = rn_tmpl(value="10k")
         tag(rn, "C29718", "4D03WGJ0103T5E", "UNI-ROYAL")
-        for k, sig in enumerate(signals[i:i + 4]):
+        for k, sig in enumerate(chans):
             filtered[sig] = Net(f"{sig}_R")
-            rn[k + 1] += meter[sig]          # Rn.1
-            rn[8 - k] += filtered[sig]       # Rn.2
+            rn[k + 1] += meter[sig]          # Rn.1-4: connector side
+            rn[8 - k] += filtered[sig]       # Rn.8-5: register side
 
     q7_prev = iso_miso_drive = Net("ISO_MISO_K")  # first register's Q7 sinks the MISO opto LED
-    for idx, bits in enumerate(bytes_):
+    for idx, bits in enumerate(REGS_165):
         u = Part("74xx", "74HC165", ref=f"U{10 + idx}", value="74HCT165", footprint=FP_SO16)
         tag(u, "C456131", "74HCT165D,653", "Nexperia")
         u["VCC"] += iso_5v
@@ -483,8 +500,8 @@ def input_shift_registers():
         u[7] += NC  # ~Q7
         u[9] += q7_prev  # Q7
         for k, sig in enumerate(bits):  # bits[0] -> D7 (shifted out first)
-            u[f"D{7 - k}"] += filtered[sig] if isinstance(sig, str) else sig
-        if idx == len(bytes_) - 1:
+            u[f"D{7 - k}"] += filtered[sig] if isinstance(sig, str) else (one if sig else zero)
+        if idx == len(REGS_165) - 1:
             u["DS"] += iso_gnd
         else:
             q7_prev = Net(f"SR165_CHAIN{idx + 1}")
@@ -498,9 +515,8 @@ def output_shift_registers():
 
     Outputs are high-impedance until the MCU pulls /OE low; the meter's TTL
     inputs then float to '1', which is the meter's "nothing commanded" state.
-    The last two bytes clocked in (of the 5 per transfer) land here:
-      byte4 -> U15: QH..QA = AUTORANGE_INH INTEG_4 INTEG_2 INTEG_1 FUNC_CMD_43 FUNC_CMD_42 RATIO_N LOCKOUT_N
-      byte3 -> U16: QH..QA = - - LED_REMOTE SAMPLE_CONTACT SAMPLE_PULSE RANGE_CMD_4 RANGE_CMD_2 RANGE_CMD_1
+    The last two bytes clocked in (of the 5 per transfer) land here, MSB first:
+    byte4 -> U15 and byte3 -> U16, bit7 = QH ... bit0 = QA (REGS_595 above).
     """
     u15 = Part("74xx", "74HC595", ref="U15", footprint=FP_SO16)
     u16 = Part("74xx", "74HC595", ref="U16", footprint=FP_SO16)
@@ -519,24 +535,9 @@ def output_shift_registers():
     u16["SER"] += chain
     u16[9] += NC  # QH'
 
-    u15["QA"] += meter["LOCKOUT_N"]
-    u15["QB"] += meter["RATIO_N"]
-    u15["QC"] += meter["FUNC_CMD_42"]
-    u15["QD"] += meter["FUNC_CMD_43"]
-    u15["QE"] += meter["INTEG_1"]
-    u15["QF"] += meter["INTEG_2"]
-    u15["QG"] += meter["INTEG_4"]
-    u15["QH"] += meter["AUTORANGE_INH"]
-
-    u16["QA"] += meter["RANGE_CMD_1"]
-    u16["QB"] += meter["RANGE_CMD_2"]
-    u16["QC"] += meter["RANGE_CMD_4"]
-    u16["QD"] += meter["SAMPLE_PULSE"]
-
     # CONTACT SAMPLE needs a real closure to pin 37: small N-MOSFET, gate held
     # low by 100k while the 595 outputs are disabled.
     gate = Net("SAMPLE_CONTACT_DRV")
-    u16["QE"] += gate
     q = Part("Transistor_FET", "2N7002", ref="Q1", footprint="Package_TO_SOT_SMD:SOT-23")
     tag(q, "C8545", "2N7002", "CJ")
     q["G"] += gate
@@ -547,11 +548,13 @@ def output_shift_registers():
 
     # "Remote active" indicator on the meter side
     led_net = Net("LED_REMOTE")
-    u16["QF"] += led_net
     led, r = LED("red"), R("1k")
     led_net & r & Net("LED_REMOTE_A") & led["A,K"] & iso_gnd
-    u16["QG"] += NC
-    u16["QH"] += NC
+
+    local = {"SAMPLE_CONTACT_DRV": gate, "LED_REMOTE": led_net}
+    for u, outs in ((u15, REGS_595["U15"]), (u16, REGS_595["U16"])):
+        for q_name, sig in zip(("QA", "QB", "QC", "QD", "QE", "QF", "QG", "QH"), outs):
+            u[q_name] += NC if sig is None else local.get(sig) or meter[sig]
 
 
 @subcircuit

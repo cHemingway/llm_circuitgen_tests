@@ -130,22 +130,27 @@ up to about 2 MHz.
 
 | Byte | Register | bit7 … bit0 |
 |---|---|---|
-| 0 | U10 | POL+ (26), POL− (27), FUNC A (28), FUNC B (29), RANGE 4 (30), RANGE 2 (31), RANGE 1 (32), PRINT PULSE (33) |
-| 1 | U11 | 10³ digit 8 4 2 1 (pins 10–13), 10² digit 8 4 2 1 (14–17) |
-| 2 | U12 | 10⁵ digit (2–5), 10⁴ digit (6–9) |
-| 3 | U13 | 10¹ digit (18–21), 10⁰ digit (22–25) |
-| 4 | U14 | PRINT LEVEL (34), DATA CAN CHANGE (35), OVERLOAD (36), 1 × 10⁶ (1), **1 0 1 0** |
+| 0 | U10 | RANGE 4 (30), RANGE 2 (31), PRINT PULSE (33), RANGE 1 (32), POL− (27), FUNC A (28), FUNC B (29), POL+ (26) |
+| 1 | U11 | 8 × 10² (14), 1 × 10² (17), 2 × 10² (16), 4 × 10² (15), 4 × 10³ (11), 2 × 10³ (12), 8 × 10³ (10), 1 × 10³ (13) |
+| 2 | U12 | 1 × 10⁴ (9), 8 × 10⁴ (6), 4 × 10⁴ (7), 2 × 10⁴ (8), 2 × 10⁵ (4), 4 × 10⁵ (3), 8 × 10⁵ (2), 1 × 10⁵ (5) |
+| 3 | U13 | 8 × 10⁰ (22), 1 × 10⁰ (25), 2 × 10⁰ (24), 4 × 10⁰ (23), 4 × 10¹ (19), 2 × 10¹ (20), 8 × 10¹ (18), 1 × 10¹ (21) |
+| 4 | U14 | PRINT LEVEL (34), 1 × 10⁶ (1), **0**, **0**, **1**, **1**, OVERLOAD (36), DATA CAN CHANGE (35) |
 
-The low nibble of byte 4 is wired to a fixed `1010` pattern on the meter side.
-If it reads back as anything else, the link is broken or the isolated side is
+Bits 5–2 of byte 4 are wired to a fixed `0011` pattern on the meter side.
+If they read back as anything else, the link is broken or the isolated side is
 unpowered: an unpowered side reads as all ones.
+
+The bits don't follow the connector order, because the pins on each register
+and resistor array were assigned for short, uncrossed routes (see
+[Routing review](#routing-review)). Firmware should decode them with these
+tables, which are also printed on the schematic.
 
 **MOSI, bytes 3 and 4 (the last two sent):**
 
 | Byte | Register | bit7 (QH) … bit0 (QA) |
 |---|---|---|
-| 3 | U16 | –, –, REMOTE LED D4, CONTACT SAMPLE (39, via Q1, 1 = close), PULSE SAMPLE (40), RANGE 4 (50), RANGE 2 (49), RANGE 1 (48) |
-| 4 | U15 | AUTORANGE inhibit (47), INTEG 4 (44), INTEG 2 (45), INTEG 1 (46), FUNC (43), FUNC (42), RATIO (41, 0 = ratio), FRONT PANEL LOCKOUT (38, 0 = lockout/remote) |
+| 3 | U16 | RANGE 1 (48), PULSE SAMPLE (40), RANGE 2 (49), RANGE 4 (50), CONTACT SAMPLE (39, via Q1, 1 = close), –, –, REMOTE LED D4 |
+| 4 | U15 | FRONT PANEL LOCKOUT (38, 0 = lockout/remote), RATIO (41, 0 = ratio), FUNC (42), FUNC (43), INTEG 4 (44), INTEG 2 (45), INTEG 1 (46), AUTORANGE inhibit (47) |
 
 Bytes 0–2 on MOSI are don't-care: they fall out of the end of the 595 chain.
 
@@ -218,6 +223,42 @@ Typical remote measurement:
   and keep USB noise away from the meter. It is not a safety barrier. The
   TLP2361s are rated 3.75 kV<sub>rms</sub> and the B0509S 1.5 kV DC.
 
+## Routing review
+
+After review, the meter-side pins were reassigned to tidy the routing. Every
+signal stays on the same part, and no part moved. Within each part:
+
+* **74HCT165s:** the D inputs were reassigned. On U14 this includes the four
+  link-check inputs.
+* **Resistor arrays:** the channels were reassigned. Pins 1–4 still face J1.
+* **74HC595s:** the outputs were reassigned. On U16 this includes the two
+  spare outputs.
+
+`scripts/optimise_pins.py` found the assignment. It reads the pad positions
+from the board and uses simulated annealing to minimise the crossings of the
+straight pad-to-pad lines, plus their length. The result is the `ARRAYS`,
+`REGS_165` and `REGS_595` tables in `solartron_7075_interface.py`. Then the
+board was re-routed with Freerouting. `scripts/routing_metrics.py` measures
+both boards:
+
+| Nets | Straight-line crossings | Track length | Vias |
+|---|---|---|---|
+| J1 → resistor arrays (36) | 148 → 102 | 513 → 481 mm | 21 → 18 |
+| Resistor arrays → 74HCT165s (36) | 64 → 0 | 441 → 351 mm | 72 → 70 |
+| 74HC595s → J1 (13) | 36 → 8 | 265 → 205 mm | 11 → 11 |
+| Whole board | | 2428 → 2227 mm | 262 → 260 |
+
+DRC, ERC and the schematic-parity check are still clean.
+
+What pin swaps within parts can't fix:
+
+* **J1 to the arrays.** Most of the remaining crossings come from which
+  signals share an array. Each array takes one group of four connector pins,
+  and the DD-50's staggered rows interleave those groups.
+* **The arrays to the registers.** These links still drop to the bottom layer,
+  at two vias each. The SCLK and LATCH lines and the decoupling capacitors run
+  along the top of the register row and block a top-layer route.
+
 ## Gerbers and prints
 
 | File | Contents |
@@ -248,6 +289,7 @@ the meter side.
 | `scripts/gen_schematic.py` | draws the single-page schematic from the netlist and checks it (`--check`) |
 | `scripts/link_schematic.py` | links the routed board to the schematic (symbol paths, net names) |
 | `scripts/make_bom.py`, `scripts/jlc_cpl.py` | BOM and placement files |
+| `scripts/optimise_pins.py`, `scripts/routing_metrics.py` | meter-side pin-swap search, and the routing figures used to compare boards |
 | `scripts/make_prints.py` | the print PDF and the Gerber preview |
 | `build.sh` | runs the whole flow |
 | `CONVERSATION.md` | export of the Claude Code session that produced this design, with its time and token totals |

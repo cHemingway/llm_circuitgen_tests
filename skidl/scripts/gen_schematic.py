@@ -521,17 +521,38 @@ Pulse LATCH low >= 1 us, then clock 5 bytes. LATCH low: the 74HCT165s sample the
 LATCH rising edge: the 74HC595 outputs take the last two bytes clocked in.
 /OE (GPIO24) high = command outputs off (the default while the MCU is unpowered or in reset).
 
-MISO  byte0 U10: POL+  POL-  FUNC_A  FUNC_B  RANGE_4  RANGE_2  RANGE_1  PRINT_PULSE
-      byte1 U11: 10^3 digit (8 4 2 1), 10^2 digit (8 4 2 1)
-      byte2 U12: 10^5 digit, 10^4 digit
-      byte3 U13: 10^1 digit, 10^0 digit
-      byte4 U14: PRINT_LEVEL  DATA_CAN_CHANGE  OVERLOAD  1x10^6  1 0 1 0 (link check)
-MOSI  byte3 U16: -  -  REMOTE LED  CONTACT_SAMPLE  PULSE_SAMPLE  RANGE_4  RANGE_2  RANGE_1
-      byte4 U15: AUTORANGE_INH  INTEG_4  INTEG_2  INTEG_1  FUNC_43  FUNC_42  RATIO_N  LOCKOUT_N
+{bitmaps}
 
 Meter levels (7075 manual sect. 9): outputs '1' = 2.4..6 V from 6k, '0' sinks 10 mA;
 inputs '1' = 2.4..5 V, '0' < 0.5 V at 5 mA. Series 10k on every meter output.
 ISO_GND = SKB pin 37 (meter earth / logic 0). Net labels of the same name are connected."""
+
+D7_TO_D0 = ("6", "5", "4", "3", "14", "13", "12", "11")     # 74HC165 pins
+QH_TO_QA = ("7", "6", "5", "4", "3", "2", "1", "15")        # 74HC595 pins
+
+
+def bit_name(net):
+    if net is None or net.startswith("unconnected-"):
+        return "-"
+    net = net.removesuffix("_R")
+    m = re.fullmatch(r"BCD_1E(\d)_(\d)", net)
+    if m:
+        return f"{m[2]}x10^{m[1]}"
+    short = {"ISO_+5V": "1", "ISO_GND": "0", "SAMPLE_CONTACT_DRV": "CONTACT_SAMPLE",
+             "LED_REMOTE": "REMOTE_LED", "POL_POS": "POL+", "POL_NEG": "POL-"}
+    return short.get(net, net.replace("_OUT_", "_").replace("_CMD_", "_"))
+
+
+def bitmaps(pinnet):
+    """MISO/MOSI bit maps (bit7 .. bit0 of each byte), read from the netlist."""
+    rows = []
+    for k, u in enumerate(("U10", "U11", "U12", "U13", "U14")):
+        bits = "  ".join(bit_name(pinnet.get((u, p))) for p in D7_TO_D0)
+        rows.append(f"{'MISO' if k == 0 else '    '}  byte{k} {u}: {bits}")
+    for k, u in ((3, "U16"), (4, "U15")):
+        bits = "  ".join(bit_name(pinnet.get((u, p))) for p in QH_TO_QA)
+        rows.append(f"{'MOSI' if k == 3 else '    '}  byte{k} {u}: {bits}")
+    return "\n".join(rows) + "\n(bit7 first; 1 / 0 = U14 link-check inputs tied high / low)"
 
 
 def layout(S):
@@ -561,7 +582,7 @@ def layout(S):
 
     # ---- Notes ------------------------------------------------------------------
     block("NOTES", 12.7, 116.84, 152.4, 271.78)
-    S.text(NOTES, 15.24, 124.46, size=1.524, valign="top")
+    S.text(NOTES.format(bitmaps=bitmaps(S.pinnet)), 15.24, 124.46, size=1.524, valign="top")
 
     # ---- RP2354A ------------------------------------------------------------
     block("RP2354A (2 MB IN-PACKAGE FLASH)", 157.48, 12.7, 312.42, 251.46)

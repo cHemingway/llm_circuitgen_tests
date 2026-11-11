@@ -1,4 +1,4 @@
-# Conversation export: KiCad Solartron 7075 USB interface
+# Conversation export: Fable 5.2 + KiCad Solartron 7075 USB interface
 
 Claude Code session (model Fable 5.2) on `cHemingway/llm_circuitgen_tests`, branch `fable_5.2`, 2026-11-11 08:30 – 2026-11-11 18:54 UTC.
 This export covers every message up to, but not including, the request to export it.

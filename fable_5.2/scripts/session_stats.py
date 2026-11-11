@@ -26,7 +26,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.normpath(os.path.join(HERE, '..'))
 SRC = sys.argv[1]
 SCRATCH = '/tmp/claude-0/-home-user-llm-circuitgen-tests/9332df17-6fb3-52d5-8cfe-c3e145280a66/scratchpad'
-TOOL = 'KiCad'
+TOOL = 'Fable 5.2 + KiCad'
 ASSISTANT = 'Claude'
 MODEL = 'claude-fable-5-2'
 

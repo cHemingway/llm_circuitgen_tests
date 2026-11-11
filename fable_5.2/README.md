@@ -169,3 +169,32 @@ scripts/build.sh
 needs KiCad 10 (`kicad-cli` and the `pcbnew` Python module).  `gen_lib.py`
 writes the project libraries, `gen_sch.py` the schematic, `gen_pcb.py` places
 and routes the board, `export.py` writes `docs/` and `production/`.
+
+## Session statistics
+
+`CONVERSATION.md` is the export of the design session; `scripts/session_stats.py` produces it,
+together with `session_calls.csv` (every API call with its category, request time, active time and
+tokens) and `session_breakdown.json`. Run it with
+`python3 -I scripts/session_stats.py ~/.claude/projects/<project>/<session-id>.jsonl`.
+
+- **Source of the totals:** the last cost-state record before the export request. Summing the 122
+  distinct API responses (each message id once; the four usage-limit notices are not calls) gives
+  exactly the same token counts, so the "Not attributable" column is zero.
+- **Tool time** is the tool's own counter (17.6 min). The transcript method (tool_use to tool_result,
+  overlaps merged) gives 18.9 min, about 7 % higher.
+- **Active time** is summed from the three user messages (the brief and the two "usage limit has
+  reset" notes) until each reply stopped. The two usage-limit stops (9 h 06 min) are left out. It
+  agrees with the counters (60.0 min API + 17.6 min tool).
+- **Prices:** published Claude Fable 5.2 prices, USD per million tokens: $8 input, $40 output, $0.20 cache
+  read, $10 cache write (5 min), $16 cache write (1 h). Source: the Claude API documentation bundled
+  with Claude Code (the `claude-api` skill, `shared/models.md`). They reproduce all three distinct
+  cost-state snapshots to the cent ($17.95, $36.24, $46.05), so they are used as they are; three
+  snapshots are too few to fit four prices. Every cache write in this session was 1-hour.
+- **Category judgement calls:**
+  - The D-sub datasheet download and drawing reading, which only served the footprint, count as PCB.
+  - The Freerouting / pcbnew toolchain checks count as PCB.
+  - Library symbol and footprint creation for the schematic, and netlist work, count as Schematic & research.
+  - The two status checks after a worker restart count as Other. They carry large cache writes
+    (the prompt cache had expired during the usage-limit stop), which is why Other costs $16 for
+    seven calls.
+  - Active time per call runs from its request to the next call's request, including tool runs.

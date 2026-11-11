@@ -1,0 +1,4 @@
+(fp_lib_table
+	(version 7)
+	(lib (name "solartron7075")(type "KiCad")(uri "${KIPRJMOD}/lib/solartron7075.pretty")(options "")(descr "Project-local parts"))
+)

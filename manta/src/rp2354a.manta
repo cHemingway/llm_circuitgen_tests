@@ -1,0 +1,172 @@
+// Pins are named as the datasheet names them. The six IOVDD and three DVDD
+// pads share a name on the datasheet, so each carries its pad number. The ADC
+// inputs are GPIO26-29 and keep their GPIO names; which function a board uses
+// is the board's decision.
+part RP2354A {
+    @VERSION       = 2.0+;
+    @~footprint    = QFN-60-7x7;
+    #value         = RP2354A;
+    @!type         = mcu;
+    #~mpn          = "RP2354A";
+    #!manufacturer = "Raspberry Pi";
+    #~lcsc         = "C41378174";
+
+    1       : IOVDD-1<      &TYPE=POWER;
+    [2:5]   : GPIO[0:3]<>   #VOH=2V62 #VOL=0V5 #VIH=2V #VIL=0V8;
+    6       : DVDD-6<       &TYPE=POWER;
+    [7:10]  : GPIO[4:7]<>   #VOH=2V62 #VOL=0V5 #VIH=2V #VIL=0V8;
+    11      : IOVDD-11<     &TYPE=POWER;
+    [12:19] : GPIO[8:15]<>  #VOH=2V62 #VOL=0V5 #VIH=2V #VIL=0V8;
+    20      : IOVDD-20<     &TYPE=POWER;
+    21      : XIN<;
+    22      : XOUT>;
+    23      : DVDD-23<      &TYPE=POWER;
+    24      : SWCLK<;
+    25      : SWDIO<>;
+    26      : RUN<;                         // active-low reset
+    [27:29] : GPIO[16:18]<> #VOH=2V62 #VOL=0V5 #VIH=2V #VIL=0V8;
+    30      : IOVDD-30<     &TYPE=POWER;
+    [31:37] : GPIO[19:25]<> #VOH=2V62 #VOL=0V5 #VIH=2V #VIL=0V8;
+    38      : IOVDD-38<     &TYPE=POWER;
+    39      : DVDD-39<      &TYPE=POWER;
+    [40:43] : GPIO[26:29]<> #VOH=2V62 #VOL=0V5 #VIH=2V #VIL=0V8;   // ADC0..ADC3
+    44      : ADC_AVDD<     &TYPE=POWER;
+    45      : IOVDD-45<     &TYPE=POWER;
+    46      : VREG_AVDD<    &TYPE=POWER;
+    47      : VREG_PGND<    &TYPE=POWER;
+    48      : VREG_LX>;                     // core regulator switching node
+    49      : VREG_VIN<     &TYPE=POWER;
+    50      : VREG_FB<;
+    51      : USB_DM<>;
+    52      : USB_DP<>;
+    53      : USB_OTP_VDD<  &TYPE=POWER;
+    54      : QSPI_IOVDD<   &TYPE=POWER;    // also powers the in-package flash
+    55      : QSPI_SD3<>;
+    56      : QSPI_SCLK>;
+    57      : QSPI_SD0<>;
+    58      : QSPI_SD2<>;
+    59      : QSPI_SD1<>;
+    60      : QSPI_SS<>;                    // sampled at boot: low selects BOOTSEL
+    61      : GND<          &TYPE=POWER;    // exposed pad, the only ground
+};
+
+---
+
+# RP2354A
+
+**Source:** Raspberry Pi Ltd, RP2350 Datasheet (covers RP2354A), §14.3, §14.8,
+§14.9 and §6.3.8; and Raspberry Pi Ltd, *Hardware design with RP2350*, release 3,
+build date 2026-08-20. QFN-60, 7 × 7 mm.
+
+RP2354A is the RP2350A die with a stacked 2 MB Winbond W25Q16JVWI QSPI flash
+die. "In all other respects, including pinout" it is identical to the RP2350A
+(§14.3). 30 GPIO, four of them ADC inputs (GPIO26–29), USB 1.1 device/host,
+on-chip 200 mA switching regulator for the 1.1 V core.
+
+## Pins (QFN-60, §14.8.1.1)
+
+| Pin | Name | Function |
+|---|---|---|
+| 1, 11, 20, 30, 38, 45 | IOVDD | Digital IO supply |
+| 2–5 | GPIO0–3 | GPIO |
+| 6, 23, 39 | DVDD | Digital core supply, 1.1 V |
+| 7–10 | GPIO4–7 | GPIO |
+| 12–19 | GPIO8–15 | GPIO |
+| 21 | XIN | Crystal oscillator input |
+| 22 | XOUT | Crystal oscillator output |
+| 24 | SWCLK | Serial wire debug clock |
+| 25 | SWDIO | Serial wire debug data |
+| 26 | RUN | Chip enable / reset, active low |
+| 27–29 | GPIO16–18 | GPIO |
+| 31–37 | GPIO19–25 | GPIO |
+| 40–43 | GPIO26_ADC0–GPIO29_ADC3 | GPIO or ADC input |
+| 44 | ADC_AVDD | ADC supply |
+| 46 | VREG_AVDD | Core regulator analogue supply |
+| 47 | VREG_PGND | Core regulator power ground |
+| 48 | VREG_LX | Core regulator switching output |
+| 49 | VREG_VIN | Core regulator input |
+| 50 | VREG_FB | Core regulator feedback |
+| 51 | USB_DM | USB D− |
+| 52 | USB_DP | USB D+ |
+| 53 | USB_OTP_VDD | USB PHY and OTP supply |
+| 54 | QSPI_IOVDD | QSPI IO supply; also supplies the in-package flash |
+| 55 | QSPI_SD3 | QSPI data 3 |
+| 56 | QSPI_SCLK | QSPI clock |
+| 57 | QSPI_SD0 | QSPI data 0 |
+| 58 | QSPI_SD2 | QSPI data 2 |
+| 59 | QSPI_SD1 | QSPI data 1 |
+| 60 | QSPI_SS | QSPI chip select; sampled at boot |
+| 61 (EP) | GND | Ground; the package's only ground connection |
+
+## Absolute maximum ratings (§14.9.1)
+
+| Parameter | Min | Max | Unit |
+|---|---|---|---|
+| DVDD | −0.5 | 1.21 | V |
+| IOVDD, QSPI_IOVDD | −0.5 | 3.63 | V |
+| Voltage at standard IO | −0.5 | IOVDD + 0.5 | V |
+| Voltage at FT IO, IOVDD = 3.3 V | −0.5 | 5.5 | V |
+| Voltage at FT IO, IOVDD = 0 V | −0.5 | 3.63 | V |
+| Junction temperature | −40 | 125 | °C |
+| ESD, HBM (digital FT pins) | | 4 | kV |
+| ESD, HBM (all pins) | | 2 | kV |
+
+## Recommended operating conditions (§14.9.5)
+
+| Supply | Min | Typ | Max | Unit |
+|---|---|---|---|---|
+| IOVDD | 1.62 | 1.8 / 3.3 | 3.63 | V |
+| QSPI_IOVDD (RP2354 only) | 2.97 | 3.3 | 3.63 | V |
+| DVDD | 1.05 | 1.1 | 1.16 | V |
+| VREG_VIN | 2.7 | 3.3 | 5.5 | V |
+| VREG_AVDD | 3.135 | 3.3 | 3.63 | V |
+| USB_OTP_VDD | 3.135 | 3.3 | 3.63 | V |
+| ADC_AVDD | 1.62 | 3.3 | 3.63 | V |
+| Ambient temperature | −40 | | 85 | °C |
+
+RP2354's internal flash requires QSPI_IOVDD = 3.3 V.
+
+## Electrical characteristics, IOVDD = 3.3 V (§14.9.4, Table 1683)
+
+| Parameter | Condition | Min | Max | Unit |
+|---|---|---|---|---|
+| VIH | | 2.0 | IOVDD + 0.3 | V |
+| VIL | | −0.3 | 0.8 | V |
+| VOH | IOH = 2, 4, 8 or 12 mA per drive setting | 2.62 | IOVDD | V |
+| VOL | IOL = 2, 4, 8 or 12 mA per drive setting | 0 | 0.5 | V |
+| Pull-up resistance | | 32 | 86 | kΩ |
+| Pull-down resistance | | 36 | 113 | kΩ |
+| Input leakage | | | 1 | µA |
+| Total current sourced from IOVDD, all GPIO | | | 100 | mA |
+| Total current sunk into GPIO | | | 100 | mA |
+
+Core regulator (Table 1689): 200 mA maximum in normal mode, output ±3% of the
+programmed voltage, 1.1 V default.
+
+## Application
+
+From the RP2350 datasheet §6.3.8 and *Hardware design with RP2350*:
+
+- Core regulator: CIN ≥ 4.7 µF at VREG_VIN (≤ 50 mΩ); COUT 4.7 µF ±20%
+  (≤ 250 mΩ, ≤ 6 nH) between the 1.1 V output and VREG_PGND; a second 4.7 µF on
+  the 1.1 V net near DVDD pin 23 is recommended. LX 3.3 µH ±20%, fully shielded,
+  ≤ 250 mΩ DCR, Isat ≥ 1.5 A, polarity-marked: Abracon AOTA-B201610S3R3-101-T
+  is recommended, oriented as in Figure 26. VREG_FB is fed from COUT.
+- VREG_AVDD is noise sensitive: RC filter of 33 Ω and 4.7 µF from 3.3 V.
+- Do not place CIN, LX or COUT on the opposite side of the board; follow the
+  Figure 26 layout, keep the LX loop small, cut copper under the inductor.
+- Decoupling: 100 nF per supply pin; the minimal design shares one 100 nF
+  between USB_OTP_VDD and QSPI_IOVDD; 10 µF bulk on 3.3 V.
+- Crystal: Abracon ABM8-272-T3, 12 MHz, with 15 pF load capacitors and a 1 kΩ
+  series resistor in XOUT, tuned for IOVDD = 3.3 V.
+- USB: 27 Ω series resistors on USB_DP and USB_DM, placed close to the chip;
+  no external pull-ups or pull-downs.
+- BOOTSEL: QSPI_SS pulled to ground through 1 kΩ and a push button selects USB
+  boot at the next reset. RUN is taken to ground through a button for reset.
+- RP2354: keep track length on the QSPI pins short when the bus is not used
+  externally.
+
+## Package
+
+QFN-60, 7 × 7 mm, 0.4 mm pitch, exposed pad 3.4 × 3.4 mm (reduced ePad). Pin 1
+at the marked corner, numbering counter-clockwise from the top view. MSL 1.

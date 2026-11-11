@@ -1,0 +1,64 @@
+// Project rules for the Solartron 7075 USB interface.
+//
+// The '#' fields these read are ordinary manta, so the design compiles and
+// links without this file; loading it adds the checking.
+
+// ---------------------------------------------------------------------------
+// Logic levels
+//
+// Every driver has to clear every receiver's thresholds on the net it drives.
+// This is what proves the '595 outputs meet the 7075's TTL command inputs, and
+// that the optocoupler outputs meet the HCT and RP2354 thresholds on both
+// sides of the barrier.
+// ---------------------------------------------------------------------------
+rules logic-levels {
+    #VOH : voltage;      // output high, worst case
+    #VOL : voltage;      // output low, worst case
+    #VIH : voltage;      // input threshold, high
+    #VIL : voltage;      // input threshold, low
+
+    check drive-high for net.driver -> net.receiver {
+        when    (driver.direction == out) | (driver.direction == bidir);
+        when    (receiver.direction == in) | (receiver.direction == bidir);
+        when    has(driver.VOH) & has(receiver.VIH);
+        require driver.VOH >= receiver.VIH;
+        error   "{driver} drives {net} to {driver.VOH},"
+                " but {receiver} needs at least {receiver.VIH}";
+    };
+
+    check pull-low for net.driver -> net.receiver {
+        when    (driver.direction == out) | (driver.direction == bidir);
+        when    (receiver.direction == in) | (receiver.direction == bidir);
+        when    has(driver.VOL) & has(receiver.VIL);
+        require driver.VOL <= receiver.VIL;
+        error   "{driver} pulls {net} down to {driver.VOL},"
+                " but {receiver} needs at most {receiver.VIL}";
+    };
+};
+
+// ---------------------------------------------------------------------------
+// Library policy
+// ---------------------------------------------------------------------------
+rules library-policy {
+    check every-part-has-a-footprint for part {
+        require has(part.footprint) & part.footprint != "";
+        error   "part {part.name} declares no footprint";
+    };
+};
+
+// ---------------------------------------------------------------------------
+// Sourcing policy
+//
+// The board is meant to be assembled from LCSC stock, so every part that is
+// fitted and on the BOM has to say which LCSC line it is.
+// ---------------------------------------------------------------------------
+rules sourcing-policy {
+    #lcsc : text;
+
+    check every-fitted-part-has-an-lcsc-code for component {
+        when    component.fitted;
+        when    component.bom;
+        require has(component.lcsc);
+        error   "{component} ({component.part}) has no LCSC order code";
+    };
+};

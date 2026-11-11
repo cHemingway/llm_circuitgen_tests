@@ -1,0 +1,33 @@
+requires-atopile: 0.15.9
+
+paths:
+  src: ./
+  layout: ./layouts
+
+builds:
+  default:
+    entry: main.ato:App
+
+# atopile library packages are pulled straight from github.com/atopile/packages
+# (pinned commit) because the package registry host was unreachable.
+dependencies:
+- type: git
+  identifier: atopile/ti-tlv75901
+  repo_url: https://github.com/atopile/packages.git
+  path_within_repo: packages/ti-tlv75901
+  ref: 38e6b64baece2ec1dcaffbfa1715763b06d3e597
+- type: git
+  identifier: atopile/buttons
+  repo_url: https://github.com/atopile/packages.git
+  path_within_repo: packages/buttons
+  ref: 38e6b64baece2ec1dcaffbfa1715763b06d3e597
+- type: git
+  identifier: atopile/indicator-leds
+  repo_url: https://github.com/atopile/packages.git
+  path_within_repo: packages/indicator-leds
+  ref: 38e6b64baece2ec1dcaffbfa1715763b06d3e597
+- type: git
+  identifier: atopile/programming-headers
+  repo_url: https://github.com/atopile/packages.git
+  path_within_repo: packages/programming-headers
+  ref: 38e6b64baece2ec1dcaffbfa1715763b06d3e597

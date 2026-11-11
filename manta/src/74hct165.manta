@@ -1,0 +1,93 @@
+// Standard '165 pinout. The parallel inputs are split across two runs of pads,
+// D4-D7 on 3-6 and D0-D3 on 11-14. Q7 is the last stage; nQ7 is its
+// complement on its own pad.
+part 74HCT165 {
+    @~footprint    = SOIC-16;
+    #value         = 74HCT165;
+    @!type         = logic;
+    #~mpn          = "CD74HCT165M96";
+    #!manufacturer = "Texas Instruments";
+    #~lcsc         = "C352828";
+
+    1       : PL<      #VIH=2V #VIL=0V8;   // parallel load, active low
+    2       : CP<      #VIH=2V #VIL=0V8;   // clock, rising edge
+    [3:6]   : D[4:7]<  #VIH=2V #VIL=0V8;
+    7       : nQ7>     #VOH=3V84 #VOL=0V4;
+    8       : GND<     &TYPE=POWER;
+    9       : Q7>      #VOH=3V84 #VOL=0V4;
+    10      : DS<      #VIH=2V #VIL=0V8;   // serial in, enters at Q0
+    [11:14] : D[0:3]<  #VIH=2V #VIL=0V8;
+    15      : CE<      #VIH=2V #VIL=0V8;   // clock enable, active low
+    16      : VCC<     &TYPE=POWER;
+};
+
+---
+
+# CD74HCT165
+
+**Source:** Texas Instruments, CD54HC165/CD74HC165/CD74HCT165 datasheet,
+SCHS156C, revised October 2003. SOIC-16 (M96 suffix: tape and reel).
+
+8-bit parallel-in or serial-in, serial-out shift register, HCT (TTL-level)
+inputs.
+
+## Pins
+
+| Pin | Name | Function |
+|---|---|---|
+| 1 | PL | Asynchronous parallel load, active low |
+| 2 | CP | Clock, shifts on the rising edge |
+| 3–6 | D4–D7 | Parallel data inputs |
+| 7 | Q7 (complement) | Complementary serial output |
+| 8 | GND | Ground |
+| 9 | Q7 | Serial output, last stage |
+| 10 | DS | Serial data input |
+| 11–14 | D0–D3 | Parallel data inputs |
+| 15 | CE | Clock enable, active low |
+| 16 | VCC | Supply |
+
+Truth table: PL low loads D0–D7 into the register regardless of CP and CE;
+with PL high and CE low, each rising CP edge shifts DS into Q0 and Q(n) into
+Q(n+1). After a load, Q7 presents D7.
+
+## Absolute maximum ratings
+
+| Parameter | Value |
+|---|---|
+| VCC | −0.5 to 7 V |
+| Input diode current IIK | ±20 mA |
+| Output diode current IOK | ±20 mA |
+| Output source or sink current per pin | ±25 mA |
+| VCC or ground current | ±50 mA |
+
+## Recommended operating conditions
+
+| Parameter | Value |
+|---|---|
+| VCC, HCT types | 4.5 to 5.5 V |
+| Input and output voltage | 0 to VCC |
+| Input rise and fall time at 4.5 V | 500 ns max |
+| Temperature | −55 to 125 °C |
+
+## Electrical characteristics, HCT types, VCC = 4.5 V
+
+| Parameter | Condition | 25 °C | −40 to 85 °C | Unit |
+|---|---|---|---|---|
+| VIH min | | 2 | 2 | V |
+| VIL max | | 0.8 | 0.8 | V |
+| VOH min | IO = −4 mA | 3.98 | 3.84 | V |
+| VOL max | IO = 4 mA | 0.26 | 0.33 | V |
+| fMAX min | | 27 | 22 | MHz |
+
+## Application
+
+From the datasheet description: parallel-to-serial expansion is by tying the
+Q7 output to the DS input of the succeeding device. The LOW-to-HIGH transition
+of CE should only take place while CP is HIGH, and CP and CE should be LOW
+before the LOW-to-HIGH transition of PL, to prevent shifting the data when PL
+goes HIGH. HCT inputs are LSTTL-compatible: VIL 0.8 V max, VIH 2 V min.
+
+## Package
+
+SOIC-16, 3.9 × 9.9 mm body, 1.27 mm pitch. Pin 1 at the marked end, numbering
+counter-clockwise from the top.

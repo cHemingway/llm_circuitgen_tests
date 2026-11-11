@@ -1,0 +1,17 @@
+import has_designator_prefix
+import has_part_picked
+import is_atomic_part
+import is_auto_generated
+
+component LUTE_1206L050_36NR_package:
+    # This trait marks this file as auto-generated
+    # If you want to manually change it, remove the trait
+    trait is_auto_generated<system="ato_part", source="easyeda:C20616702", date="2026-10-06T10:57:33.593089+00:00", checksum="2427b8dcaa672b8a84cfb27482c2039091b0c774e30dc8f1e28358be1ebb6d0f">
+
+    trait is_atomic_part<manufacturer="LUTE", partnumber="1206L050/36NR", footprint="F1206.kicad_mod", symbol="1206L050_36NR.kicad_sym", model="F1206_L3.2-W1.7-H0.6.step">
+    trait has_part_picked::by_supplier<supplier_id="lcsc", supplier_partno="C20616702", manufacturer="LUTE", partno="1206L050/36NR">
+    trait has_designator_prefix<prefix="F">
+
+    # pins
+    pin 1
+    pin 2

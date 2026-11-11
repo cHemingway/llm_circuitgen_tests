@@ -1,0 +1,20 @@
+import has_designator_prefix
+import has_part_picked
+import is_atomic_part
+import is_auto_generated
+
+component TOSHIBA_TLP2361_TPL_E_package:
+    # This trait marks this file as auto-generated
+    # If you want to manually change it, remove the trait
+    trait is_auto_generated<system="ato_part", source="easyeda:C107626", date="2026-10-06T10:57:12.856907+00:00", checksum="0efc025d5151cd05c3468dee791fe27bd7949820cc047dbb772dcf88b487a11f">
+
+    trait is_atomic_part<manufacturer="TOSHIBA", partnumber="TLP2361(TPL,E", footprint="OPTO-SMD-5_L3.7-W4.6-P1.27-LS7.0-BR.kicad_mod", symbol="TLP2361(TPL,E.kicad_sym", model="1.STEP">
+    trait has_part_picked::by_supplier<supplier_id="lcsc", supplier_partno="C107626", manufacturer="TOSHIBA", partno="TLP2361(TPL,E">
+    trait has_designator_prefix<prefix="U">
+
+    # pins
+    signal AN ~ pin 1
+    signal CAT ~ pin 3
+    signal GND ~ pin 4
+    signal VCC ~ pin 6
+    signal VO ~ pin 5

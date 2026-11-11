@@ -1,0 +1,95 @@
+#pragma experiment("BRIDGE_CONNECT")
+
+import ElectricPower
+import ElectricLogic
+import Capacitor
+import Resistor
+
+from "parts/TOSHIBA_TLP2361_TPL_E/TOSHIBA_TLP2361_TPL_E.ato" import TOSHIBA_TLP2361_TPL_E_package
+from "parts/YLPTEC_IB0505LS_1WR3/YLPTEC_IB0505LS_1WR3.ato" import YLPTEC_IB0505LS_1WR3_package
+
+
+module OptoChannel:
+    """
+    One non-inverting, opto-isolated logic channel using a Toshiba TLP2361
+    (15 MBd, 80 ns max propagation delay, 2.7-5.5 V, inverting totem-pole
+    output, IFHL <= 1.6 mA, ICC <= 1 mA).
+
+    The LED anode is fed from the input-side supply through `led_resistor`
+    and the LED cathode is driven by `input`:
+        input low  -> LED on  -> output low
+        input high -> LED off -> output high
+    so the channel is non-inverting overall, and an un-driven (Hi-Z /
+    pulled-down-weakly) input leaves the output HIGH.
+    """
+    opto = new TOSHIBA_TLP2361_TPL_E_package
+
+    input = new ElectricLogic
+    output = new ElectricLogic
+
+    led_resistor = new Resistor
+    led_resistor.package = "0402"
+
+    bypass = new Capacitor
+    bypass.capacitance = 100nF +/- 20%
+    bypass.package = "0402"
+    bypass.lcsc_id = "C1525"
+
+    input.reference.hv ~> led_resistor ~> opto.AN
+    opto.CAT ~ input.line
+
+    opto.VCC ~ output.reference.hv
+    opto.GND ~ output.reference.lv
+    opto.VO ~ output.line
+    output.reference.hv ~> bypass ~> output.reference.lv
+
+
+module OptoChannelFrom3V3 from OptoChannel:
+    """LED driven from a 3.3 V GPIO: (3.3 - 1.55 - 0.3) V / 330 R = ~4.4 mA"""
+    assert input.reference.voltage within 3.3V +/- 10%
+    led_resistor.resistance = 330ohm +/- 5%
+    led_resistor.lcsc_id = "C25104"
+
+
+module OptoChannelFrom5V from OptoChannel:
+    """LED driven from a 5 V HCT output: (5.0 - 1.55 - 0.3) V / 680 R = ~4.6 mA"""
+    assert input.reference.voltage within 4.5V to 5.5V
+    led_resistor.resistance = 680ohm +/- 5%
+    led_resistor.lcsc_id = "C25130"
+
+
+module IsolatedSupply5V:
+    """
+    1 W, 1.5 kV isolated, regulated 5 V -> 5 V converter
+    (YLPTEC IB0505LS-1WR3, SIP-7; pin 1 Vin, 2 GND, 4 0V, 6 +Vo).
+    Powers the multimeter-side logic so that the Solartron's ground
+    (SKB pin 37, which is also its earth) never connects to USB ground.
+    """
+    converter = new YLPTEC_IB0505LS_1WR3_package
+
+    power_in = new ElectricPower
+    power_out = new ElectricPower
+
+    assert power_in.voltage within 4.5V to 5.5V
+    power_out.voltage = 5V +/- 5%
+    power_out.max_current = 200mA
+
+    input_capacitor = new Capacitor
+    input_capacitor.capacitance = 4.7uF +/- 20%
+    input_capacitor.package = "0805"
+    input_capacitor.lcsc_id = "C1779"
+    assert input_capacitor.max_voltage >= 10V
+
+    output_capacitor = new Capacitor
+    output_capacitor.capacitance = 10uF +/- 20%
+    output_capacitor.package = "0805"
+    output_capacitor.lcsc_id = "C15850"
+    assert output_capacitor.max_voltage >= 10V
+
+    power_in.hv ~ converter.VIN
+    power_in.lv ~ converter.GND
+    power_out.hv ~ converter.Vopos
+    power_out.lv ~ converter.P0V
+
+    power_in.hv ~> input_capacitor ~> power_in.lv
+    power_out.hv ~> output_capacitor ~> power_out.lv

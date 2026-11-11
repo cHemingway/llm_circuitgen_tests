@@ -1,0 +1,30 @@
+// Types shared by the board: the USB pair and the net classes.
+
+// USB 2.0 full speed: a 90 ohm differential pair, matched within the
+// tolerance the USB specification allows for a device-side trace. Taken from
+// manta's own library (examples/blinky/types.manta).
+harness usb2 {
+    &HARNESS=diff;
+    &!IMP     = 90RD;
+    &MAXDELAY = 600ps;
+};
+
+// USB-side supplies: VBUS and the 3V3 it makes.
+netclass power {
+    &CURRENT  = 500mA;
+    &!VOLTAGE = 6V;
+};
+
+// The meter-side supply out of the isolated converter. Unregulated, so it
+// rises above 9 V at light load; the converter's ±15 % envelope tops out near
+// 10.4 V.
+netclass iso-raw {
+    &CURRENT  = 111mA;
+    &!VOLTAGE = 12V;
+};
+
+// The meter-side logic rail.
+netclass iso-power {
+    &CURRENT  = 60mA;
+    &!VOLTAGE = 6V;
+};

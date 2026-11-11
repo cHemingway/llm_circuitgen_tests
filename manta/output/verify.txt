@@ -1,0 +1,65 @@
+isolation: 33 nets on the USB side, 102 on the meter side
+
+'165 chain, nearest the barrier first: U20 -> U21 -> U22 -> U23 -> U24
+MISO bit (first after the latch = 1) : register input : source
+  bit  1 : U20.D7 : SKB 1
+  bit  2 : U20.D6 : SKB 2
+  bit  3 : U20.D5 : SKB 3
+  bit  4 : U20.D4 : SKB 4
+  bit  5 : U20.D3 : SKB 5
+  bit  6 : U20.D2 : SKB 6
+  bit  7 : U20.D1 : SKB 7
+  bit  8 : U20.D0 : SKB 8
+  bit  9 : U21.D7 : SKB 9
+  bit 10 : U21.D6 : SKB 10
+  bit 11 : U21.D5 : SKB 11
+  bit 12 : U21.D4 : SKB 12
+  bit 13 : U21.D3 : SKB 13
+  bit 14 : U21.D2 : SKB 14
+  bit 15 : U21.D1 : SKB 15
+  bit 16 : U21.D0 : SKB 16
+  bit 17 : U22.D7 : SKB 17
+  bit 18 : U22.D6 : SKB 18
+  bit 19 : U22.D5 : SKB 19
+  bit 20 : U22.D4 : SKB 20
+  bit 21 : U22.D3 : SKB 21
+  bit 22 : U22.D2 : SKB 22
+  bit 23 : U22.D1 : SKB 23
+  bit 24 : U22.D0 : SKB 24
+  bit 25 : U23.D7 : SKB 25
+  bit 26 : U23.D6 : SKB 26
+  bit 27 : U23.D5 : SKB 27
+  bit 28 : U23.D4 : SKB 28
+  bit 29 : U23.D3 : SKB 29
+  bit 30 : U23.D2 : SKB 30
+  bit 31 : U23.D1 : SKB 31
+  bit 32 : U23.D0 : SKB 32
+  bit 33 : U24.D7 : SKB 33
+  bit 34 : U24.D6 : SKB 34
+  bit 35 : U24.D5 : SKB 35
+  bit 36 : U24.D4 : SKB 36
+  bit 37 : U24.D3 : ISO-5V
+  bit 38 : U24.D2 : ISO-GND
+  bit 39 : U24.D1 : nSR-OE
+  bit 40 : U24.D0 : CMD-LOOP
+
+'595 chain from U11: U30 -> U31
+Of the last 16 bits clocked in (1 = first of them):
+  bit  1 : U31.Q7 : SKB 38
+  bit  2 : U31.Q6 : SKB 39
+  bit  3 : U31.Q5 : SKB 40
+  bit  4 : U31.Q4 : SKB 41
+  bit  5 : U31.Q3 : SKB 42
+  bit  6 : U31.Q2 : SKB 43
+  bit  7 : U31.Q1 : SKB 44
+  bit  8 : U31.Q0 : SKB 45
+  bit  9 : U30.Q7 : SKB 46
+  bit 10 : U30.Q6 : SKB 47
+  bit 11 : U30.Q5 : SKB 48
+  bit 12 : U30.Q4 : SKB 49
+  bit 13 : U30.Q3 : SKB 50
+  bit 14 : U30.Q2 : spare
+  bit 15 : U30.Q1 : spare
+  bit 16 : U30.Q0 : spare
+
+OK

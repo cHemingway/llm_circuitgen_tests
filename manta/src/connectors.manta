@@ -1,0 +1,131 @@
+// Board connectors. Positions carry no roles where the connector itself does
+// not fix them: what each D-sub position means is bound on the board, where a
+// reader can see it against the instrument's connection table.
+
+// A 50-way standard-density D-sub plug (shell D, pins), straight PCB tails.
+// No panel hardware: the flange has plain 3.10 mm holes, so 4-40 UNC
+// jackscrews can pass through the board and the flange into the screwlocks of
+// the socket it mates with. The two flange holes are one pad name, SH.
+part DSUB-50-PLUG-VERT {
+    @~footprint    = DSUB-50-PINS-VERT;
+    #value         = "DD-50 plug";
+    @!type         = boardconnector;
+    #~mpn          = "DD50P364TXLF";
+    #!manufacturer = "Amphenol FCI";
+    #~lcsc         = "C5402574";
+
+    [1:50] : P[1:50]<>;
+    SH     : SHELL;
+};
+
+// USB 2.0 Type-B receptacle, vertical. Contact roles are fixed by the USB
+// specification: 1 VBUS, 2 D-, 3 D+, 4 GND. Both shell tabs are pad SH.
+part USB-B-VERT {
+    @~footprint    = USB-B-TE-5787834;
+    #value         = "USB-B vertical";
+    @!type         = boardconnector;
+    #~mpn          = "5787834-1";
+    #!manufacturer = "TE Connectivity";
+    #~lcsc         = "C592900";
+
+    1  : VBUS> &TYPE=POWER #SUPPLY=500mA;
+    2  : DM<>;
+    3  : DP<>;
+    4  : GND<  &TYPE=POWER;
+    SH : SHIELD;
+};
+
+// JST SH, three positions, side entry. The two mechanical pads share the name
+// MP on the footprint.
+part JST-SH-3-SIDE {
+    @~footprint    = JST-SH-3-SIDE;
+    #value         = "JST SH 1x3";
+    @!type         = boardconnector;
+    #~mpn          = "SM03B-SRSS-TB(LF)(SN)";
+    #!manufacturer = "JST";
+    #~lcsc         = "C160403";
+
+    [1:3] : P[1:3]<>;
+    MP    : MOUNT;
+};
+
+---
+
+# DD50P364TXLF
+
+**Source:** Amphenol FCI, customer drawing C-DSUB-0065 rev. H, "D-Sub S/S W/W
+connector (with assembly options)", printed Mar 06 2011.
+
+Ordering code decoded per the drawing: DD (series, shell D) · blank panel
+mounting option (standard, no screwlock or spacer) · 50 contacts · P (pin) ·
+3 (straight spill termination) · 64 (contact plating code) ·
+blank PCB mounting (standard, no harpoon) · T (tin over copper shell) ·
+X (dimples, male only) · LF (lead free).
+
+## Contacts
+
+Standard D-sub numbering, three rows: 1–17, 18–33, 34–50. Contact pitch
+2.76 mm along a row for 25, 37 and 50 positions; 2.84 mm between rows; the
+middle row offset by half a pitch.
+
+## Dimensions, shell size 50, pin (P)
+
+| Dim | mm | Meaning on the drawing |
+|---|---|---|
+| A | 66.65 | Flange length |
+| C | 61.11 | Mounting hole centres |
+| — | Ø3.10 | Mounting holes, standard option |
+| — | Ø0.6 | Straight spill tail |
+| — | 4.90 +0.7 | Straight spill tail length |
+
+## Technical specifications
+
+| Parameter | Value |
+|---|---|
+| Shell | Tin/zinc plated steel |
+| Contacts | Copper alloy; gold over nickel in the active zone |
+| Insulator | Self-extinguishing thermoplastic, UL 94 V0 |
+| Operating temperature | −55 to +125 °C |
+| Operating current | 5 A per contact |
+| Contact resistance | ≤ 10 mΩ |
+| Insulation resistance | > 5000 MΩ |
+| Maximum voltage | 1000 Vrms |
+| Mechanical endurance, code 64 | 500 matings per the specification table; the ordering table on the same drawing lists code 64 as 200 mating cycles |
+
+The housing withstands 260 °C for 3.5 s in a wave solder application with a
+1.6 mm minimum thick circuit board.
+
+# 5787834-1
+
+**Source:** TE Connectivity, customer drawing 5787834 rev. C, "Receptacle
+assy, 4 pos., vertical, thru-hole, type B, Universal Serial Bus", revised
+22 May 2019. -1 is the black housing.
+
+| Item | Value |
+|---|---|
+| Contacts | 4, numbered 1–4 on the mating face |
+| Contact holes | Ø0.92 ±0.08 mm, 2.50 mm pitch, rows 2.705 mm apart |
+| Shell tab holes | 2 × Ø2.30 ±0.08 mm, 12.04 mm apart |
+| Height above board | 15.62 mm ref |
+| Body | 12.03 × 11.46 mm ref |
+| Recommended board thickness | 1.57 mm |
+| Shell | Stainless steel, bright tin plated |
+| Contacts | Copper alloy, gold over palladium-nickel on the mating area |
+| Housing | UL 94V-0 thermoplastic |
+
+Electrical ratings are not stated on the drawing. The USB 2.0 contact
+assignment is 1 VBUS, 2 D−, 3 D+, 4 GND.
+
+# SM03B-SRSS-TB(LF)(SN)
+
+**Source:** JST, SR/SZ connector catalogue page, 1.0 mm pitch. Three-circuit
+side-entry SMT header with two solder tabs.
+
+| Parameter | Value |
+|---|---|
+| Current rating | 0.7 A DC |
+| Voltage rating | 50 V DC |
+| Temperature range | −25 to +85 °C, including temperature rise |
+| Contact resistance | 20 mΩ max initial, 40 mΩ after environmental testing |
+| Insulation resistance | 100 MΩ min |
+| Withstanding voltage | 500 V AC for 1 minute |

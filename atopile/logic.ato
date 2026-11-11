@@ -1,0 +1,133 @@
+#pragma experiment("BRIDGE_CONNECT")
+#pragma experiment("FOR_LOOP")
+
+import ElectricPower
+import ElectricLogic
+import Capacitor
+
+from "parts/Texas_Instruments_CD74HCT165M96/Texas_Instruments_CD74HCT165M96.ato" import Texas_Instruments_CD74HCT165M96_package
+from "parts/Nexperia_74HCT595D_118/Nexperia_74HCT595D_118.ato" import Nexperia_74HCT595D_118_package
+from "parts/Texas_Instruments_SN74AHCT1G125DBVR/Texas_Instruments_SN74AHCT1G125DBVR.ato" import Texas_Instruments_SN74AHCT1G125DBVR_package
+
+
+module ShiftIn74HCT165:
+    """
+    74HCT165 8-bit parallel-in / serial-out shift register (TTL-level inputs).
+    After `load_n` is pulsed low, `q7` presents d[7]; each rising `clock`
+    edge shifts d[6]..d[0] and then `serial_in` out of `q7`.
+    """
+    package = new Texas_Instruments_CD74HCT165M96_package
+
+    power = new ElectricPower
+    assert power.voltage within 4.5V to 5.5V
+
+    d = new ElectricLogic[8]
+    serial_in = new ElectricLogic
+    clock = new ElectricLogic
+    clock_inhibit = new ElectricLogic
+    load_n = new ElectricLogic
+    q7 = new ElectricLogic
+    q7_n = new ElectricLogic
+
+    for s in d:
+        s.reference ~ power
+    for s in [serial_in, clock, clock_inhibit, load_n, q7, q7_n]:
+        s.reference ~ power
+
+    decoupling = new Capacitor
+    decoupling.capacitance = 100nF +/- 20%
+    decoupling.package = "0402"
+    decoupling.lcsc_id = "C1525"
+    power.hv ~> decoupling ~> power.lv
+
+    power.hv ~ package.VCC
+    power.lv ~ package.GND
+    d[0].line ~ package.D0
+    d[1].line ~ package.D1
+    d[2].line ~ package.D2
+    d[3].line ~ package.D3
+    d[4].line ~ package.D4
+    d[5].line ~ package.D5
+    d[6].line ~ package.D6
+    d[7].line ~ package.D7
+    serial_in.line ~ package.DS
+    clock.line ~ package.CP
+    clock_inhibit.line ~ package.nCE
+    load_n.line ~ package.nPL
+    q7.line ~ package.Q7
+    q7_n.line ~ package.nQ7
+
+
+module ShiftOut74HCT595:
+    """
+    74HCT595 8-bit serial-in / parallel-out shift register with 3-state
+    output latches. Data shifts in on rising `shift_clock`, is copied to
+    q[] on rising `storage_clock`, and q[] are Hi-Z while `output_enable_n`
+    is high. HCT outputs sink 6 mA at <0.33 V (Solartron inputs need
+    <0.5 V at 5 mA).
+    """
+    package = new Nexperia_74HCT595D_118_package
+
+    power = new ElectricPower
+    assert power.voltage within 4.5V to 5.5V
+
+    q = new ElectricLogic[8]
+    serial_in = new ElectricLogic
+    serial_out = new ElectricLogic
+    shift_clock = new ElectricLogic
+    storage_clock = new ElectricLogic
+    output_enable_n = new ElectricLogic
+    reset_n = new ElectricLogic
+
+    for s in q:
+        s.reference ~ power
+    for s in [serial_in, serial_out, shift_clock, storage_clock, output_enable_n, reset_n]:
+        s.reference ~ power
+
+    decoupling = new Capacitor
+    decoupling.capacitance = 100nF +/- 20%
+    decoupling.package = "0402"
+    decoupling.lcsc_id = "C1525"
+    power.hv ~> decoupling ~> power.lv
+
+    power.hv ~ package.VCC
+    power.lv ~ package.GND
+    q[0].line ~ package.Q0
+    q[1].line ~ package.Q1
+    q[2].line ~ package.Q2
+    q[3].line ~ package.Q3
+    q[4].line ~ package.Q4
+    q[5].line ~ package.Q5
+    q[6].line ~ package.Q6
+    q[7].line ~ package.Q7
+    serial_in.line ~ package.DS
+    serial_out.line ~ package.Q7S
+    shift_clock.line ~ package.SHCP
+    storage_clock.line ~ package.STCP
+    output_enable_n.line ~ package.nOE
+    reset_n.line ~ package.nMR
+
+
+module Buffer74AHCT1G125:
+    """Single non-inverting 74AHCT1G125 buffer, permanently enabled."""
+    package = new Texas_Instruments_SN74AHCT1G125DBVR_package
+
+    power = new ElectricPower
+    assert power.voltage within 4.5V to 5.5V
+
+    input = new ElectricLogic
+    output = new ElectricLogic
+    input.reference ~ power
+    output.reference ~ power
+
+    decoupling = new Capacitor
+    decoupling.capacitance = 100nF +/- 20%
+    decoupling.package = "0402"
+    decoupling.lcsc_id = "C1525"
+    power.hv ~> decoupling ~> power.lv
+
+    power.hv ~ package.VCC
+    power.lv ~ package.GND
+    power.lv ~ package.nOE
+    input.line ~ package.A
+    output.line ~ package.Y

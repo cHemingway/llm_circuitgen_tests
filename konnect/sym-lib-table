@@ -1,0 +1,4 @@
+(sym_lib_table
+  (version 7)
+
+  (lib (name "solartron") (type "KiCad") (uri "${KIPRJMOD}/solartron.kicad_sym") (options "") (descr "")))

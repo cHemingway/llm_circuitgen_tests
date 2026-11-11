@@ -1,0 +1,53 @@
+// The two crystal terminals are interchangeable; pads 2 and 4 are the lid,
+// which the datasheet calls ground.
+part ABM8-272-T3 {
+    @~footprint    = XTAL-3225-4;
+    #value         = 12MHz;
+    @!type         = crystal;
+    #~mpn          = "ABM8-272-T3";
+    #!manufacturer = "Abracon";
+    #~lcsc         = "C20625731";
+
+    1 : XTAL-1 &CASUAL;
+    3 : XTAL-3 &CASUAL;
+    2 : GND-2;
+    4 : GND-4;
+};
+
+---
+
+# ABM8-272-T3
+
+**Source:** Abracon, ABM8-272-T3 specification, drawing 456603, revision IR
+1.0, date of issue Nov 16th 2023. 3.2 × 2.5 × 0.8 mm ceramic SMD.
+
+## Pins
+
+| Pin | Name | Function |
+|---|---|---|
+| 1 | Crystal | Crystal terminal |
+| 2 | GND | Lid |
+| 3 | Crystal | Crystal terminal |
+| 4 | GND | Lid |
+
+## Key electrical specifications
+
+| Parameter | Min | Typ | Max | Unit |
+|---|---|---|---|---|
+| Centre frequency | | 12.000 | | MHz |
+| Operation mode | | Fundamental, AT | | |
+| Frequency tolerance at 25 °C | −30 | | +30 | ppm |
+| Stability over −40 to +85 °C | −30 | | +30 | ppm |
+| ESR (R1) | | | 50 | Ω |
+| Shunt capacitance C0 | | | 3.0 | pF |
+| Load capacitance CL | | 10 | | pF |
+| Drive level | | 10 | 200 | µW |
+| Aging, first year at 25 °C | −5 | | +5 | ppm |
+| Operating temperature | −40 | | +85 | °C |
+
+Hermetically sealed, MSL 1.
+
+## Package
+
+3.2 × 2.5 × 0.8 mm, four pads. The chamfer may be on pin 1, 3 or 4 depending
+on material availability, with no effect on performance.

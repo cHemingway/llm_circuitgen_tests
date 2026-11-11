@@ -1,0 +1,84 @@
+// Standard '595 pinout: Q0 is on pad 15, Q1-Q7 on pads 1-7. The Qn outputs
+// are 3-state under nOE; Q7S, the serial output, is not.
+part 74HCT595 {
+    @~footprint    = SOIC-16;
+    #value         = 74HCT595;
+    @!type         = logic;
+    #~mpn          = "74HCT595D,118";
+    #!manufacturer = "Nexperia";
+    #~lcsc         = "C282339";
+
+    15      : Q[0]>   #VOH=3V7 #VOL=0V4;
+    [1:7]   : Q[1:7]> #VOH=3V7 #VOL=0V4;
+    8       : GND<    &TYPE=POWER;
+    9       : Q7S>    #VOH=3V7 #VOL=0V4;
+    10      : nMR<    #VIH=2V #VIL=0V8;   // shift register reset, active low
+    11      : SHCP<   #VIH=2V #VIL=0V8;   // shift clock, rising edge
+    12      : STCP<   #VIH=2V #VIL=0V8;   // storage clock, rising edge
+    13      : nOE<    #VIH=2V #VIL=0V8;   // output enable, active low
+    14      : DS<     #VIH=2V #VIL=0V8;
+    16      : VCC<    &TYPE=POWER;
+};
+
+---
+
+# 74HCT595
+
+**Source:** Nexperia, 74HC595; 74HCT595 product data sheet, Rev. 12, 20 March
+2024. SO16 (SOT109-1), 74HCT595D.
+
+8-bit serial-in, serial or parallel-out shift register with output latches;
+3-state outputs. TTL-level inputs on the HCT type.
+
+## Pins (Table 2)
+
+| Pin | Name | Function |
+|---|---|---|
+| 15, 1–7 | Q0, Q1–Q7 | Parallel data outputs, 3-state |
+| 8 | GND | Ground |
+| 9 | Q7S | Serial data output |
+| 10 | MR (active low) | Master reset of the shift register |
+| 11 | SHCP | Shift register clock |
+| 12 | STCP | Storage register clock |
+| 13 | OE (active low) | Output enable |
+| 14 | DS | Serial data input |
+| 16 | VCC | Supply |
+
+Data shifts on the LOW-to-HIGH transition of SHCP; the shift register is
+transferred to the storage register on the LOW-to-HIGH transition of STCP. A
+LOW on MR resets the shift register. Q7S allows cascading.
+
+## Limiting values (Table 4)
+
+| Parameter | Value |
+|---|---|
+| VCC | −0.5 to +7 V |
+| Input clamping current IIK | ±20 mA |
+| Output clamping current IOK | ±20 mA |
+| Output current, Q7S | ±25 mA |
+| Output current, Qn | ±35 mA |
+| Supply current ICC | 70 mA |
+
+## Recommended operating conditions
+
+| Parameter | Value |
+|---|---|
+| VCC, 74HCT595 | 4.5 to 5.5 V |
+
+## Static characteristics, 74HCT595, VCC = 4.5 V (Table 6)
+
+| Parameter | Condition | −40 to 85 °C | −40 to 125 °C | Unit |
+|---|---|---|---|---|
+| VIH min | VCC = 4.5 to 5.5 V | 2.0 | 2.0 | V |
+| VIL max | VCC = 4.5 to 5.5 V | 0.8 | 0.8 | V |
+| VOH min, Q7S | IO = −4 mA | 3.84 | 3.7 | V |
+| VOH min, Qn | IO = −6 mA | 3.7 | 3.7 | V |
+| VOL max, Q7S | IO = 4 mA | 0.33 | 0.4 | V |
+| VOL max, Qn | IO = 6 mA | 0.33 | 0.4 | V |
+| Input leakage | VCC = 6 V | ±1.0 | ±1.0 | µA |
+| OFF-state output current | VCC = 6 V | ±5.0 | ±10 | µA |
+
+## Package
+
+SO16, 3.9 × 9.9 mm body, 1.27 mm pitch. Pin 1 at the marked end, numbering
+counter-clockwise from the top.

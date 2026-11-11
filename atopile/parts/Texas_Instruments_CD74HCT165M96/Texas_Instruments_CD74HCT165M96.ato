@@ -1,0 +1,31 @@
+import has_designator_prefix
+import has_part_picked
+import is_atomic_part
+import is_auto_generated
+
+component Texas_Instruments_CD74HCT165M96_package:
+    # This trait marks this file as auto-generated
+    # If you want to manually change it, remove the trait
+    trait is_auto_generated<system="ato_part", source="easyeda:C352828", date="2026-10-06T10:57:18.015265+00:00", checksum="3d69060fda23fc580352a2311e8f47b11a84ea4befed4517e48c70def78f2b9b">
+
+    trait is_atomic_part<manufacturer="Texas Instruments", partnumber="CD74HCT165M96", footprint="SOIC-16_L9.9-W3.9-P1.27-LS6.0-BL.kicad_mod", symbol="CD74HCT165M96.kicad_sym", model="SOIC-16_L9.9-W3.9-H1.8-LS6.0-P1.27.step">
+    trait has_part_picked::by_supplier<supplier_id="lcsc", supplier_partno="C352828", manufacturer="Texas Instruments", partno="CD74HCT165M96">
+    trait has_designator_prefix<prefix="U">
+
+    # pins
+    signal CP ~ pin 2
+    signal D0 ~ pin 11
+    signal D1 ~ pin 12
+    signal D2 ~ pin 13
+    signal D3 ~ pin 14
+    signal D4 ~ pin 3
+    signal D5 ~ pin 4
+    signal D6 ~ pin 5
+    signal D7 ~ pin 6
+    signal DS ~ pin 10
+    signal GND ~ pin 8
+    signal Q7 ~ pin 9
+    signal VCC ~ pin 16
+    signal nCE ~ pin 15
+    signal nPL ~ pin 1
+    signal nQ7 ~ pin 7

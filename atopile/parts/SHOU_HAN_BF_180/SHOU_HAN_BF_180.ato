@@ -1,0 +1,21 @@
+import has_designator_prefix
+import has_part_picked
+import is_atomic_part
+import is_auto_generated
+
+component SHOU_HAN_BF_180_package:
+    # This trait marks this file as auto-generated
+    # If you want to manually change it, remove the trait
+    trait is_auto_generated<system="ato_part", source="easyeda:C6081376", date="2026-10-06T10:57:08.520886+00:00", checksum="e61926782cbd90467cd4deec8ecefe03382c3163939cc8458c5130a200400b14">
+
+    trait is_atomic_part<manufacturer="SHOU HAN", partnumber="BF 180", footprint="USB-B-TH_921-111A1010Y10201.kicad_mod", symbol="BF180°.kicad_sym", model="USB-B-TH_921-111A1010Y10201.step">
+    trait has_part_picked::by_supplier<supplier_id="lcsc", supplier_partno="C6081376", manufacturer="SHOU HAN", partno="BF 180">
+    trait has_designator_prefix<prefix="U">
+
+    # pins
+    signal Dneg ~ pin 2
+    signal Dpos ~ pin 3
+    signal GND ~ pin 4
+    GND ~ pin 5
+    GND ~ pin 6
+    signal VCC ~ pin 1

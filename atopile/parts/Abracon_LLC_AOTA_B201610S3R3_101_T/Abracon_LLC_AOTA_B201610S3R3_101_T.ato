@@ -1,0 +1,17 @@
+import has_designator_prefix
+import has_part_picked
+import is_atomic_part
+import is_auto_generated
+
+component Abracon_LLC_AOTA_B201610S3R3_101_T_package:
+    # This trait marks this file as auto-generated
+    # If you want to manually change it, remove the trait
+    trait is_auto_generated<system="ato_part", source="easyeda:C42411119", date="2026-10-06T10:57:03.932711+00:00", checksum="c12e49a5a4be15b3cdb7af856f796ee0a018be4f4c06d65eb53ec033cbd936bf">
+
+    trait is_atomic_part<manufacturer="Abracon LLC", partnumber="AOTA-B201610S3R3-101-T", footprint="IND-SMD_L2.0-W1.6_AOTA-B201610S3R3-101-T.kicad_mod", symbol="AOTA-B201610S3R3-101-T.kicad_sym", model="IND-SMD_L2.0-W1.6_AOTA-B201610S3R3-101-T.STEP">
+    trait has_part_picked::by_supplier<supplier_id="lcsc", supplier_partno="C42411119", manufacturer="Abracon LLC", partno="AOTA-B201610S3R3-101-T">
+    trait has_designator_prefix<prefix="L">
+
+    # pins
+    pin 2
+    pin 1

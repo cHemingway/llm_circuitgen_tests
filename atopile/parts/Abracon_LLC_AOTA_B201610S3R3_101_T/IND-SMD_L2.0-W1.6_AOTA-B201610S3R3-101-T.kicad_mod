@@ -1,0 +1,112 @@
+(footprint "Abracon_LLC_AOTA_B201610S3R3_101_T:IND-SMD_L2.0-W1.6_AOTA-B201610S3R3-101-T"
+	(version 20241229)
+	(generator "faebryk_convert")
+	(generator_version "v5")
+	(layer "F.Cu")
+	(tedit "5DC5F6A4")
+	(uuid "da850346-acf4-4982-9243-77e7afdcb933")
+	(property "Reference" "REF**"
+		(at 0 -4)
+		(layer "F.SilkS")
+		(uuid "3c10ba27-c4b2-454b-89b9-22c403a546e1")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Value" "IND-SMD_L2.0-W1.6_AOTA-B201610S3R3-101-T"
+		(at 0 4)
+		(layer "F.Fab")
+		(uuid "723c8b6b-4641-432a-aa0c-6074eb69788d")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(attr smd)
+	(fp_circle
+		(center -1 0.8)
+		(end -0.97 0.8)
+		(stroke
+			(width 0.06)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(locked no)
+		(uuid "933adc91-354a-4edb-8cba-08b61a3c36fb")
+	)
+	(fp_circle
+		(center 0.9 -1.1)
+		(end 1.03 -1.1)
+		(stroke
+			(width 0.25)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(locked no)
+		(uuid "0ccaad8e-0787-45e3-9877-b95f7071904a")
+	)
+	(fp_circle
+		(center 1 -0.5)
+		(end 1.13 -0.5)
+		(stroke
+			(width 0.25)
+			(type solid)
+		)
+		(layer "Cmts.User")
+		(locked no)
+		(uuid "2ae71a07-ae55-43e0-a91c-4f40c2695879")
+	)
+	(fp_line
+		(start -0.27 0.8)
+		(end 0.27 0.8)
+		(stroke
+			(width 0.25)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(layers "F.SilkS")
+		(locked no)
+		(uuid "1523a476-4c97-49ab-ab18-8cd1e604fbd4")
+	)
+	(fp_line
+		(start -0.27 -0.8)
+		(end 0.27 -0.8)
+		(stroke
+			(width 0.25)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(layers "F.SilkS")
+		(locked no)
+		(uuid "111d072c-39bc-4c3d-ba03-7f9b7935de0e")
+	)
+	(pad "2" smd rect
+		(at 1 0 0)
+		(size 1 1.6)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(uuid "550b3e9f-c666-4237-ab72-32e8410d4b77")
+	)
+	(pad "1" smd rect
+		(at -1 0 0)
+		(size 1 1.6)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(uuid "e7bbca58-428f-4e19-8193-970788e1ada3")
+	)
+	(model "${KIPRJMOD}/../../parts/Abracon_LLC_AOTA_B201610S3R3_101_T/IND-SMD_L2.0-W1.6_AOTA-B201610S3R3-101-T.STEP"
+		(offset
+			(xyz 0 0 -0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz 0 0 0)
+		)
+	)
+	(embedded_fonts no)
+)

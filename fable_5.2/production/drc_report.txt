@@ -1,0 +1,28 @@
+** Drc report for solartron7075_usb_interface.kicad_pcb **
+** Created on 2026-11-11T18:53:31 **
+** Report includes: Errors, Warnings, Exclusions **
+
+** Found 2 DRC violations **
+[silk_over_copper]: Silkscreen clipped by solder mask
+    Local override; warning
+    @(42.5650 mm, 57.3950 mm): Segment of J1 on B.Silkscreen
+    @(45.4450 mm, 65.0000 mm): PTH pad SH [Net-(J1-SHELL)] of J1
+[silk_over_copper]: Silkscreen clipped by solder mask
+    Local override; warning
+    @(109.4350 mm, 72.6050 mm): Segment of J1 on B.Silkscreen
+    @(106.5550 mm, 65.0000 mm): PTH pad SH [Net-(J1-SHELL)] of J1
+
+** Found 0 unconnected pads **
+
+** Found 0 Footprint errors **
+
+** Ignored checks **
+    - Footprint has no courtyard defined
+    - Track endpoint not centered on via
+    - Tuning profile track geometries
+    - Footprint doesn't match symbol's footprint filters
+    - Footprint component type doesn't match footprint pads
+    - Footprint not found in libraries
+    - Footprint doesn't match copy in library
+
+** End of Report **

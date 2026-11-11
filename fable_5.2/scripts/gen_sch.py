@@ -186,9 +186,9 @@ def sheet_mcu():
 
     # core regulator (Raspberry Pi reference circuit)
     sh.box(304, 14, 408, 92, 'Core 1.1 V switching regulator (RP2350 reference circuit)')
-    sh.two('L1', 'Device:L', 330, 40, 'VREG_LX', '+1V1', '3.3uH',
+    sh.two('L1', 'Device:L', 330, 40, '+1V1', 'VREG_LX', '3.3uH',
            F('Inductor_SMD:L_Abracon_AOTA-B201610S', 'C42411119', 'AOTA-B201610S3R3-101-T', 'Abracon',
-             desc='3.3 uH 2.1 A polarised power inductor 2016 (dot = VREG_LX end, see RP2350 datasheet)'), 'h')
+             desc='3.3 uH 2.1 A polarised power inductor 2016 (pad 1 / dot = +1V1 output side, as in the RP2350 reference layout)'), 'h')
     C(sh, 'C17', 352, 56, '+1V1', 'GND', '4.7u', '0402')
     C(sh, 'C16', 372, 56, '+3V3', 'GND', '4.7u', '0402')
     R(sh, 'R5', 330, 62, '+3V3', 'VREG_AVDD', '33', '0402', 'h')
@@ -219,9 +219,9 @@ def sheet_mcu():
     R(sh, 'R9', 272, 214, 'LED_ACT', None, '1k', orient='h')
     LED(sh, 'D2', 279.62, 214, 'red', 'GND', rot=180)
     sh.text('D2: activity', 266, 219)
-    FTP = F('TestPoint:TestPoint_Pad_D1.0mm', '', '', desc='test pad')
-    sh.sym('TP1', 'Connector:TestPoint', 270, 110, value='TX', nets={'1': 'UART_TX'}, fields=FTP, stub=3.81)
-    sh.sym('TP2', 'Connector:TestPoint', 284, 110, value='RX', nets={'1': 'UART_RX'}, fields=FTP, stub=3.81)
+    FTP = {'Footprint': 'TestPoint:TestPoint_Pad_D1.0mm', 'Description': 'test pad (not fitted)'}
+    sh.sym('TP1', 'Connector:TestPoint', 270, 110, value='TX', nets={'1': 'UART_TX'}, fields=FTP, stub=3.81, in_bom=False)
+    sh.sym('TP2', 'Connector:TestPoint', 284, 110, value='RX', nets={'1': 'UART_RX'}, fields=FTP, stub=3.81, in_bom=False)
 
     # --- LED driver buffer ---------------------------------------------------
     sh.box(304, 96, 408, 250, 'Opto LED drivers (LED off = isolated line high)')
@@ -326,7 +326,7 @@ def sheet_iso():
     sh.flag(74, 236, (0, 1), 'VBUS_DCDC')
     sh.sym('PS1', 'Converter_DCDC_Isolated:MEE1S0509SC', 100, 228.54, value='B0509S-1WR3',
            nets={'2': 'VBUS_DCDC', '1': 'GND', '4': '+9V_ISO', '3': 'GND_ISO'},
-           fields=F('Converter_DCDC:Converter_DCDC_Murata_MEE1SxxxxSC_THT', 'C5369463', 'B0509S-1WR3', 'YLPTEC (Mornsun B0509S-1WR3 compatible)',
+           fields=F(LIBNAME + ':Converter_DCDC_Mornsun_B05xxS-1WR3_SIP4_THT', 'C5369463', 'B0509S-1WR3', 'YLPTEC (Mornsun B0509S-1WR3 compatible)',
                     desc='Isolated 1 W DC-DC converter 5 V -> 9 V / 111 mA, 1.5 kV, SIP-4 (Murata MEE1S0509SC pin compatible)'))
     C(sh, 'C27', 132, 244, '+9V_ISO', 'GND_ISO', '10u', '0805')
     C(sh, 'C28', 148, 244, '+9V_ISO', 'GND_ISO', '100n')
@@ -543,7 +543,7 @@ def root_sheet(sheets):
          '   DRDY   DVM side -> MCU   PRINT command level (SKB pin 34): high = reading complete, data valid\n\n'
          'Power: USB VBUS -> AP2112K-3.3 (MCU side).  VBUS -> ferrite -> isolated 1 W DC-DC (9 V) -> L78M05 -> +5V_ISO\n'
          '(the 50-way connector has no supply pin, so the isolated logic is powered across the barrier).\n\n'
-         'Mechanical: 104 x 48 mm, 4 layers.  J1 (DD-50 plug) is on the bottom side, everything else on the top side;\n'
+         'Mechanical: 116 x 50 mm, 4 layers.  J1 (DD-50 plug) is on the bottom side, everything else on the top side;\n'
          'the board is held by two 4-40 UNC screws through J1\'s flange holes into the jackposts of SKB.', 20, 96, 1.6)
     R_.append([S('sheet_instances'), [S('path'), '/', [S('page'), '1']]])
     open(os.path.join(OUT, NAME + '.kicad_sch'), 'w').write(dump(R_) + '\n')

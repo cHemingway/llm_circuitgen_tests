@@ -271,7 +271,7 @@ class Sheet:
         return out
 
     def _symbol(self, ref, lib_id, x, y, rot, unit, value, fields, ref_at, val_at, hide_ref=False,
-                hide_val=False, dnp=False, mirror=False):
+                hide_val=False, dnp=False, mirror=False, in_bom=True):
         lib = self.p.lib
         if lib_id not in self.used:
             self.used.append(lib_id)
@@ -310,7 +310,7 @@ class Sheet:
             val_at = lib_at('Value', (x, y + 5, None))
         sym = [S('symbol'), [S('lib_id'), lib_id], [S('at'), r2(x), r2(y), rot]] + \
               ([[S('mirror'), S('y')]] if mirror else []) + [[S('unit'), unit],
-               [S('exclude_from_sim'), S('no')], [S('in_bom'), S('yes')], [S('on_board'), S('yes')],
+               [S('exclude_from_sim'), S('no')], [S('in_bom'), S('yes' if in_bom else 'no')], [S('on_board'), S('yes')],
                [S('dnp'), S('yes' if dnp else 'no')],
                [S('uuid'), uid(self.name, 'sym', ref, unit)],
                P('Reference', ref, ref_at, hide_ref),
@@ -334,13 +334,14 @@ class Sheet:
         self.items.append(sym)
 
     def sym(self, ref, lib_id, x, y, rot=0, unit=1, value=None, nets=None, nc=(), fields=None, stub=2.54,
-            stubs=None, ref_at=None, val_at=None, hide_val=False, raw=(), mirror=False):
+            stubs=None, ref_at=None, val_at=None, hide_val=False, raw=(), mirror=False, in_bom=True):
         """Place a symbol.  nets: {pin number: net}; nc: pins flagged no-connect;
         raw: pins that are wired by hand (no automatic stub)."""
         fields = dict(fields or {})
         if value is None:
             value = lib_id.split(':')[1]
-        self._symbol(ref, lib_id, x, y, rot, unit, value, fields, ref_at, val_at, hide_val=hide_val, mirror=mirror)
+        self._symbol(ref, lib_id, x, y, rot, unit, value, fields, ref_at, val_at, hide_val=hide_val, mirror=mirror,
+                     in_bom=in_bom)
         pins = self.pin_xy(lib_id, unit, x, y, rot, mirror)
         nets = {str(k): v for k, v in (nets or {}).items()}
         ncs = [str(k) for k in nc]

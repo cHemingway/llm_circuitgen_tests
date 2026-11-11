@@ -1,0 +1,239 @@
+(footprint "Converter_DCDC_Mornsun_B05xxS-1WR3_SIP4_THT"
+	(version 20260206)
+	(generator "pcbnew")
+	(generator_version "10.0")
+	(layer "F.Cu")
+	(descr "Isolated 1W DC-DC converter, SIP-4, 11.6x6.0x10.2mm, pitch 2.54mm, Mornsun B05xxS-1WR3 / YLPTEC / EVISUN compatible; pin 1 -Vin, 2 +Vin, 3 -Vout, 4 +Vout")
+	(tags "DC-DC isolated SIP4 B0505S B0509S")
+	(property "Reference" "REF**"
+		(at 1.75 -3.2 0)
+		(layer "F.SilkS")
+		(uuid "74ce3e36-2965-4e7d-b2a7-04d39ef4b97c")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Value" "Converter_DCDC_Mornsun_B05xxS-1WR3_SIP4_THT"
+		(at 1.75 10.9 0)
+		(layer "F.Fab")
+		(uuid "912380a4-3d15-4944-8edf-a2feb86e9a1b")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "1b9c5f39-084e-4112-a7ed-a3a8f420c080")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "aa1ded3c-9f43-4646-83a7-c6bed7b07805")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(attr through_hole)
+	(duplicate_pad_numbers_are_jumpers no)
+	(fp_line
+		(start -1.7 -0.8)
+		(end -1.7 0.8)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "d4f5b5c9-7aac-4bf3-9a7a-c8f50fe10cb1")
+	)
+	(fp_line
+		(start -1.36 -2.1)
+		(end 4.86 -2.1)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "22680bfd-09b6-4642-87b4-3e6625446b30")
+	)
+	(fp_line
+		(start -1.36 9.72)
+		(end -1.36 -2.1)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "0d646286-77e1-4aa2-bb60-faf4e4bf7968")
+	)
+	(fp_line
+		(start 4.86 -2.1)
+		(end 4.86 9.72)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "f529a59a-7856-4d97-b583-3c8e17ac82c7")
+	)
+	(fp_line
+		(start 4.86 9.72)
+		(end -1.36 9.72)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "495e15f3-285f-4d16-bbff-f67d09be851c")
+	)
+	(fp_line
+		(start -1.5 -2.24)
+		(end 5 -2.24)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "5019d0bf-0960-463f-88da-ce0562b877b7")
+	)
+	(fp_line
+		(start -1.5 9.86)
+		(end -1.5 -2.24)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "2631c8fb-3548-4dbf-bffb-ccbb1cd3bc88")
+	)
+	(fp_line
+		(start 5 -2.24)
+		(end 5 9.86)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "9daded58-630d-47bb-ba2d-7f87a9c4fc0c")
+	)
+	(fp_line
+		(start 5 9.86)
+		(end -1.5 9.86)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "b268edc6-4149-4217-b96f-9ceaae05f67e")
+	)
+	(fp_line
+		(start -1.25 -1.99)
+		(end 4.75 -1.99)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "00720d48-3083-400e-b798-088abc3926d0")
+	)
+	(fp_line
+		(start -1.25 9.61)
+		(end -1.25 -1.99)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "cf83a371-6947-4cd1-9a17-04c1fe2766fe")
+	)
+	(fp_line
+		(start 4.75 -1.99)
+		(end 4.75 9.61)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "f3a6b4d7-26f0-4f9b-ae45-d4f0b3039de0")
+	)
+	(fp_line
+		(start 4.75 9.61)
+		(end -1.25 9.61)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "1b731be2-5631-4c6a-ba72-a4ed350bfed9")
+	)
+	(fp_text user "${REFERENCE}"
+		(at 1.75 3.81 90)
+		(layer "F.Fab")
+		(uuid "a616d9b1-5295-4c2a-950c-4baa3733233c")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(pad "1" thru_hole rect
+		(at 0 0)
+		(size 2 1.5)
+		(drill 1)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "cd97c8d7-e591-4e57-bd31-58565fa4417c")
+	)
+	(pad "2" thru_hole oval
+		(at 0 2.54)
+		(size 2 1.5)
+		(drill 1)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "881b0304-bd96-4c52-b6e2-271ae2d5f587")
+	)
+	(pad "3" thru_hole oval
+		(at 0 5.08)
+		(size 2 1.5)
+		(drill 1)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "f6794fe8-712b-4cd7-995b-965650e35907")
+	)
+	(pad "4" thru_hole oval
+		(at 0 7.62)
+		(size 2 1.5)
+		(drill 1)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "1dddb7d5-b005-4a34-8f19-c1677bf5bfd9")
+	)
+	(embedded_fonts no)
+	(model "${KICAD10_3DMODEL_DIR}/Converter_DCDC.3dshapes/Converter_DCDC_Murata_CRE1xxxxxxSC_THT.step"
+		(offset
+			(xyz 0 0 0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz 0 0 0)
+		)
+	)
+)

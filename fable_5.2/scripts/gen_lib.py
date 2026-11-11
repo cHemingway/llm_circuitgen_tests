@@ -158,8 +158,44 @@ def footprint_dd50():
             A('\t(pad "%d" thru_hole %s (at %.3f %.3f) (size 1.6 1.6) (drill 1) (layers "*.Cu" "*.Mask") (remove_unused_layers no))' % (num, shape, x0 + i * P, y))
             num += 1
     for x in (-61.11 / 2, 61.11 / 2):
-        A('\t(pad "SH" thru_hole circle (at %.3f 0) (size 5.6 5.6) (drill 3.2) (layers "*.Cu" "*.Mask") (remove_unused_layers no))' % x)
+        A('\t(pad "SH" thru_hole circle (at %.3f 0) (size 6.4 6.4) (drill 3.2) (layers "*.Cu" "*.Mask") (remove_unused_layers no))' % x)
     A('\t(embedded_fonts no)')
+    A(')')
+    return name, '\n'.join(L) + '\n'
+
+
+def footprint_dcdc():
+    """SIP-4 isolated DC-DC (Mornsun B05xxS-1WR3 and clones: 11.6 x 6.0 x 10.2 mm).
+    Same pinning as KiCad's Murata MEE1S footprint, but with narrower pads so that
+    the copper gap between pin 2 (input) and pin 3 (output) is 1.04 mm instead of 0.29 mm."""
+    name = 'Converter_DCDC_Mornsun_B05xxS-1WR3_SIP4_THT'
+    L = []
+    A = L.append
+    A('(footprint "%s"' % name)
+    A('\t(version 20241229)\n\t(generator "gen_lib.py")\n\t(layer "F.Cu")')
+    A('\t(descr "Isolated 1W DC-DC converter, SIP-4, 11.6x6.0x10.2mm, pitch 2.54mm, Mornsun B05xxS-1WR3 / YLPTEC / EVISUN compatible; pin 1 -Vin, 2 +Vin, 3 -Vout, 4 +Vout")')
+    A('\t(tags "DC-DC isolated SIP4 B0505S B0509S")')
+    A('\t(property "Reference" "REF**" (at 1.75 -3.2 0) (layer "F.SilkS") (effects (font (size 1 1) (thickness 0.15))))')
+    A('\t(property "Value" "%s" (at 1.75 10.9 0) (layer "F.Fab") (effects (font (size 1 1) (thickness 0.15))))' % name)
+    A('\t(property "Datasheet" "" (at 0 0 0) (layer "F.Fab") (hide yes) (effects (font (size 1.27 1.27))))')
+    A('\t(property "Description" "" (at 0 0 0) (layer "F.Fab") (hide yes) (effects (font (size 1.27 1.27))))')
+    A('\t(attr through_hole)')
+    x1, y1, x2, y2 = -1.25, -1.99, 4.75, 9.61
+
+    def rectl(layer, d, w):
+        pts = [(x1 - d, y1 - d), (x2 + d, y1 - d), (x2 + d, y2 + d), (x1 - d, y2 + d)]
+        for (a, b) in zip(pts, pts[1:] + pts[:1]):
+            A('\t(fp_line (start %.3f %.3f) (end %.3f %.3f) (stroke (width %s) (type solid)) (layer "%s"))' % (a[0], a[1], b[0], b[1], w, layer))
+    rectl('F.Fab', 0, 0.1)
+    rectl('F.SilkS', 0.11, 0.12)
+    rectl('F.CrtYd', 0.25, 0.05)
+    A('\t(fp_line (start -1.7 -0.8) (end -1.7 0.8) (stroke (width 0.12) (type solid)) (layer "F.SilkS"))')
+    A('\t(fp_text user "${REFERENCE}" (at 1.75 3.81 90) (layer "F.Fab") (effects (font (size 1 1) (thickness 0.15))))')
+    for i in range(4):
+        shape = 'rect' if i == 0 else 'oval'
+        A('\t(pad "%d" thru_hole %s (at 0 %.2f) (size 2 1.5) (drill 1) (layers "*.Cu" "*.Mask") (remove_unused_layers no))' % (i + 1, shape, i * 2.54))
+    A('\t(embedded_fonts no)')
+    A('\t(model "${KICAD10_3DMODEL_DIR}/Converter_DCDC.3dshapes/Converter_DCDC_Murata_CRE1xxxxxxSC_THT.step" (offset (xyz 0 0 0)) (scale (xyz 1 1 1)) (rotate (xyz 0 0 0)))')
     A(')')
     return name, '\n'.join(L) + '\n'
 
@@ -175,8 +211,8 @@ def main():
     open(os.path.join(LIB, LIBNAME + '.kicad_sym'), 'w').write(dump(lib) + '\n')
     pretty = os.path.join(LIB, LIBNAME + '.pretty')
     os.makedirs(pretty, exist_ok=True)
-    name, txt = footprint_dd50()
-    open(os.path.join(pretty, name + '.kicad_mod'), 'w').write(txt)
+    for name, txt in (footprint_dd50(), footprint_dcdc()):
+        open(os.path.join(pretty, name + '.kicad_mod'), 'w').write(txt)
     print('wrote libs to', os.path.normpath(LIB))
 
 

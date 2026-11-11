@@ -1,0 +1,15 @@
+(version 1)
+
+# Anything on the multimeter (isolated) side must stay well away from anything on
+# the USB / MCU side.  1.0 mm is the copper gap between pins 2 and 3 of the SIP-4
+# DC-DC converter (PS1), the only place where the two domains come that close;
+# everywhere else the rule-area keep-out under the optocouplers gives > 7 mm.
+(rule "isolation_barrier"
+	(condition "(A.NetClass == 'ISO' || A.NetClass == 'ISO_PWR') && (B.NetClass == 'Default' || B.NetClass == 'PWR' || B.NetClass == 'PWR_WIDE' || B.NetClass == 'VREG_LX')")
+	(constraint clearance (min 1.0mm)))
+
+# RP2354 core regulator switch node: routed between the pads of the 0402 input /
+# output capacitors exactly as in the Raspberry Pi reference layout.
+(rule "vreg_lx_between_cap_pads"
+	(condition "A.NetClass == 'VREG_LX' || B.NetClass == 'VREG_LX'")
+	(constraint clearance (min 0.12mm)))

@@ -51,6 +51,8 @@ using the prompt in [`EXPORT_PROMPT.md`](EXPORT_PROMPT.md).
 | [SKiDL](https://github.com/devbisme/skidl) | `skidl/` | 2 h 29 min | 59 min | 124.5 M | 347 | $46.64 | [PDF](skidl/pcb/render/schematic.pdf) | [PDF](skidl/pcb/print/pcb_prints.pdf) | SKiDL 2.3.0 on KiCad 10 (the brief added "use KiCad 10"). SKiDL has no part library of its own, so parts come from KiCad's libraries, then LCSC. Board built with kinet2pcb and routed with Freerouting 2.5. SKiDL's schematic generator mis-connects nets on this design, so the schematic is drawn by a script and checked against the netlist. Statistics run to the conversation export, and exclude the merge into `main` that came after it. Session log and statistics: [`skidl/CONVERSATION.md`](skidl/CONVERSATION.md) |
 | [Manta](https://github.com/Derrick-Derrickson/Manta) | `manta/` | 46 min | – | 62.9 M | 191 | – | [HTML](manta/output/solartron7075.html) | – | Manta 2.0.1 (language revision 2.0). Manta is a schematic and netlist language with no layout, so the result is a checked netlist, a KiCad netlist (with a footprint map and two generated footprints), an LCSC BOM and an HTML schematic. No PCB was made, so there are no prints. Manta's only part library is its `blinky` example; 8 part types came from it, the rest from LCSC. The session transcript kept no cost-state record, so tool time and the price estimate were not recorded; tokens and API calls are summed from the transcript's per-response usage. Statistics run to the conversation export, and exclude the merge into `main` that came after it. Notes on the tool: [`manta/README.md`](manta/README.md#notes-on-the-tool-benchmark-observations). Session log and statistics: [`manta/CONVERSATION.md`](manta/CONVERSATION.md) |
 | [Konnect](https://github.com/mixelpixx/Konnect) | `konnect/` | 3 h 33 min | 56 min | 264.4 M | 520 | $112.18 | [PDF](konnect/fab/schematic.pdf) | [PDF](konnect/fab/pcb_layers.pdf) | Konnect 0.13.0, an MCP server that drives KiCad 10.0.6. Parts come from KiCad's libraries, with LCSC numbers. KiCad has no DD-50, so its symbol and footprint were made in the project library. Konnect's Freerouting export refuses KiCad's roundrect pads, so the SMD footprints were copied with rectangular pads. The board was routed with Freerouting 2.4.1 after a pad-rotation bug in Konnect's DSN export was fixed by hand. The ground pours needed hand-placed stitching vias and a small grid router written in the scratchpad. The run stopped twice at a usage limit (12 h 53 min in all, left out of active time) and was compacted once. Tool time and the price estimate are the tool's own counters. The Breakdown prices use the published Opus 5.5 and Haiku 5.5 prices, which reproduce those counters. Statistics run to the conversation export, and exclude the merge into `main` that came after it. Notes on the tool: [`konnect/README.md`](konnect/README.md#notes-on-the-tool). Session log and statistics: [`konnect/CONVERSATION.md`](konnect/CONVERSATION.md) |
+| `fable_5.2/` | [KiCad](https://www.kicad.org) 10 implementation (`kicad-cli` and `pcbnew` scripts), with a 4-layer board; see its README |
+| [KiCad](https://www.kicad.org) | `fable_5.2/` | 1 h 18 min | 18 min | 43.9 M | 122 | $46.05 | [PDF](fable_5.2/docs/schematic.pdf) | [PDF](fable_5.2/docs/pcb_top.pdf) | KiCad 10.0.8 (PPA), driven through `kicad-cli` and the `pcbnew` Python module with scripts that write the schematic and board files. Parts come from KiCad's libraries, then LCSC numbers checked against the JLCPCB catalogue. KiCad has no DD-50 plug or TPIC6C595, so those two symbols and the DD-50 and DC-DC footprints were made in the project library. Freerouting could not be run here (executing the downloaded jar was blocked), so the 4-layer board was routed with a grid router written in the project; it has no DRC errors or unconnected pads. The run stopped twice at a usage limit (9 h 06 min in all, left out of active time) and the context was not compacted within the span. Tool time and the price estimate are the tool's own counters. The Breakdown prices use the published Claude Fable 5.2 prices, which reproduce those counters. Statistics run to the conversation export, and exclude the merge into `main` that came after it. Notes on the run: [`fable_5.2/README.md`](fable_5.2/README.md#session-statistics). Session log and statistics: [`fable_5.2/CONVERSATION.md`](fable_5.2/CONVERSATION.md) |
 
 Statistics cover the Claude Code session from the first prompt to the merge into
 `main`.
@@ -134,6 +136,17 @@ Calls that did both kinds of work are assigned by their main purpose.
 | Output tokens | 235 k | 552 k | 6 k | 17 k | 810 k |
 | API-price estimate | $20.17 | $75.58 | $8.12 | $8.32 | $112.18 |
 
+### KiCad
+
+| | Schematic & research | PCB | Other | Not attributable | Total |
+| --- | --- | --- | --- | --- | --- |
+| Active time | 38 min | 38 min | 2 min | 0 min | 1 h 18 min |
+| API calls | 67 | 48 | 7 | – | 122 |
+| Total tokens | 16.5 M | 23.5 M | 3.9 M | 0 | 43.9 M |
+| Tokens excl. cache reads | 0.54 M | 0.33 M | 0.96 M | 0 | 1.82 M |
+| Output tokens | 198 k | 145 k | 9 k | 0 | 352 k |
+| API-price estimate | $16.63 | $13.32 | $16.09 | $0.00 | $46.05 |
+
 ## Review feedback
 
 After the design is finished, each tool's session gets the same review comments,
@@ -159,6 +172,7 @@ fill in its row below, using the prompt in
 | [SKiDL](https://github.com/devbisme/skidl) | 38 min | 21 min | 34.1 M | 65 | $9.80 | Turn 1 from Claude Code's counters. No counter record was written after turns 2–3, so their tokens come from the transcript, their tool time from tool-call timestamps and their price from per-token prices fitted to the session's cost snapshots. Review log and statistics: [`skidl/REVIEW_CONVERSATION.md`](skidl/REVIEW_CONVERSATION.md) |
 | [Manta](https://github.com/Derrick-Derrickson/Manta) | – | – | – | – | – | |
 | [Konnect](https://github.com/mixelpixx/Konnect) | 2 h 35 min | 49 min | 226.6 M | 413 | $86.47 | The resumed session wrote no cost-state counters, so every figure comes from the transcript. Tokens and API calls are summed from the per-response usage. Tool time is each tool call's request-to-result time, which reads about 4 % high. The price uses the published Opus 5.5 prices. Active time leaves out a 26 min wait for the user's answer, two usage-limit stops, and about an hour when the API could not be reached. Review log and statistics: [`konnect/REVIEW_CONVERSATION.md`](konnect/REVIEW_CONVERSATION.md) |
+| [KiCad](https://www.kicad.org) | – | – | – | – | – | |
 
 ## Layout
 

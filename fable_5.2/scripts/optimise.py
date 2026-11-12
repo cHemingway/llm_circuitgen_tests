@@ -51,6 +51,17 @@ for _r in PMAP.PD:
 
 # --------------------------------------------------------------------------- geometry
 _fp = {}
+_foot_all = False
+
+
+def _footprints():
+    """Footprint of every part, from the schematic."""
+    global _foot_all
+    if not _foot_all:
+        comps, _ = gen_pcb.export_netlist()
+        for ref, c in comps.items():
+            FOOT.setdefault(ref, c['footprint'])
+        _foot_all = True
 
 
 def pads(ref, place):
@@ -58,6 +69,8 @@ def pads(ref, place):
     if ref == 'J1':                              # on the bottom side, mirrored: use the pin table
         return {str(n): skb_xy(n) for n in range(1, 51)}
     x, y, rot = tuple(place[ref])[:3] if ref in place else gen_pcb.PL_BASE[ref][:3]
+    if ref not in FOOT:
+        _footprints()
     fid = FOOT[ref]
     if fid not in _fp:
         _fp[fid] = gen_pcb.load_fp(fid)
@@ -284,7 +297,8 @@ def assign(place, terms):
     best = min((dist(mosi, upads[a]['2']) + dist(upads[a]['9'], upads[b]['2']), [a, b])
                for a, b in (PMAP.U595, PMAP.U595[::-1]))
     total += best[0]
-    pm = {'chain165': chain165, 'chain595': best[1], 'inputs': inputs, 'pulldown': pulldown, 'outputs': outputs}
+    pm = {'chain165': chain165, 'chain595': best[1], 'inputs': inputs, 'pulldown': pulldown, 'outputs': outputs,
+          'mcu': PMAP.default_mcu()}
     PMAP.check(pm)
     return pm, total
 
@@ -316,6 +330,188 @@ def estimate(place, pm):
     return t
 
 
+# --------------------------------------------------------------------------- MCU side
+KX = 15.0                     # cost of one crossing between two estimated connections, in mm
+
+
+def _cross(a, b, c, d):
+    """True if segments a-b and c-d cross (touching end points do not count)."""
+    def o(p, q, r):
+        return (q[0] - p[0]) * (r[1] - p[1]) - (q[1] - p[1]) * (r[0] - p[0])
+    d1, d2, d3, d4 = o(c, d, a), o(c, d, b), o(a, b, c), o(a, b, d)
+    return (d1 * d2 < -1e-9) and (d3 * d4 < -1e-9)
+
+
+def _score(paths):
+    """paths: list of polylines, one per net.  Length + KX per crossing between different nets."""
+    t = 0.0
+    segs = []
+    for i, pl in enumerate(paths):
+        for a, b in zip(pl, pl[1:]):
+            t += dist(a, b)
+            segs.append((i, a, b))
+    n = 0
+    for i in range(len(segs)):
+        for j in range(i + 1, len(segs)):
+            if segs[i][0] != segs[j][0] and _cross(segs[i][1], segs[i][2], segs[j][1], segs[j][2]):
+                n += 1
+    return t + KX * n, n
+
+
+def _mst(pts):
+    done, rest, t = [pts[0]], list(pts[1:]), 0.0
+    while rest:
+        d, q = min((dist(a, b), b) for a in done for b in rest)
+        t += d
+        done.append(q)
+        rest.remove(q)
+    return t
+
+
+MCU0 = dict(u4=(97.0, 22.2, 90), c21=(97.0, 17.3, 0), rn1=(97.0, 27.6, 90), rn_style='row',
+            tp1=(97.6, 31.0), tp2=(95.2, 31.0), u8=(71.4, 39.6, 0), c25=(71.4, 33.6, 0))
+
+
+# chosen MCU-side placement: buffer and pull-up array turned round so that the GPIO lines reach the
+# pull-ups first and the buffer outputs face the optocouplers; test pads moved out of the way
+MCU_BEST = dict(u4=(97.0, 22.2, 270), c21=(97.0, 17.3, 0), rn1=(97.0, 27.6, 270), tp1=(97.0, 34.8), tp2=(94.8, 33.0))
+
+
+def mcu_plan(p=None):
+    """Placement of the movable parts between MCU and optocouplers (and of U8)."""
+    q = dict(MCU0)
+    q.update(p or {})
+    if 'c21' not in (p or {}):         # decoupling capacitor in line with the supply pin of U4
+        ox, oy = rot_off(4.9, -1.75, q["u4"][2])
+        q['c21'] = (round(q['u4'][0] + ox, 2), round(q['u4'][1] + oy, 2), q['u4'][2])
+    pl = {'U4': tuple(q['u4']), 'C21': tuple(q['c21']), 'RN1': tuple(q['rn1']), 'TP1': tuple(q['tp1']) + (0,),
+          'TP2': tuple(q['tp2']) + (0,), 'U8': tuple(q['u8']), 'C25': tuple(q['c25'])}
+    for k in ('r24', 'd2', 'r9'):
+        if k in q:
+            pl[k.upper()] = tuple(q[k])
+    q['silk'] = {'tx': (q['tp1'][0], q['tp1'][1] + 1.7), 'rx': (q['tp2'][0], q['tp2'][1] + 1.7)}
+    return pl, q['rn_style'], q['silk']
+
+
+def assign_mcu(place, pm, style, cand=range(0, 19)):
+    """Best GPIO / buffer gate / pull-up / optocoupler channel assignment for a placement.
+    Connections are estimated as straight lines; crossings between them cost KX each."""
+    P_ = lambda ref: pads(ref, place)
+    u1, u4, u7, u8 = P_('U1'), P_('U4'), P_('U7'), P_('U8')
+    gp = {g: u1[str(PMAP.GP2PIN[g])] for g in PMAP.GP2PIN}
+    x, y, rot = place['RN1'][:3] if 'RN1' in place else gen_pcb.PL_BASE['RN1'][:3]
+    rn = P_('RN1')
+    if style == 'split':            # the four lines run past / under the array: two outside, two under the body
+        rn_pads = ['1', '2', '6', '5']
+        lanes = [(x + ox, y + oy) for ox, oy in (rot_off(lx, 0, rot) for lx in (-1.7, -0.2, 0.2, 1.7))]
+    else:                           # four pads in a row on one side
+        rn_pads = ['1', '2', '3', '4']
+        lanes = [rn[p] for p in rn_pads]
+    sigs = PMAP.DOWN
+    chans = sorted(PMAP.DOWN_CH)
+    cath = {c: P_(c[:2])[PMAP.DOWN_CH[c][0]] for c in chans}
+    vo = {c: P_(c[:2])[PMAP.DOWN_CH[c][2]] for c in chans}
+    loads = {'SCK': [P_(u)['2'] for u in PMAP.U165] + [P_(u)['15'] for u in PMAP.U595],
+             'LATCH': [P_(u)['1'] for u in PMAP.U165] + [P_(u)['10'] for u in PMAP.U595],
+             'MOSI': [P_(pm['chain595'][0])['2']], 'OEn': [P_(u)['8'] for u in PMAP.U595]}
+    iso = {(s, c): _mst([vo[c]] + loads[s]) for s in sigs for c in chans}
+
+    # uplink: which U8 gate and which U7 channel for MISO / DRDY
+    src = {'MISO': P_(pm['chain165'][0])['9']}
+    for u in PMAP.U165:
+        for d, net in enumerate(pm['inputs'][u]):
+            if net == 'DVM_PRINT_LEVEL':
+                src['DRDY'] = P_(u)[str(PMAP.D165[d])]
+    upch = sorted(PMAP.UP_CH)
+    best_up = {}
+    for perm in itertools.permutations(upch):
+        chs = dict(zip(PMAP.UP, perm))
+        b = None
+        for g1, g2 in itertools.permutations(range(4), 2):
+            gs = {'MISO': g1, 'DRDY': g2}
+            paths = []
+            for s in PMAP.UP:
+                oe, a, yv = PMAP.GATES[gs[s]]
+                paths += [[src[s], u8[str(a)]], [u8[str(yv)], u7[PMAP.UP_CH[chs[s]][0]]]]
+            c = _score(paths)[0]
+            if b is None or c < b[0]:
+                b = (c, gs)
+        best_up[perm] = b
+
+    triples = [(a, b, c) for a in cand for b in cand for c in cand if PMAP.spi_ok(a, b, c)]
+    best = None
+    for gperm in itertools.permutations(range(4)):
+        gate = dict(zip(sigs, gperm))
+        A = {s: u4[str(PMAP.GATES[gate[s]][1])] for s in sigs}
+        Y = {s: u4[str(PMAP.GATES[gate[s]][2])] for s in sigs}
+        # stage A: optocoupler channels
+        ba = None
+        for cperm in itertools.permutations(chans):
+            ch = dict(zip(sigs, cperm))
+            c = _score([[Y[s], cath[ch[s]]] for s in sigs])[0] + sum(iso[(s, ch[s])] for s in sigs)
+            if ba is None or c < ba[0]:
+                ba = (c, ch)
+        # stage B: GPIOs and pull-ups
+        for lperm in itertools.permutations(range(4)):
+            via = {s: lanes[lperm[i]] for i, s in enumerate(sigs)}
+            for (sck, tx, rx) in triples:
+                fixed = {'SCK': sck, 'MOSI': tx, 'MISO': rx}
+                free = [g for g in cand if g not in fixed.values()]
+                for uperm in best_up:
+                    uc = dict(zip(PMAP.UP, uperm))
+                    tgt = {'LATCH': via['LATCH'], 'OEn': via['OEn'], 'DRDY': u7[PMAP.UP_CH[uc['DRDY']][2]]}
+                    names = list(tgt)
+                    res = hungarian([[dist(gp[g], tgt[n]) for g in free] for n in names])
+                    g_of = dict(fixed)
+                    for n, j in zip(names, res):
+                        g_of[n] = free[j]
+                    paths = [[gp[g_of[s]], via[s], A[s]] for s in sigs]
+                    paths += [[gp[g_of[s]], u7[PMAP.UP_CH[uc[s]][2]]] for s in PMAP.UP]
+                    c, nx = _score(paths)
+                    c += ba[0] + best_up[uperm][0]
+                    if best is None or c < best[0]:
+                        best = (c, dict(g_of), gate, {s: rn_pads[lperm[i]] for i, s in enumerate(sigs)}, ba[1], uc,
+                                best_up[uperm][1], paths)
+    c, g_of, gate, rn1, ch, uc, u8g, paths = best
+    # UART test pads and the activity LED: nearest valid free pins
+    tp = [P_('TP1')['1'], P_('TP2')['1']]
+    bu = None
+    for t in range(30):
+        for r in range(30):
+            if PMAP.uart_ok(t, r) and t not in g_of.values() and r not in g_of.values() and t != 25 and r != 25:
+                cu = _score(paths + [[gp[t], tp[0]], [gp[r], tp[1]]])[0]
+                if bu is None or cu < bu[0]:
+                    bu = (cu, t, r)
+    g_of.update({'UART_TX': bu[1], 'UART_RX': bu[2], 'LED_ACT': 25})
+    mcu = {'gpio': g_of, 'gate': gate, 'rn1': rn1, 'chan': ch, 'up': uc, 'u8': u8g}
+    return mcu, bu[0] - _score(paths)[0] + c
+
+
+def estimate_mcu(place, pm, style='row'):
+    """The same estimate for an arbitrary (e.g. the original) assignment."""
+    P_ = lambda ref: pads(ref, place)
+    m = pm['mcu']
+    u1, u4, u7, u8, rn = P_('U1'), P_('U4'), P_('U7'), P_('U8'), P_('RN1')
+    gp = {s: u1[str(PMAP.GP2PIN[g])] for s, g in m['gpio'].items()}
+    paths = []
+    t = 0.0
+    for s in PMAP.DOWN:
+        oe, a, yv = PMAP.GATES[m['gate'][s]]
+        ch = m['chan'][s]
+        paths += [[gp[s], rn[m['rn1'][s]], u4[str(a)]], [u4[str(yv)], P_(ch[:2])[PMAP.DOWN_CH[ch][0]]]]
+    src = {'MISO': P_(pm['chain165'][0])['9']}
+    for u in PMAP.U165:
+        for d, net in enumerate(pm['inputs'][u]):
+            if net == 'DVM_PRINT_LEVEL':
+                src['DRDY'] = P_(u)[str(PMAP.D165[d])]
+    for s in PMAP.UP:
+        oe, a, yv = PMAP.GATES[m['u8'][s]]
+        ch = PMAP.UP_CH[m['up'][s]]
+        paths += [[gp[s], u7[ch[2]]], [src[s], u8[str(a)]], [u8[str(yv)], u7[ch[0]]]]
+    paths += [[gp['UART_TX'], P_('TP1')['1']], [gp['UART_RX'], P_('TP2')['1']]]
+    return _score(paths)
+
+
 # --------------------------------------------------------------------------- evaluation by routing
 def measure(pcb):
     b = pcbnew.LoadBoard(pcb)
@@ -339,7 +535,7 @@ def measure(pcb):
     return out
 
 
-def evaluate(name, plan='orig', params=None, swap=True, hug=0, drc=False, via=260):
+def evaluate(name, plan='orig', params=None, swap=True, hug=0, drc=False, via=260, mcu=None, mcu_swap=True):
     """Build candidate `name` in its own directory, route it and return the figures."""
     place, terms, silk = FLOORPLANS[plan](params)
     if swap:
@@ -347,6 +543,20 @@ def evaluate(name, plan='orig', params=None, swap=True, hug=0, drc=False, via=26
     else:
         pm = PMAP.default()
         est = estimate(place, pm)
+    if mcu is not None:             # MCU side: move the buffer / pull-ups / test pads, re-assign GPIOs, gates, channels
+        mpl, style, msilk = mcu_plan(mcu)
+        place.update(mpl)
+        silk = dict(silk, **msilk)
+        if mcu_swap:
+            # GPIO0..11 are the pins on the side of the package that faces the optocouplers
+            pm['mcu'], est_m = assign_mcu(place, pm, style, cand=range(0, mcu.get('gpio_max', 11) + 1))
+        else:
+            pm['mcu'] = PMAP.default_mcu()
+            est_m = estimate_mcu(place, pm)[0]
+        PMAP.check(pm)
+    else:
+        pm['mcu'] = PMAP.default_mcu()
+        est_m = estimate_mcu(place, pm)[0]
     wd = os.path.join(WORK, name)
     shutil.rmtree(wd, ignore_errors=True)
     os.makedirs(os.path.join(wd, 'scripts'))
@@ -365,7 +575,8 @@ def evaluate(name, plan='orig', params=None, swap=True, hug=0, drc=False, via=26
             open(os.path.join(wd, 'log.txt'), 'w').write(log)
             return {'name': name, 'error': (r.stderr.strip().splitlines() or ['failed'])[-1]}
     open(os.path.join(wd, 'log.txt'), 'w').write(log)
-    res = {'name': name, 'plan': plan, 'params': params or {}, 'swap': swap, 'hug': hug, 'est': round(est)}
+    res = {'name': name, 'plan': plan, 'params': params or {}, 'swap': swap, 'hug': hug, 'est': round(est),
+           'mcu': mcu, 'est_mcu': round(est_m)}
     res['unrouted'] = sum(1 for l in log.splitlines() if l.startswith('UNROUTED'))
     res['fanout_fail'] = [l for l in log.splitlines() if l.startswith('plane fan-out failures')][0].split(':', 1)[1].strip()
     res.update(measure(os.path.join(wd, gen_pcb.NAME + '.kicad_pcb')))
@@ -388,13 +599,14 @@ def run(cands, workers=4):
     with ThreadPoolExecutor(workers) as ex:
         futs = [ex.submit(evaluate, **c) for c in cands]
         out = [f.result() for f in futs]
-    print('%-22s %5s %5s %5s | %4s %4s %4s %4s | %6s %5s' % ('candidate', 'unrt', 'vias', 'len', 'dvm', 'ctl', 'pwr', 'mcu', 'est', 'extra'))
+    print('%-22s %5s %5s %5s | %4s %4s %4s %4s | %5s %5s %s' % ('candidate', 'unrt', 'vias', 'len', 'dvm', 'ctl', 'pwr', 'mcu', 'est', 'estM', 'extra'))
     for r in out:
         if 'error' in r:
             print('%-22s ERROR %s' % (r['name'], r['error']))
             continue
-        print('%-22s %5d %5d %5d | %4d %4d %4d %4d | %6d %s %s' % (
+        print('%-22s %5d %5d %5d | %4d %4d %4d %4d | %5d %5d %s %s' % (
             r['name'], r['unrouted'], r['vias'], r['len'], r['vias_dvm'], r['vias_ctl'], r['vias_pwr'], r['vias_mcu'], r['est'],
+            r['est_mcu'],
             r['fanout_fail'] if r['fanout_fail'] != '[]' else '',
             'unconn %s parity %s %s' % (r['unconnected'], r['parity'], r['drc']) if 'drc' in r else ''))
     return out
@@ -417,5 +629,7 @@ if __name__ == '__main__':
             dict(name='orig_swap', plan='orig', swap=True, drc=True),
             dict(name='h5', plan='h5', swap=True, drc=True),
             dict(name='h5t', plan='h5t', swap=True, drc=True),
+            dict(name='h5t_mcu_swap', plan='h5t', swap=True, drc=True, mcu=dict(c21=(97.0, 17.3, 0))),
+            dict(name='h5t_mcu', plan='h5t', swap=True, drc=True, mcu=MCU_BEST),
         ]
         run(cands)

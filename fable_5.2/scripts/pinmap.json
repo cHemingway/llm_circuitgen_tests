@@ -142,5 +142,44 @@
    null,
    null
   ]
+ },
+ "mcu": {
+  "gpio": {
+   "SCK": 2,
+   "MOSI": 3,
+   "MISO": 4,
+   "LATCH": 0,
+   "OEn": 1,
+   "DRDY": 11,
+   "UART_TX": 8,
+   "UART_RX": 5,
+   "LED_ACT": 25
+  },
+  "gate": {
+   "SCK": 1,
+   "MOSI": 2,
+   "LATCH": 0,
+   "OEn": 3
+  },
+  "rn1": {
+   "SCK": "3",
+   "MOSI": "4",
+   "LATCH": "1",
+   "OEn": "2"
+  },
+  "chan": {
+   "SCK": "U5.1",
+   "MOSI": "U6.2",
+   "LATCH": "U5.2",
+   "OEn": "U6.1"
+  },
+  "up": {
+   "MISO": "U7.1",
+   "DRDY": "U7.2"
+  },
+  "u8": {
+   "MISO": 0,
+   "DRDY": 3
+  }
  }
 }

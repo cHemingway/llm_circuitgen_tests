@@ -18,6 +18,9 @@ REV = 'A'
 LIBNAME = 'solartron7075'
 
 P = Project(NAME, {LIBNAME: os.path.join(OUT, 'lib', LIBNAME + '.kicad_sym')})
+PM = pinmap.load()          # pin assignment chosen by scripts/optimise.py (or the original one)
+PIN_NET = pinmap.PIN_NET
+MCU = PM['mcu']
 
 # ---------------------------------------------------------------------------
 # part tables (all LCSC numbers checked against the JLCPCB/LCSC catalogue)
@@ -150,9 +153,9 @@ def sheet_mcu():
     X, Y = 215, 162
     nets = {'46': 'VREG_AVDD', '48': 'VREG_LX',
             '26': 'RUN', '51': 'USB_DM', '52': 'USB_DP', '60': 'QSPI_SS', '21': 'XIN', '22': 'XOUT',
-            '24': 'SWCLK', '25': 'SWDIO',
-            '2': 'UART_TX', '3': 'UART_RX', '4': 'MCU_SCK', '5': 'MCU_MOSI', '7': 'MCU_MISO',
-            '8': 'MCU_LATCH', '9': 'MCU_OEn', '10': 'MCU_DRDY', '37': 'LED_ACT'}
+            '24': 'SWCLK', '25': 'SWDIO'}
+    for sig, gp in MCU['gpio'].items():        # GPIO choice comes from the pin map
+        nets[str(pinmap.GP2PIN[gp])] = sig if sig in ('UART_TX', 'UART_RX', 'LED_ACT') else 'MCU_' + sig
     v33 = ['1', '11', '20', '30', '38', '45', '44', '53', '54', '49']
     v11 = ['6', '23', '39', '50']
     gnd = ['47', '61']
@@ -227,19 +230,31 @@ def sheet_mcu():
     # --- LED driver buffer ---------------------------------------------------
     sh.box(304, 96, 408, 250, 'Opto LED drivers (LED off = isolated line high)')
     FB = F('Package_SO:TSSOP-14_4.4x5mm_P0.65mm', 'C7813', 'SN74LVC125APWR', 'Texas Instruments')
-    sigs = ['SCK', 'MOSI', 'LATCH', 'OEn']
-    upins = [(1, 2, 3), (4, 5, 6), (10, 9, 8), (13, 12, 11)]
-    for i, (sig, (oe, a, yv)) in enumerate(zip(sigs, upins)):
+    gate_sig = {g: sig for sig, g in MCU['gate'].items()}
+    for i, (oe, a, yv) in enumerate(pinmap.GATES):
+        sig = gate_sig[i]
         sh.sym('U4', '74xx:74LVC125', 356, 116 + i * 24, unit=i + 1, value='74LVC125',
                nets={str(oe): 'GND', str(a): 'MCU_' + sig, str(yv): 'LEDK_' + sig}, fields=FB,
                ref_at=(356, 109 + i * 24, None), val_at=(366, 111 + i * 24, None))
     sh.sym('U4', '74xx:74LVC125', 392, 212, unit=5, value='74LVC125', nets={'14': '+3V3', '7': 'GND'}, fields=FB)
     C(sh, 'C21', 376, 212, '+3V3', 'GND', '100n', '0402')
-    rn = rpack(sh, 'RN1', 326, 222, '10k', ['MCU_SCK', 'MCU_MOSI', 'MCU_LATCH', 'MCU_OEn'], [None] * 4)
-    pts = [pin(rn, n) for n in (8, 7, 6, 5)]
+    pad_sig = {pad: sig for sig, pad in MCU['rn1'].items()}
+    mixed = any(str(8 - k) in pad_sig for k in range(4))        # pull-ups on both sides of the array
+    lft, rgt = [], []
+    for k in range(4):
+        pl, pr = str(k + 1), str(8 - k)
+        if pl in pad_sig:
+            lft.append('MCU_' + pad_sig[pl])
+            rgt.append('+3V3' if mixed else None)
+        else:
+            lft.append('+3V3')
+            rgt.append('MCU_' + pad_sig[pr])
+    rn = rpack(sh, 'RN1', 326, 222, '10k', lft, rgt)
+    pts = [pin(rn, 8 - k) for k in range(4) if rgt[k] is None]
     for p in pts:
         sh.wire([p, (p[0] + 2.54, p[1])])
-    bus(sh, [(p[0] + 2.54, p[1]) for p in pts], '+3V3', (0, -1), at=(pts[0][0] + 2.54, min(q[1] for q in pts)))
+    if pts:
+        bus(sh, [(p[0] + 2.54, p[1]) for p in pts], '+3V3', (0, -1), at=(pts[0][0] + 2.54, min(q[1] for q in pts)))
     sh.text('RN1 pull-ups keep all four opto LEDs off\nwhile the MCU is in reset / unprogrammed.', 312, 236, 1.3)
     return sh
 
@@ -277,22 +292,28 @@ def sheet_iso():
             sh.wire([(xr, ytop), (xr, p[1])])
         C(sh, cref, 290, y, '+5V_ISO', 'GND_ISO', '100n')
 
-    down_opto('U5', 56, 'SCK', 'MOSI', 'R11', 'R12', 'R15', 'R16', 'C22', '470', '470')
-    down_opto('U6', 108, 'LATCH', 'OEn', 'R13', 'R14', 'R17', 'R18', 'C23', '470', '1k')
+    ch_sig = {ch: sig for sig, ch in MCU['chan'].items()}      # which signal uses which optocoupler channel
+    pv = lambda sig: '1k' if sig == 'OEn' else '470'
+    for ref, y, cref in (('U5', 56, 'C22'), ('U6', 108, 'C23')):
+        s1, s2 = ch_sig[ref + '.1'], ch_sig[ref + '.2']
+        c1, c2 = pinmap.DOWN_CH[ref + '.1'], pinmap.DOWN_CH[ref + '.2']
+        down_opto(ref, y, s1, s2, c1[3], c2[3], c1[4], c2[4], cref, pv(s1), pv(s2))
     sh.text('MCU -> multimeter side: SPI-style clock/data, register latch, output enable.\n'
             'LED off (MCU in reset, USB unplugged) = line high on the isolated side.', 228, 126, 1.3)
     sh.text('180R: IF = 9 mA typ from 3.3 V', 150, 76, 1.3)
     sh.text('390R: IF = 8.5 mA typ from +5V_ISO', 236, 196, 1.3)
 
     # uplink opto, mirrored so the barrier stays in the same place
+    up_sig = {ch: sig for sig, ch in MCU['up'].items()}
     u7 = sh.sym('U7', 'Isolator:HCPL-2631', 210, 170, value='HCPL-2631', mirror=True,
-                nets={'2': 'LEDK_MISO', '3': 'LEDK_DRDY', '8': 'VBUS', '5': 'GND'}, raw=['1', '4', '6', '7'], fields=FO)
+                nets={'2': 'LEDK_' + up_sig['U7.1'], '3': 'LEDK_' + up_sig['U7.2'], '8': 'VBUS', '5': 'GND'},
+                raw=['1', '4', '6', '7'], fields=FO)
     for rr, pn in (('R21', 1), ('R22', 4)):
         p = pin(u7, pn)
         R(sh, rr, p[0] + 22, p[1], None, '+5V_ISO', '390', orient='h')
         sh.wire([p, (p[0] + 22 - 3.81, p[1])])
     ytop = pin(u7, 7)[1] - 10.16
-    for pn, sname, pr, dx in ((7, 'MCU_MISO', 'R19', 12.7), (6, 'MCU_DRDY', 'R20', 27.94)):
+    for pn, sname, pr, dx in ((7, 'MCU_' + up_sig['U7.1'], 'R19', 12.7), (6, 'MCU_' + up_sig['U7.2'], 'R20', 27.94)):
         p = pin(u7, pn)
         xr = p[0] - dx
         sh.wire([p, (xr, p[1]), (p[0] - 38.1, p[1])])
@@ -307,10 +328,10 @@ def sheet_iso():
     # ISO-side LED driver
     sh.box(256, 136, 408, 200, 'Uplink LED drivers (TTL-level inputs)')
     FA = F('Package_SO:SOIC-14_3.9x8.7mm_P1.27mm', 'C155176', 'SN74AHCT125DR', 'Texas Instruments')
-    for i, (oe, a, yv, na, ny, xx, yy) in enumerate([(1, 2, 3, 'MISO_ISO', 'LEDK_MISO', 296, 154),
-                                                     (4, 5, 6, 'PRINT_LEVEL_S', 'LEDK_DRDY', 296, 180),
-                                                     (10, 9, 8, 'GND_ISO', None, 346, 154),
-                                                     (13, 12, 11, 'GND_ISO', None, 346, 180)]):
+    g_sig = {g: sig for sig, g in MCU['u8'].items()}
+    for i, ((oe, a, yv), (xx, yy)) in enumerate(zip(pinmap.GATES, [(296, 154), (296, 180), (346, 154), (346, 180)])):
+        na = pinmap.UP_SRC[g_sig[i]] if i in g_sig else 'GND_ISO'
+        ny = 'LEDK_' + g_sig[i] if i in g_sig else None
         nets = {str(oe): 'GND_ISO', str(a): na}
         if ny:
             nets[str(yv)] = ny
@@ -345,8 +366,6 @@ def sheet_iso():
 # ===========================================================================
 # Sheet: DVM connector + status inputs (parallel-in shift registers)
 # ===========================================================================
-PM = pinmap.load()
-PIN_NET = pinmap.PIN_NET
 
 
 def sheet_inputs():

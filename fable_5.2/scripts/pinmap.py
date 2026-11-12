@@ -60,6 +60,42 @@ SER = {'U10': ('RN2', 'RN4'), 'U11': ('RN6', 'RN8'), 'U12': ('RN10', 'RN12'), 'U
 PD = ['RN3', 'RN5', 'RN7', 'RN9', 'RN11', 'RN13', 'RN15', 'RN17', 'RN19', 'RN21']
 
 
+# --------------------------------------------------------------------------- MCU side
+# RP2354A (QFN-60) GPIO number -> package pin
+GP2PIN = {0: 2, 1: 3, 2: 4, 3: 5, 4: 7, 5: 8, 6: 9, 7: 10, 8: 12, 9: 13, 10: 14, 11: 15, 12: 16, 13: 17, 14: 18,
+          15: 19, 16: 27, 17: 28, 18: 29, 19: 31, 20: 32, 21: 33, 22: 34, 23: 35, 24: 36, 25: 37, 26: 40, 27: 41,
+          28: 42, 29: 43}
+DOWN = ['SCK', 'MOSI', 'LATCH', 'OEn']          # MCU -> multimeter side, through U4 and U5 / U6
+UP = ['MISO', 'DRDY']                           # multimeter side -> MCU, through U8 and U7
+GATES = [(1, 2, 3), (4, 5, 6), (10, 9, 8), (13, 12, 11)]     # (OE, A, Y) pins of the four '125 buffers
+# optocoupler channel -> (LED cathode pin, anode pin, output pin, LED resistor, output pull-up)
+DOWN_CH = {'U5.1': ('2', '1', '7', 'R11', 'R15'), 'U5.2': ('3', '4', '6', 'R12', 'R16'),
+           'U6.1': ('2', '1', '7', 'R13', 'R17'), 'U6.2': ('3', '4', '6', 'R14', 'R18')}
+UP_CH = {'U7.1': ('2', '1', '7', 'R21', 'R19'), 'U7.2': ('3', '4', '6', 'R22', 'R20')}
+UP_SRC = {'MISO': 'MISO_ISO', 'DRDY': 'PRINT_LEVEL_S'}
+
+
+def spi_ok(sck, tx, rx):
+    """Hardware SPI needs SCK / TX / RX on pins of one SPI block (RP2350 function F1)."""
+    inst = lambda g: 0 if (g < 8 or 16 <= g < 24) else 1
+    return sck % 4 == 2 and tx % 4 == 3 and rx % 4 == 0 and inst(sck) == inst(tx) == inst(rx)
+
+
+def uart_ok(tx, rx):
+    u = lambda g: ((g + 4) // 8) % 2
+    return tx % 4 == 0 and rx % 4 == 1 and u(tx) == u(rx)
+
+
+def default_mcu():
+    return {'gpio': {'UART_TX': 0, 'UART_RX': 1, 'SCK': 2, 'MOSI': 3, 'MISO': 4, 'LATCH': 5, 'OEn': 6, 'DRDY': 7,
+                     'LED_ACT': 25},
+            'gate': {'SCK': 0, 'MOSI': 1, 'LATCH': 2, 'OEn': 3},            # 74LVC125 U4
+            'rn1': {'SCK': '1', 'MOSI': '2', 'LATCH': '3', 'OEn': '4'},      # pad of pull-up array RN1
+            'chan': {'SCK': 'U5.1', 'MOSI': 'U5.2', 'LATCH': 'U6.1', 'OEn': 'U6.2'},
+            'up': {'MISO': 'U7.1', 'DRDY': 'U7.2'},
+            'u8': {'MISO': 0, 'DRDY': 1}}                                    # 74AHCT125 U8
+
+
 def default():
     """The original assignment: status bit n = SKB pin n+1, command bit k = SKB pin 38+k."""
     groups = {'U10': [PIN_NET[n] for n in range(1, 9)], 'U11': [PIN_NET[n] for n in range(9, 17)],
@@ -74,6 +110,7 @@ def default():
                                                 if not d[half * 4 + k].startswith('ID')}
     pm['outputs']['U15'] = OUTPUT_NETS[:8]
     pm['outputs']['U16'] = OUTPUT_NETS[8:] + [None] * 3
+    pm['mcu'] = default_mcu()
     return pm
 
 
@@ -82,6 +119,7 @@ def load():
         pm = json.load(open(PATH))
     else:
         pm = default()
+    pm.setdefault('mcu', default_mcu())
     check(pm)
     return pm
 
@@ -98,6 +136,16 @@ def check(pm):
     outs = [s for u in U595 for s in pm['outputs'][u] if s]
     assert sorted(outs) == sorted(OUTPUT_NETS), 'command outputs'
     assert sorted(pm['chain165']) == U165 and sorted(pm['chain595']) == U595
+    m = pm['mcu']
+    g = m['gpio']
+    assert len(set(g.values())) == len(g) == 9 and all(v in GP2PIN for v in g.values()), 'GPIO used twice'
+    assert spi_ok(g['SCK'], g['MOSI'], g['MISO']), 'SCK / MOSI / MISO are not pins of one SPI block'
+    assert uart_ok(g['UART_TX'], g['UART_RX']), 'UART pins'
+    assert sorted(m['gate']) == sorted(DOWN) and sorted(m['gate'].values()) == [0, 1, 2, 3]
+    assert sorted(m['chan']) == sorted(DOWN) and sorted(m['chan'].values()) == sorted(DOWN_CH)
+    assert sorted(m['rn1']) == sorted(DOWN) and len(set(min(int(v), 9 - int(v)) for v in m['rn1'].values())) == 4
+    assert sorted(m['up']) == sorted(UP) and sorted(m['up'].values()) == sorted(UP_CH)
+    assert sorted(m['u8']) == sorted(UP) and len(set(m['u8'].values())) == 2 and all(0 <= v < 4 for v in m['u8'].values())
 
 
 def verify_netlist(pm, nets):
@@ -121,7 +169,8 @@ def verify_netlist(pm, nets):
                 continue
             arr, k = SER[u][d // 4], d % 4
             exp[net].add((arr, str(k + 1)))
-            link = {upin, (arr, str(8 - k))} | ({('U8', '5')} if net == 'DVM_PRINT_LEVEL' else set())
+            drdy = ('U8', str(GATES[pm['mcu']['u8']['DRDY']][1]))          # data-ready buffer input
+            link = {upin, (arr, str(8 - k))} | ({drdy} if net == 'DVM_PRINT_LEVEL' else set())
             assert by[of[upin]] == link, 'series resistor of %s: %s' % (net, sorted(by[of[upin]]))
     for rn, m in pm['pulldown'].items():
         for pad, net in m.items():
@@ -134,12 +183,40 @@ def verify_netlist(pm, nets):
     for net, nodes in exp.items():
         assert by.get(net) == nodes, 'net %s: expected %s, schematic has %s' % (net, sorted(nodes), sorted(by.get(net, [])))
     ch = pm['chain165']
-    assert ('U8', '2') in by['MISO_ISO'] and (ch[0], '9') in by['MISO_ISO']
+    assert by['MISO_ISO'] == {('U8', str(GATES[pm['mcu']['u8']['MISO']][1])), (ch[0], '9')}, 'MISO_ISO'
     for a, b in zip(ch, ch[1:]):
         assert of[(a, '10')] == of[(b, '9')], 'register chain %s <- %s' % (a, b)
     assert of[(ch[-1], '10')] == 'GND_ISO'
     a, b = pm['chain595']
     assert of[(a, '2')] == 'MOSI_ISO' and of[(a, '9')] == of[(b, '2')], 'driver chain'
+
+    # MCU side: GPIO -> pull-up + buffer -> optocoupler LED -> isolated line, and back
+    m = pm['mcu']
+    for s in DOWN:
+        oe, a, y = GATES[m['gate'][s]]
+        pad = m['rn1'][s]
+        u, ch = m['chan'][s].split('.')[0], DOWN_CH[m['chan'][s]]
+        want = {('U1', str(GP2PIN[m['gpio'][s]])), ('U4', str(a)), ('RN1', pad)}
+        assert by['MCU_' + s] == want, 'MCU_%s: %s' % (s, sorted(by['MCU_' + s]))
+        assert of[('RN1', str(9 - int(pad)))] == '+3V3' and of[('U4', str(oe))] == 'GND', 'pull-up / enable of ' + s
+        assert by['LEDK_' + s] == {('U4', str(y)), (u, ch[0])}, 'LEDK_%s: %s' % (s, sorted(by['LEDK_' + s]))
+        assert by[of[(u, ch[1])]] == {(u, ch[1]), (ch[3], '2')} and of[(ch[3], '1')] == '+3V3', 'LED resistor of ' + s
+        assert {(u, ch[2]), (ch[4], '2')} <= by[s + '_ISO'] and of[(ch[4], '1')] == '+5V_ISO', 'isolated ' + s
+        assert not any(r in ('U5', 'U6', 'U7') and (r, q) != (u, ch[2]) for r, q in by[s + '_ISO']), s + '_ISO'
+    for s in UP:
+        oe, a, y = GATES[m['u8'][s]]
+        ch = UP_CH[m['up'][s]]
+        assert by['MCU_' + s] == {('U1', str(GP2PIN[m['gpio'][s]])), ('U7', ch[2]), (ch[4], '2')}, 'MCU_' + s
+        assert of[(ch[4], '1')] == '+3V3'
+        assert by['LEDK_' + s] == {('U8', str(y)), ('U7', ch[0])}, 'LEDK_' + s
+        assert by[of[('U7', ch[1])]] == {('U7', ch[1]), (ch[3], '1')} and of[(ch[3], '2')] == '+5V_ISO', 'LED resistor of ' + s
+        assert of[('U8', str(a))] == UP_SRC[s] and of[('U8', str(oe))] == 'GND_ISO', 'U8 input of ' + s
+    for s in ('UART_TX', 'UART_RX', 'LED_ACT'):
+        assert ('U1', str(GP2PIN[m['gpio'][s]])) in by[s], s
+    used = {str(GP2PIN[v]) for v in m['gpio'].values()}
+    for gp, pin in GP2PIN.items():
+        if str(pin) not in used:
+            assert of[('U1', str(pin))].startswith('unconnected-'), 'GPIO%d should be unused' % gp
 
 
 def status_bits(pm):
@@ -214,6 +291,29 @@ def markdown(pm):
     return '\n'.join(out)
 
 
+def markdown_gpio(pm):
+    m = pm['mcu']
+    g = m['gpio']
+    spi = 0 if (g['SCK'] < 8 or 16 <= g['SCK'] < 24) else 1
+    fn = {'SCK': 'SPI%d SCK' % spi, 'MOSI': 'SPI%d TX' % spi, 'MISO': 'SPI%d RX' % spi}
+    rows = [('SCK', 'to DVM side', 'shift clock for both chains, rising edge shifts'),
+            ('MOSI', 'to DVM side', 'command bits into the TPIC6C595 chain'),
+            ('MISO', 'to MCU', 'data out of the 74HCT165 chain'),
+            ('LATCH', 'to DVM side', 'low = load the 40 inputs; rising edge = copy command word to the outputs'),
+            ('OEn', 'to DVM side', 'low = command outputs enabled'),
+            ('DRDY', 'to MCU', 'PRINT command level (SKB 34): high = reading complete')]
+    out = ['| Signal | RP2354A | Optocoupler | Direction | Function |', '|---|---|---|---|---|']
+    for s, d, f in rows:
+        ch = (m['chan'] if s in m['chan'] else m['up'])[s]
+        out.append('| %s | GPIO%d%s | %s channel %s | %s | %s |' % (
+            s, g[s], ' (%s)' % fn[s] if s in fn else '', ch.split('.')[0], ch.split('.')[1], d, f))
+    u = ((g['UART_TX'] + 4) // 8) % 2
+    out += ['', 'Other pins: GPIO%d / GPIO%d = UART%d TX / RX on test pads TP1 / TP2, GPIO%d =' % (
+        g['UART_TX'], g['UART_RX'], u, g['LED_ACT']),
+        'activity LED, SWD on J3 (Raspberry Pi 3-pin debug connector), BOOTSEL and RESET', 'buttons.']
+    return '\n'.join(out)
+
+
 def c_header(pm):
     """Bit numbers as C macros for the firmware."""
     out = ['/* Generated by scripts/pinmap.py from scripts/pinmap.json - do not edit.',
@@ -231,6 +331,9 @@ def c_header(pm):
     for i, (u, d, s) in enumerate(command_bits(pm)):
         if s is not None:
             out.append('#define CMD_SKB%-2d %2d   /* %s */' % (skb(s), i, DESCR[skb(s)]))
+    out.append('')
+    for s, gp in sorted(pm['mcu']['gpio'].items(), key=lambda kv: kv[1]):
+        out.append('#define PIN_%-8s %2d   /* GPIO number */' % (s.upper(), gp))
     return '\n'.join(out) + '\n'
 
 

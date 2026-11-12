@@ -3102,12 +3102,12 @@
 		(uuid "dbe4e2a8-8618-5cc3-9842-bde88b8ad061")
 	)
 	(no_connect
-		(at 353.06 153.67)
-		(uuid "22767e4e-b9ec-5199-934e-36474b320ced")
+		(at 303.53 180.34)
+		(uuid "140ade35-c533-5969-bcce-f3a2909335d2")
 	)
 	(no_connect
-		(at 353.06 180.34)
-		(uuid "737e8239-ad62-5914-83ae-528a8c35eaed")
+		(at 353.06 153.67)
+		(uuid "22767e4e-b9ec-5199-934e-36474b320ced")
 	)
 	(wire
 		(pts
@@ -3611,6 +3611,16 @@
 	)
 	(wire
 		(pts
+			(xy 353.06 180.34) (xy 355.6 180.34)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8045ffac-ac93-5237-af93-a62db0b7bd93")
+	)
+	(wire
+		(pts
 			(xy 255.27 102.87) (xy 257.81 102.87)
 		)
 		(stroke
@@ -3738,16 +3748,6 @@
 			(type default)
 		)
 		(uuid "b66c6d0d-71cf-5f54-bb26-86b369218de5")
-	)
-	(wire
-		(pts
-			(xy 303.53 180.34) (xy 306.07 180.34)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "b7735287-9cdd-55bb-90c6-33acea89fa5e")
 	)
 	(wire
 		(pts
@@ -4090,14 +4090,14 @@
 		(uuid "01e963ed-6c9d-588d-b4cf-106ac20e4698")
 	)
 	(label "LEDK_DRDY"
-		(at 306.07 180.34 0)
+		(at 355.6 180.34 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
 			(justify left bottom)
 		)
-		(uuid "78946837-fca3-50ce-9edd-65d1500ab6f5")
+		(uuid "3651a4ee-97fa-595c-8554-6a2bb62f0d34")
 	)
 	(label "VBUS_DCDC"
 		(at 59.69 237.49 90)
@@ -4182,7 +4182,7 @@
 			)
 		)
 	)
-	(global_label "LEDK_MOSI"
+	(global_label "LEDK_LATCH"
 		(shape passive)
 		(at 199.39 58.42 180)
 		(fields_autoplaced yes)
@@ -4205,30 +4205,7 @@
 			)
 		)
 	)
-	(global_label "PRINT_LEVEL_S"
-		(shape passive)
-		(at 285.75 180.34 180)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "1a05afa9-d266-5984-b1e4-68773650e1c8")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 0 0 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-	)
-	(global_label "OEn_ISO"
+	(global_label "MOSI_ISO"
 		(shape passive)
 		(at 257.81 113.03 0)
 		(fields_autoplaced yes)
@@ -4251,7 +4228,7 @@
 			)
 		)
 	)
-	(global_label "LATCH_ISO"
+	(global_label "OEn_ISO"
 		(shape passive)
 		(at 257.81 102.87 0)
 		(fields_autoplaced yes)
@@ -4297,7 +4274,7 @@
 			)
 		)
 	)
-	(global_label "LEDK_OEn"
+	(global_label "LEDK_MOSI"
 		(shape passive)
 		(at 199.39 110.49 180)
 		(fields_autoplaced yes)
@@ -4320,7 +4297,7 @@
 			)
 		)
 	)
-	(global_label "LEDK_LATCH"
+	(global_label "LEDK_OEn"
 		(shape passive)
 		(at 199.39 105.41 180)
 		(fields_autoplaced yes)
@@ -4366,7 +4343,7 @@
 			)
 		)
 	)
-	(global_label "MOSI_ISO"
+	(global_label "LATCH_ISO"
 		(shape passive)
 		(at 257.81 60.96 0)
 		(fields_autoplaced yes)
@@ -4377,6 +4354,29 @@
 			(justify left)
 		)
 		(uuid "72e16652-10e8-5615-953c-beb5fcd0c5fe")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 0 0 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+	)
+	(global_label "PRINT_LEVEL_S"
+		(shape passive)
+		(at 335.28 180.34 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "8369187a-0319-573c-9545-a445d43b435b")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 0 0 0)
 			(hide yes)
@@ -4931,37 +4931,37 @@
 			(uuid "6ad45040-0af0-5392-bdab-8f8222db5204")
 		)
 		(pin "1"
-			(uuid "1bc36749-909e-49e0-b756-9e63655a6353")
+			(uuid "4be7ba30-a962-4aaf-8a9b-5ef58aa71e1c")
 		)
 		(pin "2"
-			(uuid "45fbd15b-18f1-4e5a-b2b1-28175c8ce7b7")
+			(uuid "bba497d2-34e9-41aa-a311-0a95deb46867")
 		)
 		(pin "3"
-			(uuid "383e6525-be87-4bcc-a950-79aa2b5c04da")
+			(uuid "2d7c42e5-fb83-4925-9577-62e1a2b4b09a")
 		)
 		(pin "4"
-			(uuid "e8c0c10a-d5f5-4e22-bf37-429e330d6555")
+			(uuid "57e2726b-ed6a-4bc4-9532-5b8783865ddd")
 		)
 		(pin "5"
-			(uuid "e9e34965-b3b9-4707-a29b-f2d0a2148f06")
+			(uuid "c11ab46d-61e3-4f42-b0e0-f9d0cd12c3ff")
 		)
 		(pin "6"
-			(uuid "f278b4c9-f076-4660-855a-500f0ff67ac9")
+			(uuid "9f98fbba-15be-4400-b76a-78560eed05dc")
 		)
 		(pin "11"
-			(uuid "bdafd123-2e06-4a0a-af03-f35579b5a861")
+			(uuid "6c3e877c-e2f3-4a58-8f02-d0ff151b7fd6")
 		)
 		(pin "12"
-			(uuid "33552da5-308f-4b19-b62f-7481dd336818")
+			(uuid "2a22ce31-f393-4b4d-a6e7-7311690a09a9")
 		)
 		(pin "13"
-			(uuid "8a57e42b-31d1-4769-b9ed-58715896199f")
+			(uuid "bd29f60e-9f15-42b7-8d7c-e61aed8d4519")
 		)
 		(pin "7"
-			(uuid "9731bc61-6cf1-4f97-92a3-c5f9d7a02953")
+			(uuid "f234a8f3-f9bc-4c94-ae20-55db15d7c9a5")
 		)
 		(pin "14"
-			(uuid "2ab24757-1561-4086-8e80-72b2764b2bfe")
+			(uuid "0978965a-ea99-46e5-a5ed-c2e50341abf3")
 		)
 		(instances
 			(project "solartron7075_usb_interface"
@@ -5664,37 +5664,37 @@
 			(uuid "d4810595-3aba-5056-bc8a-8ae87933dc90")
 		)
 		(pin "4"
-			(uuid "6b2b92d2-11f4-4af7-818b-7c1cf583a6ae")
+			(uuid "2bcdf65e-1c42-4ff1-82e0-d64c4c485fe5")
 		)
 		(pin "5"
-			(uuid "790b74b0-0d13-42a8-90b4-01363cee4aab")
+			(uuid "3e648022-8d72-42d9-a522-1842af026e68")
 		)
 		(pin "6"
-			(uuid "e68542e7-766c-407b-948b-ffc0f7f63f0a")
+			(uuid "c0ef2361-a13a-45b9-b6cb-666a234bc92a")
 		)
 		(pin "8"
-			(uuid "a624bf3b-9d6f-4b35-8ad4-493b6907d76c")
+			(uuid "fb196608-15e9-4e55-925a-764aebd7d88c")
 		)
 		(pin "9"
-			(uuid "a17d2b78-8eb7-41a9-8ac2-5a14a1504c7c")
+			(uuid "d450c911-e89c-4d9b-833d-37dc29bdea28")
 		)
 		(pin "10"
-			(uuid "3111f963-fb6b-48de-b662-6aa706aecad1")
+			(uuid "aa8f682c-bbef-4b37-aa5e-f3c3ba9c443c")
 		)
 		(pin "11"
-			(uuid "12febf47-4def-4b63-9f0f-aa526b894d36")
+			(uuid "ad541800-c70f-45b6-9117-a71f80d80182")
 		)
 		(pin "12"
-			(uuid "e8502895-eb3f-4e58-bfbc-87d87343ed6a")
+			(uuid "e02fc526-ec19-4e0a-a651-e00574272656")
 		)
 		(pin "13"
-			(uuid "12757b9e-5951-48f7-96df-7a24edfee686")
+			(uuid "aae5ae89-b816-4c1c-a46e-d5e0205c87df")
 		)
 		(pin "7"
-			(uuid "900e380c-264f-44a8-b484-c7e047c7e0dc")
+			(uuid "539ab90b-fa2f-4ec9-8a5c-a3bd4411571f")
 		)
 		(pin "14"
-			(uuid "786c0ce3-078c-46b3-a694-95937a72affe")
+			(uuid "ab60068d-affb-4b48-a530-10d1665dcf98")
 		)
 		(instances
 			(project "solartron7075_usb_interface"
@@ -6332,7 +6332,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "470"
+		(property "Value" "1k"
 			(at 232.07 90.2 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6376,7 +6376,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C23179"
+		(property "LCSC" "C21190"
 			(at 229.87 88.9 0)
 			(hide yes)
 			(show_name no)
@@ -6387,7 +6387,7 @@
 				)
 			)
 		)
-		(property "MPN" "0603WAF4700T5E"
+		(property "MPN" "0603WAF1001T5E"
 			(at 229.87 88.9 0)
 			(hide yes)
 			(show_name no)
@@ -6531,37 +6531,37 @@
 			(uuid "b502eabc-c1fa-5222-99d5-377c918bb5fe")
 		)
 		(pin "1"
-			(uuid "d8053610-c05b-4d5c-958b-9fbe0752b816")
+			(uuid "117052e3-61e4-4bc2-8fb2-2cce3578a349")
 		)
 		(pin "2"
-			(uuid "15d862f4-33d9-4264-9c6d-32ad43b7b2a9")
+			(uuid "5acba6ca-8939-4429-93aa-25a803e4bce6")
 		)
 		(pin "3"
-			(uuid "672b57d4-fe64-4eef-b840-cfb8290d9d76")
+			(uuid "ccbbddc0-b5e8-49cd-a8a4-77dd199047b8")
 		)
 		(pin "8"
-			(uuid "9560e01b-4d41-43b0-8c9c-42a5f23c346a")
+			(uuid "676b46ca-2e3f-41c8-9ab0-70a27d25cc2b")
 		)
 		(pin "9"
-			(uuid "922be005-5bf3-461b-9743-8dc9821a1602")
+			(uuid "7a739b33-c321-47a8-8210-ce508d174f55")
 		)
 		(pin "10"
-			(uuid "39a5730c-6d6e-4335-bd01-95d3b5694594")
+			(uuid "cd6fda47-01c9-4d59-b37f-f476dfd8c1d9")
 		)
 		(pin "11"
-			(uuid "d03c90fc-f69e-405b-9701-82efbe896793")
+			(uuid "39b5618c-5ee1-497b-8787-e69ca890ddfb")
 		)
 		(pin "12"
-			(uuid "5ad5b7d5-973c-445c-8971-09383b037873")
+			(uuid "39ca121e-2ef3-40f4-8bc5-764ca235abe6")
 		)
 		(pin "13"
-			(uuid "40157d8d-41a0-4bda-9d4e-7ef60c87c8ea")
+			(uuid "ef85c346-5b63-404b-a75c-6054bfbc6ac7")
 		)
 		(pin "7"
-			(uuid "8e6c498d-fed5-4fc9-b8d6-67b5c5ace08e")
+			(uuid "b6ca94c8-dbfc-4031-a3ea-307785a072a3")
 		)
 		(pin "14"
-			(uuid "68703baf-cd26-4cd2-8821-a7e90fd5628b")
+			(uuid "c6b4f1d8-e14b-4897-a17a-cf08b73ac379")
 		)
 		(instances
 			(project "solartron7075_usb_interface"
@@ -7217,40 +7217,40 @@
 			(uuid "fb569c2c-34ad-5fa0-a64c-e6a8ce3c0abf")
 		)
 		(pin "1"
-			(uuid "d001e33d-67ca-4e79-8f91-8301b26cf59f")
+			(uuid "1bb93a9f-9021-416a-b9db-0f68b08dcaee")
 		)
 		(pin "2"
-			(uuid "bdd64137-f626-4f71-bc66-eff42ac0a33f")
+			(uuid "c9946802-f63c-4fec-9038-99dc4de84dcd")
 		)
 		(pin "3"
-			(uuid "f241631a-3c90-493d-98fd-6d0b7a6de4f6")
+			(uuid "746ba8d7-d03c-4f12-b220-1ebe8e136a82")
 		)
 		(pin "4"
-			(uuid "fd1fc0d0-d7a4-4fe5-8f44-17378d02f5dc")
+			(uuid "ce874b66-1869-4750-aee5-fce98d55ff67")
 		)
 		(pin "5"
-			(uuid "e583ab7a-2325-46e6-9cb9-bba7e8f96343")
+			(uuid "baad189c-05ce-4802-9332-8c32fc8f9ffb")
 		)
 		(pin "6"
-			(uuid "7e4cc2dc-ca89-4bb3-93f6-4f29170c0c7a")
+			(uuid "fb812b98-ad25-4071-98cf-fc5a46125504")
 		)
 		(pin "8"
-			(uuid "ceb05576-3bbd-419a-ae32-0478009256d1")
+			(uuid "ad47ef6d-f544-4bec-a749-6ddaaace55a5")
 		)
 		(pin "9"
-			(uuid "945549af-9a29-4a31-8312-87745ab18416")
+			(uuid "df0f06b1-ce1d-4b2b-8b7e-414c5a998675")
 		)
 		(pin "10"
-			(uuid "bec1a6fa-883b-45f8-87e9-7269664f8002")
+			(uuid "9f28f006-b293-4a55-af15-e2a00b70bb49")
 		)
 		(pin "11"
-			(uuid "03174e34-10ca-4124-bb7c-58e12be87dd3")
+			(uuid "73629990-1bc9-4df2-8155-a65958b29879")
 		)
 		(pin "12"
-			(uuid "9997f51a-4cca-4f5b-9b7d-e717b847d6f7")
+			(uuid "1080ff62-d7f7-48a2-b0e1-6a2425429a28")
 		)
 		(pin "13"
-			(uuid "f2c4f33b-7a43-401d-8081-5f6066192684")
+			(uuid "d38e0e29-36a7-4e5c-b697-42332234c93e")
 		)
 		(instances
 			(project "solartron7075_usb_interface"
@@ -8741,7 +8741,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "1k"
+		(property "Value" "470"
 			(at 247.31 90.2 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8785,7 +8785,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C21190"
+		(property "LCSC" "C23179"
 			(at 245.11 88.9 0)
 			(hide yes)
 			(show_name no)
@@ -8796,7 +8796,7 @@
 				)
 			)
 		)
-		(property "MPN" "0603WAF1001T5E"
+		(property "MPN" "0603WAF4700T5E"
 			(at 245.11 88.9 0)
 			(hide yes)
 			(show_name no)
@@ -9941,7 +9941,7 @@
 	)
 	(symbol
 		(lib_id "solartron7075:GND_ISO")
-		(at 335.28 153.67 270)
+		(at 285.75 180.34 270)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -9951,7 +9951,7 @@
 		(dnp no)
 		(uuid "a08beb95-1901-5b9b-9936-aa168aaa5df4")
 		(property "Reference" "#PWR100"
-			(at 328.93 153.67 90)
+			(at 279.4 180.34 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9962,7 +9962,7 @@
 			)
 		)
 		(property "Value" "GND_ISO"
-			(at 331.98 153.67 90)
+			(at 282.45 180.34 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -9973,7 +9973,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 335.28 153.67 90)
+			(at 285.75 180.34 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9984,7 +9984,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 335.28 153.67 90)
+			(at 285.75 180.34 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9995,7 +9995,7 @@
 			)
 		)
 		(property "Description" "Power symbol: isolated (multimeter side) ground \"GND_ISO\""
-			(at 335.28 153.67 90)
+			(at 285.75 180.34 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10314,37 +10314,37 @@
 			(uuid "0713fb22-aaca-5c53-b594-a640b51b9459")
 		)
 		(pin "1"
-			(uuid "d35a6282-f534-47ee-be3f-2b6287bc78fd")
+			(uuid "bf10213c-8985-4062-9789-c78da7833dc8")
 		)
 		(pin "2"
-			(uuid "ad0e6947-43ba-4b38-b7bb-d9f11682db2b")
+			(uuid "0e082735-bb48-4f43-b735-09ad0d0a01d7")
 		)
 		(pin "3"
-			(uuid "556a79d7-ba45-4c9b-be76-669d9b8b0734")
+			(uuid "33076565-d8df-4560-bb05-c5480cfbe7d9")
 		)
 		(pin "4"
-			(uuid "a0230c8c-cbed-4890-95a8-212a50518886")
+			(uuid "2483e08c-c7be-437d-b227-67cdaa2957c7")
 		)
 		(pin "5"
-			(uuid "c98bc8f7-9750-4993-85d6-e624e2ff203e")
+			(uuid "6fd881a7-0be9-4bd7-9d1f-95fca7a4ba63")
 		)
 		(pin "6"
-			(uuid "8a32b442-06c0-4bcd-bfd9-fd62d41a14a0")
+			(uuid "122337b6-579d-4e9c-9d9b-56f957ab1fa0")
 		)
 		(pin "8"
-			(uuid "c0144860-7b9e-4505-9f46-494654a1c445")
+			(uuid "a1b0f1c9-d0bf-4c38-b31f-20ba86769e72")
 		)
 		(pin "9"
-			(uuid "b6dfb85b-4e20-4c05-91c3-9b13c25ca0f9")
+			(uuid "a063652d-71e3-4c57-b95a-aad547da2c06")
 		)
 		(pin "10"
-			(uuid "02319ae5-30a9-4dfd-974d-3bfcda51844d")
+			(uuid "c4ea520e-50d1-4e4f-ada8-72d399d9c280")
 		)
 		(pin "7"
-			(uuid "b3fc2e4a-e11c-42a5-b21e-a268d9ee7a08")
+			(uuid "39c60f2e-4fc8-48c4-b4f5-729f4e5842d3")
 		)
 		(pin "14"
-			(uuid "59a0f5e1-714e-4453-9f4a-cc7203e11a72")
+			(uuid "fa3b7393-fe4f-470f-9a12-a335041ab9d4")
 		)
 		(instances
 			(project "solartron7075_usb_interface"
@@ -11048,7 +11048,7 @@
 	)
 	(symbol
 		(lib_id "solartron7075:GND_ISO")
-		(at 335.28 180.34 270)
+		(at 345.44 162.56 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -11058,7 +11058,7 @@
 		(dnp no)
 		(uuid "b309f1f7-1421-5d49-95ab-78a64df44e59")
 		(property "Reference" "#PWR102"
-			(at 328.93 180.34 90)
+			(at 345.44 168.91 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11069,18 +11069,17 @@
 			)
 		)
 		(property "Value" "GND_ISO"
-			(at 331.98 180.34 90)
+			(at 345.44 167.76 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify right)
 			)
 		)
 		(property "Footprint" ""
-			(at 335.28 180.34 90)
+			(at 345.44 162.56 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11091,7 +11090,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 335.28 180.34 90)
+			(at 345.44 162.56 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11102,7 +11101,7 @@
 			)
 		)
 		(property "Description" "Power symbol: isolated (multimeter side) ground \"GND_ISO\""
-			(at 335.28 180.34 90)
+			(at 345.44 162.56 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11780,7 +11779,7 @@
 	)
 	(symbol
 		(lib_id "solartron7075:GND_ISO")
-		(at 345.44 162.56 0)
+		(at 335.28 153.67 270)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -11790,7 +11789,7 @@
 		(dnp no)
 		(uuid "ce7f15f1-93e0-5ee2-b80d-c05096a03920")
 		(property "Reference" "#PWR101"
-			(at 345.44 168.91 0)
+			(at 328.93 153.67 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11801,17 +11800,18 @@
 			)
 		)
 		(property "Value" "GND_ISO"
-			(at 345.44 167.76 0)
+			(at 331.98 153.67 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
+				(justify right)
 			)
 		)
 		(property "Footprint" ""
-			(at 345.44 162.56 0)
+			(at 335.28 153.67 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11822,7 +11822,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 345.44 162.56 0)
+			(at 335.28 153.67 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11833,7 +11833,7 @@
 			)
 		)
 		(property "Description" "Power symbol: isolated (multimeter side) ground \"GND_ISO\""
-			(at 345.44 162.56 0)
+			(at 335.28 153.67 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)

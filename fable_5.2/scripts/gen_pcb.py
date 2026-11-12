@@ -172,7 +172,7 @@ put('R9', 114.3, 29.4, 90)
 # chosen by scripts/optimise.py (pin swapping + placement search).  The values above are
 # the original hand placement and remain the starting point / fallback.
 PL_BASE = dict(PL)
-SILK = {'title': (34.0, 14.75), 'sub': (30.0, 47.6), 'j1': (4.0, 40.5, 90)}
+SILK = {'title': (34.0, 14.75), 'sub': (30.0, 47.6), 'j1': (4.0, 40.5, 90), 'tx': (97.6, 32.7), 'rx': (95.2, 32.7)}
 LAYOUT = os.path.join(HERE, 'layout.json')
 if os.path.exists(LAYOUT):
     _lay = json.load(open(LAYOUT))
@@ -586,8 +586,8 @@ def silk(board):
     add_text(board, 'PWR', 114.3, 15.8, 0.7, F)
     add_text(board, 'ACT', 114.3, 34.7, 0.7, F)
     add_text(board, 'ISO PWR', 68.0, 45.9, 0.7, F)
-    add_text(board, 'TX', 97.6, 32.7, 0.7, F)
-    add_text(board, 'RX', 95.2, 32.7, 0.7, F)
+    add_text(board, 'TX', SILK['tx'][0], SILK['tx'][1], 0.7, F)
+    add_text(board, 'RX', SILK['rx'][0], SILK['rx'][1], 0.7, F)
     add_text(board, '4-40 UNC', DX - 30.555, DY + 4.4, 0.7, F)
     add_text(board, '4-40 UNC', DX + 30.555, DY + 4.4, 0.7, F)
     # bottom side: pin-1 hint and identification (mirrored text)

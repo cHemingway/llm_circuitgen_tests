@@ -57,3 +57,13 @@
 #define CMD_SKB48 11   /* RANGE (1) */
 #define CMD_SKB49 12   /* RANGE (2) */
 #define CMD_SKB50 13   /* RANGE (4) */
+
+#define PIN_LATCH     0   /* GPIO number */
+#define PIN_OEN       1   /* GPIO number */
+#define PIN_SCK       2   /* GPIO number */
+#define PIN_MOSI      3   /* GPIO number */
+#define PIN_MISO      4   /* GPIO number */
+#define PIN_UART_RX   5   /* GPIO number */
+#define PIN_UART_TX   8   /* GPIO number */
+#define PIN_DRDY     11   /* GPIO number */
+#define PIN_LED_ACT  25   /* GPIO number */

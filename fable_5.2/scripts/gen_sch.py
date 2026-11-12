@@ -6,6 +6,7 @@ the 70754 Parallel BCD Interface Unit (service manual section 9, page 9.9).
 """
 import json
 import os
+import pinmap
 from schlib import Project, S, uid
 from sx import dump
 
@@ -344,18 +345,8 @@ def sheet_iso():
 # ===========================================================================
 # Sheet: DVM connector + status inputs (parallel-in shift registers)
 # ===========================================================================
-PIN_NET = {}
-for dec, base in ((5, 2), (4, 6), (3, 10), (2, 14), (1, 18), (0, 22)):
-    for i, w in enumerate((8, 4, 2, 1)):
-        PIN_NET[base + i] = 'DVM_D%d_%d' % (dec, w)
-PIN_NET[1] = 'DVM_D6_1'
-PIN_NET.update({26: 'DVM_POL_POS', 27: 'DVM_POL_NEG', 28: 'DVM_FN_OUT_A', 29: 'DVM_FN_OUT_B',
-                30: 'DVM_RNG_OUT_4', 31: 'DVM_RNG_OUT_2', 32: 'DVM_RNG_OUT_1', 33: 'DVM_PRINT_PULSE',
-                34: 'DVM_PRINT_LEVEL', 35: 'DVM_DATA_CAN_CHG', 36: 'DVM_OVERLOAD', 37: 'GND_ISO',
-                38: 'DVM_FP_LOCKOUT', 39: 'DVM_SAMPLE_CONTACT', 40: 'DVM_SAMPLE_PULSE', 41: 'DVM_RATIO',
-                42: 'DVM_FN_CMD_A', 43: 'DVM_FN_CMD_B', 44: 'DVM_INT_CMD_4', 45: 'DVM_INT_CMD_2',
-                46: 'DVM_INT_CMD_1', 47: 'DVM_AUTORANGE', 48: 'DVM_RNG_CMD_1', 49: 'DVM_RNG_CMD_2',
-                50: 'DVM_RNG_CMD_4'})
+PM = pinmap.load()
+PIN_NET = pinmap.PIN_NET
 
 
 def sheet_inputs():
@@ -372,50 +363,52 @@ def sheet_inputs():
     FU = F('Package_SO:SOIC-16_3.9x9.9mm_P1.27mm', 'C456131', '74HCT165D,653', 'Nexperia',
            desc='8-bit parallel-in serial-out shift register, TTL-compatible inputs, SOIC-16',
            ds='https://assets.nexperia.com/documents/data-sheet/74HC_HCT165.pdf')
-    # (ref, x0, y0, [net for D7..D0])  -- D7 is shifted out first
-    groups = [
-        ('U10', 195, 56, [PIN_NET[n] for n in range(1, 9)]),
-        ('U11', 340, 56, [PIN_NET[n] for n in range(9, 17)]),
-        ('U12', 195, 134, [PIN_NET[n] for n in range(17, 25)]),
-        ('U13', 340, 134, [PIN_NET[n] for n in range(25, 33)]),
-        ('U14', 195, 212, [PIN_NET[33], PIN_NET[34], PIN_NET[35], PIN_NET[36], 'DVM_FP_LOCKOUT', 'ID1', 'ID0', 'ID0']),
-    ]
+    # The assignment of SKB pins to register inputs and to pull-down resistors comes from
+    # scripts/pinmap.json (chosen by scripts/optimise.py for the shortest, least tangled layout).
+    pos = {'U10': (195, 56), 'U11': (340, 56), 'U12': (195, 134), 'U13': (340, 134), 'U14': (195, 212)}
     strap = {'ID0': 'GND_ISO', 'ID1': '+5V_ISO'}
-    dpins = [11, 12, 13, 14, 3, 4, 5, 6]
-    chain = ['MISO_ISO', 'SR_Q1', 'SR_Q2', 'SR_Q3', 'SR_Q4']
-    rn_i = 2
-    for gi, (ref, x0, y0, sigs) in enumerate(groups):
-        d = list(reversed(sigs))            # d[0] = D0 ... d[7] = D7
+    dpins = pinmap.D165
+    chain = PM['chain165']
+    for gi, ref in enumerate(pinmap.U165):
+        x0, y0 = pos[ref]
+        d = PM['inputs'][ref]                   # d[0] = D0 ... d[7] = D7 (D7 is shifted out first)
+        ci = chain.index(ref)
         un = {'16': '+5V_ISO', '8': 'GND_ISO', '1': 'LATCH_ISO', '2': 'SCK_ISO', '15': 'GND_ISO',
-              '9': chain[gi], '10': chain[gi + 1] if gi < 4 else 'GND_ISO'}
-        raw = []
-        tie0 = []                               # pins strapped low, bussed to one GND_ISO symbol
+              '9': 'MISO_ISO' if ci == 0 else 'SR_Q%d' % ci}
+        tie0 = [str(dpins[k]) for k in range(8) if d[k] == 'ID0']       # strapped low, bussed to one GND_ISO symbol
+        raw = [str(dpins[k]) for k in range(8) if d[k] not in strap]
         for k in range(8):
-            if d[k] == 'ID0':
-                tie0.append(str(dpins[k]))
-            elif d[k] in strap:
-                un[str(dpins[k])] = strap[d[k]]
-            else:
-                raw.append(str(dpins[k]))
-        if tie0:
-            tie0.append('10')
-            del un['10']
+            if d[k] == 'ID1':
+                un[str(dpins[k])] = '+5V_ISO'
+        if ci < len(chain) - 1:
+            un['10'] = 'SR_Q%d' % (ci + 1)
+        else:
+            tie0.append('10')                   # serial input of the last register in the chain
         u = sh.sym(ref, '74xx:74HC165', x0, y0, value='74HCT165', nets=un, nc=['7'], raw=raw + tie0, fields=FU)
-        if tie0:
-            tp = [pin(u, n) for n in tie0]
-            for q_ in tp:
+        # runs of neighbouring strapped pins share one ground symbol
+        tp = sorted((pin(u, n) for n in tie0), key=lambda q_: q_[1])
+        runs = []
+        for q_ in tp:
+            if runs and abs(q_[1] - runs[-1][-1][1]) < 2.6:
+                runs[-1].append(q_)
+            else:
+                runs.append([q_])
+        for run in runs:
+            if len(run) == 1:
+                sh.net(run[0][0], run[0][1], (-1, 0), 'GND_ISO')
+                continue
+            for q_ in run:
                 sh.wire([q_, (q_[0] - 2.54, q_[1])])
-            bus(sh, [(q_[0] - 2.54, q_[1]) for q_ in tp], 'GND_ISO', (-1, 0), at=(tp[0][0] - 2.54, min(q_[1] for q_ in tp)))
+            bus(sh, [(q_[0] - 2.54, q_[1]) for q_ in run], 'GND_ISO', (-1, 0), at=(run[0][0] - 2.54, run[0][1]))
         C(sh, 'C%d' % (31 + gi), x0 + 30, y0 + 8, '+5V_ISO', 'GND_ISO', '100n')
-        xs, xp = x0 - 43.18, x0 - 86.36
-        gpts = []
+        xs, xp = x0 - 43.18, x0 - 99.06
         for half in (0, 1):
             four = d[half * 4: half * 4 + 4]
             ys = y0 - 7.62 + half * 10.16
             lft = [s_ if s_ not in strap else 'NC' for s_ in four]
             rgt = [None if s_ not in strap else 'NC' for s_ in four]
             txt = 'above' if half == 0 else 'below'
-            rs = rpack(sh, 'RN%d' % rn_i, xs, ys, '100k', lft, rgt, txt)
+            rs = rpack(sh, pinmap.SER[ref][half], xs, ys, '100k', lft, rgt, txt)
             for k in range(4):
                 if rgt[k] is None:
                     a_, b_ = pin(rs, 8 - k), pin(u, dpins[half * 4 + k])
@@ -426,14 +419,32 @@ def sheet_inputs():
                         sh.junction(mx, a_[1])
                         sh.wire([(mx, a_[1]), (mx, y0 + 7.62)])
                         sh.net(mx, y0 + 7.62, (0, 1), 'PRINT_LEVEL_S', 0)
-            rp = rpack(sh, 'RN%d' % (rn_i + 1), xp, ys, '100k', lft, rgt, txt)
+            # pull-down array drawn next to it; its four resistors serve whichever SKB pins are
+            # closest to it on the board, not necessarily the four read by this register
+            rn = pinmap.PD[2 * gi + half]
+            pd = PM['pulldown'].get(rn, {})
+            lft, rgt = [], []
+            mixed = any(str(8 - k) in pd for k in range(4))   # signals on both sides: no common ground bus
+            for k in range(4):
+                pl, pr = str(k + 1), str(8 - k)
+                if pl in pd:
+                    lft.append(pd[pl])
+                    rgt.append('GND_ISO' if mixed else None)
+                elif pr in pd:
+                    lft.append('GND_ISO')
+                    rgt.append(pd[pr])
+                else:
+                    lft.append('NC')
+                    rgt.append('NC')
+            rp = rpack(sh, rn, xp, ys, '100k', lft, rgt, txt)
+            gpts = []
             for k in range(4):
                 if rgt[k] is None:
                     p_ = pin(rp, 8 - k)
                     sh.wire([p_, (p_[0] + 2.54, p_[1])])
                     gpts.append((p_[0] + 2.54, p_[1]))
-            rn_i += 2
-        bus(sh, gpts, 'GND_ISO', (0, 1))
+            if gpts:
+                bus(sh, gpts, 'GND_ISO', (0, 1))
         sh.text('100k pull-downs', xp - 8, y0 - 22.5, 1.3)
         sh.text('100k series', xs - 6, y0 - 22.5, 1.3)
     sh.text('Every multimeter output is read through 100k (series) into a 74HCT165 input, with a\n'
@@ -442,10 +453,8 @@ def sheet_inputs():
             ' - < 35 uA per line into the input clamp diodes when the isolated supply is off\n'
             '   (USB unplugged), so the multimeter cannot back-power this board\n'
             ' - defined (all-zero) data when the board is not plugged into the multimeter\n\n'
-            'Serial stream at MISO after a LATCH pulse (first bit first):\n'
-            '  bit 0..35  = SKB pin 1..36  (bit n = pin n+1)\n'
-            '  bit 36     = SKB pin 38 read-back (FRONT PANEL LOCKOUT line; high = DVM powered)\n'
-            '  bit 37..39 = 1,0,0  hard-wired marker (checks chain length / isolated supply present)', 240, 196, 1.4)
+            'Which input reads which SKB pin was chosen for the shortest board layout\n'
+            '(scripts/optimise.py); the firmware uses the table below.\n\n' + pinmap.sch_text_status(PM), 240, 190, 1.4)
     return sh
 
 
@@ -455,25 +464,28 @@ def sheet_inputs():
 def sheet_outputs():
     sh = P.sheet('DVM_OUTPUTS', 'dvm_outputs.kicad_sch', 'Multimeter command outputs (open-drain)', paper='A4')
     FT = F('Package_SO:SOIC-16_3.9x9.9mm_P1.27mm', 'C350572', 'TPIC6C595DR', 'Texas Instruments')
-    d1 = ['DVM_FP_LOCKOUT', 'DVM_SAMPLE_CONTACT', 'PULSE_GATE', 'DVM_RATIO', 'DVM_FN_CMD_A', 'DVM_FN_CMD_B',
-          'DVM_INT_CMD_4', 'DVM_INT_CMD_2']
-    d2 = ['DVM_INT_CMD_1', 'DVM_AUTORANGE', 'DVM_RNG_CMD_1', 'DVM_RNG_CMD_2', 'DVM_RNG_CMD_4', None, None, None]
-    dn = [3, 4, 5, 6, 11, 12, 13, 14]
+    dn = pinmap.D595
     sh.box(12, 14, 142, 150, 'Open-drain command drivers')
     sh.text('output off = line released = logic 1 at the multimeter', 14, 21, 1.3)
-    for ref, y, dd, sin, sout, cref in (('U15', 54, d1, 'MOSI_ISO', 'CMD_CHAIN', 'C36'), ('U16', 114, d2, 'CMD_CHAIN', None, 'C37')):
+    first = PM['chain595'][0]
+    for ref, y, cref in (('U15', 54, 'C36'), ('U16', 114, 'C37')):
+        dd = PM['outputs'][ref]
+        sin, sout = ('MOSI_ISO', 'CMD_CHAIN') if ref == first else ('CMD_CHAIN', None)
         nets = {'1': '+5V_ISO', '16': 'GND_ISO', '2': sin, '15': 'SCK_ISO', '10': 'LATCH_ISO', '7': '+5V_ISO', '8': 'OEn_ISO'}
         nc = []
+        stubs = {}
         for k in range(8):
             if dd[k]:
                 nets[str(dn[k])] = dd[k]
+                if dd[k] == 'PULSE_GATE':
+                    stubs[str(dn[k])] = 33.02
             else:
                 nc.append(str(dn[k]))
         if sout:
             nets['9'] = sout
         else:
             nc.append('9')
-        sh.sym(ref, LIBNAME + ':TPIC6C595', 84, y, nets=nets, nc=nc, fields=FT, stubs={'5': 33.02} if ref == 'U15' else None)
+        sh.sym(ref, LIBNAME + ':TPIC6C595', 84, y, nets=nets, nc=nc, fields=FT, stubs=stubs or None)
         C(sh, cref, 26, y, '+5V_ISO', 'GND_ISO', '100n')
     # sample pulse high-side driver
     sh.box(148, 14, 285, 78, 'SAMPLE pulse driver (SKB pin 40: positive pulse > 100 us)')
@@ -485,16 +497,9 @@ def sheet_outputs():
     R(sh, 'R26', dp[0] + 3.81, dp[1] + 12.7, None, 'DVM_SAMPLE_PULSE', '100', orient='h')
     sh.wire([dp, (dp[0], dp[1] + 12.7)])
     R(sh, 'R27', 262, 54, 'DVM_SAMPLE_PULSE', 'GND_ISO', '4.7k')
-    sh.text('Command word = the last 16 bits clocked into MOSI before LATCH rises (MSB first):\n'
-            '  bit 0  -> SKB 38 FRONT PANEL LOCKOUT      bit 7  -> SKB 45 INTEGRATION TIME (2)\n'
-            '  bit 1  -> SKB 39 SAMPLE (contact to 0 V)   bit 8  -> SKB 46 INTEGRATION TIME (1)\n'
-            '  bit 2  -> SKB 40 SAMPLE pulse (via Q1)     bit 9  -> SKB 47 AUTORANGE command\n'
-            '  bit 3  -> SKB 41 RATIO                     bit 10 -> SKB 48 RANGE (1)\n'
-            '  bit 4  -> SKB 42 FUNCTION                  bit 11 -> SKB 49 RANGE (2)\n'
-            '  bit 5  -> SKB 43 FUNCTION                  bit 12 -> SKB 50 RANGE (4)\n'
-            '  bit 6  -> SKB 44 INTEGRATION TIME (4)      bit 13..15 spare\n\n'
+    sh.text(pinmap.sch_text_command(PM) + '\n\n'
             'A 1 turns the open-drain output ON, i.e. pulls the SKB line to logic 0\n'
-            '(bit 2: a 1 drives SKB 40 HIGH through Q1).  The multimeter has its own\n'
+            '(SKB 40: a 1 drives the line HIGH through Q1).  The multimeter has its own\n'
             '4.7k pull-ups to +5 V on every command line.\n\n'
             '~{G} (OEn_ISO) is pulled high until the MCU enables it, and all drains are\n'
             'off without isolated power, so an unpowered / unconfigured board leaves\n'

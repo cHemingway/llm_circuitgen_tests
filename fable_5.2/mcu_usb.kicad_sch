@@ -8051,37 +8051,37 @@
 			(uuid "1bde7d43-90f6-513d-b282-869af4c18f8d")
 		)
 		(pin "1"
-			(uuid "f0111b75-9959-4a39-869a-2a7e897ed585")
+			(uuid "edb5860e-465c-4a23-b043-a4fbab7827df")
 		)
 		(pin "2"
-			(uuid "2320940f-0881-43dc-8826-0dc9e90e4c47")
+			(uuid "09b963d3-ddeb-4ee1-a85e-55111323fe4a")
 		)
 		(pin "3"
-			(uuid "47635439-a738-4819-ac95-b3f47c250bdc")
+			(uuid "9f6841a7-7cbc-4175-a190-09fac1655f81")
 		)
 		(pin "4"
-			(uuid "bbe54623-8620-49b5-bb27-9bf1ee935aff")
+			(uuid "9e433f9c-7946-4cff-9b69-de5517f955d1")
 		)
 		(pin "5"
-			(uuid "73f532e8-1725-4dc8-9623-0af7c4fb9bb8")
+			(uuid "9986865e-13de-48bd-88e9-642e5f8947b4")
 		)
 		(pin "6"
-			(uuid "bf2a8ea5-e823-4519-8eed-e124e7069e05")
+			(uuid "fad00f4e-544a-4df7-9f7a-6e6d666e706b")
 		)
 		(pin "8"
-			(uuid "762b06e6-c325-4116-94f4-d3fcbc1e3100")
+			(uuid "49477346-b515-4138-b8db-e95b9754f40f")
 		)
 		(pin "9"
-			(uuid "2678d2c2-6d02-48c9-b355-27f800c95933")
+			(uuid "6ab8fde9-133d-4f53-8ae2-51661ff5c811")
 		)
 		(pin "10"
-			(uuid "36462f03-51ad-4f71-95e7-5de5e76b054d")
+			(uuid "5a0ab8a7-25a2-48e2-a244-d07b8f0caa03")
 		)
 		(pin "7"
-			(uuid "29a8e289-8ef3-4f96-9952-4ffb21e6101e")
+			(uuid "11074eea-08aa-46d2-9c55-e96f96589688")
 		)
 		(pin "14"
-			(uuid "bfadae22-355b-46e8-abe7-656752845dfa")
+			(uuid "a6f3f22a-c548-407b-a8b2-2eeb8342d842")
 		)
 		(instances
 			(project "solartron7075_usb_interface"
@@ -15556,37 +15556,37 @@
 			(uuid "82627b72-e2b1-5655-b9e9-31e72fc3dbe4")
 		)
 		(pin "1"
-			(uuid "e82c2889-73b7-42a6-afa4-625c4b73af99")
+			(uuid "14b3babb-d6f4-4245-8dc6-9e2aaa224743")
 		)
 		(pin "2"
-			(uuid "37a844b0-1357-4673-b783-82c63f90682c")
+			(uuid "a69ef350-af80-477b-9b75-0ea02699d9c4")
 		)
 		(pin "3"
-			(uuid "71d46bd8-532e-48dd-ac92-1b359d4f9b51")
+			(uuid "ae5faf1b-22f5-427d-89e3-7bdc49935b1c")
 		)
 		(pin "8"
-			(uuid "fa658179-0b90-4639-8418-eeb02b97857f")
+			(uuid "d370eacd-8bdd-4a62-98e2-7360408301f6")
 		)
 		(pin "9"
-			(uuid "5dc47c25-8bf5-48ce-ba22-f5c97da6d6ac")
+			(uuid "cd99b4aa-3105-4dc9-bb4c-a3380b1b2b97")
 		)
 		(pin "10"
-			(uuid "e4fbf829-756c-4255-b1a5-610452b4862e")
+			(uuid "6e5f5179-ed51-4940-ae44-0fd1c75032ad")
 		)
 		(pin "11"
-			(uuid "f8204367-b30a-4630-a9c4-f2271cc77963")
+			(uuid "7fd2539d-f1ea-47f2-8110-0b2fabec103b")
 		)
 		(pin "12"
-			(uuid "4122d1c5-3f47-4212-a8c7-e06deb85dd72")
+			(uuid "6fee9cd2-5020-40aa-a0fd-39aafe82115e")
 		)
 		(pin "13"
-			(uuid "bb43fb66-b265-4796-ab6a-42bd46f1ec03")
+			(uuid "8dbd042a-7cdf-4e88-b9dd-9b19d8b5ecc2")
 		)
 		(pin "7"
-			(uuid "ea3b9fe8-bd19-470c-9b1b-786674750a10")
+			(uuid "9979648d-ca38-4b0d-97b0-1216361d4ff5")
 		)
 		(pin "14"
-			(uuid "cf9b64b6-83cc-4d59-8225-5572b2c7377a")
+			(uuid "6f3694be-8d6d-4cb3-bcf6-121eab819312")
 		)
 		(instances
 			(project "solartron7075_usb_interface"
@@ -15704,37 +15704,37 @@
 			(uuid "2a80a04d-eeb7-5d8b-9258-e8da6257cca6")
 		)
 		(pin "4"
-			(uuid "c482d207-6b6f-402b-8079-7e50918736ad")
+			(uuid "eed55e82-3743-4f18-afd2-061e4d04e138")
 		)
 		(pin "5"
-			(uuid "25e7c4b0-c693-4204-ada1-b3c3bbedd86c")
+			(uuid "00db1791-988b-452c-af21-0d266e7b7cf1")
 		)
 		(pin "6"
-			(uuid "899efe81-8a4a-4938-9a82-968c7c3111c1")
+			(uuid "b3cd33c8-82ff-4f19-966e-82de78e57cad")
 		)
 		(pin "8"
-			(uuid "671a6f26-da12-4da0-b09a-2ee6d7d740eb")
+			(uuid "c656168d-284d-4f6a-8291-11fbaf0fdf89")
 		)
 		(pin "9"
-			(uuid "079b0e97-60fd-4664-93b2-31921a0a485d")
+			(uuid "fad00c8e-8944-4609-9b53-c7eaf4a35c18")
 		)
 		(pin "10"
-			(uuid "bf74ffe1-6bac-4b4a-944f-208f85a97c75")
+			(uuid "99b43871-62d4-4f60-bac9-21196a71e64f")
 		)
 		(pin "11"
-			(uuid "8d043d0f-0f24-414c-b181-9d24f6b4e03d")
+			(uuid "f73194ac-cc4c-4ea2-9ad7-705c5ee4a8b4")
 		)
 		(pin "12"
-			(uuid "949394ae-b980-4e31-9754-d9a3c9724507")
+			(uuid "a78f89a8-62c9-4966-9f4b-f2c9139a9c91")
 		)
 		(pin "13"
-			(uuid "e98e1c9d-6e27-452a-a550-7ab9bc9be051")
+			(uuid "5c26c20b-951b-4eba-a3c2-d200085324a3")
 		)
 		(pin "7"
-			(uuid "706d59a0-8e7c-4a99-a35e-7250d652a862")
+			(uuid "0b92a327-7d60-4d98-adff-fe7d407c2fc1")
 		)
 		(pin "14"
-			(uuid "3544c85e-408e-4ca7-91cc-06e4dc11ed45")
+			(uuid "e7b43abe-a996-4da4-a7fd-78cdaa6dc832")
 		)
 		(instances
 			(project "solartron7075_usb_interface"
@@ -16080,40 +16080,40 @@
 			(uuid "7524af70-11f9-596b-9eef-bd23ca093cba")
 		)
 		(pin "1"
-			(uuid "bebce098-10bd-43da-80bc-51c969cfef1e")
+			(uuid "79d811bf-6d7a-469e-ba44-7f3d85f740b3")
 		)
 		(pin "2"
-			(uuid "332b78f1-cf93-48d8-9489-77aa7665f374")
+			(uuid "f9c40b36-666e-4c6c-97d8-487dc151d322")
 		)
 		(pin "3"
-			(uuid "3ab84d10-5628-4c2e-8010-1b24df9d79fe")
+			(uuid "d95a8d3f-3341-4495-a4d1-b9ae649b6a8a")
 		)
 		(pin "4"
-			(uuid "8002e197-30c0-4811-a97e-9a251d20eace")
+			(uuid "69610e32-f018-419f-a978-b278feba475b")
 		)
 		(pin "5"
-			(uuid "58c4a70e-c865-4785-8d63-199d4c8e4d6e")
+			(uuid "5989a6f1-3bae-4f0f-977f-6b9e578c6925")
 		)
 		(pin "6"
-			(uuid "9d7ae6be-0140-42d9-857b-ad553ffee881")
+			(uuid "75d4b7b2-e92d-4628-8c1f-1971f99dc86f")
 		)
 		(pin "8"
-			(uuid "6ecee23d-412c-410e-b153-bc618aa70675")
+			(uuid "8c1e43ff-cc7a-4dbb-838f-be49c9509899")
 		)
 		(pin "9"
-			(uuid "f3a838f2-be34-4786-a04e-387df47bd459")
+			(uuid "8f59b2b1-de8a-4c2b-b897-78bbbeb8e2fa")
 		)
 		(pin "10"
-			(uuid "6a7b371d-fa02-4a32-8574-1c7274c8582c")
+			(uuid "af523709-5531-4fb8-a08f-6934eb16b341")
 		)
 		(pin "11"
-			(uuid "4d578500-cd09-45b0-8ae9-ab51b05e299f")
+			(uuid "23df740f-6643-45d5-934c-f73fbe14e2d7")
 		)
 		(pin "12"
-			(uuid "1e695513-320f-4491-b716-e1182c11cc8f")
+			(uuid "3be0678b-9eb1-4aec-9ba9-2ab9cccd1ff3")
 		)
 		(pin "13"
-			(uuid "1e414188-515a-46d1-96d9-4518ac9cb955")
+			(uuid "d951e5af-cc37-4054-b5de-1533e204a48d")
 		)
 		(instances
 			(project "solartron7075_usb_interface"
@@ -19311,37 +19311,37 @@
 			(uuid "6bd0f142-16b9-58a2-9e7a-af7f8617de4c")
 		)
 		(pin "1"
-			(uuid "64410f6a-8aa6-45ba-b11b-bf46ddfe4944")
+			(uuid "9bd24e0e-71f9-485d-a05d-be6c5ec613b5")
 		)
 		(pin "2"
-			(uuid "63fb8dc8-a8aa-4e4d-bbfe-dcecb0a318b3")
+			(uuid "318bc971-0aba-4781-8e59-8f840097f162")
 		)
 		(pin "3"
-			(uuid "0f921186-77ad-4109-9a53-cbbf43e85509")
+			(uuid "418b1b12-8870-48cf-9100-186f4053a7ef")
 		)
 		(pin "4"
-			(uuid "45904513-6dc2-4eee-9ac9-810e5bedc252")
+			(uuid "6520cc84-df7b-4ea9-a3e4-2fdc4b139dd8")
 		)
 		(pin "5"
-			(uuid "6b615b66-245a-4254-9772-8f0dcbe81348")
+			(uuid "276c9d88-1bd3-4a34-aaba-90e188217e7a")
 		)
 		(pin "6"
-			(uuid "c0b37429-b435-4f5f-bc17-b268c603638d")
+			(uuid "82f3cec7-9384-4596-b308-1a4b251877b3")
 		)
 		(pin "11"
-			(uuid "378677c6-f4fc-48c7-9922-f62dc746928a")
+			(uuid "e52cae81-87e0-4ba9-af7a-23f11795ddc1")
 		)
 		(pin "12"
-			(uuid "b9811177-3e30-4c01-8ef5-787b1286a747")
+			(uuid "19cf750e-2d32-4bd7-94f9-63e9e09fcb17")
 		)
 		(pin "13"
-			(uuid "2f2a13b9-14b8-4413-9662-358bdc210236")
+			(uuid "e4927f50-aa2e-4ec0-9bac-bf4ff6b3508e")
 		)
 		(pin "7"
-			(uuid "05c37cf4-1d87-4137-a6c7-5f8952e51ee8")
+			(uuid "bcee2061-abca-42ac-91c3-98c3ebab42cb")
 		)
 		(pin "14"
-			(uuid "345aa6c2-461e-4352-af59-caa2e452ab53")
+			(uuid "208c8f58-3608-40c6-b003-61f7bb76706f")
 		)
 		(instances
 			(project "solartron7075_usb_interface"

@@ -1323,7 +1323,7 @@
 		)
 		(uuid "d5bbd60b-1bf8-5f6b-9d13-511c95e65813")
 	)
-	(text "Command word = the last 16 bits clocked into MOSI before LATCH rises (MSB first):\n  bit 0  -> SKB 38 FRONT PANEL LOCKOUT      bit 7  -> SKB 45 INTEGRATION TIME (2)\n  bit 1  -> SKB 39 SAMPLE (contact to 0 V)   bit 8  -> SKB 46 INTEGRATION TIME (1)\n  bit 2  -> SKB 40 SAMPLE pulse (via Q1)     bit 9  -> SKB 47 AUTORANGE command\n  bit 3  -> SKB 41 RATIO                     bit 10 -> SKB 48 RANGE (1)\n  bit 4  -> SKB 42 FUNCTION                  bit 11 -> SKB 49 RANGE (2)\n  bit 5  -> SKB 43 FUNCTION                  bit 12 -> SKB 50 RANGE (4)\n  bit 6  -> SKB 44 INTEGRATION TIME (4)      bit 13..15 spare\n\nA 1 turns the open-drain output ON, i.e. pulls the SKB line to logic 0\n(bit 2: a 1 drives SKB 40 HIGH through Q1).  The multimeter has its own\n4.7k pull-ups to +5 V on every command line.\n\n~{G} (OEn_ISO) is pulled high until the MCU enables it, and all drains are\noff without isolated power, so an unpowered / unconfigured board leaves\nthe multimeter exactly as if nothing were plugged in."
+	(text "Command word = the last 16 bits clocked into MOSI before LATCH rises (MSB first):\n  bit 0  -> SKB 38 FRONT PANEL LOCKOUT        bit 8  -> spare\n  bit 1  -> SKB 40 SAMPLE pulse (via Q1)      bit 9  -> SKB 47 AUTORANGE\n  bit 2  -> SKB 39 SAMPLE (contact to 0 V)    bit 10 -> SKB 46 INTEGRATION TIME (1)\n  bit 3  -> SKB 42 FUNCTION                   bit 11 -> SKB 48 RANGE (1)\n  bit 4  -> SKB 43 FUNCTION                   bit 12 -> SKB 49 RANGE (2)\n  bit 5  -> SKB 41 RATIO                      bit 13 -> SKB 50 RANGE (4)\n  bit 6  -> SKB 44 INTEGRATION TIME (4)       bit 14 -> spare\n  bit 7  -> SKB 45 INTEGRATION TIME (2)       bit 15 -> spare\n\nA 1 turns the open-drain output ON, i.e. pulls the SKB line to logic 0\n(SKB 40: a 1 drives the line HIGH through Q1).  The multimeter has its own\n4.7k pull-ups to +5 V on every command line.\n\n~{G} (OEn_ISO) is pulled high until the MCU enables it, and all drains are\noff without isolated power, so an unpowered / unconfigured board leaves\nthe multimeter exactly as if nothing were plugged in."
 		(exclude_from_sim no)
 		(at 150 84 0)
 		(effects
@@ -1335,8 +1335,8 @@
 		(uuid "dbe98e29-797f-5e3b-ac29-5676559c72eb")
 	)
 	(no_connect
-		(at 99.06 116.84)
-		(uuid "6a2c48ae-1e4e-5769-87a2-41cfee47da65")
+		(at 99.06 104.14)
+		(uuid "1badd34d-4aed-50dc-999e-fa95de6a1779")
 	)
 	(no_connect
 		(at 99.06 127)
@@ -1492,6 +1492,16 @@
 	)
 	(wire
 		(pts
+			(xy 99.06 116.84) (xy 101.6 116.84)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "78611e31-ab20-5131-8f3f-e8032e31e343")
+	)
+	(wire
+		(pts
 			(xy 25.4 118.11) (xy 25.4 120.65)
 		)
 		(stroke
@@ -1552,7 +1562,7 @@
 	)
 	(wire
 		(pts
-			(xy 99.06 49.53) (xy 132.08 49.53)
+			(xy 99.06 49.53) (xy 101.6 49.53)
 		)
 		(stroke
 			(width 0)
@@ -1712,7 +1722,7 @@
 	)
 	(wire
 		(pts
-			(xy 99.06 46.99) (xy 101.6 46.99)
+			(xy 99.06 46.99) (xy 132.08 46.99)
 		)
 		(stroke
 			(width 0)
@@ -1732,16 +1742,6 @@
 	)
 	(wire
 		(pts
-			(xy 99.06 104.14) (xy 101.6 104.14)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "e608e29a-0cc3-5cc1-8acf-09f023b69b54")
-	)
-	(wire
-		(pts
 			(xy 99.06 114.3) (xy 101.6 114.3)
 		)
 		(stroke
@@ -1749,6 +1749,16 @@
 			(type default)
 		)
 		(uuid "fefa32af-cc38-519f-ae48-522853ecce29")
+	)
+	(label "PULSE_GATE"
+		(at 132.08 46.99 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "57882125-0abd-52e6-9a78-b0f64083a058")
 	)
 	(label "CMD_CHAIN"
 		(at 66.04 104.14 180)
@@ -1769,16 +1779,6 @@
 			(justify left bottom)
 		)
 		(uuid "87e4530a-9a79-5b1f-aeeb-f1eac03e6c08")
-	)
-	(label "PULSE_GATE"
-		(at 132.08 49.53 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "99c00a77-5ea0-598b-907f-0fb6b500b372")
 	)
 	(label "CMD_CHAIN"
 		(at 101.6 67.31 0)
@@ -1846,29 +1846,6 @@
 			)
 		)
 	)
-	(global_label "DVM_SAMPLE_CONTACT"
-		(shape passive)
-		(at 101.6 46.99 0)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "180ae4c5-4bca-5220-bc07-9cbfcaf846b0")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 0 0 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-	)
 	(global_label "MOSI_ISO"
 		(shape passive)
 		(at 66.04 44.45 180)
@@ -1894,7 +1871,7 @@
 	)
 	(global_label "DVM_RNG_CMD_1"
 		(shape passive)
-		(at 101.6 109.22 0)
+		(at 101.6 111.76 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -1938,7 +1915,7 @@
 			)
 		)
 	)
-	(global_label "DVM_FN_CMD_B"
+	(global_label "DVM_RATIO"
 		(shape passive)
 		(at 101.6 57.15 0)
 		(fields_autoplaced yes)
@@ -1984,7 +1961,7 @@
 			)
 		)
 	)
-	(global_label "DVM_RATIO"
+	(global_label "DVM_FN_CMD_A"
 		(shape passive)
 		(at 101.6 52.07 0)
 		(fields_autoplaced yes)
@@ -2007,9 +1984,9 @@
 			)
 		)
 	)
-	(global_label "DVM_AUTORANGE"
+	(global_label "DVM_INT_CMD_1"
 		(shape passive)
-		(at 101.6 106.68 0)
+		(at 101.6 109.22 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -2030,7 +2007,7 @@
 			)
 		)
 	)
-	(global_label "DVM_FN_CMD_A"
+	(global_label "DVM_FN_CMD_B"
 		(shape passive)
 		(at 101.6 54.61 0)
 		(fields_autoplaced yes)
@@ -2147,7 +2124,7 @@
 	)
 	(global_label "DVM_RNG_CMD_4"
 		(shape passive)
-		(at 101.6 114.3 0)
+		(at 101.6 116.84 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -2191,9 +2168,32 @@
 			)
 		)
 	)
+	(global_label "DVM_SAMPLE_CONTACT"
+		(shape passive)
+		(at 101.6 49.53 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "cd585f7d-bfb8-51b1-8903-bd362cd52305")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 0 0 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+	)
 	(global_label "DVM_RNG_CMD_2"
 		(shape passive)
-		(at 101.6 111.76 0)
+		(at 101.6 114.3 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -2237,9 +2237,9 @@
 			)
 		)
 	)
-	(global_label "DVM_INT_CMD_1"
+	(global_label "DVM_AUTORANGE"
 		(shape passive)
-		(at 101.6 104.14 0)
+		(at 101.6 106.68 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -2512,6 +2512,83 @@
 		)
 	)
 	(symbol
+		(lib_id "solartron7075:+5V_ISO")
+		(at 83.82 93.98 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "2cca2c01-1ad4-5f62-a872-78e6e8111f90")
+		(property "Reference" "#PWR194"
+			(at 83.82 97.79 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "+5V_ISO"
+			(at 83.82 90.28 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 83.82 93.98 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 83.82 93.98 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol: isolated (multimeter side) regulated +5 V \"+5V_ISO\""
+			(at 83.82 93.98 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "3ac0fa4c-82be-55a8-95c6-620443da2efe")
+		)
+		(instances
+			(project "solartron7075_usb_interface"
+				(path "/86e614d1-9b39-5263-a9c3-0762c0ac6667/7b93a543-e23a-5bcb-a86d-902ab9edadb5"
+					(reference "#PWR194")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Device:R")
 		(at 205.74 59.69 90)
 		(unit 1)
@@ -2624,6 +2701,160 @@
 		)
 	)
 	(symbol
+		(lib_id "solartron7075:+5V_ISO")
+		(at 170.18 33.02 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "3a29eca2-ba3a-5b95-9601-3dddf61aeef9")
+		(property "Reference" "#PWR200"
+			(at 170.18 36.83 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "+5V_ISO"
+			(at 170.18 29.32 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 170.18 33.02 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 170.18 33.02 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol: isolated (multimeter side) regulated +5 V \"+5V_ISO\""
+			(at 170.18 33.02 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "9670502e-05a9-5964-b66f-c54914051919")
+		)
+		(instances
+			(project "solartron7075_usb_interface"
+				(path "/86e614d1-9b39-5263-a9c3-0762c0ac6667/7b93a543-e23a-5bcb-a86d-902ab9edadb5"
+					(reference "#PWR200")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "solartron7075:GND_ISO")
+		(at 261.62 60.96 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "442ef6dd-1973-54ff-b9d2-fc69e34042f8")
+		(property "Reference" "#PWR201"
+			(at 261.62 67.31 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "GND_ISO"
+			(at 261.62 66.16 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 261.62 60.96 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 261.62 60.96 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol: isolated (multimeter side) ground \"GND_ISO\""
+			(at 261.62 60.96 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "ac90caff-b13e-5318-a10a-1481f9822991")
+		)
+		(instances
+			(project "solartron7075_usb_interface"
+				(path "/86e614d1-9b39-5263-a9c3-0762c0ac6667/7b93a543-e23a-5bcb-a86d-902ab9edadb5"
+					(reference "#PWR201")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "solartron7075:GND_ISO")
 		(at 25.4 120.65 0)
 		(unit 1)
@@ -2633,8 +2864,8 @@
 		(on_board yes)
 		(in_pos_files yes)
 		(dnp no)
-		(uuid "35207767-edda-5740-8cbd-6c95b0f76e05")
-		(property "Reference" "#PWR169"
+		(uuid "45c78a55-68aa-5e4d-bc10-fa7efdb02b2b")
+		(property "Reference" "#PWR198"
 			(at 25.4 127 0)
 			(hide yes)
 			(show_name no)
@@ -2689,12 +2920,12 @@
 			)
 		)
 		(pin "1"
-			(uuid "c7d9bd8a-9268-5e86-ac8c-42657f87681f")
+			(uuid "b744b8c9-f9fa-5dde-b9a5-37834d67979b")
 		)
 		(instances
 			(project "solartron7075_usb_interface"
 				(path "/86e614d1-9b39-5263-a9c3-0762c0ac6667/7b93a543-e23a-5bcb-a86d-902ab9edadb5"
-					(reference "#PWR169")
+					(reference "#PWR198")
 					(unit 1)
 				)
 			)
@@ -2824,8 +3055,8 @@
 		(on_board yes)
 		(in_pos_files yes)
 		(dnp no)
-		(uuid "61919f4c-47ad-555f-bce9-5751f266d618")
-		(property "Reference" "#PWR160"
+		(uuid "716725ff-a8ff-52da-94a8-48e7239192e8")
+		(property "Reference" "#PWR189"
 			(at 83.82 38.1 0)
 			(hide yes)
 			(show_name no)
@@ -2880,12 +3111,12 @@
 			)
 		)
 		(pin "1"
-			(uuid "e8e0196a-4df4-5a34-8e93-df0b62050e21")
+			(uuid "79de4649-97a5-5bb4-84ae-57145860c150")
 		)
 		(instances
 			(project "solartron7075_usb_interface"
 				(path "/86e614d1-9b39-5263-a9c3-0762c0ac6667/7b93a543-e23a-5bcb-a86d-902ab9edadb5"
-					(reference "#PWR160")
+					(reference "#PWR189")
 					(unit 1)
 				)
 			)
@@ -2893,7 +3124,7 @@
 	)
 	(symbol
 		(lib_id "solartron7075:+5V_ISO")
-		(at 66.04 59.69 90)
+		(at 25.4 107.95 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -2901,9 +3132,9 @@
 		(on_board yes)
 		(in_pos_files yes)
 		(dnp no)
-		(uuid "6f9b814c-6f90-5aba-bc51-1d9fd6795616")
-		(property "Reference" "#PWR161"
-			(at 69.85 59.69 90)
+		(uuid "799a7660-5c04-550a-b0dc-3f8913c81d25")
+		(property "Reference" "#PWR197"
+			(at 25.4 111.76 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2914,18 +3145,17 @@
 			)
 		)
 		(property "Value" "+5V_ISO"
-			(at 62.74 59.69 90)
+			(at 25.4 104.25 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
 			)
 		)
 		(property "Footprint" ""
-			(at 66.04 59.69 90)
+			(at 25.4 107.95 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2936,7 +3166,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 66.04 59.69 90)
+			(at 25.4 107.95 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2947,7 +3177,7 @@
 			)
 		)
 		(property "Description" "Power symbol: isolated (multimeter side) regulated +5 V \"+5V_ISO\""
-			(at 66.04 59.69 90)
+			(at 25.4 107.95 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2958,166 +3188,12 @@
 			)
 		)
 		(pin "1"
-			(uuid "01d8bbe9-c3ee-5d14-a2a9-2b318f10d5da")
+			(uuid "98066a32-a0a6-5ebb-b715-5f070571af92")
 		)
 		(instances
 			(project "solartron7075_usb_interface"
 				(path "/86e614d1-9b39-5263-a9c3-0762c0ac6667/7b93a543-e23a-5bcb-a86d-902ab9edadb5"
-					(reference "#PWR161")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "solartron7075:+5V_ISO")
-		(at 83.82 93.98 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "7883fd18-af8e-5613-afb5-4eff2341db2c")
-		(property "Reference" "#PWR165"
-			(at 83.82 97.79 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "+5V_ISO"
-			(at 83.82 90.28 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 83.82 93.98 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 83.82 93.98 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Power symbol: isolated (multimeter side) regulated +5 V \"+5V_ISO\""
-			(at 83.82 93.98 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "3a99106e-91f5-5cf2-991d-f4f7ae41b635")
-		)
-		(instances
-			(project "solartron7075_usb_interface"
-				(path "/86e614d1-9b39-5263-a9c3-0762c0ac6667/7b93a543-e23a-5bcb-a86d-902ab9edadb5"
-					(reference "#PWR165")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "solartron7075:+5V_ISO")
-		(at 170.18 33.02 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "7babad17-31ae-5cc2-a74f-cddddd447607")
-		(property "Reference" "#PWR171"
-			(at 170.18 36.83 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "+5V_ISO"
-			(at 170.18 29.32 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 170.18 33.02 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 170.18 33.02 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Power symbol: isolated (multimeter side) regulated +5 V \"+5V_ISO\""
-			(at 170.18 33.02 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "49e5bea2-842b-5473-9b88-a78958a00561")
-		)
-		(instances
-			(project "solartron7075_usb_interface"
-				(path "/86e614d1-9b39-5263-a9c3-0762c0ac6667/7b93a543-e23a-5bcb-a86d-902ab9edadb5"
-					(reference "#PWR171")
+					(reference "#PWR197")
 					(unit 1)
 				)
 			)
@@ -3394,315 +3470,6 @@
 		)
 	)
 	(symbol
-		(lib_id "solartron7075:+5V_ISO")
-		(at 25.4 48.26 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "88ab596f-7492-5d27-973a-9597e3504b1c")
-		(property "Reference" "#PWR163"
-			(at 25.4 52.07 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "+5V_ISO"
-			(at 25.4 44.56 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 25.4 48.26 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 25.4 48.26 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Power symbol: isolated (multimeter side) regulated +5 V \"+5V_ISO\""
-			(at 25.4 48.26 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "0302c04d-1418-515b-a1c2-b10132888c37")
-		)
-		(instances
-			(project "solartron7075_usb_interface"
-				(path "/86e614d1-9b39-5263-a9c3-0762c0ac6667/7b93a543-e23a-5bcb-a86d-902ab9edadb5"
-					(reference "#PWR163")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "solartron7075:+5V_ISO")
-		(at 66.04 119.38 90)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "8dabdac6-9098-5e03-808e-92c4e1a0508b")
-		(property "Reference" "#PWR166"
-			(at 69.85 119.38 90)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "+5V_ISO"
-			(at 62.74 119.38 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" ""
-			(at 66.04 119.38 90)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 66.04 119.38 90)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Power symbol: isolated (multimeter side) regulated +5 V \"+5V_ISO\""
-			(at 66.04 119.38 90)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "8307b69f-2130-5635-aede-bb7f3a2b53b5")
-		)
-		(instances
-			(project "solartron7075_usb_interface"
-				(path "/86e614d1-9b39-5263-a9c3-0762c0ac6667/7b93a543-e23a-5bcb-a86d-902ab9edadb5"
-					(reference "#PWR166")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "solartron7075:+5V_ISO")
-		(at 25.4 107.95 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "8ef91b2b-3b85-5b90-8c0d-1a0b840d756c")
-		(property "Reference" "#PWR168"
-			(at 25.4 111.76 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "+5V_ISO"
-			(at 25.4 104.25 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 25.4 107.95 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 25.4 107.95 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Power symbol: isolated (multimeter side) regulated +5 V \"+5V_ISO\""
-			(at 25.4 107.95 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "8968cc41-3dcf-55b0-9181-8db0dff52bbb")
-		)
-		(instances
-			(project "solartron7075_usb_interface"
-				(path "/86e614d1-9b39-5263-a9c3-0762c0ac6667/7b93a543-e23a-5bcb-a86d-902ab9edadb5"
-					(reference "#PWR168")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "solartron7075:GND_ISO")
-		(at 83.82 74.93 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "a5d1a53e-6d78-575f-a090-7006971869d6")
-		(property "Reference" "#PWR162"
-			(at 83.82 81.28 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "GND_ISO"
-			(at 83.82 80.13 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 83.82 74.93 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 83.82 74.93 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Power symbol: isolated (multimeter side) ground \"GND_ISO\""
-			(at 83.82 74.93 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "19041009-5ea2-5ac8-ab19-31cff729efa1")
-		)
-		(instances
-			(project "solartron7075_usb_interface"
-				(path "/86e614d1-9b39-5263-a9c3-0762c0ac6667/7b93a543-e23a-5bcb-a86d-902ab9edadb5"
-					(reference "#PWR162")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "solartron7075:GND_ISO")
 		(at 25.4 60.96 0)
 		(unit 1)
@@ -3712,8 +3479,8 @@
 		(on_board yes)
 		(in_pos_files yes)
 		(dnp no)
-		(uuid "a9842772-731f-53d1-a66d-92584de74ded")
-		(property "Reference" "#PWR164"
+		(uuid "8e5c5806-848d-53cd-b182-aeab8f970f21")
+		(property "Reference" "#PWR193"
 			(at 25.4 67.31 0)
 			(hide yes)
 			(show_name no)
@@ -3768,12 +3535,12 @@
 			)
 		)
 		(pin "1"
-			(uuid "0ed49574-f1d4-55a5-8ebd-4bb1396d7e34")
+			(uuid "2612456a-aacd-54c7-888b-ab23e20f7333")
 		)
 		(instances
 			(project "solartron7075_usb_interface"
 				(path "/86e614d1-9b39-5263-a9c3-0762c0ac6667/7b93a543-e23a-5bcb-a86d-902ab9edadb5"
-					(reference "#PWR164")
+					(reference "#PWR193")
 					(unit 1)
 				)
 			)
@@ -3781,7 +3548,7 @@
 	)
 	(symbol
 		(lib_id "solartron7075:+5V_ISO")
-		(at 201.93 34.29 0)
+		(at 66.04 59.69 90)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -3789,9 +3556,9 @@
 		(on_board yes)
 		(in_pos_files yes)
 		(dnp no)
-		(uuid "b789937f-a299-517a-b30e-bd58a0d39380")
-		(property "Reference" "#PWR170"
-			(at 201.93 38.1 0)
+		(uuid "9cf07d77-5314-5731-83bd-f4c6e1a8c54a")
+		(property "Reference" "#PWR190"
+			(at 69.85 59.69 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3802,17 +3569,18 @@
 			)
 		)
 		(property "Value" "+5V_ISO"
-			(at 201.93 30.59 0)
+			(at 62.74 59.69 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
+				(justify left)
 			)
 		)
 		(property "Footprint" ""
-			(at 201.93 34.29 0)
+			(at 66.04 59.69 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3823,7 +3591,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 201.93 34.29 0)
+			(at 66.04 59.69 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3834,7 +3602,7 @@
 			)
 		)
 		(property "Description" "Power symbol: isolated (multimeter side) regulated +5 V \"+5V_ISO\""
-			(at 201.93 34.29 0)
+			(at 66.04 59.69 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3845,12 +3613,243 @@
 			)
 		)
 		(pin "1"
-			(uuid "e7ddece7-63ec-58ea-8ce9-47ed3e21d6b9")
+			(uuid "ad7b6e36-2c31-5a78-9a4b-a2d38458f407")
 		)
 		(instances
 			(project "solartron7075_usb_interface"
 				(path "/86e614d1-9b39-5263-a9c3-0762c0ac6667/7b93a543-e23a-5bcb-a86d-902ab9edadb5"
-					(reference "#PWR170")
+					(reference "#PWR190")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "solartron7075:GND_ISO")
+		(at 83.82 74.93 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "9e679bb6-7b06-5a29-b2ff-b6d9941dfce6")
+		(property "Reference" "#PWR191"
+			(at 83.82 81.28 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "GND_ISO"
+			(at 83.82 80.13 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 83.82 74.93 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 83.82 74.93 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol: isolated (multimeter side) ground \"GND_ISO\""
+			(at 83.82 74.93 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "7607c1a7-c138-5210-a188-f1423400020b")
+		)
+		(instances
+			(project "solartron7075_usb_interface"
+				(path "/86e614d1-9b39-5263-a9c3-0762c0ac6667/7b93a543-e23a-5bcb-a86d-902ab9edadb5"
+					(reference "#PWR191")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "solartron7075:+5V_ISO")
+		(at 25.4 48.26 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "b621f881-d307-53a8-8f53-14db022efb2e")
+		(property "Reference" "#PWR192"
+			(at 25.4 52.07 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "+5V_ISO"
+			(at 25.4 44.56 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 25.4 48.26 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 25.4 48.26 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol: isolated (multimeter side) regulated +5 V \"+5V_ISO\""
+			(at 25.4 48.26 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "304b9ef2-dfa8-50fc-9be9-ac3115946350")
+		)
+		(instances
+			(project "solartron7075_usb_interface"
+				(path "/86e614d1-9b39-5263-a9c3-0762c0ac6667/7b93a543-e23a-5bcb-a86d-902ab9edadb5"
+					(reference "#PWR192")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "solartron7075:GND_ISO")
+		(at 83.82 134.62 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "cb173d56-37d9-5f0e-a310-63a58d506ee3")
+		(property "Reference" "#PWR196"
+			(at 83.82 140.97 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "GND_ISO"
+			(at 83.82 139.82 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 83.82 134.62 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 83.82 134.62 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol: isolated (multimeter side) ground \"GND_ISO\""
+			(at 83.82 134.62 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "65899a8e-ad98-5190-806a-756ae786617a")
+		)
+		(instances
+			(project "solartron7075_usb_interface"
+				(path "/86e614d1-9b39-5263-a9c3-0762c0ac6667/7b93a543-e23a-5bcb-a86d-902ab9edadb5"
+					(reference "#PWR196")
 					(unit 1)
 				)
 			)
@@ -4013,160 +4012,6 @@
 		)
 	)
 	(symbol
-		(lib_id "solartron7075:GND_ISO")
-		(at 261.62 60.96 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "e4bc3c95-0c89-5653-9f4f-33473370bdba")
-		(property "Reference" "#PWR172"
-			(at 261.62 67.31 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "GND_ISO"
-			(at 261.62 66.16 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 261.62 60.96 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 261.62 60.96 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Power symbol: isolated (multimeter side) ground \"GND_ISO\""
-			(at 261.62 60.96 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "b70d024b-6856-571c-817c-a2fd799073ad")
-		)
-		(instances
-			(project "solartron7075_usb_interface"
-				(path "/86e614d1-9b39-5263-a9c3-0762c0ac6667/7b93a543-e23a-5bcb-a86d-902ab9edadb5"
-					(reference "#PWR172")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "solartron7075:GND_ISO")
-		(at 83.82 134.62 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "e7229541-3799-5f68-a8cc-a1bc0af9d088")
-		(property "Reference" "#PWR167"
-			(at 83.82 140.97 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "GND_ISO"
-			(at 83.82 139.82 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 83.82 134.62 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 83.82 134.62 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Power symbol: isolated (multimeter side) ground \"GND_ISO\""
-			(at 83.82 134.62 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "0d07fbc4-9797-5093-85dd-92827e44e941")
-		)
-		(instances
-			(project "solartron7075_usb_interface"
-				(path "/86e614d1-9b39-5263-a9c3-0762c0ac6667/7b93a543-e23a-5bcb-a86d-902ab9edadb5"
-					(reference "#PWR167")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Transistor_FET:AO3401A")
 		(at 204.47 41.91 180)
 		(unit 1)
@@ -4276,6 +4121,161 @@
 			(project "solartron7075_usb_interface"
 				(path "/86e614d1-9b39-5263-a9c3-0762c0ac6667/7b93a543-e23a-5bcb-a86d-902ab9edadb5"
 					(reference "Q1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "solartron7075:+5V_ISO")
+		(at 66.04 119.38 90)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "f42e5be5-6e98-5aae-b6b1-06c97739aba3")
+		(property "Reference" "#PWR195"
+			(at 69.85 119.38 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "+5V_ISO"
+			(at 62.74 119.38 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 66.04 119.38 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 66.04 119.38 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol: isolated (multimeter side) regulated +5 V \"+5V_ISO\""
+			(at 66.04 119.38 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "03372d1e-fa2d-5449-9cc8-7c587ea3d466")
+		)
+		(instances
+			(project "solartron7075_usb_interface"
+				(path "/86e614d1-9b39-5263-a9c3-0762c0ac6667/7b93a543-e23a-5bcb-a86d-902ab9edadb5"
+					(reference "#PWR195")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "solartron7075:+5V_ISO")
+		(at 201.93 34.29 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "fda18683-f0eb-53e1-b0f2-dc0fb608cd4e")
+		(property "Reference" "#PWR199"
+			(at 201.93 38.1 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "+5V_ISO"
+			(at 201.93 30.59 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 201.93 34.29 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 201.93 34.29 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol: isolated (multimeter side) regulated +5 V \"+5V_ISO\""
+			(at 201.93 34.29 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "fdd324fd-1b47-5bd8-bd67-95efee435382")
+		)
+		(instances
+			(project "solartron7075_usb_interface"
+				(path "/86e614d1-9b39-5263-a9c3-0762c0ac6667/7b93a543-e23a-5bcb-a86d-902ab9edadb5"
+					(reference "#PWR199")
 					(unit 1)
 				)
 			)

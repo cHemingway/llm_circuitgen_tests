@@ -10,6 +10,7 @@
 """
 import heapq
 import math
+import os
 import time
 
 import numpy as np
@@ -24,8 +25,9 @@ VIA_D, VIA_DRILL = 0.6, 0.3
 HW = [0.1, 0.15, 0.25, 0.3]  # half-width classes: 0.2 / 0.3 / 0.5 mm tracks, via
 KVIA = 3
 STEP, DIAG = 10, 14
-VIA_COST = 260
+VIA_COST = int(os.environ.get('ROUTER_VIA', 260))    # cost of a via in units of 0.01 mm of track
 TURN = 3
+HUG = 0                      # extra cost per cell that is not right next to an obstacle (see build_hug)
 
 
 def kclass(width):
@@ -50,6 +52,8 @@ class Router:
         self.routes = {}       # net id -> list of route dicts
         self.ripcount = {}
         self.fixed_vias = []
+        self.hug_w = HUG
+        self.hug = None
         yy, xx = np.mgrid[0:self.ny, 0:self.nx]
         self.X, self.Y = xx * G, yy * G
         self._edges()
@@ -237,6 +241,27 @@ class Router:
             okr &= hard_ok & (s != -1)
         return bytearray(ok.astype(np.uint8).tobytes()), (bytearray(okr.astype(np.uint8).tobytes()) if rip else None)
 
+    def build_hug(self):
+        """Per-cell extra cost that makes tracks run right along pads, vias and other fixed
+        copper instead of down the middle of a gap, so that a second track still fits
+        (two tracks between neighbouring D-sub pins, one under a resistor array, ...)."""
+        self.hug = []
+        for k in range(len(HW)):
+            row = []
+            for l in range(2):
+                blocked = self.hard[k][l] != 0
+                near = blocked.copy()
+                near[1:, :] |= blocked[:-1, :]
+                near[:-1, :] |= blocked[1:, :]
+                near[:, 1:] |= blocked[:, :-1]
+                near[:, :-1] |= blocked[:, 1:]
+                near[1:, 1:] |= blocked[:-1, :-1]
+                near[:-1, :-1] |= blocked[1:, 1:]
+                near[1:, :-1] |= blocked[:-1, 1:]
+                near[:-1, 1:] |= blocked[1:, :-1]
+                row.append(bytearray(np.where(near, 0, self.hug_w).astype(np.uint8).tobytes()))
+            self.hug.append(row)
+
     # ------------------------------------------------------------------ search
     def astar(self, net, k, src, dst, goal_xy, bias=(1.0, 1.0), allow_via=True, plane_goal=False, rip=False,
               max_nodes=400000, max_cost=None, rip_cost=400):
@@ -263,6 +288,7 @@ class Router:
         moves = [(1, 0, STEP), (-1, 0, STEP), (0, 1, STEP), (0, -1, STEP), (1, 1, DIAG), (1, -1, DIAG), (-1, 1, DIAG), (-1, -1, DIAG)]
         softk = self.soft[k]
         softv = self.soft[KVIA]
+        hug = self.hug[k] if (self.hug and not plane_goal) else None
         count = 0
         GOAL = -1
         while heap:
@@ -281,6 +307,7 @@ class Router:
             c = n - l * N
             i, j = c % nx, c // nx
             okl = ok[l]
+            hugl = hug[l] if hug else None
             penl = pen[l] if rip else None
             pd = ddir.get(n, -1)
             hb, vb = (bias[0], bias[1]) if l == 0 else (bias[1], bias[0])
@@ -303,6 +330,8 @@ class Router:
                 else:
                     cc = cst * (hb if di else vb)
                 g2 = g + cc + extra + (TURN if (pd != mi and pd != -1) else 0)
+                if hugl:
+                    g2 += hugl[c2]
                 n2 = l * N + c2
                 if g2 < best.get(n2, 1 << 60):
                     best[n2] = g2
@@ -539,6 +568,8 @@ class Router:
     def route_all(self, bias=(1.0, 1.0), passes=30, t_limit=1500):
         t0 = time.time()
         self.snapshot()
+        if self.hug_w:
+            self.build_hug()
         queue = self.net_edges()
         self.all_edges = list(queue)
         failed = []

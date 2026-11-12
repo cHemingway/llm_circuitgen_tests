@@ -1,0 +1,146 @@
+{
+ "chain165": [
+  "U10",
+  "U11",
+  "U12",
+  "U13",
+  "U14"
+ ],
+ "chain595": [
+  "U15",
+  "U16"
+ ],
+ "inputs": {
+  "U10": [
+   "DVM_D1_4",
+   "DVM_D5_4",
+   "DVM_D6_1",
+   "DVM_PRINT_LEVEL",
+   "DVM_OVERLOAD",
+   "DVM_DATA_CAN_CHG",
+   "DVM_D1_8",
+   "DVM_D5_8"
+  ],
+  "U11": [
+   "DVM_D0_4",
+   "DVM_D4_8",
+   "DVM_D5_2",
+   "DVM_D1_1",
+   "DVM_D1_2",
+   "DVM_D5_1",
+   "DVM_FP_LOCKOUT",
+   "DVM_D0_8"
+  ],
+  "U12": [
+   "DVM_D3_8",
+   "DVM_D4_1",
+   "DVM_D4_2",
+   "DVM_D4_4",
+   "DVM_D0_1",
+   "DVM_D0_2",
+   "DVM_POL_NEG",
+   "DVM_POL_POS"
+  ],
+  "U13": [
+   "DVM_RNG_OUT_4",
+   "DVM_D3_1",
+   "DVM_D3_4",
+   "DVM_D3_2",
+   "DVM_FN_OUT_A",
+   "DVM_FN_OUT_B",
+   "DVM_RNG_OUT_2",
+   "DVM_D2_8"
+  ],
+  "U14": [
+   "DVM_D2_4",
+   "DVM_D2_1",
+   "DVM_RNG_OUT_1",
+   "DVM_D2_2",
+   "DVM_PRINT_PULSE",
+   "ID0",
+   "ID0",
+   "ID1"
+  ]
+ },
+ "pulldown": {
+  "RN3": {
+   "5": "DVM_D6_1",
+   "6": "DVM_D5_8",
+   "2": "DVM_D1_4"
+  },
+  "RN5": {
+   "5": "DVM_D5_4",
+   "1": "DVM_D5_2",
+   "6": "DVM_D1_2",
+   "2": "DVM_D1_1"
+  },
+  "RN7": {
+   "5": "DVM_D5_1",
+   "6": "DVM_D4_8",
+   "2": "DVM_D4_4",
+   "1": "DVM_D0_4"
+  },
+  "RN9": {
+   "6": "DVM_D4_2",
+   "1": "DVM_D4_1",
+   "5": "DVM_D0_2",
+   "2": "DVM_D0_1"
+  },
+  "RN11": {
+   "6": "DVM_D3_8",
+   "2": "DVM_D3_4",
+   "5": "DVM_POL_POS",
+   "1": "DVM_POL_NEG"
+  },
+  "RN13": {
+   "6": "DVM_D3_2",
+   "2": "DVM_D3_1",
+   "5": "DVM_FN_OUT_A",
+   "1": "DVM_FN_OUT_B"
+  },
+  "RN15": {
+   "5": "DVM_D2_8",
+   "2": "DVM_D2_4",
+   "6": "DVM_RNG_OUT_4",
+   "1": "DVM_RNG_OUT_2"
+  },
+  "RN17": {
+   "5": "DVM_D2_2",
+   "2": "DVM_D2_1",
+   "6": "DVM_RNG_OUT_1",
+   "1": "DVM_PRINT_PULSE"
+  },
+  "RN19": {
+   "2": "DVM_D1_8",
+   "1": "DVM_PRINT_LEVEL",
+   "3": "DVM_DATA_CAN_CHG",
+   "4": "DVM_OVERLOAD"
+  },
+  "RN21": {
+   "1": "DVM_D0_8",
+   "2": "DVM_FP_LOCKOUT"
+  }
+ },
+ "outputs": {
+  "U15": [
+   "DVM_FP_LOCKOUT",
+   "PULSE_GATE",
+   "DVM_SAMPLE_CONTACT",
+   "DVM_FN_CMD_A",
+   "DVM_FN_CMD_B",
+   "DVM_RATIO",
+   "DVM_INT_CMD_4",
+   "DVM_INT_CMD_2"
+  ],
+  "U16": [
+   null,
+   "DVM_AUTORANGE",
+   "DVM_INT_CMD_1",
+   "DVM_RNG_CMD_1",
+   "DVM_RNG_CMD_2",
+   "DVM_RNG_CMD_4",
+   null,
+   null
+  ]
+ }
+}

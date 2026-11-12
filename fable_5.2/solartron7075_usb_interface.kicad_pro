@@ -674,6 +674,15 @@
       "Net-(RN16-R4.2)": [
         "ISO"
       ],
+      "Net-(RN18-R1.2)": [
+        "ISO"
+      ],
+      "Net-(RN18-R2.2)": [
+        "ISO"
+      ],
+      "Net-(RN18-R3.2)": [
+        "ISO"
+      ],
       "Net-(RN18-R4.2)": [
         "ISO"
       ],
@@ -686,16 +695,7 @@
       "Net-(RN2-R3.2)": [
         "ISO"
       ],
-      "Net-(RN2-R4.2)": [
-        "ISO"
-      ],
       "Net-(RN20-R1.2)": [
-        "ISO"
-      ],
-      "Net-(RN20-R2.2)": [
-        "ISO"
-      ],
-      "Net-(RN20-R4.2)": [
         "ISO"
       ],
       "Net-(RN4-R1.2)": [
@@ -752,40 +752,40 @@
       "VBUS": [
         "PWR_WIDE"
       ],
-      "unconnected-(RN18-R1.1-Pad1)": [
+      "unconnected-(RN20-R2.1-Pad2)": [
         "ISO"
       ],
-      "unconnected-(RN18-R1.2-Pad8)": [
+      "unconnected-(RN20-R2.2-Pad7)": [
         "ISO"
       ],
-      "unconnected-(RN18-R2.1-Pad2)": [
+      "unconnected-(RN20-R3.1-Pad3)": [
         "ISO"
       ],
-      "unconnected-(RN18-R2.2-Pad7)": [
+      "unconnected-(RN20-R3.2-Pad6)": [
         "ISO"
       ],
-      "unconnected-(RN18-R3.1-Pad3)": [
+      "unconnected-(RN20-R4.1-Pad4)": [
         "ISO"
       ],
-      "unconnected-(RN18-R3.2-Pad6)": [
+      "unconnected-(RN20-R4.2-Pad5)": [
         "ISO"
       ],
-      "unconnected-(RN19-R1.1-Pad1)": [
+      "unconnected-(RN21-R3.1-Pad3)": [
         "ISO"
       ],
-      "unconnected-(RN19-R1.2-Pad8)": [
+      "unconnected-(RN21-R3.2-Pad6)": [
         "ISO"
       ],
-      "unconnected-(RN19-R2.1-Pad2)": [
+      "unconnected-(RN21-R4.1-Pad4)": [
         "ISO"
       ],
-      "unconnected-(RN19-R2.2-Pad7)": [
+      "unconnected-(RN21-R4.2-Pad5)": [
         "ISO"
       ],
-      "unconnected-(RN19-R3.1-Pad3)": [
+      "unconnected-(RN3-R1.1-Pad1)": [
         "ISO"
       ],
-      "unconnected-(RN19-R3.2-Pad6)": [
+      "unconnected-(RN3-R1.2-Pad8)": [
         "ISO"
       ],
       "unconnected-(U10-~{Q7}-Pad7)": [
@@ -803,7 +803,7 @@
       "unconnected-(U14-~{Q7}-Pad7)": [
         "ISO"
       ],
-      "unconnected-(U16-DRAIN5-Pad12)": [
+      "unconnected-(U16-DRAIN0-Pad3)": [
         "ISO"
       ],
       "unconnected-(U16-DRAIN6-Pad13)": [

@@ -13,11 +13,13 @@ import math
 import os
 import subprocess
 import sys
+import tempfile
 
 import pcbnew
 from pcbnew import FromMM, ToMM, VECTOR2I
 
 import netlist
+import pinmap
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.normpath(os.path.join(HERE, '..'))
@@ -166,6 +168,18 @@ put('R10', 114.3, 21.1, 90)
 put('D2', 114.3, 32.6, 270)
 put('R9', 114.3, 29.4, 90)
 
+# Placement of the multimeter-side parts and the position of the silkscreen titles as
+# chosen by scripts/optimise.py (pin swapping + placement search).  The values above are
+# the original hand placement and remain the starting point / fallback.
+PL_BASE = dict(PL)
+SILK = {'title': (34.0, 14.75), 'sub': (30.0, 47.6), 'j1': (4.0, 40.5, 90)}
+LAYOUT = os.path.join(HERE, 'layout.json')
+if os.path.exists(LAYOUT):
+    _lay = json.load(open(LAYOUT))
+    for _ref, _v in _lay.get('place', {}).items():
+        put(_ref, *_v)
+    SILK.update({k: tuple(v) for k, v in _lay.get('silk', {}).items()})
+
 # isolation keep-out rectangles (x1, y1, x2, y2): full width everywhere except in the
 # band around the DC-DC converter pins, where only the strip between pins 2 and 3 is kept clear
 BARRIER = [(ISO_EDGE + 0.3, 6.6, MCU_EDGE - 0.3, H),
@@ -243,8 +257,7 @@ def net_class(full, dom):
 
 def write_project(nets, dom):
     path = os.path.join(OUT, NAME + '.kicad_pro')
-    tmp = '/tmp/_kpro'
-    os.makedirs(tmp, exist_ok=True)
+    tmp = tempfile.mkdtemp()
     b = pcbnew.NewBoard(os.path.join(tmp, 't.kicad_pcb'))
     pcbnew.SaveBoard(os.path.join(tmp, 't.kicad_pcb'), b)
     pro = json.load(open(os.path.join(tmp, 't.kicad_pro')))
@@ -412,16 +425,21 @@ def pad_xy(board, ref, num):
 
 # ---------------------------------------------------------------------------
 def export_netlist():
-    net = '/tmp/%s.net' % NAME
-    subprocess.run(['kicad-cli', 'sch', 'export', 'netlist', '--format', 'kicadsexpr', '-o', net, SCH],
-                   check=True, capture_output=True)
-    return netlist.load(net)
+    fd, net = tempfile.mkstemp(suffix='.net')       # private file: several builds may run in parallel
+    os.close(fd)
+    try:
+        subprocess.run(['kicad-cli', 'sch', 'export', 'netlist', '--format', 'kicadsexpr', '-o', net, SCH],
+                       check=True, capture_output=True)
+        return netlist.load(net)
+    finally:
+        os.remove(net)
 
 
 def stage_place():
     comps, nets = export_netlist()
     for n in nets:
         FULL[short(n)] = n
+    pinmap.verify_netlist(pinmap.load(), nets)     # schematic really implements the pin map
     dom = domains(comps, nets)
     write_project(nets, dom)
     if os.path.exists(PCB):
@@ -552,9 +570,10 @@ def preroute(board):
 
 def silk(board):
     F, B = pcbnew.F_SilkS, pcbnew.B_SilkS
-    add_text(board, 'SOLARTRON 7075 USB INTERFACE', 34.0, 14.75, 1.3, F, thick=0.2)
-    add_text(board, 'RP2354A opto-isolated  rev A', 30.0, 47.6, 1.0, F)
-    add_text(board, 'J1 on other side', 4.0, 40.5, 0.8, F, rot=90)
+    add_text(board, 'SOLARTRON 7075 USB INTERFACE', SILK['title'][0], SILK['title'][1], 1.3, F, thick=0.2,
+             rot=(SILK['title'] + (0,))[2])
+    add_text(board, 'RP2354A opto-isolated  rev A', SILK['sub'][0], SILK['sub'][1], 1.0, F, rot=(SILK['sub'] + (0,))[2])
+    add_text(board, 'J1 on other side', SILK['j1'][0], SILK['j1'][1], 0.8, F, rot=(SILK['j1'] + (0,))[2])
     for y1, y2 in ((9.6, 10.4), (21.6, 22.0), (33.1, 33.5), (44.6, 46.3), (48.1, 49.5)):
         add_line(board, BX, y1, BX, y2, F, 0.3)
     add_text(board, 'ISOLATION', BX, 47.2, 0.8, F)
@@ -667,6 +686,7 @@ def stage_route(bias=(1.0, 1.0)):
     widths = {n: CLASSES[net_class(n, dom)][0] for n in nets}
     widths[FULL['VREG_LX']] = 0.2
     r = router.Router(board, OX, OY, W, H, ['GND', 'GND_ISO', '+3V3', '+5V_ISO'], widths)
+    r.hug_w = int(os.environ.get('ROUTER_HUG', router.HUG))
     for r_ in BARRIER:
         r.block_rect(*r_)
     r.add_pads()
